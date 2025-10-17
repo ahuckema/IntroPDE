@@ -1,0 +1,800 @@
+\documentclass[A4,12pt,twoside]{book}
+\usepackage{amd}
+
+% %--------------------------------------------------------------------------
+% %         General Setting
+% %--------------------------------------------------------------------------
+
+\graphicspath{{Images/}{../Images/}} %Path of figures
+\setkeys{Gin}{width=0.85\textwidth} %Size of figures
+\setlength{\cftbeforechapskip}{3pt} %space between items in toc
+\setlength{\parindent}{0.5cm} % Idk
+\input{theorems.tex} % Theorems styles and colors
+\usepackage[english]{babel} %Language
+
+\setlist[itemize]{itemsep=5pt} % Adjust the length as needed
+\setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
+
+
+\usepackage[ruled,vlined]{algorithm2e}
+% \usepackage{lmodern} %  Latin Modern font
+% \usepackage{newtxtext,newtxmath}
+
+
+
+
+% %--------------------------------------------------------------------------
+% %         General Informations
+% %--------------------------------------------------------------------------
+\newcommand{\BigTitle}{
+    A MATHEMATICAL TEMPLATE
+    }
+
+\newcommand{\LittleTitle}{
+    For Mathematical Peoples
+    }
+
+    
+\begin{document}
+
+
+
+
+
+
+
+
+\section{Backround}
+For a function $f: \mathbb{R}^m \to \mathbb{R}^n$ the Jacobi-Matrix at point $x_0$ is given by
+$$
+\frac{\partial }{\partial x} f(x_0) := \begin{pmatrix}
+    \frac{\partial }{\partial x_1} f_1 (x_0) & \cdots & \frac{\partial }{\partial x_m} f_1 (x_0)  \\
+    \vdots &\ddots &\vdots \\
+    \frac{\partial }{\partial x_1} f_n (x_0) & \cdots & \frac{\partial }{\partial x_m} f_n (x_0) 
+\end{pmatrix} \in \mathbb{R}^{n \times m}
+$$
+and the derivative of $f$ at $x_0$ is then the mapping
+$$
+f^\prime (x_0) : \mathbb{R}^m \to \mathbb{R}^n, x \mapsto \frac{\partial }{\partial x} f(x_0) \cdot x.
+$$
+
+
+\defn{}{
+    We call the mapping \[
+    \phi: (0,\infty) \times \mathbb{R}/(2\pi \mathbb{R}) \to \mathbb{R}^2 , \quad (r,\theta) \mapsto \phi (r,\theta) := (r \cos (\theta), t \sin (\theta))
+    \]
+    polar coordinates.
+}
+It holds at point $(r_0,\theta_0)$ that
+\[
+|det ( \frac{\partial }{\partial x} \phi (r_0,\theta_0) ) | =r_0.???
+\]
+\defn{}{
+    For a set $M$ and an equivalenz relation $\sim$ we call
+    \[
+    [m] := \{n \in M \mid n \sim m \} \subset M
+    \]
+    an equivalenz class. We call $M/\sim$ the set of equivalenz classes from $M$ wrt. $\sim$. It is also called quotient set.
+}
+Note that 
+\[
+M = \bigcup_{ [a] \in M/\sim} [a]
+\]
+and that the mapping
+\[ 
+M \to M/\sim, \quad m \mapsto [m]
+\]
+is canonical, meaning that every element in $M$ is mapped to a unique equivalenz class.
+\rmkb{
+    One can show that the mapping\[
+    \mathbb{R} \to \mathbb{R} / (2 \pi \mathbb{Z})
+    \]
+    is a group homomorphism and its kernel is $2 \pi \mathbb{Z}$. Further, one can show that $\mathbb{R}/(2 \pi \mathbb{Z})$ is isomorphic to $S^1 := \{ x \in \mathbb{R}^2 \mid ||x||_2 =1 \}$. 
+}
+
+
+\chapter{First order PDEs}
+
+\defn{}{
+We call $F: ???$
+$$
+F(D^k u(x),...,Du(x),u(x),x)=0, \quad k \in \mathbb{N}^n_0
+$$
+PDE of order $|k|:= \sum_{i=1}^n k_i$ and $D^ku = (\partial^{k_1} \cdots \partial^{k_n})u$ 
+}
+
+\defn{}{
+Classical Solution???
+}
+
+\rmkb{
+Some Notation:\\
+We write $\dot{u} := \frac{\partial}{\partial t} u$ and if $u: \Omega\times \mathbb{R}_+ \to \mathbb{R}$, where $\Omega \subset \mathbb{R}^d$ we write $(1,b) \nabla u = \dot{u}+b \nabla_xu$.\\
+We also often write $b \nabla u:= \langle b,\nabla u \rangle$.
+}
+
+\section{Homogeneous Transport}
+Consider the PDE
+$$
+\dot{u} + b \nabla u =0
+$$
+which is called linear transport equation. We first assume that $u$ is differentiable and satisfies the equation above, i.e. is a classical solution. For fixed initial values $(x_0,t_0) \in \mathbb{R}^n \times \mathbb{R}$ the function
+$$
+z(s) := u(x_0 + sb,t_0+s)
+$$
+is differentiable (because $u$ is). One can now show that its derivative vanishes
+$$
+z^\prime (s) = b \nabla_x u(x_0 + sb,t_0+s) +\underbrace{ \frac{\partial}{\partial t} u(x_0 + sb,t_0+s)}_{=\dot{u}(x_0 + sb,t_0+s) } \cdot 1 \stackrel{PDE}{=}0.
+$$
+Thus $u$ is constant on the linear function $x(s) := x_0 + sb$. Therefore, $u$ is constant along all lines with direction $(b,1)$. Further, $u$ is completely determined by all values on these parallel lines??? (WHy not $z(s,t) = u(x_0 + sb,t_0 +t)$???)
+
+\defn{}{
+We call for such a transport equation the following
+$$
+\dot{u}+f(u)=0, \quad u(x,0)=u_0(x)
+$$
+Cauchy problem. Here $\dot{u}+f(u)=0$ is called conservation law and $f$ is the flux (stems from inflow and outflow) function.
+}
+For initial values $(x_0,t_0)$ we can now solve the PDE, this is because the solution $u$ is constant on $x(t)$ and thus
+$$
+u(x(t),t)= u(x_0 +tb,t) \stackrel{const}{=} u(x_0,0) = g(x_0) = g(x-tb)
+$$
+where we used that $x=x_0+tb$ is equivalent to $x_0 =x-tb$. This if $g$ is differentiable on $\mathbb{R}^n$ then the above solves the PDE. If $g$ is not differentiable there does not exist a solution in a classical sense!
+\section{Inhomogenous linear transport Equation}
+We now consider 
+$$
+\dot{u} + b \nabla u =f
+$$
+with initial values $(x_0,0) \in \mathbb{R}^n \times \mathbb{R}$ and again we define $z(s) := u(x_0 + sb,s)$ yielding
+$$
+z^\prime (s) = b \nabla u(x_0+sb,s) + \dot{u}(x_0+sb,s) \stackrel{PDE}{=} f(x_0+sb,s)
+$$
+Because we now $z(0) = u(x_0,0)=g(x_0)$ we actually have to solve the IVP of an ODE
+$$
+z^\prime (s)= f(x_0+sb,s), \quad z(0) =g(x_0).
+$$
+We can integrate and determine $z(s)$ completely??? Only if the ODE is solvable???\\
+The solution to the ODE tells us the value $z(s) = u(x_0 +sb,s)$ on the line $x(t) := s_0 + sb$. Using this, we can now write the solution down explicitly
+\begin{align*}
+    u(x(t),t) = z(t)  &= z(0) + \int_0^t z^\prime (s) ds \\
+    &=g(x_0)+ \int_0^t f(x_0+sb,s) ds\\
+    &= g(x-tb) + \int_0^t\underbrace{ f(x-tb-sb,s)}_{=f(x+(s-t)b,s)} ds
+\end{align*}
+which looks like the variation of constant approach from ODEs. In the following chapters, we want to generalize this approach for solving PDEs using ODEs.
+\section{Scalar Conservation Law}
+A scalar conservation law is a homogeneous non-linear transport equation with one space dimension
+$$
+\dot{u}(x,t) + \frac{\partial }{\partial x} f(u(x,t)) \stackrel{(*)}{=} \dot{u}(x,t) + f^\prime (u(x,t)) \frac{\partial }{\partial x} u(x,t) =0,
+$$
+where (*) only works if $f$ is differentiable. THen we have on every compact interval $[a,b]$ (why???) that
+\begin{align*}
+    \frac{d}{dt} \int_a^b u(x,t) dx = \int_a^b \dot{u}(x,t) dx \stackrel{PDE}{=} - \int_a^b \frac{\partial}{\partial x} f(u(x,t)) dx = f(u(a,t))- f(u(b,t)).
+\end{align*}
+The change of a quantity in an interval $[a,b]$ thus soly depends on the in- and outflow of that quantity at the boundary with speed $f$ at time $t$.???
+
+
+\section{Reminder}
+
+\defn{}{
+A set $X$ and a system of sets $\mathcal{O} \subseteq \mathcal{P}(X) = \{ A \mid A \subseteq X \}$ with
+\begin{itemize}
+    \item $\emptyset, X \in \mathcal{O}$
+    \item $\mathcal{O}^\prime \subset \mathcal{O}$ $\Rightarrow$ $\bigcup_{U \in \mathcal{O}^\prime} U \in \mathcal{O}$
+    \item $U,V \in \mathcal{O}$ $\Rightarrow$ $U \cap V \in \mathcal{O}$
+\end{itemize}
+is called topology on $X$ and $(X, \mathcal{O})$ is called topological space.
+}
+
+\defn{}{
+We call a topological space $(X, \mathcal{O})$ second countable if there exists a family $\mathcal{B} \subset \mathcal{O}$, that is a basis of $\mathcal{O}$, i.e.
+$$
+\forall U \in \mathcal{O} \forall x \in U \exists B \in \mathcal{B}: \quad x \in B \subset U.
+$$
+}
+A topological space $(X,\mathcal{O})$ is called Hausdroff, if
+$$
+\forall x,y \in X \text{ with } x \neq y \exists U_x,U_y \text{ open areas around $x$ and $y$ repectively:} \quad U_x \cap U_y = \emptyset.
+$$
+
+\defn{}{
+A $C^r-$Atlas of dimension $m$ on a Set $X$ is a family of Maps $(U_i, \varphi_i)_{i \in \mathbb{N}}$ with $U_i \subset X$ and $\bigcup_{i \in \mathbb{N}} U_i =X$ and homöormorphismen $\varphi:i : U_i \to \Omega \subset \mathbb{R}^n$ open such that for all $i,j \in \mathbb{N}$ with $U_i \cap U_j \neq \emptyset$ we have that
+$$
+\varphi_i \circ \varphi_j^{-1}: \varphi_i (U_i \cap U_j) \to \varphi_j(U_i \cap U_j) 
+$$
+is in $C^{1,r} := \{ u \in C^r \mid D^\alpha u \in C^r , |\alpha| \leq r \}$.
+}
+
+\defn{}{
+A $C^{r,1}$ Manifold $X$ of dimension $m$ is a Hausdorff, second countable topological space with a at most $C^{1,r}$-Atlas $\{(U_i, \varphi_i)_{i \in \mathbb{N}} \}$ where $\varphi_i: U \to \Omega \subset \mathbb{R}^m$ are Homöomorphism are and 
+}
+
+\defn{}{
+A topological space $(X, \mathcal{O})$ is called connected if the only subsets of $X$, that are open and closed are $\emptyset$ and $X$ itself. Local Connected means that for every $x \in X$ every ball around $x$ contains a connected area of $X$.
+}
+
+\thm{}{
+1. Non empty subsets $X$ of $\mathbb{R}$ are connected $\iff$ $X$ is a bounded or unbounded intervall.\\
+2. $\mathbb{R}$ is connected and also locally connected.
+}
+\pf{
+1. Let $X \subset \mathbb{R}$ be connected and not empty. Assume that there exists an intervall in $X$, where there is an element, that is not in $X$, i.e.
+$$
+\exists a,b \in X \text{ with } a<b: \quad x\in (a,b) \text{ with } x \notin X.
+$$
+Then we have that
+$$
+U:= (-\infty,x) \cap X= (-\infty,x] \cap X, \quad \text{ and }\quad V:= (x, \infty) \cap X = [x, \infty) \cap X.
+$$
+Both equalities above hold, because we assumed that $x \notin X$. Because $U$ and $V$ are open and closed at the same time we get that we can make a disjoint decomposition of open sets: $X = U \cup V$, which leads to a contradiction, because $X$ is no longer connected! \\
+This yields that the above constructed $x \notin X$ cannot exist. Thus, all elements in $(a,b) \subset X$ have to be in $X$.\\
+2. Global:\\
+Choose $\inf A=- \infty$ and $\sup A = \infty$. Then 
+$$
+ \forall x \in (\inf X,\sup X) \exists a,b \in X:\quad x \in (a,b)
+$$
+i.e. its always contained in an interval. This yields
+$$
+(\inf X, \sup X) \subset X \subset [\inf X,\sup X]
+$$
+which leads to the conclusion that $X$ has to be either
+$(\inf X, \sup X) ,[\inf X, \sup X),(\inf X, \sup X]$ or $[\inf X,\sup X]$.\\
+2. Local:\\
+We can use that a interval $I$ is connected $\iff$ $I = A \cup B$ of non empty subsets where at least one is not open. \\
+Let $a \in A , b \in B$ with $a<b$ and define $c := \inf B \cap [a,b]$. If $A$ is open then $c \in B$ and thus $[a,c) \subset A$. Because $c \notin A$ we get that $B$ is not open and thus $I$ is connected.
+}
+
+\defn{}{
+A mapping $f: V \to U$ between two open vector spaces is called Diffemorphism if
+\begin{itemize}
+    \item Bijective
+    \item everywhere continuous differentiable
+    \item the inverse $f^{-1}$ everywhere continuous differentiable.
+\end{itemize}
+}
+
+\defn{}{
+A Homöorphism is a bijective mapping $\varphi$ that is continuous and its inverse $\varphi^{-1}$ is continuous.
+}
+
+\defn{}{
+Let $X$ be a topological space, then we call a Homöormorphism $\phi: U \to V$, where $U \subset X$ open and $V \subset \mathbb{R}^n$ open, a Map. We call $U$ definition space and $n$ the dimension of the Map.
+}
+Intuition: A Map assigns to every point $x \in U$ a unique coordinate $\phi(x) := (x_1,...,x_n) \in V \subset \mathbb{R}^n$ and for every coordinate we can reconstruct a unique point.
+\defn{}{
+On a topological space $(X, \mathcal{O})$ we call two maps $\phi_1 : U_1 \to V$ and $\phi_2: U_2 \to V$, with $U_1,U_2 \subset X$ open and $V \subset \mathbb{R}^n$ open compatible, if 
+$$
+(\phi_1 \circ \phi_2^{-1} )\big|_{U_1 \cap U_2} \text{ is a diffeomorphism, i.e. bijective, continuous and its inverse is continuous.}
+$$
+}
+The reasoning behind the diffeomorphism (???) is that we dont want information to be lost.
+\rmkb{
+Note that $(\phi_1 \circ \phi_2^{-1})^{-1} = \phi_2 \circ \phi_1^{-1}$, i.e. no matter the order $\phi_1 \circ \phi_2^{-1}$ and $\phi_2 \circ \phi_1^{-1}$ we get a continuous bijective mapping from on of the definition spaces $U_1$ to the other $U_2$, because
+$$
+\phi_1 \circ \phi_2^{-1}: U_1 \to U_2 \text{ and } \phi_2 \circ \phi_1^{-1}: U_2 \to U_1.
+$$
+}
+\defn{}{
+For a topological space $(X, \mathcal{O})$ we call a family of maps $\phi_i : U_i \to \mathbb{R}^n$ such that $X \subset \bigcup_{i=1}^n U_i$ is a cover of $X$ an Atlas, if the maps are pairwise compatible.
+}
+
+\rmkb{
+We only want to consider Hausdorff spaces, because ???.\\
+The topological space 
+$$
+X := \bigcup_{i \in \mathbb{N}} O_i \cup (\{0^*\} \cup 0) \cup (\{0^*\} \cup ( O \setminus \{0\}))
+$$
+where $\bigcup_{i \in \mathbb{N}} O_i $ is an open cover of $\mathbb{R}$ and $0^*$ is some element, that is not in $\mathbb{R}$, and $O \subset \mathbb{R}$ is an open area around $0$. The two maps
+$$
+\phi_1: \mathbb{R}\setminus \{0^*\} \to \mathbb{R}, x \mapsto 1 \text{ and } \phi_2: ( \mathbb{R} \setminus \{0^*\} ) \cup \{0^*\} \to \mathbb{R}, x \mapsto \textbf{1}_{\mathbb{R} \setminus \{0\}} + 0 \textbf{1}_{\{0^*\}}
+$$
+are an Atlas of $X$, as their definition space is a cover of $X$. \\
+This is space, that we do not want to consider, because its not a Hausdorff space, because for arbitrary $V \subset \mathbb{R}$ open area of $0$ and $W \subset X$ open area of $0^*$ there exists $O \subset \mathbb{R}$ open area of $0$ with $0^* \in O$.
+}
+\defn{Manifold}{
+We call a topological Hausdorff space with an Atlas differentiable Manifold. 
+}
+The Idea here is that using an open cover of the topological space $X$, for each open set, we map using a map to an open subset of euklidean space, i.e. this what we call locally euklidean. 
+
+\section{Non-characteristic Hypersurfaces}
+We now consider $F: W \to \mathbb{R}$ with $W \subset \mathbb{R}^n \times \mathbb{R} \times \Omega$ open as the first order PDE
+$$
+F(\nabla u(x),u(x),x)=0
+$$
+where the solution $u:\Omega \to  \mathbb{R}$ is defined on the open domain $\Omega \subseteq \mathbb{R}^n$ and has the boundary condition
+$$
+u(y) = g(y), \quad \forall y \in \Sigma := \{ x \in \Omega \mid \varphi (x) = \varphi (x_0)  \}
+$$
+on the level set of a function $\varphi$.\\
+In this section we will show that we can reformulate the boundary condition of the Cauchy problem as
+$$
+u(y) = g(y), \quad \forall y \in \Omega \cap H, \text{ where } H:= \{ x \in \mathbb{R}^n \mid xe_n =x_0 e_n =0 \}
+$$
+is the unique hyperplane through $x_0 \in \Omega$ that is orthogonal to $e_n =(0,....,0,1)$.\\
+If $\nabla \varphi (x_0)\neq 0$ we can assume w.l.o.g that $\frac{\partial}{\partial x_n} \varphi (x_0) \neq 0$ which leads wit the inverse function theorem to the conclusion that
+$$
+x \mapsto \Phi(x) := (x_1,...,x_{n-1},\varphi(x))
+$$
+is continuous differentiable and for every $x$ in an open neighborhood of $x_0$ it holds that $x = \Phi^{-1} (x).$ Then it holds that 
+$$
+\varphi (x) = \varphi (x_0) \quad \iff \quad y e_n =  (\Phi (x))_n =\varphi (x).
+$$
+We call this straightening of the boundary at $x_0$. Then for a function $v: \Omega^\prime \to \mathbb{R}$ and $u:= v \circ \Phi$ we get that 
+$$
+\nabla u(x) = \nabla v (\Phi (x)) = \nabla v (y) \Phi^\prime (\Phi^{-1}(y)),
+$$
+where $\Phi^\prime$ is the Jacobi Matrix. Thus, we get the relation that $u$ is a solution of $F(\nabla u(x), u(x) ,x)=0$ $\iff$ $v$ is a solution of 
+$$
+G(\nabla v(y),y(y),y) := F(\nabla v(y) \Phi^\prime (\Phi^{-1}(y)),v(y) , \Phi^{-1}(y))=0
+$$
+Next, we ask ourselves the question what information we can gather about $u$ using the Hyperplane $H$? Due to the fact that the Hyperplane is orthogonal to $e_n$, we can compute the partial derivatives of $u$ on the hyperplane in $n-1$ directions, i.e. for $x_0 \in H$:
+$$
+\frac{\partial}{\partial x_i} u(x_0) = \lim_{h \to 0} \frac{u(x_0+he_i)-u(x_0)}{h} \stackrel{Boundray}{=} \lim_{h \to 0} \frac{g(x_0+he_i)-g(x_0)}{h} = \frac{\partial }{\partial x_i} g(x_0), i=1,...,n-1.
+$$
+This does not work for $\frac{\partial}{\partial x_n} g(x_0)$, because $g$ is only defined on $H \cap \Omega$ which is orthogonal to $e_n$. 
+\rmkb{
+For future purposes we define
+$$
+p_{0,i} := \frac{\partial}{\partial x_i} u(x_0), \quad p_i := \frac{\partial}{\partial x_i} u(x), \quad p_0:= (p_{0,1},...,p_{0,n}), \quad p:=(p_1,...,p_n)
+$$
+and 
+$$
+z = u(x), \quad z_0:= u(x_0).
+$$
+We then only write
+$$
+F(\nabla u(x_0) , u(x_0) ,x_0)= F(p_0, g(x_0) ,x_0)=0.
+$$
+}
+Whether or not the PDE has a solution hence depends on $F$ and the initial condition $g$. Next, follows a simple criterion for the existence of a solution.
+\defn{}{
+Consider the PDE $F(p,z,x)=0$ with $2n+1$ variables and suppose there exists a solution $(p_0,z_0,x_0)$. We call the hyperplane $H := \{ x \mid x_n =x_{0,n} \}$ non-characteristic at $x_0 := (x_{0,1},...,x_{0,n})$ if
+$$
+\frac{\partial}{\partial p_n} F(p_0,z_0,x_0)\neq 0.
+$$
+}
+\exm{}{
+Consider 
+$$
+\frac{\partial u}{\partial x_1} =0, \quad u(x_1,0)=g(x_1)
+$$
+i.e. the PDE is for $n=2$ given by $F(p_1,p_2,z,x_1,x_2)=p_1=0$. We then see that
+$$
+\frac{\partial}{\partial p_2} F(p,z,x)= \frac{\partial}{\partial p_2} p_1 =0
+$$
+which implies that the non-characteristic property does not hold. This now leads to two observations
+\begin{itemize}
+    \item The PDE and the initial condition are only compatible if $g$ is constant, i.e. we need 
+    $$
+    \frac{\partial}{\partial x_1} g(x)=0, \quad x \in H \cap \Omega.
+    $$
+    to hold
+    \item ???
+\end{itemize}
+}
+ 
+\thm{}{
+Let $F: W \to \mathbb{R}$, $g : H \to \mathbb{R}$ be continuous differentiable and $x_0 \in \Omega \cap H$, $z_0 := g(x_0)$ and
+$$
+\forall i=1,..,n-1: \quad p_{0,i} := \frac{\partial}{\partial x_i} g(x_0).
+$$
+If there exists a $p_{0,n}$ with $F(p_0,z_0,x_0)=0$ and $H$ is non-characteristic at $x_0$, then for $\Omega_{x_0} \subset \Omega$ open neighborhood of $x_0$ we have that 
+$$
+\exists x \in \Omega_{x_0} \cap H: \quad F(q(x),g(x),x)=0, \quad q_i (x) = \frac{\partial}{\partial x_i} g(x), i=1,...,n-1, \quad q(x_0)= p_0.
+$$
+}
+\pf{
+We define the function $l: (x,q_n) \mapsto F(q_1 (x),...,q_{n-1}(x),q_n,g(x),x)$, then by assumption of the PDE we have that
+$$
+l(x_0,p_{0,n})=0 \quad \text{ and } \quad \frac{\partial}{\partial x_n} l(x_0,p_{0,n}) \neq 0
+$$
+although the second condition stems from the fact that we assumed that $H$ is not characteristic at $x_0$.  The non negativity then yields that the inverse exists wrt. the partial derivative and we can apply the implicit theorem, i.e. there exist $\Omega_{x_0} \subset \Omega \cap H$, $W \subset \mathbb{R}$, $O \subset (\Omega \cap H)\times \mathbb{R}  $ open neighborhoods around $x_0/l(x_0,p_{0,n}) / (x_0,p_{0,n})$, then there exists a $q_n: V \times W \to Y$ such that
+$$
+\forall z \in W: \quad l^{-1}( \{ z\}) \cap O = Graph(q_n(\cdot,z)).
+$$
+???
+}
+
+\section{Method of Characteristics}
+We now want to find a more general approach for the chartacteristics. Up to now we have done it in every example by hand. In general, we want to solve the PDE on some curve along the domain. These curvers will be later ODEs. Let $x(s)$ be some curve on the domain and define $z(s) := u(x(s))$ as the solution along that curve. We also need to consider $p(s) := \nabla u(x(s))$, the gradient along this curve, as this appears in the PDE $F$. The big question is now, how we should choose this curve $s \mapsto x(s)$? We begin by noticing that
+$$
+p_i^\prime (s) = \frac{d}{ds} \frac{\partial u(x(s))}{\partial x_i} = \sum_{j=1}^n \frac{\partial^2 u(x(s))}{\partial x_j \partial x_i} x_j^\prime (s).
+$$
+Using this we now want to reformulate the total derivative of $F(\nabla u(x),u(x),x)$:
+\begin{align*}
+    0 &= \frac{d}{ds} F(\nabla u(x), u(x) ,x) \\
+    &= \sum_{j=1}^n \frac{\partial}{\partial p_j} F(p,u(x),x) \frac{\partial}{\partial x_i} p_j + \frac{\partial}{\partial u} F(p,u(x),x) \frac{\partial}{\partial x_i} u(x) + \frac{\partial}{\partial x_i} F(p,u(x),x).
+\end{align*}
+Due to commutivity $\partial_i \partial_j u= \partial_j \partial_i u$ and the above equality with zero we get that the above is equivalent to
+$$
+\sum_{j=1}^n \frac{\partial}{\partial p_j} F(p,u(x),x) \frac{\partial}{\partial x_j} p_i = - \frac{\partial}{\partial u} F(p,u(x),x) \frac{\partial}{\partial x_i} u(x) - \frac{\partial}{\partial x_i} F(p,u(x),x).
+$$
+Next, we want to eliminate the explicit dependence of $u$. As the curve $x$ was chosen up to now as arbitrary, if one compares with the equation with $p_i^\prime$, we can simplify, if we choose
+$$
+x_j^\prime (s) := \frac{\partial F(p,u(x),x)}{\partial p_j}
+$$
+i.e. yielding
+$$
+p_i^\prime (s)= \sum_{j=1}^n \underbrace{\frac{\partial}{\partial p_j} F(p,u(x),x)}_{=x_j^\prime(s)} \frac{\partial}{\partial x_j} p_i = - \frac{\partial}{\partial u} F(p,u(x),x) \frac{\partial}{\partial x_i} u(x) - \frac{\partial}{\partial x_i} F(p,u(x),x).
+$$
+
+
+\chapter{General Concepts}
+
+
+
+\section{Divergence Theorem}
+Now follows a generalization of fundamental theorem of calculus, i.e. partial integration to higher dimensions. In order for this to be feasible, we assume that $\Omega \subseteq \mathbb{R}^n$ is some compact space which then implies that $\partial \Omega \subseteq \mathbb{R}^{n-1}$. We can show that its a submanifold, which we now define.  
+\defn{}{
+For $U \subset \mathbb{R}^k$ and $f: U \to \mathbb{R}^{n-k}$ the Graph of $f$ is defined as
+$$
+graph(f) := \{ (x,y) \in U \times \mathbb{R}^{n-k} \mid y= f(x) \} \subset \mathbb{R}^n.
+$$
+}
+We neglect the order of the components in $\mathbb{R}^n$???
+\defn{}{
+A subset $A \subset \mathbb{R}^n$ is called $k$-dimensional submanifold if it is a $k$-dimensional graph locally, i.e. 
+$$
+\forall x \in A \exists O_x \subset \mathbb{R}^n \text{ open area around }x: \quad A \cap O_x \text{ is a $k$-dimensional Graph.}
+$$
+}
+\defn{}{
+A Graph or submanifold is in $C^l$ if the function $f$ of the Graph is in $f \in C^l$.
+}
+
+\rmkb{
+The Graph $(x,f(x))$ of a function $f: \mathbb{R}^m \to \mathbb{R}^n$ can be written as a parametrization 
+$$
+\phi:U \to graph (f) , x \mapsto (x,f(x)), \quad U \subset \mathbb{R}^m, graph(f) \subset \mathbb{R}^{m+n}
+$$
+and for $f \in C^1 (\mathbb{R}^m,\mathbb{R}^n)$ the Jacobian of the parametrization is
+$$
+\frac{\partial}{\partial x} \phi(x_0) = \begin{pmatrix}
+    1 &0 &\cdots& &0 \\
+    0 &1 & 0 &\cdots &0\\
+    \vdots && \ddots &&\vdots\\
+    0 &&\cdots &&1\\
+    \frac{\partial}{\partial x_1} f_{1} (x_0) &&\cdots&& \frac{\partial}{\partial x_m} f_{1} (x_0) \\
+    \vdots &&\ddots &&\vdots\\
+    \frac{\partial}{\partial x_1} f_{n} (x_0) && \cdots &&\frac{\partial}{\partial x_m} f_{n} (x_0) 
+\end{pmatrix}
+$$
+and is of full rank, due to the identity matrix.
+}
+
+\exm{}{
+Counterexample of regular parametrization.
+}
+
+\defn{}{
+Let $A \subset \mathbb{R}^n$ be a subset with regular parametrization $\phi: U \to A$ with $U \subset \mathbb{R}^k$ and $f \in C^0 (A,\mathbb{R}^m???)$, then we define
+$$
+\int_A f d \sigma := \int_U f \circ \phi \cdot det ((\phi^\prime)^T \phi^\prime) d \mu
+$$
+}
+We will now show that the choice of parametrisation is independend of this Integral, which is indeed what is what we want to hold true. Further, one can interpret $det ((\phi^\prime)^T \phi^\prime)$ as a correction of the distortion of the parametrization.
+
+\lem{}{
+Let $A := graph(\lambda)$, then $\int_A f d\sigma$ is independent of the choice of the regular parametrization.
+}
+\pf{
+First, consider the parametrization of the graph, i.e.
+$$
+\phi: U \to graph (f), x \mapsto (x,f(x)), \quad U \subset \mathbb{R}^m, graph(f) \subset \mathbb{R}^{n+m}.
+$$
+and second another Parametrization
+$$
+\psi: V \to graph(f), \quad V \subset \mathbb{R}^m.
+$$
+We then define $\Upsilon:= \phi^{-1}\circ \psi : U \to V$, which we need to show is continuously differentiable, which is not trivial (*). Then we get that
+\begin{align*}
+    \int_A f d \sigma &= \int_U f \circ \phi \cdot det ((\phi^\prime)^T \phi^\prime) d \mu\\
+    & \stackrel{\substack{Jacobi\\Trafo}}{=} \int_V det(\Upsilon^\prime) \left( (f \circ \phi) \sqrt{det( (\phi^\prime)^T \phi^\prime )} \right) \circ \Upsilon d\mu \\
+    &= \int_V   (f \circ \phi \circ \Upsilon) \sqrt{det( (\phi^\prime)^T \phi^\prime )} det(\Upsilon^\prime)  d\mu \\
+    &= \int_V   (f \circ \phi \circ \Upsilon) \sqrt{det( (\phi^\prime)^T \phi^\prime ) det(\Upsilon^\prime)^2}  d\mu \\
+    &= \int_V   (f \circ \phi \circ \Upsilon) \sqrt{det( (\phi^\prime)^T \phi^\prime ) det((\Upsilon^\prime)^T \Upsilon^\prime)}  d\mu \\
+    &= \int_V   (f \circ \phi \circ \Upsilon) \sqrt{det( (\phi^\prime)^T \phi^\prime \cdot (\Upsilon^\prime)^T \Upsilon^\prime)}  d\mu \\
+    &= \int_V   (f \circ \phi \circ \Upsilon) \sqrt{det( ((\phi \circ \Upsilon)^\prime )^T (\phi \cdot \Upsilon)^\prime )}  d\mu \\
+    &= \int_V   (f \circ \psi) \sqrt{det( (\psi^\prime )^T \psi^\prime )}  d\mu
+\end{align*}
+In the Jacobi transformation we need that $\Upsilon$ is continuously differentiable and bijective on open sets and $\Upsilon^\prime $ is invertible.\\
+Continuously differentiable: For $\Upsilon := \phi^{-1} \circ \psi$ the continuously differentiability it is not clear, because $\phi^{-1}$ is only defined on $A$ which is non-euclidean space, i.e. the chain rule does not apply directly. Hence, define $$
+\Pi: \mathbb{R}^n \to \mathbb{R}^k, (x,y) \mapsto x 
+$$
+then it holds that $\Pi \circ \phi (x) = \Pi (x,\lambda(x))= x$, i.e. $\Pi \circ \phi = Id$ which implies that 
+$$
+\Pi \big|_{A} = \phi^{-1}, \quad \text{ as $\Phi^{-1}$ is only defined on $A$}.
+$$
+which in turn implies that $\Upsilon = \phi^{-1} \circ \psi = \Pi_A \circ \psi$ which is by definition a composition of continuous differentiable functions.
+}
+
+
+\section{Distributions}
+If a differentiable function is a dsitribtion, the two types of derivatives are equal. Furtherm distributions are differentiable (even infinitely often). The price we pay for that is that two distributions cannot be multiplied.\\
+An important tool will be a familiy of functions $(\lambda_\epsilon)_{\epsilon \geq 0}$ called mollifier with the two properties that
+$$
+supp \lambda_\epsilon = \overline{B_\epsilon(0)}, \quad \text{ and }\quad \int \lambda_\epsilon d\mu =1.
+$$
+An example for such a mollifier is
+$$
+\lambda (x) := \begin{cases}
+    C e^{\frac{1}{|x|^2 -1}} &, |x|<1\\
+    0&,|x|\geq 1
+\end{cases}
+$$
+which is smooth on $\mathbb{R}^n$, its support is $\overline{B_\epsilon(0)}$ and it is non-negative. Note that this example already proves the existence of a test function, because we can choose $C$ in such a way that its integral is $1$. If we rescale $x$ and $\lambda$ we get the mollifier
+$$
+\lambda_\epsilon (x) := \epsilon^{-n} \lambda (x/\epsilon)
+$$
+which satisfies the properties??? We call it standard mollifier.\\
+We also call mollifiers approximate identity, because of the following: For any $f \in C^0(\Omega;\mathbb{R})$ with $0 \in \Omega$ it holds with continuity that
+$$
+\forall x \in B_\epsilon(0): \quad f(x) \approx f(0).
+$$
+This implies that
+$$
+\int_\Omega f \lambda_\epsilon d\mu = \int_{B_\epsilon (0)} f \lambda_\epsilon d\mu \approx \int_{B_\epsilon (0)} f(0) \lambda_\epsilon d\mu = f(0).
+$$
+In the next Lemma we show that there is even an equality as $\epsilon \searrow 0$.
+\lem{}{
+Let $f \in C(\Omega)$ and $(\lambda_\epsilon)_{\epsilon \geq 0}$ a mollifier. The following family
+$$
+f_\epsilon (x) := \int_\Omega f(y) \lambda_\epsilon (x-y) d^n y
+$$
+is smooth and converges uniformly on any compact subset of $\Omega$ to $f$ as $\epsilon \searrow 0$. Same for derivatives???
+}
+\pf{
+1.\\
+Let $A \subset \Omega$ be compact then it holds that
+$$
+\exists \epsilon >0 \forall x \in A: \quad B_\epsilon (0) \subset \Omega.
+$$
+Then we have that
+\begin{align*}
+    | f_\epsilon (x) - f(x) | &= |\int_\Omega f(y) \lambda_\epsilon (x-y) d^n y- f(x) | \\
+    &= |\int_\Omega f(y) \lambda_\epsilon (x-y) d^n y- \underbrace{\int_\Omega \lambda_\epsilon (x-y) d^n y}_{=1}  f(x) | \\
+    &= |\int_\Omega (f(y)-f(x)) \lambda_\epsilon (x-y) d^n y \\
+    &\leq \sup_{y \in B_\epsilon (0)} |f(y)-f(x)|.
+\end{align*}
+Due to the fact that continuous functions are uniformly continuous on a compact subset we get convergence $f_\epsilon \to f$ as $\epsilon \searrow 0$.
+2.\\
+If $f$ is smooth we can compute the derivatives of $f_\epsilon$ in the following way: Warum $2\epsilon$ ball???
+}
+For $f,g \in C_0^\infty (\mathbb{R}^n)$ we define the convolution as
+$$
+(g * f)(x) := \int_{\mathbb{R}^n} g(x-y) f(y) d^n y = \int_{\mathbb{R}^n} g(z)f(x-z) d^n z,
+$$
+which can be shown to be linear, commutative and associative. 
+\rmkb{
+The advantage of convolution compared to pointwise multiplication is that it behaves nicely with differentiation. One can show that
+$$
+\partial^\alpha (g *f) = (\partial^\alpha g) *f = g * (\partial^\alpha f).
+$$
+Further one can show that convolution is volume preserving under the coordinate transform $z=y-x$ and $y=y$:
+\begin{align*}
+    \int_{\mathbb{R}^n} (f*g)(x) dx &= \int_{\mathbb{R}^n} \int_{\mathbb{R}^n} f(x-y) g(y) dx dy= \int_{\mathbb{R}^n} \int_{\mathbb{R}^n} -(-1) f(z) g(y) dz dy \\
+    &=\left( \int_{\mathbb{R}^n} f(z) dz\right) \left( \int_{\mathbb{R}^n}   g(y) dy \right).
+\end{align*}
+}
+\lem{}{
+Suppose $f $ and $g$ are rotationally symmetric around symm. around $a$ and $b$ respectively, i.e. for every $O$ orthogonal transformation holds $f(a+x) = f(a+Ox)$. It then follows that $f *g$ is rotationally symmetric around $a+b$.
+}
+\pf{
+\begin{align*}
+    (f* g)(a+b+Ox) &= \int_{\mathbb{R}^n} f(a+b+Ox-y) g(y) dy \\
+    &\stackrel{(*)}{=} \int_{\mathbb{R}^n} f(a+b+Ox-(Oz+b)) g(Oz+b) dz \\
+    &=  \int_{\mathbb{R}^n} f(a+O(x-z)) g(Oz+b) dz \\
+    & \stackrel{VSS}{=}  \int_{\mathbb{R}^n} f(a+x-z) g(b+z) dz \\
+    &=  \int_{\mathbb{R}^n} f(a+x-(y^\prime -b )) g(b+y^\prime -b) dy^\prime \\
+    &=  \int_{\mathbb{R}^n} f(a+x-y^\prime +b ) g(b+y^\prime -b) dy^\prime \\
+    &= (f*g) (a+b+x)
+\end{align*}
+Although we used in $(*)$ that $dy=dz$. This is due to $y(z) := Oz+b$ has the jacobian $\frac{\partial}{\partial z} y(z_0) = O$ and thus with the Jacobi-transformation theorem we have $det (O)=1$. 
+}
+For every $f \in L_{loc}^1(\Omega)$ we define
+$$
+F_f : C_0^\infty (\Omega) \to \mathbb{R}, \phi \mapsto \int_\Omega f \phi d \mu
+$$
+and will see that information wrt. derivatives is retained in this linear form. The idea of distributions is to consider not just functions integrated against test functions, but all linear forms $F$ defined on $C_0^\infty (\Omega)$???
+To evade the difficulty of defining the topology on $C^\infty (\Omega)$, we use an equivalent criterion. $\mathcal{D}(\Omega)$ is the set of functions $f \in C_0^\infty (\Omega)$ that satisfy $f_n \to f \in C_0^\infty (\Omega)$ $: \iff$
+\begin{itemize}
+    \item $\exists K \subset \Omega$ compact $\forall n \in \mathbb{N}$: $supp f_n \subset K$
+    \item $\forall \alpha \in \mathbb{N}_0^n$: $sup_K |\partial^\alpha f_n - \partial^\alpha f| \to 0$, $n \to \infty$.
+\end{itemize}
+\rmkb{
+We define the seminorm 
+$$
+\| \cdot \|_{K,\alpha} : C_0^\infty (\Omega) \to \mathbb{R}, \phi \mapsto \| \phi \|_{K,\alpha} := \sup_{x \in K} |\partial^\alpha \phi (x)|.
+$$
+It is a seminorm, as constant functions $f \equiv const.$ have $\| f \|_{K,\alpha} =0$, but they are not zero! \\
+Note that convergence $\| f_n -f \|_{K,\alpha} \to 0$ is stronger than $\| f_n -f \|_{\infty}$. This can be seen by the following counterexample.
+}
+\exm{}{
+Define $f_n (x) := \frac{1}{n} \sin (nx) \textbf{1}_{[-1,1]}(x)$. Then we have that
+$$
+\| f_n (x) \| \leq \frac{1}{n}.
+$$
+and because $\frac{1}{n}$ converges to zero, we get converge in $\| \cdot \|_\infty$.
+But on the other hand for $\alpha =1$ and $n=1$ we have
+\begin{align*}
+     \sup_{x \in [-1,1]} |\partial_x f_n (x)| &= \sup_{x \in [-1,1]} |\cos (nx) \textbf{1}_{[-1,1]}(x) + \frac{1}{n} \sin (nx) \frac{\partial}{\partial x} \textbf{1}_{[-1,1]}(x)| \\
+     &\geq \sup_{x \in [-1,1]} |\cos (nx) | =1, 
+\end{align*}
+i.e. it is bounded by below by $1$ for all $n \in \mathbb{N}$ and thus not convergent to zero.
+}
+
+
+\defn{}{
+On an open $\Omega \subseteq \mathbb{R}^n$ we define $\mathcal{D}^\prime (\Omega)$ the space of all linear maps 
+$$
+F: \mathcal{D}(\Omega) \to \mathbb{R}
+$$
+which are continiuous wrt. seminorms $\| \cdot \|_{K,\alpha}$ as the space of distributions, i.e.
+$$
+\forall K \subset \Omega \text{ compact } \exists \alpha_1,...,\alpha_M, M< \infty, C_1,...,C_M>0 \forall \phi \in \mathcal{D}(\Omega): |F(\phi)| \leq C_1 \| \phi \|_{K,\alpha_1} +...+ C_M \| \phi \|_{K,\alpha_M}.
+$$
+}
+Note that with continuity we get that
+$$
+\phi_n \to \phi \text{ in } \mathcal{D}(\Omega) \quad \Rightarrow \quad F(\phi_n) \to F(\phi) \text{ in } \mathbb{R}.
+$$
+and 
+$$
+\forall \phi\in D(\Omega): \quad  F_n (\phi) \to F(\phi) \quad \Rightarrow \quad F_n \to F \text{ in } \mathcal{D}(\Omega).
+$$
+
+\exm{}{
+First, we show that $F: L_{loc}^1 (\Omega) \to \mathbb{R}$ is a distribution. We show continuity: \\
+$\forall K \subset \Omega$ compact and $\forall \phi \in \mathcal{D}(\Omega)$ with $supp \phi \subset K$:
+$$
+|F_f (\phi)| \leq \int_K
+ |f||\phi| dx \leq \sup_{x \in K} |\phi (x)| \int_K |f|dx= \sup_{x \in K} |\phi (x)| \underbrace{ \|f\|_{L^1 (K)}}_{\leq const.}
+ $$
+ Next, one can show that 
+ $$
+ \delta: \mathcal{D}(\mathbb{R}^n) \to \mathbb{R}, \quad \phi \mapsto \phi(0)
+ $$
+ is a distribution.???
+}
+
+\lem{}{
+If $f \in L_{loc}^1(\Omega)$ satisfies $F_f (\phi) \geq 0$ $\forall \phi \in C_0^\infty (\Omega)$ then it follows $f \geq 0$ a.e. and $L_{loc}^1 (\Omega) \to \mathcal{D}^\prime (\Omega),$ $f \mapsto F_f$ is injective.
+}
+\pf{
+For a mollifier $(\lambda_\epsilon)_{\epsilon >0}$ it holds that
+\begin{align*}
+    \| \lambda_\epsilon *f -f \|_1 &= \int_{\mathbb{R}^n} \left| \int_{B_\epsilon(0)} \lambda_\epsilon (y) f(x-y) d^n y -f(x) \right| d^n x \\
+    &\leq \int_{\mathbb{R}^n}  \int_{B_\epsilon(0)} \lambda_\epsilon (y)\left|  f(x-y) -f(x) \right| d^n y d^n x \\
+    &\leq \int_{B_\epsilon(0)}\int_{\mathbb{R}^n}   \lambda_\epsilon (y)\left|  f(x-y) -f(x) \right| d^n x d^n y \\
+    &\leq \sup_{ y \in B_\epsilon(0)}\int_{\mathbb{R}^n}   \lambda_\epsilon (y)\left|  f(x-y) -f(x) \right| d^n x \\
+    &\leq \sup_{ y \in B_\epsilon(0)}  \lambda_\epsilon (y)\|   f(\cdot-y) -f(\cdot) \|_{L^1(\Omega)}
+\end{align*}
+For step functions
+$$
+f (x) := \sum_{i=1}^n a_i \textbf{1}_{Q_i} (x), \quad \bigcup_{i=1}^n Q_i =???
+$$
+Then using triangle inequality we get
+$$
+\| \lambda_\epsilon * f-f \|_1 \leq \sum_{i=1}^n \| \lambda_\epsilon * a_i -a_i \|_{L^1(Q_i)} \leq \sum_{i=1}^n \sup_{y \in B_\epsilon(0)}  \|   a_i -a_i \|_{L^1(Q_i)} ???
+$$
+and because the step function lie dense in $L^1 (\Omega)$ in the limit and choosing $\epsilon>0$ sufficiently small we get that the supremum gets arbitrary small. Nur lim inf gegen Null gezeigt??? Muss schnell genug gegen 0???.
+}
+
+
+Let $\Omega^\prime \subset \Omega$ then every test function on $\Omega^\prime$ is also a test function on $\Omega$. If we restrict a distribution on $\Omega$ only to $\Omega^\prime$ it is again a distribution. We call this restriction. Using restrictions we can define the support of a distribution. The compliment of the support of a distribution is the union over all stes on which the distribution/restriction vanishes:
+$$
+(supp F)^C = \bigcup_{\Omega^\prime \in \mathcal{P} (\Omega)} \{\Omega^\prime \subset \Omega \mid F(\phi) =0, \forall \phi \in \mathcal{D}(\Omega^\prime) \}
+$$
+The support of a delta distribution is $\{0\}$ and for a $L_{loc}^1(\Omega)$ is the support in the classical sense.\\
+We now want to define as many operations as possible on distributions and thus extend operations on functions. The idea is to compare $F_f$ and $F_{Af}$, where $A$ is some operation. If we can write the operation in a way that only depends on the distribution and not directly on the function it is a suitable definition of be generalized.\\
+First, we consider the multiplication by a smooth function $g \in C^\infty (\Omega)$ and $F: L_{loc}^1(\Omega) \to \mathbb{R}$
+$$
+F_{fg} (\phi) = \int_\Omega (gf) \phi dx = \int_\Omega f(g \phi) dx = F_f (g\phi).
+$$
+Thus we define the multiplication by a smooth function $g \in C^\infty (\Omega)$ in the following way.
+\defn{}{
+For $g \in C^\infty (\Omega)$ define
+$$
+gF: \mathcal{D}(\Omega) \to \mathbb{R}, \quad \phi \mapsto F(g \phi).
+$$
+}
+\rmkb{
+Remember that for two topoligical spaces $X$ and $Y$ the mapping $f: X \to Y$ is called an embedding of two topological spaces, if it is bijective, continuous and its inverse is continuous. ...???
+}
+Note that the producti of a distribution with a non-smooth function is not defined, because then $g \phi$ is not a test function.\\
+The most important operation for distributions is its derivative. Integrating by parts yields
+$$
+F_{\partial_i f}(\phi) = \int_\Omega \partial_i f \phi d^n x= - \int_\Omega f\partial_i\phi d^n x=- F_f (\partial_i \phi).
+$$
+\defn{}{
+For all $F \in \mathcal{D}^\prime (\Omega)$ we define
+$$
+\partial_i F: \mathcal{D}^\prime \to \mathbb{R}, \quad \phi \mapsto - F(\partial_i \phi).
+$$
+}
+Hence, test functions are infinitely differentiable.
+\rmkb{
+These two new operations are distributions again and are clearly linear. One would need to show as well that they obey the continuity definition.
+}
+We now want to extend convolutions to distributions. Observe that
+\begin{align*}
+F_{g *f} (\phi) &= \int_{\mathbb{R}^n} (g *f) \phi d^n x = \int_{\mathbb{R}^n} \int_{\mathbb{R}^n} g(x-y) f(y) \phi(x) d^n y d^nx \\
+&\stackrel{Fubini}{=} \int_{\mathbb{R}^n} \int_{\mathbb{R}^n} \phi(x) g(x-y) d^n x f(y) d^ny= F_f (\phi*Pg),
+\end{align*}
+although $(Pg)(z) := g(-z)$ is the point reflection operator.
+
+\defn{}{We define for $g \in C_0^\infty (\mathbb{R}^n)$ and $F \in \mathcal{D}^\prime (\mathbb{R}^n)$
+$$
+g*F: \mathcal{D}(\mathbb{R}^n) \to \mathbb{R}, \quad \phi \mapsto F(\phi * Pg).
+$$
+}
+One would need to check that this is again a distribution and it is even a regular distribution, i.e. $\phi * Pg \in \left( L_{loc}^1 (\Omega) \right)^\prime$.
+\lem{}{
+Let $g \in C_0^\infty (\mathbb{R}^n)$ be a test function and a distribution $F \in \mathcal{D}^\prime (\mathbb{R}^n)$, then their convolution satisfy
+$$
+g * F \in C^\infty (\mathbb{R}^n)
+$$
+and we can write it as
+$$
+g*F: \mathbb{R}^n \to \mathbb{R}, \quad x \mapsto F(T_x Pg),
+$$
+where $(T_x \phi)(y) := \phi (y-x)$ is the translation operator. \\
+Finally, it holds that $supp g*F \subset supp g + suppF$.
+}
+\pf{
+We first show existence and continuity of $g*F$.\\
+Existence:\\
+\begin{align*}
+    supp T_x Pg & = \{ y \in \mathbb{R}^n \mid y \in supp Pg (\cdot -x) \} = \{ y \in \mathbb{R}^n \mid y \in supp g (x- \cdot ) \} \\
+    & = \{ y \in \mathbb{R}^n \mid x-y \in supp g ( \cdot ) \} = x -supp \;g
+\end{align*}
+Thus, $\forall x \in \mathbb{R}^n$ and $F \in \mathcal{D}^\prime (\mathbb{R}^n)$ we have that $F(T_x Pg)$ is well defined, because $supp \;g$ is well defined.\\
+Continuity:\\
+Fist, we see that $(T_x Pg)(y) = Pg(y-x) = g(x-y)$, $g$ is continuous and continuity implies uniform continuity on a compact subset, we have that $x \mapsto T_x Pg$ is continuous wrt. $\| \cdot \|_{K,0}$. Remember, that $K \subset supp \; T_x Pg$ is compact. We now need to show that
+$$
+\frac{T_{x+\epsilon h} -T_x}{\epsilon} g \stackrel{uniformly}{\to} T_x \left( \sum_{i=1}^n -h_i \partial_i g \right), \quad \epsilon \to 0, \text{ on } \mathbb{R}^n.
+$$
+This is due to the following: Remember that with Taylor and the mean value theorem
+$$
+\frac{g(x-\epsilon h)-g(x)}{\epsilon} \stackrel{uniformly}{\to} - h \langle h, \nabla g(y)\rangle, \quad \epsilon \to 0
+$$
+Using the fact that
+$$
+\frac{T_{x+\epsilon h} -T_x}{\epsilon} g = T_x \frac{T_{\epsilon h} -Id}{\epsilon} g= T_x\frac{T_{\epsilon h} g -g}{\epsilon} = T_x \frac{g(\cdot - \epsilon h)-g(\cdot)}{\epsilon}
+$$
+it follows that
+$$
+\frac{T_{x+\epsilon h} -T_x}{\epsilon} g  \stackrel{uniformly}{\to} T_x \langle h,\nabla g(x) \rangle = T_x\left( \sum_{i=1}^n -h_i \partial_i g \right).
+$$
+Due to the fact that $F$ is a distribution, i.e. continuous we get that
+$$
+\forall x \in \mathbb{R}^n: \quad F(\frac{T_{x+\epsilon h} -T_x}{\epsilon} g ) \to F(T_x\left( \sum_{i=1}^n -h_i \partial_i g \right)), \quad \epsilon \to 0.
+$$
+which means that $x \mapsto F(\frac{T_{x+\epsilon h} -T_x}{\epsilon} g )  \in C^\infty (\mathbb{R}^n;\mathbb{R})$, for $F \in \mathcal{D}^\prime (\mathbb{R}^n)$.\\
+We now show the equality. Above it was shown that $x \mapsto T_x Pg$ is smooth on $\mathcal{D}(\mathbb{R}^n)$, i.e. wrt. the semi-norm $\| \cdot \|_{K,\alpha}$. We choose
+$$
+K \subset supp \; T_xPg = x-supp\; g
+$$
+as a compact subset. Thus a finite disjoint decomposition exists 
+$$
+K := \bigcup_{i=1}^n E_i.
+$$
+Then the Riemann sum is given by
+$$
+S_n := \sum_{i=1}^n (T_{x_j} Pg)(\cdot) \phi (x_i) |E_i|.
+$$
+Due to $supp \;T_x Pg = x- supp \; g$ we have that $T_x Pg \in \mathcal{D}(\mathbb{R}^n)$. Multiplying with constants and a finite sum still leads to $S_n \in \mathcal{D}(\mathbb{R}^n)$. It then follows that for $x \in supp \phi$
+\begin{align*}
+    \| \int_{\mathbb{R}^n} (T_x Pg)(\cdot) \phi(x) d^n x -S_n \|_{K,\alpha} &\leq \sum_{i=1}^n |E_i| \int_{\mathbb{R}^n} \| (T_x Pg)(\cdot) \phi(x) - (T_{x_i} Pg)(\cdot) \phi (x_i)\|_{K,\alpha} d^n x
+\end{align*}
+
+
+}
+
+\chapter{Laplace equation}
+
+
+
+
+
+
+\end{document}
