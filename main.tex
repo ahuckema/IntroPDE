@@ -67,7 +67,7 @@ $$
 }
 It holds at point $(r_0,\theta_0)$ that
 \[
-|det ( \frac{\partial }{\partial x} \phi (r_0,\theta_0) ) | =r_0.???
+| det ( \frac{\partial }{\partial x} \phi (r_0,\theta_0) ) | =r_0.???
 \]
 \defn{}{
     For a set $M$ and an equivalenz relation $\sim$ we call
@@ -91,6 +91,12 @@ is canonical, meaning that every element in $M$ is mapped to a unique equivalenz
     \]
     is a group homomorphism and its kernel is $2 \pi \mathbb{Z}$. Further, one can show that $\mathbb{R}/(2 \pi \mathbb{Z})$ is isomorphic to $S^1 := \{ x \in \mathbb{R}^2 \mid ||x||_2 =1 \}$. 
 }
+
+
+
+
+
+
 
 
 \chapter{First order PDEs}
@@ -791,10 +797,102 @@ Due to $supp \;T_x Pg = x- supp \; g$ we have that $T_x Pg \in \mathcal{D}(\math
 }
 
 \chapter{Laplace equation}
+We want to show that the integral 
+\[
+| I_\epsilon |:= |\int_{B_\epsilon (0)} \Phi (x) \Delta_y f(y-x) d^n x| \leq \| \Delta_y f\|_{L^\infty (\mathbb{R}^n)} \int_{B_\epsilon (0)} \Phi (x) d^n x 
+\]
+is finite and converges to zero. Note that using the Co-Area theorem we have that
+\[
+B_\epsilon (0) := \{ x \in \mathbb{R}^n \mid l(x) := |x| < \epsilon \}
+\]
+and due to $1= |\nabla l(x)|$ we get that
+\[
+\int_{B_\epsilon(0)} \phi (x) d^n x = \int_{B_\epsilon(0)} \phi (x) |\nabla l(x) | d^n x = \int_0^\epsilon \int_{\partial B_r (0)} \phi d\sigma dr .
+\]
+We now want to to a Jacobain transfomration to the space of $S^{n-1}$. For this define the map $T: S^{n-1} \to \partial B_r (0), s \mapsto T(s) := rs$. But, we have the problem, that the Jabobian is only defined for subsets for euclidean spaces! Thus we need to introduce two new maps. First, $\psi:  V \subset \mathbb{R}^{n-1} \to \partial B_r(0)$ and $\phi: U \subset \mathbb{R}^{n-1} \to S^{n-1}$, where $U,V$ are open subsets.  Both are regular parametrizations. Then the write for the composition
+\[
+F:= \psi^{-1} \circ T \circ \phi : U \to V.    
+\]
+Its Jacobian we do can calculate. Fist, using the chain rule
+\[
+DF(x) = D(\psi^{-1})(T(\phi(x)) ) DT(\phi(x)) D\phi (x) .    
+\]
+Then we use that for $y \in U$:
+\[
+Id = D(\psi \circ \psi^{-1}) (y) = D \psi (\psi^{-1}(y)) D\psi^{-1} (y) \quad \iff \quad  D\psi^{-1} (y) = ( D\psi ( \psi^{-1}(y) ))^{-1}.
+\]
+Using this in the above we get that
+\begin{align*}
+DF(x) & = D(\psi^{-1})(T(\phi(x)) ) DT(\phi(x)) D\phi (x) \\
+&= (D\psi ( \psi^{-1}(T(\phi(x)) ) ) )^{-1} DT(\phi(x)) D\phi (x) \\
+&= (D\psi ( F(x) ))^{-1} DT(\phi(x)) D\phi (x) \\
+\end{align*}
+We then have that 
+\[
+DF(x) = (D\psi ( F(x) ))^{-1} DT(\phi(x)) D\phi (x)  \iff D\psi ( F(x) )  DF(x) =  DT(\phi(x)) D\phi (x) 
+\]
+We now use the general fact that $AB=C$ implies that
+\[
+( AB )^T AB = B^T A^T AB =C^T C \]
+which leads to
+\[
+\det (B^T B) \det(A^T A) = \det (C^T C) \iff \det (A^T A) = \frac{\det((C^T C))}{\det ((B^T B))}.
+\]
+We do this so complicated, as the images are manifolds, i.e. n-1 dimensional subspaces in $\mathbb{R}^n$ and thus we cannot calculate the determinant, as their Jacobians are not square matrices. Now using $D T(\phi (x)) = Id \cdot r $ we get that
+\[
+\det(DF^T DF) = \frac{ \overbrace{\det (Id \cdot r)^2}^{=r^{2(n-1)}} \det ( D\phi^T D\phi) }{ \det ( D \psi (F) ^T D \psi (F)  ) }.
+\]
+Due to the fact that $F$ has a quadratic Jaconian we have 
+\begin{equation}
+\label{Eq: DetDF}
+| \det(DF) |= r^{n-1} \sqrt{ \frac{\det ( D\phi^T D\phi) }{ \det ( D \psi (F) ^T D \psi (F)  ) } }
+\end{equation}
+Let $A_i$ be a cover of $\partial B_R (0)$ and $O_i$ a cover of $S^{n-1}$, then due to $\psi \circ F= T \circ \phi $
+\begin{align*}
+    \int_{B_\epsilon (0)} f(x) d^n x &\stackrel{Co-Area}{=} \int_0^\epsilon \int_{\partial B_r (0)} f d \sigma dr \\
+    &= \int_0^\epsilon \sum_i \int_{A_i} \underbrace{h_i f}_{=:f_i} d \sigma dr \\
+    &= \int_0^\epsilon \sum_i \int_{V_i} f_i \circ \psi \sqrt{ \det ( D\psi^T D\psi) } d\mu_{\mathbb{R}^{n-1}} dr \\
+   & \stackrel{JacobiTransform}{=} \int_0^\epsilon \sum_i \int_{U_i} (f_i \circ \psi \circ F) \sqrt{ \det ( (D\psi(F))^T D\psi(F)) } |\det (DF)|  d\mu_{\mathbb{R}^{n-1}} dr \\
+   &= \int_0^\epsilon \sum_i \int_{U_i} (f_i \circ T \circ \phi) \sqrt{ \det ( (D\psi(F))^T D\psi(F)) } |\det (DF)|  d\mu_{\mathbb{R}^{n-1}} dr \\
+   &\stackrel{Eq. \ref{Eq: DetDF}}{=} \int_0^\epsilon \sum_i \int_{U_i} (f_i \circ T \circ \phi) \sqrt{ \det ( (D\psi(F))^T D\psi(F)) }  r^{n-1} \sqrt{ \frac{\det ( D\phi^T D\phi) }{ \det ( D \psi (F) ^T D \psi (F)  ) } } d\mu_{\mathbb{R}^{n-1}} dr \\
+   &= \int_0^\epsilon \sum_i \int_{U_i} (f_i \circ T \circ \phi)   r^{n-1} \sqrt{ \det ( D\phi^T D\phi) }  d\mu_{\mathbb{R}^{n-1}} dr \\
+   &= \int_0^\epsilon \sum_i \int_{O_i} (f_i \circ T)   r^{n-1}   d\sigma dr \\
+   &= \int_0^\epsilon  \int_{S^{n-1}} (f \circ T)   r^{n-1}   d\sigma dr \\
+\end{align*}
 
-
-
-
-
+We define the solution of the Laplace equation as
+\[
+\Phi (x) :=\begin{cases}
+    -\frac{1}{2\pi} \log |x| &, n=2\\
+    \frac{1}{n(n-2) \omega_n} \frac{1}{|x|^{n-2}} &, n \geq 3
+    \end{cases}
+\]
+Then it holds that
+\[
+\int_{B_\epsilon (0)} |\Phi (y) | d^n y \stackrel{above}{=} \int_0^\epsilon \int_{S^{n-1}} |\Phi \circ T| d \sigma r^{n-1} dr = \int_0^\epsilon \int_{S^{n-1}} |\Phi (r x )| d \sigma(x) r^{n-1} dr.
+\]
+We see that for all $x \in S^{n-1}$ it follows $|x|=1$ and thus
+\[
+\Phi (x r) = \Phi (r e), \quad \text{where } e \text{ is any unit vector.}
+\]
+Due to the fact that
+\begin{align*}
+    \int_{S^{n-1}} 1 d \sigma (x) &= \int_{S^{n-1}} |x|^2 d \sigma (x) = \int_{S^{n-1}} F \nu d\sigma = \int_{B_1 (0)} div F dx \\
+    &= \int_{B_1 (0)} \sum_{i=1}^{n} \frac{\partial}{\partial x_i} x_i dx = n \lambda^{n} (B_1(0)) =: n \omega_n
+\end{align*}
+it finally follows
+\begin{align*}
+\int_{B_\epsilon (0)} |\Phi (y) | d^n y& = \int_0^\epsilon \int_{S^{n-1}} |\Phi (r x )| d \sigma(x) r^{n-1} dr = \int_0^\epsilon r^{n-1} | \Phi (r e) | n \omega_n dr \\
+&= \int_0^\epsilon r^{n-1} | \Phi (r e) | n \omega_n (x) dr \\
+&= \begin{cases}
+    \int_0^\epsilon r |\log (r)| dr &, n=2 \\
+    \int_0^\epsilon r^{n-1} \frac{1}{ (n-2) r^{n-2}} dr &, n \geq 3
+\end{cases}\\
+&= \begin{cases}
+    \frac{\epsilon^2}{2} ( | \log (\epsilon) | + \frac{1}{2}) &, n=2 \\
+    \int_0^\epsilon r \frac{1}{ n-2} dr = \frac{\epsilon^2}{2 (n-2)} &, n \geq 3
+\end{cases}
+\end{align*}
+Note that in the case $n=2$ we have $\omega_n = \pi$. Both terms are finite! And as the upper bounds depend on $\epsilon$ only we have that $I_\epsilon \to 0$ as $\epsilon \to 0$.
 
 \end{document}
