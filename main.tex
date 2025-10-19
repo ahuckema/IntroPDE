@@ -877,13 +877,13 @@ We see that for all $x \in S^{n-1}$ it follows $|x|=1$ and thus
 \]
 Due to the fact that
 \begin{align*}
-    \int_{S^{n-1}} 1 d \sigma (x) &= \int_{S^{n-1}} |x|^2 d \sigma (x) = \int_{S^{n-1}} F \nu d\sigma = \int_{B_1 (0)} div F dx \\
-    &= \int_{B_1 (0)} \sum_{i=1}^{n} \frac{\partial}{\partial x_i} x_i dx = n \lambda^{n} (B_1(0)) =: n \omega_n
+    \int_{S^{n-1}} 1 d \sigma (x) &= \int_{S^{n-1}} |x|^2 d \sigma (x) = \int_{S^{n-1}} F \nu d\sigma = \int_{B_1 (0)} div F d^n x \\
+    &= \int_{B_1 (0)} \sum_{i=1}^{n} \frac{\partial}{\partial x_i} x_i d^n x = n \lambda^{n} (B_1(0)) =: n \omega_n
 \end{align*}
 it finally follows
 \begin{align*}
-\int_{B_\epsilon (0)} |\Phi (y) | d^n y& = \int_0^\epsilon \int_{S^{n-1}} |\Phi (r x )| d \sigma(x) r^{n-1} dr = \int_0^\epsilon r^{n-1} | \Phi (r e) | n \omega_n dr \\
-&= \int_0^\epsilon r^{n-1} | \Phi (r e) | n \omega_n (x) dr \\
+\int_{B_\epsilon (0)} |\Phi (y) | d^n y& = \int_0^\epsilon \int_{S^{n-1}} |\Phi (r x )| d \sigma(x) r^{n-1} dr = \int_0^\epsilon r^{n-1} | \Phi (r e) | \int_{S^{n-1}} 1 d \sigma (x) dr \\
+&= \int_0^\epsilon r^{n-1} | \Phi (r e) | n \omega_n dr \\
 &= \begin{cases}
     \int_0^\epsilon r |\log (r)| dr &, n=2 \\
     \int_0^\epsilon r^{n-1} \frac{1}{ (n-2) r^{n-2}} dr &, n \geq 3
