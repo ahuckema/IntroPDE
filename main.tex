@@ -797,9 +797,17 @@ Due to $supp \;T_x Pg = x- supp \; g$ we have that $T_x Pg \in \mathcal{D}(\math
 }
 
 \chapter{Laplace equation}
+We define the solution of the Laplace equation as
+\[
+\Phi (x) :=\begin{cases}
+    -\frac{1}{2\pi} \log |x| &, n=2\\
+    \frac{1}{n(n-2) \omega_n} \frac{1}{|x|^{n-2}} &, n \geq 3
+    \end{cases}
+\]
+Here $\omega_n$ denotes the volume of the $n$-dimensional unit ball.
 We want to show that the integral 
 \[
-| I_\epsilon |:= |\int_{B_\epsilon (0)} \Phi (x) \Delta_y f(y-x) d^n x| \leq \| \Delta_y f\|_{L^\infty (\mathbb{R}^n)} \int_{B_\epsilon (0)} \Phi (x) d^n x 
+| I_\epsilon |:= |\int_{B_\epsilon (0)} \Phi (x) \Delta_y f(y-x) d^n x| \leq \| \Delta_y f\|_{L^\infty (\mathbb{R}^n)} \int_{B_\epsilon (0)} |\Phi (x) |d^n x 
 \]
 is finite and converges to zero. Note that using the Co-Area theorem we have that
 \[
@@ -809,7 +817,7 @@ and due to $1= |\nabla l(x)|$ we get that
 \[
 \int_{B_\epsilon(0)} \phi (x) d^n x = \int_{B_\epsilon(0)} \phi (x) |\nabla l(x) | d^n x = \int_0^\epsilon \int_{\partial B_r (0)} \phi d\sigma dr .
 \]
-We now want to to a Jacobain transfomration to the space of $S^{n-1}$. For this define the map $T: S^{n-1} \to \partial B_r (0), s \mapsto T(s) := rs$. But, we have the problem, that the Jabobian is only defined for subsets for euclidean spaces! Thus we need to introduce two new maps. First, $\psi:  V \subset \mathbb{R}^{n-1} \to \partial B_r(0)$ and $\phi: U \subset \mathbb{R}^{n-1} \to S^{n-1}$, where $U,V$ are open subsets.  Both are regular parametrizations. Then the write for the composition
+We now want to do a Jacobain transformation to the space of $S^{n-1}$. For this define the map $T: S^{n-1} \to \partial B_r (0), s \mapsto T(s) := rs$. But, we have the problem, that the Jabobian is only defined for subsets for euclidean spaces! Thus we need to introduce two new maps. First, $\psi:  V \subset \mathbb{R}^{n-1} \to \partial B_r(0)$ and $\phi: U \subset \mathbb{R}^{n-1} \to S^{n-1}$, where $U,V$ are open subsets.  Both are regular parametrizations. Then the write for the composition
 \[
 F:= \psi^{-1} \circ T \circ \phi : U \to V.    
 \]
@@ -847,7 +855,7 @@ Due to the fact that $F$ has a quadratic Jaconian we have
 \label{Eq: DetDF}
 | \det(DF) |= r^{n-1} \sqrt{ \frac{\det ( D\phi^T D\phi) }{ \det ( D \psi (F) ^T D \psi (F)  ) } }
 \end{equation}
-Let $A_i$ be a cover of $\partial B_R (0)$ and $O_i$ a cover of $S^{n-1}$, then due to $\psi \circ F= T \circ \phi $
+Let $A_i$ be a cover of $\partial B_r (0)$ and $O_i$ a cover of $S^{n-1}$, then due to $\psi \circ F= T \circ \phi $ the following calculation holds for any $f \in C^1 (\mathbb{R}^n)$:
 \begin{align*}
     \int_{B_\epsilon (0)} f(x) d^n x &\stackrel{Co-Area}{=} \int_0^\epsilon \int_{\partial B_r (0)} f d \sigma dr \\
     &= \int_0^\epsilon \sum_i \int_{A_i} \underbrace{h_i f}_{=:f_i} d \sigma dr \\
@@ -860,13 +868,6 @@ Let $A_i$ be a cover of $\partial B_R (0)$ and $O_i$ a cover of $S^{n-1}$, then 
    &= \int_0^\epsilon  \int_{S^{n-1}} (f \circ T)   r^{n-1}   d\sigma dr \\
 \end{align*}
 
-We define the solution of the Laplace equation as
-\[
-\Phi (x) :=\begin{cases}
-    -\frac{1}{2\pi} \log |x| &, n=2\\
-    \frac{1}{n(n-2) \omega_n} \frac{1}{|x|^{n-2}} &, n \geq 3
-    \end{cases}
-\]
 Then it holds that
 \[
 \int_{B_\epsilon (0)} |\Phi (y) | d^n y \stackrel{above}{=} \int_0^\epsilon \int_{S^{n-1}} |\Phi \circ T| d \sigma r^{n-1} dr = \int_0^\epsilon \int_{S^{n-1}} |\Phi (r x )| d \sigma(x) r^{n-1} dr.
@@ -893,6 +894,6 @@ it finally follows
     \int_0^\epsilon r \frac{1}{ n-2} dr = \frac{\epsilon^2}{2 (n-2)} &, n \geq 3
 \end{cases}
 \end{align*}
-Note that in the case $n=2$ we have $\omega_n = \pi$. Both terms are finite! And as the upper bounds depend on $\epsilon$ only we have that $I_\epsilon \to 0$ as $\epsilon \to 0$.
+Note that in the case $n=2$ we have $\omega_n = \pi$. Both terms are finite! And because the upper bounds depend on $\epsilon$ it follows that $I_\epsilon \to 0$ as $\epsilon \to 0$.
 
 \end{document}
