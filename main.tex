@@ -797,14 +797,69 @@ Due to $supp \;T_x Pg = x- supp \; g$ we have that $T_x Pg \in \mathcal{D}(\math
 }
 
 \chapter{Laplace equation}
-We define the solution of the Laplace equation as
+We begin by solving the Laplace equation that is given by 
 \[
-\Phi (x) :=\begin{cases}
+\Delta u = f
+\]
+....
+\section{Fundamendal Solution}
+This equation is invaraint wrt. all rotations and translations. This leads to the notion that our solution should also have these conditions. We defeine $r:= |x| := \sqrt{x^T x}$ which defines the length of the position vector, i.e. the solution should only depend on this $r$. Further, define $u(x) := v(r) $. Then for $w(r) := v^\prime (r)$
+\[
+\nabla_x u(x) = v^\prime (r)  \nabla_x r = v^\prime(r) \frac{2x}{2|x|}
+\]
+which leads to
+\[
+\Delta_x u(x) = \nabla_x \cdot \nabla_x u(x)= \nabla_x \cdot (v^\prime(r) \frac{x}{|x|} )= v^{\prime \prime} (r) + \frac{n-1}{r} v^\prime (r)=0.
+\]
+We see that this is only an ODE in $r$. Solving it is not hard: First it can be seen that
+\[
+v^{\prime \prime} (r) + \frac{n-1}{r} v^\prime (r) =0 \quad \iff \quad (r^{n-1} v^\prime (r) )^\prime= \frac{v^\prime (r)}{n-1} r^{n-2} + v^{\prime \prime} r^{n-1}  =0.
+\]
+Then we define $C_1 := r^{n-1} v^\prime (r)$ which can also be written as $v^\prime (r) =C_1 r^{1-n}$. This formulation now leads t0
+\[
+v(r) = \begin{cases}
+    C_2 + \frac{C_1}{2-n} r^{2-n} &, n \neq 2\\
+    C_2 + C_1 \log r &, n=2.
+\end{cases}
+\]
+Note that for the solution the constant $C_2$ can be chosen arbitrarly as it will vanish whilst applying the Laplace operator. With this in mind we define
+\[
+\Phi (x) := \begin{cases}
+    \frac{C_1}{2-n} r^{2-n} &, n \neq 2\\
+    C_1 \log r &, n=2.
+\end{cases}
+\] 
+We now need to determine $C_1$.
+\defn{}{
+    The solution of the Laplace equation is 
+    \[
+    \Phi (x) :=\begin{cases}
     -\frac{1}{2\pi} \log |x| &, n=2\\
     \frac{1}{n(n-2) \omega_n} \frac{1}{|x|^{n-2}} &, n \geq 3
     \end{cases}
 \]
-Here $\omega_n$ denotes the volume of the $n$-dimensional unit ball.
+where $\omega_n$ denotes the volume of the n-dimensional unit ball.
+
+}
+
+
+
+\thm{}{
+    For $f \in C_0^1 (\mathbb{R}^n)$ the solution of the Poisson equation $\Delta u = f$ is given by the convolution
+    \[
+    u(x) =(\Phi * f)(x)= \int_{\mathbb{R}^n} \Phi (x-y ) f(y) d^n y  = \int_{\mathbb{R}^n} \Phi (z) f(x-z) d^n z.
+    \]
+}
+\pf{
+The first equality in the theorem comes from the substitution $z=x-y$. Note that the second integral is twice continuous differentiable, because we can pull in in the derivative in the Integral due to the fact that $f \in C^2_0 (\mathbb{R}^n)$:
+\[
+\frac{\partial^2}{\partial x_i \partial x_j} u(x) = \int_{\mathbb{R}^n} \Phi (z) \frac{\partial^2}{\partial x_i \partial x_j} f(x-z) d^n z.
+\]
+We will now write $\Delta_x u(x) = \int_{\mathbb{R}^n} \Phi (y) \Delta_x f(x-y) d^n y$. The trick now will be to decompose the integral into a open area around zero (where there is a singularity) and everything else. Then we will let the radius of that open area go to zero. Then the integral evaluated at the singularity will be zero, as it will be a zero set. Define for $\epsilon >0$:
+\[
+\Delta_x u(x) = \underbrace{\int_{\mathbb{R}^n\setminus B_\epsilon (0)} \Phi (y) \Delta_x f(x-y) d^n y}_{=:J_\epsilon} + \underbrace{ \int_{B_\epsilon (0)} \Phi (y) \Delta_x f(x-y) d^n y}_{=:I_\epsilon}
+\]
+\textbf{Step 1 $I_\epsilon$:}\\
 We want to show that the integral 
 \[
 | I_\epsilon |:= |\int_{B_\epsilon (0)} \Phi (x) \Delta_y f(y-x) d^n x| \leq \| \Delta_y f\|_{L^\infty (\mathbb{R}^n)} \int_{B_\epsilon (0)} |\Phi (x) |d^n x 
@@ -894,6 +949,11 @@ it finally follows
     \int_0^\epsilon r \frac{1}{ n-2} dr = \frac{\epsilon^2}{2 (n-2)} &, n \geq 3
 \end{cases}
 \end{align*}
-Note that in the case $n=2$ we have $\omega_n = \pi$. Both terms are finite! And because the upper bounds depend on $\epsilon$ it follows that $I_\epsilon \to 0$ as $\epsilon \to 0$.
-
+Note that in the case $n=2$ we have $\omega_n = \pi$. Both terms are finite! And because the upper bounds depend on $\epsilon$ it follows that $I_\epsilon \to 0$ as $\epsilon \to 0$. \\
+\textbf{Step 2 $J_\epsilon$:}\\
+First notice that
+\begin{align*}
+    J_\epsilon &= \int_{\mathbb{R}^n \setminus B_\epsilon (0)} \Phi (y) \Delta_y
+\end{align*}
+}
 \end{document}
