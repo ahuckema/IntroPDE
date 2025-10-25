@@ -985,7 +985,18 @@ The above is equivalent to $\sigma_n (r) = n \omega_n r^{n-1}$. This finally lea
     &=-\underbrace{\frac{1}{\sigma_n (\epsilon)}}_{\to 1, \epsilon \to 0}  \underbrace{\int_{\partial B_\epsilon (0)}  f(x-y)  d \sigma (y)}_{\to -f(x) , \epsilon \to 0} \to - f(x), \quad \epsilon \to 0,
 \end{align*}
 because $f$ is continuous. Thus in total we have shown that\[
-\Delta_x u(x) = J_\epsilon + I_\epsilon \leq |J_\epsilon| + K_\epsilon + |L_\epsilon| \to -f(x) , \quad \epsilon \to 0.
+\Delta_x u(x) = J_\epsilon + I_\epsilon = J_\epsilon + K_\epsilon - L_\epsilon \leq |J_\epsilon| + K_\epsilon +| L_\epsilon|  \to -f(x) , \quad \epsilon \to 0.
 \]
 }
+Thus due to the fact that we can write for every $\phi \in C_0^\infty (\mathbb{R}^n):$
+\begin{align*}
+    (f* \delta_0 )(\phi) &= \delta_0 (\phi * Pf) =\int_{\mathbb{R}^n} (\phi * Pf) (x) d \delta_0 (x) \\
+    &= (\phi * Pf) (0) = \int_{\mathbb{R}^n } f(x) \phi (x) d^n x \\
+    &= \int_{\mathbb{R}^n } (-\Delta_x u(x) ) \phi (x) d^n x = \int_{\mathbb{R}^n } -\Delta_x (\Phi * f)  \phi (x) d^n x \\
+    &= \int_{\mathbb{R}^n } ((-\Delta_x \Phi) * f)  \phi (x) d^n x \\
+    &= (f* (-\Delta_x \Phi) ) (\phi),
+\end{align*}
+it follows that $-\Delta_x \Phi = \delta_0$ in the distributional sense.
+
+
 \end{document}
