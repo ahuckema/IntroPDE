@@ -951,9 +951,41 @@ it finally follows
 \end{align*}
 Note that in the case $n=2$ we have $\omega_n = \pi$. Both terms are finite! And because the upper bounds depend on $\epsilon$ it follows that $I_\epsilon \to 0$ as $\epsilon \to 0$. \\
 \textbf{Step 2 $J_\epsilon$:}\\
-First notice that
+First notice that for $z:= x-y$ it holds that $\sum_j \partial f(z) \frac{\partial}{\partial x_i} z = \partial_i f (x-z) =- \sum_j \partial f(z) \frac{\partial}{\partial y_i} z$ and thus $|\Delta_x f(x-y) | = |\Delta_y f(x-y)|$. It follows
 \begin{align*}
-    J_\epsilon &= \int_{\mathbb{R}^n \setminus B_\epsilon (0)} \Phi (y) \Delta_y
+    |J_\epsilon | &\leq  \int_{\mathbb{R}^n \setminus B_\epsilon (0)} |\Phi (y)| | \Delta_y f(x-z) | d^n y \\
+    &\stackrel{\phi \Delta f = (\phi \nabla f)^\prime - \nabla \phi \nabla f}{=}  \int_{\mathbb{R}^n \setminus B_\epsilon (0)} | \nabla_y \Phi (y)| | \nabla f(x-z) | d^n y - \int_{\mathbb{R}^n \setminus B_\epsilon (0)} (|  \Phi (y)| | \nabla f(x-z) | )^\prime  d^n y \\
+    &= \int_{\mathbb{R}^n \setminus B_\epsilon (0)} | \nabla_y \Phi (y)| | \nabla f(x-z) | d^n y - \int_{\partial B_\epsilon (0)} |  \Phi (y)| | \nabla f(x-z) | N d \sigma (y) \\
+    &=: K_\epsilon - L_\epsilon.
 \end{align*}
+First with the same arguments as above it follows
+\[
+|L_\epsilon| \leq \| f \|_{L^\infty (\mathbb{R}^d)} \int_{\partial B_\epsilon (0)} |\Phi (y)| d \sigma (y) \leq \begin{cases}
+    C \epsilon |\log (\epsilon)| &, n=2\\
+    C \epsilon &, n \geq 3
+\end{cases}
+\]
+This clearly converges to zero as $\epsilon \to 0$. For $K_\epsilon$ we have that
+\begin{align*}
+    K_\epsilon &= \int_{\mathbb{R}^n \setminus B_\epsilon (0)} \nabla_y \Phi (y) \nabla_y f(x-y) d^n y \\
+    &= \underbrace{ \int_{\mathbb{R}^n} \setminus B_\epsilon (0) \Delta_y \Phi (y) f(x-y) d^n y }_{=0} - \int_{\mathbb{R}^n \setminus B_\epsilon (0)} (\nabla_y \Phi(y) f(x-y))^\prime d^n y \\
+    &= - \int_{\partial B_\epsilon (0)} \nabla_y \Phi(y) f(x-y) N d \sigma( y).
+\end{align*}
+Note that $\nabla \Phi (y) = - \frac{y}{n \omega_n |y|^n }$ and $N= - \frac{y}{|y|}$. Further, due to the fact that
+\begin{align*}
+r^n n \omega_n &= n \int_{B_r (0)} 1 d^n x = \int_{B_r (0) } \nabla \cdot x d^n x = \int_{\partial B_r (0)} x N d\sigma (x) \\
+&= \int_{\partial B_r (0)} x \frac{x}{|x|} d\sigma (x) = \int_{\partial B_r (0)} |x| d \sigma (x) =r \int_{\partial B_r (0)} d\sigma (x) = r \sigma_n (r)
+\end{align*}
+The above is equivalent to $\sigma_n (r) = n \omega_n r^{n-1}$. This finally leads to
+\begin{align*}
+    K_\epsilon &= - \int_{\partial B_\epsilon (0)} \nabla_y \Phi (y) f(x-y) N d \sigma (y) \\
+    &=  \int_{\partial B_\epsilon (0)} \frac{y}{n \omega_n |y|^n } f(x-y) (-1)\frac{y}{|y|} d \sigma (y) \\
+    &=-  \int_{\partial B_\epsilon (0)} \frac{|y|}{n \omega_n \epsilon^n } f(x-y)  d \sigma (y) \\
+    &=-\frac{\epsilon}{n \omega_n \epsilon^n }  \int_{\partial B_\epsilon (0)}  f(x-y)  d \sigma (y) \\
+    &=-\underbrace{\frac{1}{\sigma_n (\epsilon)}}_{\to 1, \epsilon \to 0}  \underbrace{\int_{\partial B_\epsilon (0)}  f(x-y)  d \sigma (y)}_{\to -f(x) , \epsilon \to 0} \to - f(x), \quad \epsilon \to 0,
+\end{align*}
+because $f$ is continuous. Thus in total we have shown that\[
+\Delta_x u(x) = J_\epsilon + I_\epsilon \leq |J_\epsilon| + K_\epsilon + |L_\epsilon| \to -f(x) , \quad \epsilon \to 0.
+\]
 }
 \end{document}
