@@ -998,5 +998,40 @@ Thus due to the fact that we can write for every $\phi \in C_0^\infty (\mathbb{R
 \end{align*}
 it follows that $-\Delta_x \Phi = \delta_0$ in the distributional sense.
 
+\section{Mean Value Property}
+The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:= \{ x \in \Omega \mid \forall \epsilon>0: \mathcal{U}_\epsilon (x) \cap A \neq \emptyset \}$, i.e. open balls, that are close to $A$ are also have a overlap with $A$) in $\Omega$ is equal to the mean of $u$ on the boundary of the ball. In the following we will show that this porperatry holds for any harmonic function. Remember, these were functions that satisfy $\Delta u =0$. One can also show that if this mean value property holds for a function $u$ then it is harmonic. We will also show that the mean on $B_r (x)$ is the mean over the means of $u$ on $\partial B_{r^\prime } (x)$ for all $r^\prime \in [0,r]$. I.e. after having shown both directions, the mean value property is equivalent to functions beeing harmonic.
+
+
+\lem{}{
+    \begin{itemize}
+        \item Let $u \in C^2 (\Omega)$ be harmonic on an open domain $\Omega \subset \mathbb{R}^n$ containing $\overline{B_r (x)}$. THe mean of $u$ on $B_r (x)$ and on $\overline{B_r (x)}$ is equal to $u(x)$, i.e. the center.
+        \item If for $u \in C^2 (\Omega)$ the means on all Balls $B_r (x)$ with compact closure in $\Omega$ or all means on the boundaries of such balls is equal to $u(x)$ then $u$ is harmonic.
+    \end{itemize}
+}
+    \pf{
+        Define for $x \in \Omega$ the mean of $u$ on $\partial B_r (x) \subseteq \Omega$ as 
+        \begin{align*}
+            S_x (r) &:= \frac{1}{r^{n-1} n \omega_n} \int_{\partial B_r (x)} u(y) d \sigma (y) = \frac{1}{r^{n-1} n \omega_n} \int_{\partial B_1 (x)} (u \circ T) (y) r^{n-1} d \sigma (y) \\
+            &= \frac{1}{n \omega_n} \int_{\partial B_1 (0)} (u \circ G) (ry)  d \sigma (y) = \frac{1}{n \omega_n} \int_{\partial B_1 (0)} u  (x+ry)  d \sigma (y)
+        \end{align*}
+        where $T: \partial B_1 (x) \to \partial B_r (x), y \mapsto ry$ and $G: \partial B_r (0) \to \partial B_r (x), y \mapsto x+y$. The transformation with $T$ has already been discussed. Transforming with $G$ is only a translation and its Jabobian is trivially $Id$. Note that one would need to use parametrizations in order to calculate the Jacobian on euclidean spaces.\\
+        With the divergence theorem we get
+        \[
+        \frac{d}{dr} S_x (r) = \frac{1}{n \omega_n} \int_{\partial B_1 (0)}\frac{d}{dr}  u  (x+ry)  d \sigma (y) =  \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \nabla u (x+ry) y d \sigma (y)
+        \]
+        Note that $y$ is on $\partial B_1 (0)$ a normal vector, i.e. $|y| =1$ and if we consider $B_1 (0)$ then it is an outward pointing normal vector. If we now transform back to $\partial B_r (x)$ then $\frac{y-x}{r} = \frac{y-x}{|y-x|}$ is an outward pointing normal vector! Thus we get
+        \begin{align*}
+        \frac{d}{dr} S_x (r) &= \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \nabla u (x+ry) y d \sigma (y) = \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \nabla u (x+ry) y d \sigma (y) \\
+        &= \frac{1}{r^{n-1} n \omega_n} \int_{\partial B_r (x)} \nabla u (y) \underbrace{\frac{y-x}{|y-x|}}_{=N} d \sigma (y) = \frac{1}{r^{n-1} n \omega_n} \int_{B_r (x)} \underbrace{ \nabla \cdot \nabla u (y)}_{= \Delta u(y)} d^n y.
+        \end{align*}
+        The above only holds for $\overline{B_r (x)}$ compact in $\Omega$, because ???. If $u$ is harmonic, i.e. by definition $\Delta u \equiv 0$, then it follows that $\frac{d}{dr} S_x (r) =0$ for all such $r$, i.e. $S_x (r)$ is constant in $r$. This just means that the average on $\partial B_r (x)$ does not depend on $r$. Further, because $u$ is continuous it follows that $S_x (r) \to u(x) , r \to 0$. THus means that the mean is the center value, because $S_x (0) = u(x)$ and $S_x (\cdot ) $ is constant.
+    }
+
+
+
+
+
+
+
 
 \end{document}
