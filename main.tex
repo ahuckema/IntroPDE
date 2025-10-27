@@ -1024,7 +1024,75 @@ The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:=
         \frac{d}{dr} S_x (r) &= \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \nabla u (x+ry) y d \sigma (y) = \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \nabla u (x+ry) y d \sigma (y) \\
         &= \frac{1}{r^{n-1} n \omega_n} \int_{\partial B_r (x)} \nabla u (y) \underbrace{\frac{y-x}{|y-x|}}_{=N} d \sigma (y) = \frac{1}{r^{n-1} n \omega_n} \int_{B_r (x)} \underbrace{ \nabla \cdot \nabla u (y)}_{= \Delta u(y)} d^n y.
         \end{align*}
-        The above only holds for $\overline{B_r (x)}$ compact in $\Omega$, because ???. If $u$ is harmonic, i.e. by definition $\Delta u \equiv 0$, then it follows that $\frac{d}{dr} S_x (r) =0$ for all such $r$, i.e. $S_x (r)$ is constant in $r$. This just means that the average on $\partial B_r (x)$ does not depend on $r$. Further, because $u$ is continuous it follows that $S_x (r) \to u(x) , r \to 0$. THus means that the mean is the center value, because $S_x (0) = u(x)$ and $S_x (\cdot ) $ is constant.
+        The above only holds for $\overline{B_r (x)}$ compact in $\Omega$, because ???. If $u$ is harmonic, i.e. by definition $\Delta u \equiv 0$, then it follows that $\frac{d}{dr} S_x (r) =0$ for all such $r$, i.e. $S_x (r)$ is constant in $r$. This just means that the average on $\partial B_r (x)$ does not depend on $r$. Further, because $u$ is continuous it follows that $S_x (r) \to u(x) , r \to 0$. THus means that the mean is the center value, because $S_x (0) = u(x)$ and $S_x (\cdot ) $ is constant.\\
+        Now it holds that 
+        \[
+        \int_{B_r (x) } u(y) d^n y = \int_{B_r (0)} u(x+y) d^n y = \int_{B_r (0) \cap \{ y_n >0 \}} u(x+y) d^n y + \int_{B_r (0) \cap \{ y_n <0 \}} u(x+y) d^n y + \underbrace{ \int_{B_r (0) \cap \{ y_n =0 \}} u(x+y) d^n y}_{=0}.
+        \]
+        In order to calculate these two integrals we need to do a Jacobi tranformation. We take the mapping \[
+        \phi_+: \{ (z,s) \in B_r^{n-1} (0) \times (0,r) \mid |z| < s \} \to B_r (0) \cap \{ y_n >0\},  (z,s) \mapsto \left( z, \sqrt{s^2 -|z|^2} \right)
+        \]
+        and \[
+        \phi_-: \{ (z,s) \in B_r^{n-1} (0) \times (0,r) \mid |z| < s \} \to B_r (0) \cap \{ y_n >0\},  (z,s) \mapsto \left( z,- \sqrt{s^2 -|z|^2} \right).
+        \]
+        which gives us
+        \[
+        \int_{B_r (0) \cap \{ y_n >0 \}} u(x+y) d^n y = \int_0^r \int_{B_s^{n-1} (0)} u \left( x+ \left( z, \sqrt{s^2 -|z|^2} \right) \right) \underbrace{|\det (D\phi_+ (z,s))|}_{\stackrel{(*)}{=} \frac{s}{\sqrt{s^2-|z|^2}}} d^{n-1} z ds.
+        \]
+        We now need to find a parametrization $\psi$ that satisfies $det((\psi^\prime)^T \psi^\prime) = \frac{s}{\sqrt{s^2-|z|^2}} $ and then we can write it as an integral over a manifold. Fot that define
+        \[
+        \psi_+: B_s^{n-1}(0) \to \partial B_s^n (0) \cap \{ y_n >0  \} , z \mapsto \left( z, \sqrt{s^2 -|z|^2} \right).
+        \] 
+        This gives us 
+        \begin{align*}
+        \int_{B_r (0) \cap \{ y_n >0 \}} u(x+y) d^n y &= \int_0^r \int_{B_s^{n-1} (0) \cap \{ y_n >0 \} } u \left( x+ \underbrace{ \left( z, \sqrt{s^2 -|z|^2} \right)}_{=\psi_+ (z)} \right) |\det((\psi_+^\prime)^T \psi_+^\prime)| d^n z ds\\
+        &= \int_0^r \int_{\partial B_s^{n-1} (0)\cap \{ y_n >0 \} } u(x+y) d \sigma (y) ds.
+        \end{align*}
+        Doing this analougously for $\phi_-$ and defining an respective $\psi_-$ we get in total that
+        \begin{align*}
+            \int_{B_r (x)} u(y) d^n y &=  \int_{B_r (0) \cap \{ y_n >0 \}} u(x+y) d^n y + \int_{B_r (0) \cap \{ y_n <0 \}} u(x+y) d^n y \\
+            &= \int_0^r \int_{\partial B_s^{n-1} (0)\cap \{ y_n >0 \} } u(x+y) d \sigma (y) ds + \int_0^r \int_{\partial B_s^{n-1} (0)\cap \{ y_n <0 \} } u(x+y) d \sigma (y) ds \\
+            &= \int_0^r \int_{\partial B_s^{n-1} (0) } u(x+y) d \sigma (y) ds \\
+            &= \int_0^r \int_{\partial B_s^{n-1} (x) } u(y) d \sigma (y) ds 
+        \end{align*}
+        altough we used in the last step a translation on manifolds, which has Jacobain $Id$. \\
+        Now we can finally show that due to the fact that $S(\cdot)\equiv u(x)$ is constant we get
+        \begin{align*}
+            \frac{1}{r^n \omega_n} \int_{B_r (x)} u (y ) d^n y &= \frac{n}{r^n n \omega_n} \int_0^r \frac{s^{n-1}}{s^{n-1}} \int_{\partial B_s^{n-1} (x) } u(y) d \sigma (y) ds \\
+            &= \frac{n}{r^n } \int_0^r s^{n-1} \frac{1}{s^{n-1} n \omega_n} \int_{\partial B_s^{n-1} (x) } u(y) d \sigma (y) ds \\
+            &= \frac{n}{r^n } \int_0^r s^{n-1} S(s) ds = u(x) \frac{n}{r^n } [\frac{1}{n} s^n]_0^r = u(x).
+        \end{align*}       
+        Warum genau mean???
+
+        
+
+
+        \textbf{(*)}\\
+
+       \[
+        D\phi_+ (z,x) = \begin{pmatrix}
+            1 &0&\cdots & 0 &0 \\
+            0 &1 &0 & \cdots \\
+            \vdots & \ddots & && \vdots \\
+            \frac{2|z|}{\sqrt{s^2 - |z|^2}} & \cdots & \frac{2|z|}{\sqrt{s^2 - |z|^2}} & \frac{s}{\sqrt{s^2 - |z|^2}}
+        \end{pmatrix} = \begin{pmatrix}
+            Id & && 0 \\
+            \frac{2|z|}{\sqrt{s^2 - |z|^2}} & \cdots & \frac{2|z|}{\sqrt{s^2 - |z|^2}} & \frac{s}{\sqrt{s^2 - |z|^2}}
+        \end{pmatrix}
+        \]
+
+        This yields
+        \begin{align*}
+        \det (D\phi_+ (z,x)) &= \frac{2|z|}{\sqrt{s^2 - |z|^2}} \det ( \begin{pmatrix}
+            0 & \cdots & 0 \\
+            &Id& 
+        \end{pmatrix})
+         + \cdots +\frac{2|z|}{\sqrt{s^2 - |z|^2}} \det (\begin{pmatrix}
+            &Id& \\
+            0 & \cdots & 0
+        \end{pmatrix} ) + \frac{s}{\sqrt{s^2 - |z|^2}} \det (Id) \\
+        &= \frac{s}{\sqrt{s^2 - |z|^2}}.
+        \end{align*}
     }
 
 
