@@ -1062,8 +1062,51 @@ The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:=
             &= \frac{n}{r^n } \int_0^r s^{n-1} \frac{1}{s^{n-1} n \omega_n} \int_{\partial B_s^{n-1} (x) } u(y) d \sigma (y) ds \\
             &= \frac{n}{r^n } \int_0^r s^{n-1} S(s) ds = u(x) \frac{n}{r^n } [\frac{1}{n} s^n]_0^r = u(x).
         \end{align*}       
-        Warum genau mean???
-
+        Now we show the other direction: \\
+        Let $\overline{B_r (x)} \subset \Omega$ for every $r>0$ be compact and assume the mean value property holds, i.e.
+        \[
+        u(x) = \frac{1}{\omega_n r^n} \int_{B_r (x)} u(y) d^n y = \frac{1}{\omega_n r^n} \int_{B_r (x)} u(y) d^n y \stackrel{above}{=} \frac{n}{r^n} \int_0^r s^{n-1} S_x (s) ds.
+        \]
+        Because $u$ is constant in $r$ it follows that 
+        \begin{align*}
+        0&= \frac{d}{dr} \frac{n}{r^n} \int_0^r s^{n-1} S_x (s) ds  \\
+        &= -\frac{n^2}{r^{n+1}} \int_0^r s^{n-1} S_x (s) ds + \frac{n}{r^n} \frac{d}{dr}   \int_0^r s^{n-1} S_x (s) ds \\
+        &\stackrel{???}{=} -\frac{n^2}{r^{n+1}} \int_0^r s^{n-1} S_x (s) ds + \frac{n}{r^n} r^{n-1}  S_x (r)  \\
+        &= -\frac{n^2}{r^{n+1}} \frac{1}{n} r^{n} S_x (r)  + \frac{n}{r}  S_x (r) ds = -\frac{n}{r^{n}} S_x (r)  + \frac{n}{r}  S_x (r)  \\
+        & \iff u(x) = S_x (r).
+        \end{align*}
+        The above shows that the mean on $\partial B_r (x)$ is equalt to $u(x)$. We have shown that $S^\prime (r)$ is the mean of $\Delta u$ on $B_r (x)$ and because $S(\cdot)$ is constant it follows
+        \[
+        S^\prime (r) = 0 \quad \iff \quad \int_{B_r (x)} \Delta u d^n y=0.
+        \]
+        Finally, $S(\cdot)$ is twice differentiable, because $u \in C^2(\Omega)$. \\
+        We now want to show that $\Delta u \equiv 0$. For that, assume $\exists x \in \Omega$ such that $\Delta u(x) \neq 0$. Because $\Delta u$ is continuous 
+        \[
+        \forall \xi >0 \exists y \in B_\epsilon (x) : \quad |\Delta u (y) - \Delta u (x)| < \xi.
+        \]
+        Choose $\xi := \frac{|\Delta u (x)|}{2}.$ It follows
+        \[
+        |\Delta u (y) - \Delta u (x)| < \frac{|\Delta u (x)|}{2}.
+        \]
+        \begin{itemize}
+            \item Case 1: $\Delta u(x) >0$\\
+            \begin{align*}
+                \Delta u(y) \geq \Delta (x) - |\Delta u (y) - \Delta u (x)|> \Delta u(x) - \frac{|\Delta u (x)|}{2} = \frac{\Delta u (x) }{2}>0.
+            \end{align*}
+            \item Case 2: $\Delta u(x) <0$\\
+            \begin{align*}
+                \Delta u (y) = \Delta u (X) - \Delta u (x) + \Delta u (y) < \Delta u(x) + |\Delta u (y) - \Delta u (x)| \leq \Delta u(x) + \frac{|\Delta u (x)|}{2} = \frac{\Delta u (x)}{2} <0.
+            \end{align*}
+        \end{itemize}
+        In total it was shown that $\frac{|\Delta u (x)|}{2} >0$ and 
+        \[
+        \forall y \in B_\epsilon (x) : |\Delta u(y) | \geq \frac{|\Delta u (x) |}{2}.
+        \]
+        Ultimiately this leads to
+        \[
+        \left| \int_{B_r (x)} \Delta u (y) d^n y  \right| \geq \frac{|\Delta u (x) }{2} \int_{B_r (x) } d^n y > 0,
+        \]
+        which is a contradiction. Thus it follows that $\Delta u \equiv 0$.
         
 
 
@@ -1095,6 +1138,20 @@ The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:=
         \end{align*}
     }
 
+
+    \lem{}{
+        Let $u$ be a smooth harmonic function on an open domain $\Omega \subset \mathbb{R}^n$ and $B_r (x) $ with closure in $\Omega$. Then $\forall \alpha \in \mathbb{N}_0^n$ it holds that
+        \[
+        |\partial^\alpha u(x)| \leq C(n,|\alpha|) r^{-|\alpha|} \| u \|_{L^\infty (\overline{B_r (x)})}, \quad C(n,|\alpha|) = 2^{|\alpha| (1+ |\alpha|)} n^{|\alpha|}.
+         \]
+    }
+    \pf{
+        First, its clear that all partial derivatives of a harmonic function are harmonic again. We show the assertion via induction but only consider the induction start:
+        \begin{align*}
+            |\partial _i \partial^\alpha u (x)| &\stackrel{mean value}{=} | \frac{2^n}{\omega_n r^n} \int_{B_{r/2} (x)} \partial_i \partial^\alpha u d^n x | \\
+            &\stackrel{Div.Thm.}{=} | \frac{2^n}{\omega_n r^n} \int_{\partial B_{r/2} (x)}  \partial^\alpha u N d \sigma  | 
+        \end{align*}
+    }
 
 
 
