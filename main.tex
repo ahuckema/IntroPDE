@@ -1139,7 +1139,7 @@ The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:=
     }
 
 
-    \lem{}{
+    \cor{
         Let $u$ be a smooth harmonic function on an open domain $\Omega \subset \mathbb{R}^n$ and $B_r (x) $ with closure in $\Omega$. Then $\forall \alpha \in \mathbb{N}_0^n$ it holds that
         \[
         |\partial^\alpha u(x)| \leq C(n,|\alpha|) r^{-|\alpha|} \| u \|_{L^\infty (\overline{B_r (x)})}, \quad C(n,|\alpha|) = 2^{|\alpha| (1+ |\alpha|)} n^{|\alpha|}.
@@ -1149,14 +1149,91 @@ The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:=
         First, its clear that all partial derivatives of a harmonic function are harmonic again. We show the assertion via induction but only consider the induction start:
         \begin{align*}
             |\partial _i \partial^\alpha u (x)| &\stackrel{mean value}{=} | \frac{2^n}{\omega_n r^n} \int_{B_{r/2} (x)} \partial_i \partial^\alpha u d^n x | \\
-            &\stackrel{Div.Thm.}{=} | \frac{2^n}{\omega_n r^n} \int_{\partial B_{r/2} (x)}  \partial^\alpha u N d \sigma  | 
+            &\stackrel{Div.Thm.}{=} | \frac{2^n}{\omega_n r^n} \int_{\partial B_{r/2} (x)}  \partial^\alpha u N d \sigma  | \\
+            & \leq | \frac{2^n}{\omega_n r^n}| \| \partial^\alpha u \|_{L^\infty (\partial B_{r/2}(x))} |\overbrace{\int_{\partial B_{r/2} (x)}  \underbrace{1_{n-1} N}_{=1} d \sigma}^{= n \omega_n (r/2)^{n-1} }  | \\
+            &= \| \partial^\alpha u \|_{L^\infty (\partial B_{r/2}(x))} \frac{2n}{r}, \quad \forall i=1,...,n.
         \end{align*}
+        This shows the assertion for $|\alpha|=1$, i.e. the induction start is $C(n,1)=2n$.
     }
+    \thm{Liouvilles}{
+        On $\mathbb{R}^n$ a bounded harmonic function is constant.
+    }
+    \pf{
+        The previous corolarry has shown that a smooth (???) harmonic function is bounded in the following way
+        \[
+        |\partial^\alpha u (x) | \leq C(n,|\alpha|) r^{-|\alpha|} \| u \|_{L^\infty (\overline{B_r (x)})} .
+        \]
+        This goes to zero as $r \to \infty$, i.e. all partial derivatives of order $\alpha$ dissapear. Thus $u$ is constant.
+    }
+    We now want to transfer the mean value property to distributions. Let $u \in C^2 (\Omega)$ be harmonic, then $\forall B_r (x) \subset \Omega$ and $\psi \in C_0^\infty (\Omega)$ it holds 
+    \begin{align*}
+        &\int_{B_r (x)} u(y) \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n} d^n y = \int_0^r \int_{\partial B_s (x)} u(y) \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n} d \sigma (y) ds \\
+        &= \int_0^r \frac{\psi (s)}{n s^{n-1} \omega_n} \int_{\partial B_s (x)} u(y) d \sigma (y) ds = \int_0^r \psi (s) u(x) ds = u(x) \int_0^r \psi (s) ds.
+    \end{align*}
 
+\thm{Weak Mean Value Property}{
+    Let $U \in \mathcal{D}^\prime (\Omega)$ be a harmonic distribution on an open domain $\Omega \subset \mathbb{R}^n$. For each ball $B_r (x) \subset \Omega$ and each $\psi \in C_0^\infty ((0,r))$ with $\int_0^r \psi d\mu =0$ the distribution $U$ vanishes on the followsing test function $f \in C_0^\infty (\Omega)$ with 
+    \[
+    y \mapsto f(y) := \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n}, \quad supp \; f \subset B_r (x) \subset \Omega,
+    \]
+    i.e. $U_f =0$.
+}
 
+\pf{
+    Due to the fact that $U$ is harmonic it holds that 
+    \[
+    0= (\Delta U)_g = U_{\Delta g} = U_f,
+    \]
+    if we show that $\exists g \in C_0^\infty (\Omega)$ with $\Delta g =f$. \\
+    Because by assumption $\psi$ is integrable ($\int_\Omega \psi d \mu = \int_0^r \psi d \mu =0$) there exists a $\Psi \in C_0^\infty ((0,r))$ such that $\Psi^\prime = \psi$. Now define 
+    \[
+    g(y) := v (|y-x|), \quad v(t) := \int_r^t \frac{\Psi (s)}{n s^{n-1} \omega_n} ds.
+    \]
+    This function has compact support in $B_r (x) \subset \Omega$, because of the following. As we defined $\Psi \in C_0^\infty ((0,r))$ it holds that $\Psi (s) =0$ for all $s \geq r$ and $\exists \epsilon >0$ such that $\Psi (s) =0$ for all $s \leq \epsilon$. Finally, we get that for $y \neq x$
+    \begin{align*}
+        &\Delta_y g(y) = \nabla_y \cdot \left( \frac{\partial}{\partial y_i} |y-x| v^\prime (y)  \right) = \nabla_y \cdot \frac{y-x}{|y-x|} v^\prime (y) \\
+        &= \sum_{i=1}^n \left( \frac{1}{|y-x|} v^\prime (y) + v^{\prime \prime} (y) \frac{y_i-x_i}{|y-x|}  \right) \\
+        &= \frac{n-1}{|y-x|} v^\prime (y) + v^{\prime \prime }(y) \\
+        &=  \frac{n-1}{|y-x|} v^\prime (y) + \frac{\psi (s)}{n s^{n-1} \omega_n} + \frac{\Psi (s)}{n s^{n-1} \omega_n} \frac{1-n}{|y-x|} \\
+        &= \frac{n-1}{|y-x|} v^\prime (y) + \frac{\psi (s)}{n s^{n-1} \omega_n} - \frac{\Psi (s)}{n s^{n-1} \omega_n} \frac{n-1}{|y-x|} \\
+        &= \frac{\psi (s)}{n s^{n-1} \omega_n} = f(y).
+    \end{align*}
+}
 
-
-
+\lem{}{
+    On an open domain $\Omega \subset \mathbb{R}^n$ for each harmonic distribution $U \in \mathcal{D}^\prime (\Omega)$ there exists $u\in C^\infty (\Omega)$ harmonic such that $H=F_u$.
+}
+\pf{
+    First, we shall find a $u$ as it was proposed in the lemma. For every $x \in \Omega$ choose a ball $B_r (x) \subset \Omega$ and a test function $\psi \in C_0^\infty ((0,r))$ with $\int_0^r \psi (s)ds =1$. Then we define 
+    \[
+    u(x) := u(g_x), \quad g_x (y) := \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n}.
+    \]
+Now we need to show that $u$ is well defined, i.e. independent of the choice of $r$ and $\psi$. For that define 
+\[
+g_{x,1} (y) := \frac{\psi_1 (|y-x|)}{n |y-x|^{n-1} \omega_n}, \quad g_{x,2} (y) := \frac{\psi_2 (|y-x|)}{n |y-x|^{n-1} \omega_n}, 
+\]
+for $\psi_1 \in C_0^\infty ((0,r_1))$ and $\psi_2 \in C_0^\infty ((0,r_2))$. We want to show that $U(g_{x,1})= U(g_{x,2})$ which is equivalent by linearity to $U(g_{x,1}-g_{x,2})=0$. For ease of notation define 
+\[
+f(y) := \frac{\psi_1 (|y-x|)- \psi_2 (|x-y|) }{n |y-x|^{n-1} \omega_n}.
+\]
+Thus we need to show that $U(f)=0$, where $\psi := \psi_1 -\psi_2$. We do this by showing that the conditions from the mean value theorem are satisfied. It holds that 
+\[
+\int_0^{\max {r_1,r_2}} \psi ds = \int_0^{r_1} \psi_1 ds - \int_0^{r_2} \psi_2 ds = 1-1=0.
+\]
+Thus $u$ is independent from $\psi$ and $r$. Additionally it holds that 
+\[
+g_x (y) = g_0 (y-x) = (T_x g_0 ) (y)
+\]
+which leads to 
+\[
+u(x) = U(g_x) = U(T_x g_0 ) = U (t_x P g_0) = (g_0 * U )(x)
+\]
+due to the fact that $g_0(\cdot)$ is symmetric, i.e. $g_0 = P g_0$. Thus because we can write any distribution as a function
+\[
+g * F: \mathbb{R}^n \to \mathbb{R}^n, \quad x \mapsto F(T_x P g)
+\]
+that is in $C^\infty$ it follows that $u$ is smooth.
+}
 
 
 \end{document}
