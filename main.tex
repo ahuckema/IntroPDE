@@ -1204,23 +1204,23 @@ The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:=
     On an open domain $\Omega \subset \mathbb{R}^n$ for each harmonic distribution $U \in \mathcal{D}^\prime (\Omega)$ there exists $u\in C^\infty (\Omega)$ harmonic such that $H=F_u$.
 }
 \pf{
-    First, we shall find a $u$ as it was proposed in the lemma. For every $x \in \Omega$ choose a ball $B_r (x) \subset \Omega$ and a test function $\psi \in C_0^\infty ((0,r))$ with $\int_0^r \psi (s)ds =1$. Then we define 
+    First, we shall find a $u$ as it was proposed in the lemma. For every $x \in \Omega$ choose a ball $B_r (x) \subset \Omega$ and a test function $\phi \in C_0^\infty ((0,r))$ with $\int_0^r \phi (s)ds =1$. Then we define 
     \[
-    u(x) := u(g_x), \quad g_x (y) := \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n}.
+    u(x) := u(g_x), \quad g_x (y) := \frac{\phi (|y-x|)}{n |y-x|^{n-1} \omega_n}.
     \]
-Now we need to show that $u$ is well defined, i.e. independent of the choice of $r$ and $\psi$. For that define 
+Now we need to show that $u$ is well defined, i.e. independent of the choice of $r$ and $\phi$. For that define 
 \[
-g_{x,1} (y) := \frac{\psi_1 (|y-x|)}{n |y-x|^{n-1} \omega_n}, \quad g_{x,2} (y) := \frac{\psi_2 (|y-x|)}{n |y-x|^{n-1} \omega_n}, 
+g_{x,1} (y) := \frac{\phi_1 (|y-x|)}{n |y-x|^{n-1} \omega_n}, \quad g_{x,2} (y) := \frac{\phi_2 (|y-x|)}{n |y-x|^{n-1} \omega_n}, 
 \]
-for $\psi_1 \in C_0^\infty ((0,r_1))$ and $\psi_2 \in C_0^\infty ((0,r_2))$. We want to show that $U(g_{x,1})= U(g_{x,2})$ which is equivalent by linearity to $U(g_{x,1}-g_{x,2})=0$. For ease of notation define 
+for $\phi_1 \in C_0^\infty ((0,r_1))$ and $\phi_2 \in C_0^\infty ((0,r_2))$. We want to show that $U(g_{x,1})= U(g_{x,2})$ which is equivalent by linearity to $U(g_{x,1}-g_{x,2})=0$. For ease of notation define 
 \[
-f(y) := \frac{\psi_1 (|y-x|)- \psi_2 (|x-y|) }{n |y-x|^{n-1} \omega_n}.
+f(y) := \frac{\phi_1 (|y-x|)- \phi_2 (|x-y|) }{n |y-x|^{n-1} \omega_n}.
 \]
-Thus we need to show that $U(f)=0$, where $\psi := \psi_1 -\psi_2$. We do this by showing that the conditions from the mean value theorem are satisfied. It holds that 
+Thus we need to show that $U(f)=0$, where $\phi := \phi_1 -\phi_2$. We do this by showing that the conditions from the mean value theorem are satisfied. It holds that 
 \[
-\int_0^{\max {r_1,r_2}} \psi ds = \int_0^{r_1} \psi_1 ds - \int_0^{r_2} \psi_2 ds = 1-1=0.
+\int_0^{\max {r_1,r_2}} \phi ds = \int_0^{r_1} \phi ds - \int_0^{r_2} \phi_2 ds = 1-1=0.
 \]
-Thus $u$ is independent from $\psi$ and $r$. Additionally it holds that 
+Thus $u$ is independent from $\phi$ and $r$. Additionally it holds that 
 \[
 g_x (y) = g_0 (y-x) = (T_x g_0 ) (y)
 \]
@@ -1232,7 +1232,83 @@ due to the fact that $g_0(\cdot)$ is symmetric, i.e. $g_0 = P g_0$. Thus because
 \[
 g * F: \mathbb{R}^n \to \mathbb{R}^n, \quad x \mapsto F(T_x P g)
 \]
-that is in $C^\infty$ it follows that $u$ is smooth.
+that is in $C^\infty$ it follows that $u$ is smooth.\\
+Next, we show that the distribution $\tilde{U}=F_u$ satisfies the weak Mean value property. With the above $\tilde{U} =F_u = g_0 * U$???\\
+
+Note that the function that we characterized in the mean value property theorem satisfies the following three properties
+\begin{itemize}
+    \item [1.] It only depends on the distance $|y-x|$ to the center $x \in \Omega$
+    \item  [2.] $supp \; f \subset B_x (r)$
+    \item [3.] $U(f)=0$
+ \end{itemize}
+ Clearly the first property is equivalent to $f$ is invariant under all rotains around the center. Remember that we have shown that for two functions $f$ and $g$ that are rotationally symmetric around $a$ and $b$ repsectively (i.e. for any orthonagonal transformation $O \in O(n,\mathbb{R})$ it holds $f(a+b)=f(a+Ox)$) follows 
+ \[
+ (f * g) (a+b+x) = (f*g) (a+b+Ox),
+ \]
+ i.e. rotationally symmetric wrt. $a+b$. Thus, if we take $g_0 * f$ it is rotationally symmetric around the same center as $f$, because $g_0$ is rotaionally symmetric around $0$.\\
+ Since $\phi \in C_0^\infty ((0,r))$ the function
+ \[
+ f(y) = \frac{\phi (|y-x|)}{n |y-x|^{n-1} \omega_n}
+ \]
+ vanishes on for all $y \in B_\epsilon^n (\epsilon)$, if we choose $\epsilon>0$ small enough. \\
+ Note that we used different test functions for $f$ and $g_0$. For the first we have $\psi \in C_0^\infty ((0,r))$ with $\int \psi d\mu=0$ and for the second we have $\phi \in C_0^\infty ((0,r))$ with $\int \phi d \mu =1$. If $g_0$ has its support on $B_\xi (0)$ with $\xi < \epsilon$ then $supp \; B_\xi (x)$. This and the fact that $\int_\Omega \phi (x) \psi (y-x) d\mu =0$ gives us all the conditions we need to to use the weak mean value property in order for the following calculation
+ \[
+ \tilde{U} (f) = (g_0 * U) (f) = U (f*Pg_0) = U(f* g_0) =0.
+ \]
+ Thus, $\tilde{U}$ satisfies the weak mean value property.\\
+ The next step is to show that $u$ is harmonic.\\
+ Let $\phi_\epsilon \in C_0^\infty (\mathbb{R})$ be a mollifier. Because $B_r (x)$ has compact closure in $\Omega$ $\exists R>r$ such that $B_R (x) \subset \Omega$. Further, for any $0<r_1<r_2 < R$ and $\epsilon>0$ small enough the function
+ \[
+ \varphi (t) := \phi_\epsilon (t-r_1) - \phi_\epsilon (t-r_2),
+ \]
+ has compact support in $(0,R)$ and a vanishing integral
+ \[
+ \int \varphi(t) d \mu = \int \phi_\epsilon (t-r_1) d \mu - \int \phi_\epsilon (t-r_2) d \mu  =1-1=0.
+ \]
+ We define
+ \[
+ f_x^\epsilon (y) := \frac{\varphi (|y-x|)}{n|y-x|^{n-1} \omega_n}, \quad y \in B_\epsilon (x).
+ \]
+For sufficiently small $\epsilon >0$ $f_x^\epsilon$ has compact support in $\Omega$ and is symmetric wrt. $x$. Since satisfies all the conditions from the weak mean value theorem, as $\epsilon \to 0$, it follows that with
+\begin{align*}
+   0\leftarrow \tilde{U} (f_x^\epsilon) &= \int_\Omega u(y) f_x^\epsilon (y) dy = \int_\Omega u(y)\frac{\varphi (|y-x|)}{n|y-x|^{n-1} \omega_n} dy \\
+    &= \frac{1}{n\omega_n} \int_{B_\epsilon (x) } u(y) \frac{\varphi (|y-x|)}{|y-x|^{n-1} } dy = \frac{1}{n\omega_n} \int_0^\epsilon \int_{\partial B_r (x) } u(y) \frac{\varphi (|y-x|)}{|y-x|^{n-1} } d\sigma ( y)  dr\\
+    &= \int_0^\epsilon \varphi (r) \frac{1}{nr^{n-1}\omega_n} \int_{\partial B_r (x) } u(y)  d\sigma ( y)  dr \\
+    &= \int_0^\epsilon \varphi (r) S_x (r)  dr \\
+    &= \int_0^\epsilon \phi_\epsilon (r-r_1) S_x (r)  dr  - \int_0^\epsilon \phi_\epsilon (r-r_2) S_x (r)  dr  \\
+    & \to  S_x (r_1) -  S_x (r_2), \quad \epsilon \to 0.
+\end{align*}
+we get $0=S_x (r_1 ) - S_x (r_2)$. In the limit we have
+\[
+S_x (r_1) = S_x (r_2)  \to u(x), t \to 0.
+\]
+Thus $u$ satisfies the mean value property and is thus equivalently harmonic.\\
+Finally, we show that $U = \tilde{U}$. For that define
+\[
+\eta (t) := \phi_{\epsilon/3} (t- \frac{2}{3} \epsilon), \quad \text{ has support }(\epsilon/3,\epsilon)
+\]
+and $\int \eta d \mu =1$. Define the mollifier
+\[
+f_x^{\eta,\epsilon} (y) := \frac{\eta (|y-x|)}{n |y-x|^{n-1} \omega_n}.
+\]
+Then $(f_0^{\eta,\epsilon} (\cdot ))_{\epsilon \geq 0}$ is a sequence of smooth mollifiers. It then finally follows with $W := \tilde{U} - U$ that for any test function $\psi \in C_0^\infty (\mathbb{R}^n)$: 
+\begin{align*}
+    &\tilde{U}(\psi) = \lim_{\epsilon \to 0} \tilde{U} (\psi * f_0^{\eta, \epsilon}) = \lim_{\epsilon \to 0} \int_\Omega u(y) (\psi (y) * f_0^{\eta, \epsilon} )(y) dy \\
+    &= \lim_{\epsilon \to 0} \int_\Omega u(y) \int_\Omega \psi (x)  f_0^{\eta, \epsilon} (y-x) dx dy \\
+    &= \lim_{\epsilon \to 0} \int_\Omega \psi (x) \int_\Omega  u(y) f_0^{\eta, \epsilon} (y-x)  dy dx \\
+    &= \lim_{\epsilon \to 0} \int_\Omega \psi (x) \tilde{U} (f_x^{\eta,\epsilon} ) dx \\
+    &= \int_\Omega \psi (x) u(x) dx \\
+    &= \int_\Omega \psi (x) U(g_x) dx \\
+    &= \lim_{\epsilon \to 0} \int_\Omega \psi (x) U(f_x^{\eta,\epsilon} ) dx \\
+    &= \lim_{\epsilon \to 0} \int_\Omega \psi (x) U(f_0^{\eta,\epsilon} (\cdot -x) ) dx \\
+    &= \lim_{\epsilon \to 0} \psi * U(f_0^{\eta,\epsilon}  ) \\
+    &= \lim_{\epsilon \to 0}  U(\psi *f_0^{\eta,\epsilon}  ) = U(\psi)
+\end{align*}
+Although we used that for a mollifier $(\lambda_\epsilon)_{\epsilon \geq 0}$ it holds
+\[
+\lim_{\epsilon \to 0} \psi * \lambda_\epsilon = \psi, \quad \psi \in C_0^\infty (\mathbb{R}^n).
+\]
+
 }
 
 
