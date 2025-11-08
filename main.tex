@@ -1312,4 +1312,116 @@ Although we used that for a mollifier $(\lambda_\epsilon)_{\epsilon \geq 0}$ it 
 }
 
 
+\thm{Harnack}{
+    Let $\Omega^\prime$ be an open path-connected domaina, i.e.
+    \[
+    \forall x,y \in \Omega^\prime \exists \gamma : [0,1] \to \Omega^\prime \text{ continuous: } \gamma(0) =x \text{ and } \gamma (1) =y, 
+    \]
+    with compact closure in the open domain $\Omega \subset \mathbb{R}^n$. Then there exists $C(\Omega,\Omega^\prime) >0$ such that any non-negative harmonic function $u$ on $\Omega$ satisfies 
+    \[
+    \sup_{x \in \Omega^\prime} u(x) \leq C \inf_{x \in \Omega^\prime u(x)}
+    \]
+    and
+    \[
+    \forall x,y \in \Omega^\prime: \frac{1}{C} u(y) \leq u (x) \leq C (y).
+    \]
+}
+\pf{
+    Let $\Omega^\prime$ be an open domain that is path connected and has compact slosure in the open domain $\Omega \subset \mathbb{R}^n$. Define
+    \[
+    g(x) := \inf_{y \in \partial \Omega} \| y -x \|
+    \]
+    Since $\bar{\Omega}^\prime$ is compact in $\Omega$ it is disjoint from $\partial \Omega$ which implies that $g>0$. Let
+    \[
+    r:= \frac{1}{2} \min_{x \in \bar{\Omega}^\prime} g(x).
+    \]
+    By construction it holds that for any $x \in \bar{\Omega}^\prime$ we have $B_{2r} (x) \subset \Omega$. Next, let $x,y \in \Omega^\prime$ be arbitrary with $\| x-y \| <r$. It the follows that for any $ z \in B_r (y)$ it holds
+    \[
+    \| z - x \| \leq \| z -y \| + \| y - x \| <2r.
+    \]
+    Thus $B_r (y) \subset B_{2r} (x)$. Since $u$ is harmonic and non-negative it follows 
+    \[
+    u(x) = \frac{1}{2^n r^n \omega_n} \int_{B_{2r} (x)} u d \mu  \geq \frac{2^{-n}}{ r^n \omega_n} \int_{B_{r} (y)} u d \mu = 2^{-n} u (y)
+    \]
+    holds for all $x,y \in \Omega^\prime$ with $\| x-y \| <r$.\\
+    As we have required $\bar{\Omega}^\prime$ to be compact, i.e. meaning that there exists a cover of finite many balls $B_1,...,B_N$ with radii $\frac{r}{2}$ with
+    \[
+    \forall k=1,...,N-1: B_{k+1} \cap B_k \neq \emptyset.
+    \]
+    Let $B_k := B_{r/2} (x_k)$, then $\forall z_k \in B_{k+1} \cap B_k$ holds
+    \[
+    \| x_k - z_k \| + \| z_k - x_{k+1} \| < \frac{r}{2} + \frac{r}{2} =r,
+    \] 
+    which implies that $B_{r} (x_{k+1} ) \subset B_{2r} (x_k)$. Thus, for all $k=1,...,N-1$:
+    \[
+    u(x_k) = \frac{1}{2^n r^n \omega_n} \int_{B_{2 r} (x_k)} u d \mu \geq \frac{2^{-n}}{ r^n \omega_n} \int_{B_{ r} (x_{k+1})} u d \mu = 2^{-n} u(x_{k+1})
+    \]
+    which is equivalent to $2^n u(x_k) \geq u(x_{k+1})$. Doing this $N$ times yields
+    \[
+    u(x_N) \leq ... \leq 2^{n(N-1)} u(x_1).
+    \]
+    Now choose $x,y \in \Omega^\prime$ arbitrary and the cover in such a way that $x \in B_{r/2} (x_1)$ and $y \in B_{r/2} (x_N)$. Because $\Omega^\prime$ is path connected there exist a sequence of open balls $B_{k_1},...,B_{k_n}$ that connect these points. For ease of notation let $k_1 =1$ and $k_n := N$. Then it follows that  
+    \[
+    \| x - x_1 \| < \frac{r}{2} < r \implies B_{r/2} (x_1) \subset B_r (x) \implies 2^n u(x) \geq u(x_1).
+    \]
+    and
+    \[
+    \| y - x_N \| < \frac{r}{2} < r \implies B_{r/2} (y) \subset B_r (x_N) \implies 2^n u (x_N) \geq u(y)
+    \]
+    which finally leads to 
+    \[
+    u(y) \leq 2^n u(x_N) \leq ... \leq 2^{nN} u(x_1) \leq 2^{n(N+1)} u(x).
+    \]
+    As the above holds for arbitrary $x,y \in \Omega^\prime$ and its an open set the following immediatly follows
+    \[
+    \sup_{x \in \Omega^\prime } u(x) \leq 2^{n(N+1)} \inf_{x \in \Omega^\prime} u(x).
+    \]
+
+}
+
+\lem{Harnack's Principle}{
+    On an open and path connected domain $\Omega \subset \mathbb{R}^n$ a monotone sequence of harmonic functions $(u_n)_{n \in \mathbb{N}}$ converges uniformly on all compact subsets $\Omega^\prime \subset \Omega$, i.e.
+    \[
+    \exists u \forall \epsilon >0 \exists N \in \mathbb{N} \forall n \geq N, x \in \Omega^\prime: \quad |u_n (x) - u(x) |< \epsilon,
+    \]
+    if and only if 
+    \[
+    \exists x \in \Omega: (|u_n (x) |)_{n \in \mathbb{N}} \text{ is bounded.}
+    \]
+}
+\pf{
+    "$\Rightarrow$": \\
+    Let $(u_n)_{n \in \mathbb{N}}$ be uniformly convergent on every compact subset $\Omega^\prime \subset \Omega$. Then with analysis it follows $(u_n(x))_{n \in \mathbb{N}}$ converges for all $x \in \Omega$. Pointwise convergence implies boundedness.\\
+    "$\Leftarrow$": \\
+    Let $(|u_n (x)|)_{n \in \mathbb{N}}$ be bounded for a $x \in \Omega$. By assumption it is monotone. Boundedness an monotonicity imply pointwise convergence, i.e. $(u_n (x))_{n \in \mathbb{N}}$ converges. To show uniform convergence on $\Omega^\prime$, we need to show that $(u_n)_{n \in \mathbb{N}}$ is uniformly a chauchy sequence on $\Omega^\prime$. Because $\Omega$ is a domain 
+    \[
+    \exists \Omega^{\prime \prime}: \Omega^\prime \subset \Omega^{\prime \prime} \subset \Omega, \text{ with } x \in \Omega^{\prime \prime}.
+    \]
+    Define $v_{n,m} (x) := u_n (x) - u_m (x)$, which is harmonic and non negative, because $(u_n)_{n \in \mathbb{N}}$ is non-negative. Thus Harnacks inequality implies that 
+    \[
+    \sup_{y \in \Omega^{\prime \prime}} v_{n,m} (y) \leq C \inf_{y \in \Omega^{\prime \prime}} v_{n,m} (y).
+    \]
+    which implies for all $y \in \Omega^{\prime \prime}$:
+    \[
+    v_{n,m} (y) \leq C \inf_{y \in \Omega^{\prime \prime}} v_{n,m} (y).
+    \]
+    Due to the fact that $x \in \Omega^{\prime \prime}$ it follows also that for all $y \in \Omega^{\prime \prime}$:
+    \[
+    v_{n,m} (y) \leq C  v_{n,m} (x).
+    \]
+    Finally, due to $\Omega^\prime \subset \Omega^{\prime \prime}$ it follows 
+    \[
+    \sup_{y \in \Omega^{\prime}} v_{n,m} (y) \leq C  v_{n,m} (x).
+    \]
+    Now due to the fact that $(u_n (x))_{n \in \mathbb{N}}$ is a convergent sequence, it is a cauchy sequence, i.e. 
+    \[
+    \forall \epsilon >0 \exists N \in \mathbb{N} \forall n \geq m \geq N: \quad u_n (x) - u_m (x) = v_{n,m} (x) < \frac{\epsilon}{C}.
+    \]
+    Thus 
+    \[
+   \forall \epsilon >0 \exists N \in \mathbb{N} \forall n \geq m \geq N: \quad \sup_{y \in \Omega^{\prime}} v_{n,m} (y) \leq C  v_{n,m} (x) < \epsilon,
+    \]
+    which is the uniform cauchy criterion on $\Omega^\prime$.
+}
+
 \end{document}
