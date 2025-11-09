@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 0 "main.bcf" "main.bbl" "main" 1762619016.93967 0
+["biber main"] 0 "main.bcf" "main.bbl" "main" 1762705278.47096 0
   "References.bib" 0 -1 0 ""
   "main.bcf" 0 -1 0 "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1762619014.67504 "/Users/arne/Desktop/Uni Mannheim/Master/IntroPDE/MySkript/main.tex" "main.pdf" "main" 1762619016.93996 0
-  "/Users/arne/Desktop/Uni Mannheim/Master/IntroPDE/MySkript/main.tex" 1762619014.46132 80661 2ac7fb42e5180c9966c1ce132e80d3bd ""
+["pdflatex"] 1762705276.20771 "/Users/arne/Desktop/Uni Mannheim/Master/IntroPDE/MySkript/main.tex" "main.pdf" "main" 1762705278.47125 0
+  "/Users/arne/Desktop/Uni Mannheim/Master/IntroPDE/MySkript/main.tex" 1762705275.97756 84521 6ec537245a846dfe9159c68bd5741fc0 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -295,11 +295,11 @@
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
   "amd.sty" 1759916510.66485 7646 92bdc5dbfa337ea0a32c9ee79e92e868 ""
-  "main.aux" 1762619016.70498 2499 6729a6f6aca6363e67bc61792c3b396f "pdflatex"
+  "main.aux" 1762705278.23349 2616 bf7e2bb18c7f8b928e4f19d34085fbe0 "pdflatex"
   "main.bbl" 0 -1 0 "biber main"
-  "main.out" 1762619016.70616 2140 f3010772030090201c1e58c1a3f50ca6 "pdflatex"
-  "main.run.xml" 1762619016.70957 2309 3604383b78a08d3178db01a2344046a7 "pdflatex"
-  "main.tex" 1762619014.46132 80661 2ac7fb42e5180c9966c1ce132e80d3bd ""
+  "main.out" 1762705278.23471 2283 d09889970f22c79eb79f39ae67522d89 "pdflatex"
+  "main.run.xml" 1762705278.23798 2309 3604383b78a08d3178db01a2344046a7 "pdflatex"
+  "main.tex" 1762705275.97756 84521 6ec537245a846dfe9159c68bd5741fc0 ""
   "theorems.tex" 1759916513.56609 5790 b93c65a1e320981b6114d31a9df3ae43 ""
   (generated)
   "main.aux"

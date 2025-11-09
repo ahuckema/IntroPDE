@@ -1424,4 +1424,47 @@ Although we used that for a mollifier $(\lambda_\epsilon)_{\epsilon \geq 0}$ it 
     which is the uniform cauchy criterion on $\Omega^\prime$.
 }
 
+
+\section{Maximum Principle}
+\thm{Strong Maximum Principle}{
+    Let $u$ be harmonic on a path-connected open domain $\Omega \subset \mathbb{R}^n$ and taking its maximum. Then $u$ is constant.
+}
+\pf{
+Let $u$ be a harmonic function that takes its maximum at $x \in \Omega \subset \mathbb{R}^n$ on an open path connected domain. The MVP implies 
+\[
+\forall y \in B_r (x) \subset \Omega: \quad \frac{1}{r^n \omega_n} \int_{B_r (x)} |u(x) - u (y)| d^n y \stackrel{Max.}{=}\frac{1}{r^n \omega_n} \int_{B_r (x)} u(x) - u (y) d^n y \stackrel{MVP}{=} 0.
+\]
+Hence $u$ is constant on $B_r (x)$, i.e. $\forall y \in B_r (x): \max_{z \in \Omega} u(z) = u(y)=:M$.\\
+Define $\{ z \in \Omega \mid u(z) = M \}$. We have shown in the above that $A \neq \emptyset $ because $B_r (x) \subset A$. We will show that $A$ is closed an open an non-empty. This implies due to (*) that $A = \Omega$. \\
+Closed: Because the preimage of closed sets for continuous functions is again closed it follows that $u^{-1} (\{M\})=A$ is closed.\\
+Open:  Let $a \in A$ be arbitrary. Since $\Omega$ is open there exists $r>0$ such that $B_r (a) \subset \Omega$. Due to the fact that $a \in A$ it follows that $u(a)=M$ is the global maximum. With the arguments above it follows that 
+\[
+\forall y \in B_r (a) \subset \Omega: \quad \frac{1}{r^n \omega_n} \int_{B_r (a)} |u(a) - u (y)| d^n y \stackrel{Max.}{=}\frac{1}{r^n \omega_n} \int_{B_r (a)} u(a) - u (y) d^n y \stackrel{MVP}{=} 0.
+\]
+Hence $u$ is constant on $B_r (a)$. As $a \in A$ was arbitrary it follows that $A$ is open.\\
+All the above arguments imply that $u$ is constant on $\Omega$ where it takes its maximum.\\
+(*): $\Omega$ is path connected implies $\Omega$ is connected, which is defined as 
+\[
+\nexists B,C \neq \emptyset \text{ open with } B \cap C = \emptyset \text{ and } \Omega = B \cup C.
+\]
+Since $A$ is closed it follows that $A^C$ is closed. Because $\Omega = A \cup A^C$ and $\Omega$ is connected one of the sets has to be empty. As $A \neq \emptyset$ it follows $A^C = \emptyset$.
+}
+\thm{Weak Maximum Principle}{
+    Let $u$ be harmonic on a bounded open domain $\Omega \subset \mathbb{R}^n$ that extends continuously to $\partial \Omega$. THen maximum of $u$ is then taken on $\partial \Omega$.
+}
+\pf{
+Because $\Omega$ is bounded it follows that $\bar{\Omega} = \Omega \cup \partial \Omega$ is closed and bounded, which implies with Heine Borel that $\bar{\Omega}$ is compact. A continuous function on a compact set attains its maximum value $M$ at some point $x \in \bar{\Omega}$. There are now two cases:
+\begin{itemize}
+    \item Case 1: If $x \in \partial \Omega$ the assertion is shown.
+    \item Case 2: If $x \in \Omega$ the strong Maximum Principle can be applied an yields that $\forall z \in \Omega: u(z) =M$. Because $U$ extends continuously to $\partial \Omega$ it follows that also $\forall y \in \partial \Omega$: $u(y) = M$. 
+\end{itemize}
+In both cases the maximum is attained on $\partial \Omega$.
+}
+Since $-u$ is again harmonic if $u$ is, the strong and weak minimum principle immediatly follows. We will now generalise the Maximum principle.
+\thm{}{
+    Let $L$ be an elliptic differntial operator on a bounded open domain $\Omega \subset \mathbb{R}^n$ with coefficients $a_{i,j},b_i$ extending continuously and ellipticly to $\partial \Omega$. Then every twice differentiable solution $u\in C^2$ of $L u \geq 0$ that extends continuously to $\partial \Omega$ takes its maximum on $\partial \Omega$.
+}
+\pf{
+    Because the coefficients are continuos the function $g: (x,k) \mapsto \sum_{i,j=1}^n a_{ij} (x) k_i k_j$ is contious on the compact set $\bar{\Omega} \times S^{n-1} \subset \bar{\Omega}\times \mathbb{R}^n$. A continuous function attains its minimum on compact sets. Thus $g$ attains its minimum $\lambda >0$, as $L$ is elliptic, this minimum is positve. This implies uniform ellipticity.
+}
 \end{document}
