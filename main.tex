@@ -1465,6 +1465,46 @@ Since $-u$ is again harmonic if $u$ is, the strong and weak minimum principle im
     Let $L$ be an elliptic differntial operator on a bounded open domain $\Omega \subset \mathbb{R}^n$ with coefficients $a_{i,j},b_i$ extending continuously and ellipticly to $\partial \Omega$. Then every twice differentiable solution $u\in C^2$ of $L u \geq 0$ that extends continuously to $\partial \Omega$ takes its maximum on $\partial \Omega$.
 }
 \pf{
-    Because the coefficients are continuos the function $g: (x,k) \mapsto \sum_{i,j=1}^n a_{ij} (x) k_i k_j$ is contious on the compact set $\bar{\Omega} \times S^{n-1} \subset \bar{\Omega}\times \mathbb{R}^n$. A continuous function attains its minimum on compact sets. Thus $g$ attains its minimum $\lambda >0$, as $L$ is elliptic, this minimum is positve. This implies uniform ellipticity.
+    Because the coefficients are continuos the function $g: (x,k) \mapsto \sum_{i,j=1}^n a_{ij} (x) k_i k_j$ is contious on the compact set $\bar{\Omega} \times S^{n-1} \subset \bar{\Omega}\times \mathbb{R}^n$. A continuous function attains its minimum on compact sets. Thus $g$ attains its minimum $\lambda >0$, as $L$ is elliptic, this minimum is positve. This implies uniform ellipticity.\\
+    Define $v(x) := e^{x_1 \alpha}, \alpha >0, x=(x_1,...,x_n)$, then with uniform ellipticity we get that 
+    \[
+    Lv = \alpha (\alpha a_{11} (x) + b_1 (x)) v(x) \geq \alpha (\alpha \lambda + b_1 (x)) v >0,
+    \]
+    for $\alpha>0$ large enough, because $b_i$ are bounded and continuous on $\bar{\Omega}$ and $\lambda >0$. With linearity it follows for all $\epsilon >0$ that 
+    \[
+    L (u+ \epsilon v) = \underbrace{L u}_{\geq 0} + \underbrace{\epsilon Lv}_{>0} >0, \text{ on } \Omega \forall \epsilon >0.
+    \]
+    To show: $w_\epsilon := u + \epsilon v$ cannot have an interior maximum.\\
+    Assume $w_\epsilon$ attains its maximum at some $x \in \Omega$. Since $w_\epsilon \in C^2$ it clearly holds that 
+    \begin{itemize}
+        \item $\nabla w_\epsilon (x_0)=0$
+        \item The Hessian $H w_\epsilon (x_0)$ is negative semi-definit, i.e. all eigenvalues $\mu_1,...,\mu_n$ are non-positive.
+    \end{itemize}
+    Then there exists $B \in O(n)$ orthogonal such that $H W_\epsilon (x_0) = B^T \begin{pmatrix}
+        \mu_1 &&\\
+        &\ddots &\\
+        && \mu_n
+    \end{pmatrix} B$. Using this we can now reformulate the differential operator.
+    \begin{align*}
+        L w_\epsilon (x_0) &= \sum_{i,j=1}^n a_{ij} (x_0) \frac{\partial^2 }{\partial x_i \partial x_j} w_\epsilon (x_0)  + \sum_{i=1}^n b_i (x_0) \cdot 0 \\
+        &= trace (A(x_0) Hw_\epsilon (x_0)) = trace (A(x_0) B^T \begin{pmatrix}
+        \mu_1 &&\\
+        &\ddots &\\
+        && \mu_n
+    \end{pmatrix} B) \\
+    &= \sum_{i,j=1}^n a_{ij} (x_0) \sum_{k=1}^n \mu_k b_{ki} b_{kj} \\
+    &= \sum_{k=1}^n  \underbrace{\mu_k}_{\leq 0}  \underbrace{\sum_{i,j=1}^n a_{ij} (x_0)  b_{ki} b_{kj}}_{ \geq \lambda >0} \leq 0
+    \end{align*}
+    which is a contradiction. Thus $L w_\epsilon$ attains its maximum on $\partial \Omega$. Then 
+    \begin{align*}
+       & \sup_{x \in \bar{\Omega}} u(x) + \epsilon \inf_{x \in \bar{\Omega}} v(x) \leq \sup_{x \in \bar{\Omega}} (u(x) + \epsilon v(x)) \stackrel{above}{=} \max_{x \in \partial \Omega} (u(x) + \epsilon v(x)) \leq \max_{x \in \partial \Omega} u(x) + \epsilon \max_{x \in \partial \Omega} v(x) \\
+       & \iff \sup_{x \in \bar{\Omega}} u(x)  \leq  \max_{x \in \partial \Omega} u(x) + \epsilon (\underbrace{\max_{x \in \partial \Omega}v(x) -\inf_{x \in \bar{\Omega}} v(x)}_{= const. } ).
+    \end{align*}
+    Due to the fact that $\epsilon >0$ was chosen arbitrary it follows that 
+    \[
+    \sup_{x \in \bar{\Omega}} u(x) = \max_{x \in \partial \Omega} u(x) .
+    \]
 }
+With the same proof idea one can show that $Lu \leq 0$ implies that $u$ takes its minima on the boundary. Note that if $Lu =0$ holds then both minima and maxima are on the boundary.
+\section{Green's Function}
 \end{document}
