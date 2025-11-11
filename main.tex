@@ -1506,5 +1506,89 @@ Since $-u$ is again harmonic if $u$ is, the strong and weak minimum principle im
     \]
 }
 With the same proof idea one can show that $Lu \leq 0$ implies that $u$ takes its minima on the boundary. Note that if $Lu =0$ holds then both minima and maxima are on the boundary.
+
 \section{Green's Function}
+Now we want to find conditions that ensure the existence and uniqueness of harmonic functions on path-connected, open and bounded domains $\Omega \subset \mathbb{R}^n$. We will introduce boundary value problems, that means the harmonic function or some of its derivatives extend continuously to the boundary and coincide with some function on $\partial \Omega$.
+\defn{}{
+    We call $u$ m-times differentiable on $\bar{\Omega}$ if it is m-times continuousyl differentiable on $\Omega$ and all partial derivates of order of at most $m$ extend continuously to $\partial \Omega$.
+}
+
+\lem{Greens First Formula}{
+    Let the divergence theorem hold true on an open and bounded domain $\Omega \subset \mathbb{R}^n$. Then for two $u,v \in C^2 (\bar{\Omega})$ it holds
+    \[
+    \int_\Omega v(y) \Delta u(y) d^n y + \int_\Omega \nabla v(y) \nabla u(y) d^n y= \int_\Omega (v(y) \nabla u(y))^\prime d^n y= \int_{\partial \Omega} v(z) \nabla u(z) \cdot N d \sigma (z).
+    \]
+}
+If we subtract the above by itself, while exchanging the role of $u$ and $v$ we get the second Formula.
+\lem{Greens Second Formula}{
+    Let the divergence theorem hold true on an open and bounded domain $\Omega \subset \mathbb{R}^n$. Then for two $u,v \in C^2 (\bar{\Omega})$ it holds
+    \begin{align*}
+        &\int_\Omega v(y) \Delta u (y) d^n y + \int_\Omega \nabla v (y) \nabla u(y) d^n y - \int_\Omega \Delta v(y) u (y) d^n y - \int_\Omega \nabla v(y) \nabla u(y) d^n y \\
+        &= \int_{\partial \Omega } v(z) \nabla (z) N d\sigma (z) - \int_{\partial \Omega} u (z) \nabla v(z) N d \sigma (z) \\
+        & \iff \int_\Omega v(y) \Delta u (y)-\Delta v(y) u (y) d^n y =  \int_{\partial \Omega } (v(z) \nabla (z) - u (z) \nabla v(z) )N d \sigma (z) 
+    \end{align*}
+}
+\thm{Greens Representation Theorem}{
+Let the divergence theorem hold true on an open and bounded domain $\Omega \subset \mathbb{R}^n$. THen for two $u,v \in C^2 (\bar{\Omega})$ it holds
+\[
+ u(x) = -\int_{\Omega }  \Phi (x-y) \Delta u(y) d^n y + \int_{\partial \Omega} (  \Phi (x-y) \nabla u(y) - u(y) \nabla_y \Phi (x-y)) N d\sigma (y) 
+\]
+}
+\pf{
+With the second Greens Identity it holds 
+\[
+\int_{\Omega \setminus B_\epsilon (x)} u(y) \Delta \Phi (x-y) - \Phi (x-y) \Delta u(y) d^n y= \int_{\partial (\Omega \setminus B_\epsilon (x))} (u(y) \nabla_y \Phi (x-y) - \Phi (x-y) \nabla u(y)) N d\sigma (y).
+\]
+Because $\Phi (x-\cdot)$ was constructed to be the solution of $-\Delta u =0$ for $x \neq y$ it follows that the above is equivalent to
+\begin{align*}
+&- \int_{\Omega \setminus B_\epsilon (x)}  \Phi (x-y) \Delta u(y) d^n y= \int_{\partial (\Omega \setminus B_\epsilon (x))} (u(y) \nabla_y \Phi (x-y) - \Phi (x-y) \nabla u(y)) N d\sigma (y) \\
+&= \int_{\partial \Omega} (u(y) \nabla_y \Phi (x-y) - \Phi (x-y) \nabla u(y)) N d\sigma (y) + \underbrace{\int_{\partial B_\epsilon (x)} (u(y) \nabla_y \Phi (x-y) - \Phi (x-y) \nabla u(y)) N d\sigma (y)}_{=: K_\epsilon}.
+\end{align*}
+Due to construction it follows $\Phi (x-y) \in \mathcal{O}(|x-y|^{2-n}), y \to x$, $\nabla u \cdot N$ is bounded and $\int_{\partial B_\epsilon (x)} d\sigma (y) \in \mathcal{O}(\epsilon^{n-1})$ which yields
+\[
+\lim_{\epsilon \to 0} \int_{\partial B_\epsilon (x)} \Phi (x-y) \underbrace{\nabla (y) N}_{\leq const.} d \sigma (y) \leq \lim_{\epsilon \to 0} \epsilon^{2-n} const. \int_{\partial B_\epsilon (x)} d \sigma (y) = \lim_{\epsilon \to 0} \epsilon =0.
+\]
+Using this and the fact that $\nabla \Phi (y) = - \frac{1}{n \omega_n} \frac{y}{|y|^n}$ and $N= - \frac{x-y}{|x-y|}$ we get that 
+\begin{align*}
+    \lim_{\epsilon \to 0} K_\epsilon &= \lim_{\epsilon \to 0} \int_{\partial B_\epsilon (x)} u(y) \nabla_y \Phi (x-y) N d \sigma (y) \\
+    &= - \lim_{\epsilon \to 0} \int_{\partial B_\epsilon (x)} u(y) \frac{1}{n \omega_n} \frac{x-y}{|x-y|^n} N d \sigma (y) \\
+    &=  \lim_{\epsilon \to 0} \frac{1}{n \omega_n} \frac{\epsilon }{|\epsilon |^n} \int_{\partial B_\epsilon (x)} u(y)  \frac{x-y}{|x-y|} d \sigma (y) \\
+    &= \lim_{\epsilon \to 0} \frac{1}{n \omega_n} \frac{\epsilon^2 }{|\epsilon |^{n+1}} \int_{\partial B_\epsilon (x)} u(y)   d \sigma (y) \\
+    &=  \lim_{\epsilon \to 0} \frac{1}{n \omega_n} \frac{1 }{|\epsilon |^{n-1}} \int_{\partial B_\epsilon (x)} u(y)   d \sigma (y)= \lim_{\epsilon \to 0} S_x (\epsilon) = u(x).
+\end{align*}
+Thus in total we have 
+\begin{align*}
+& u(x) = -\int_{\Omega }  \Phi (x-y) \Delta u(y) d^n y - \int_{\partial \Omega} (u(y) \nabla_y \Phi (x-y) - \Phi (x-y) \nabla u(y)) N d\sigma (y) \\
+& \iff u(x) = -\int_{\Omega }  \Phi (x-y) \Delta u(y) d^n y + \int_{\partial \Omega} (  \Phi (x-y) \nabla u(y) - u(y) \nabla_y \Phi (x-y)) N d\sigma (y) 
+\end{align*}
+}
+\defn{Greens Function}{
+    A function 
+    \[
+    G_\Omega : \{ (x,y) \in \Omega \times \Omega \mid x \neq y \} \to \mathbb{R},
+    \]
+    is called Greens function on the open domain $\Omega \subset \mathbb{R}^n$ if the following are satisfied 
+    \begin{itemize}
+        \item $\forall x \in \Omega$ the function $y \mapsto G_\Omega (x,y) - \Phi (x-y)$ is harmonic on $\Omega$
+        \item $\forall x \in \Omega$ the function $y \mapsto G_\Omega (x,y)$ extends continuously to $\partial \Omega$ and vanishes on $\partial \Omega$.
+    \end{itemize}
+}
+Note that if we use the Greens Representation theorem, the second Greens formula and define $v(y) :=   G_\Omega (x,y)-\Phi (x-y)$ (which is by definition a harmonic function) we get 
+\begin{align*}
+    u(x) &= - \int_\Omega \Phi (x-y) \Delta u(y) d^n y + \int_{\partial \Omega} (\Phi (x-z) \nabla u(z)- u (z) \nabla_z \Phi (x-z)) \cdot N d \sigma (z) \\
+    &= - \int_\Omega (G_\Omega (x,y)-v(y) )\Delta u(y) d^n y + \int_{\partial \Omega} ((G_\Omega (x,z)-v(z) ) \nabla u(z)- u (z) \nabla_z (G_\Omega (x,z)-v(z) )) \cdot N d \sigma (z) \\
+    &= - \int_\Omega \underbrace{\Delta v(y) u (y)}_{=0,v \text{ harmonic}} - v(y) \Delta u(y) d^n y - \int_{\partial \Omega} (u(z) \nabla v(z) - \nabla u (z) v(z)) N d \sigma (z) \\
+    &-\int_{\Omega} G_\Omega (x,y) \Delta u (y) d^n y + \int_{\partial \Omega} (G_\Omega (x,z) \nabla u (z) - u (z) \nabla_z G_\Omega (x,z)) \cdot N d \sigma (z) \\
+    &\stackrel{2.Greens}{=} 0 -\int_{\Omega} G_\Omega (x,y) \Delta u (y) d^n y + \int_{\partial \Omega} (G_\Omega (x,z) \nabla u (z) - u (z) \nabla_z G_\Omega (x,z)) \cdot N d \sigma (z) \\
+    &\stackrel{Def.}{=} -\int_{\Omega} G_\Omega (x,y) \Delta u (y) d^n y - \int_{\partial \Omega} u (z) \nabla_z G_\Omega (x,z) \cdot N d \sigma (z) \\
+    &\stackrel{Dirichlet}{=} \int_{\Omega} G_\Omega (x,y) f (y) d^n y - \int_{\partial \Omega} g (z) \nabla_z G_\Omega (x,z)  \cdot N d \sigma (z).
+\end{align*}
+Thus the solution of the Dirichlet problem satisfies for $f: \bar{\Omega} \to \mathbb{R}$ and $g: \partial \Omega \to \mathbb{R}$ sufficiently regular 
+\[
+u(x) = \int_{\Omega} G_\Omega (x,y) f (y) d^n y - \int_{\partial \Omega} g (z) \nabla_z G_\Omega (x,z)  \cdot N d \sigma (z).
+\]
+\rmkb{
+    The homogeneous Dirichlet problem uniquely solves the inhomogenous Dirichelt problem up to translation: Let $u_1$ be the solution of the homogenuous Dirchletproblem and $u$ of the???
+}
+
 \end{document}
