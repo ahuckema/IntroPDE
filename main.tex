@@ -1588,7 +1588,87 @@ Thus the solution of the Dirichlet problem satisfies for $f: \bar{\Omega} \to \m
 u(x) = \int_{\Omega} G_\Omega (x,y) f (y) d^n y - \int_{\partial \Omega} g (z) \nabla_z G_\Omega (x,z)  \cdot N d \sigma (z).
 \]
 \rmkb{
-    The homogeneous Dirichlet problem uniquely solves the inhomogenous Dirichelt problem up to translation: Let $u_1$ be the solution of the homogenuous Dirchletproblem and $u$ of the???
+    The homogeneous Dirichlet problem uniquely solves the inhomogenous Dirichelt problem up to translation: Let $u_1$ be the solution of the homogenuous Dirchletproblem and $u$ of the???\\
+    The Dirichlet Problem reduces to the search of the Greens function.???
+}
+For $x \in \Omega$ the function $y \mapsto G_\Omega (x,y) - \Phi (x-y)$ is harmonic on $\Omega$ and on $\partial \Omega$ is equal to $- \Phi (x-y)$. This function is the solution of the Dirichlet Problem $f=0$ on $\Omega$ and $g(x) =- \Phi (x-y)$ on $\partial \Omega$. 
+\thm{Symmetry}{
+    If there exists a Greens function $G_\Omega$ for the domain $\Omega$ then 
+    \[
+    \forall x \neq y: \quad G_\Omega (x,y) = G_\Omega (y,x).
+    \]
+}
+\pf{
+    For $x \neq y \in \Omega$ and $\epsilon >0$ sufficiently small such that the balls $B_\epsilon (x), B_\epsilon (y) \subset \Omega$ are disjoint, the Greens function $G_\Omega$ is by definition harmonic on $\Omega_\epsilon := \Omega \setminus (B_\epsilon (x) \cup B_\epsilon (y))$. Note that in the definition of $\Omega_\epsilon$ the normal vector for the balls $\partial B_\epsilon (x)$ and $\partial B_\epsilon (y)$ respectively, is inward facing. To apply the Greens second Identiy, we need an outward facing vector. This is why we always need to multiply by $(-1)$ when we apply it in the following! Using Greends second Identity we get 
+    \begin{align*}
+        & \int_{\Omega_\epsilon} G_\Omega (x,z) \Delta G_\Omega (y,z) - G_\Omega (y,z) \Delta G_\Omega (x,z) d^n z =  \int_{\partial \Omega_\epsilon } ( G_\Omega (x,z) \nabla G_\Omega (y,z)-G_\Omega (y,z)\nabla G_\Omega (x,z))  \cdot N d \sigma (z) \\
+        & \iff 0= \int_{\partial \Omega_\epsilon } (G_\Omega (y,z)\nabla G_\Omega (x,z) -G_\Omega (x,z) \nabla G_\Omega (y,z)) \cdot N d \sigma (z) \\
+         & \iff 0= \int_{\partial \Omega \cup \partial B_\epsilon (x) \cup B_\epsilon (y) } (G_\Omega (y,z)\nabla G_\Omega (x,z)-G_\Omega (x,z) \nabla G_\Omega (y,z)) \cdot N d \sigma (z) \\
+         & \stackrel{(*) }{\iff} 0= \int_{\partial B_\epsilon (x) \cup B_\epsilon (y) } (G_\Omega (y,z)\nabla G_\Omega (x,z)-G_\Omega (x,z) \nabla G_\Omega (y,z)) \cdot N d \sigma (z) \\
+         & \iff -\int_{\partial B_\epsilon (y)} (G_\Omega (y,z)\nabla G_\Omega (x,z)-G_\Omega (x,z) \nabla G_\Omega (y,z)) \cdot N d \sigma (z) = \int_{\partial B_\epsilon (x)} (G_\Omega (y,z)\nabla G_\Omega (x,z)-G_\Omega (x,z) \nabla G_\Omega (y,z)) \cdot N d \sigma (z)
+    \end{align*}
+    Although we used in (*) that by definition the Greens function vanishes on $\partial \Omega$. Applying Greens second formula again yields 
+     \begin{align*}
+       & \lim_{\epsilon \to 0} \int_{\partial B_\epsilon (x)} \left(   G_\Omega(y,z) \nabla_z G_\Omega(x,z)-G_\Omega (x,z) \nabla_z G_\Omega(y,z) \right) N d \sigma (z) \\
+       &= -\lim_{\epsilon \to 0} \int_{B_\epsilon (x)} G_\Omega(y,z) \Delta_z G_\Omega(x,z)- G_\Omega (x,z) \Delta_z G_\Omega(y,z)   d^n z \\
+       &= -\lim_{\epsilon \to 0} \int_{B_\epsilon (x)}  G_\Omega(y,z) \Delta_z G_\Omega(x,z)  d^n z =-  \lim_{\epsilon \to 0} \int_{B_\epsilon (x)}  G_\Omega(y,z) (-\delta (x-z))  d^n z =  G_\Omega(y,x) 
+     \end{align*}
+     and in a similiar fashion 
+     \begin{align*}
+       &- \lim_{\epsilon \to 0} \int_{\partial B_\epsilon (y)} (G_\Omega (y,z)\nabla G_\Omega (x,z)-G_\Omega (x,z) \nabla G_\Omega (y,z)) \cdot N d \sigma (z)\\
+       &= \lim_{\epsilon \to 0} \int_{ B_\epsilon (y)} G_\Omega (y,z)\Delta G_\Omega (x,z)-G_\Omega (x,z) \Delta G_\Omega (y,z)  d^n z\\
+       &=- \lim_{\epsilon \to 0} \int_{B_\epsilon (y)} G_\Omega (x,z) \Delta G_\Omega (y,z)  d^n z \\
+       &= - \lim_{\epsilon \to 0} \int_{B_\epsilon (y)}  G_\Omega(x,z) (-\delta (y-z))  d^n z =  G_\Omega(x,y) 
+     \end{align*}
+     Thus the assertion is shown.
 }
 
+We will now calculate Greens functions for $B_\epsilon (x) = \Omega \subset \mathbb{R}^n$. For now only consider the unit ball. Define the inversion in the unit spehre as 
+\[
+\tilde{x} : B_1 (0) \to \partial B_1 (0), x \mapsto \tilde{x}(x) := \frac{x}{|x|^2}.
+\]
+Later it will help us to solve the Dirichlet problem for $f=0$ and $g(x) = \Phi (x-y)$ ???.
+\lem{Greens function on the unit Ball}{
+    The Greens function on the unit Ball is given by 
+    \[
+    G_{B_1 (0)} (x,y) = \Phi (x-y) - \Phi (|x| (\tilde{x}(x)-y))= \begin{cases}
+        \Phi (x-y) - |x|^{2-n} \Phi (\tilde{x}(x) -y), & n >2 \\
+        \Phi (x-y) - \Phi (\tilde{x}(x)-y) - \Phi (x), & n =2
+    \end{cases}
+    \]
+}
+\pf{
+    We want to show that $v(y) := G_\Omega (x,y) - \Phi (x-y)$ is harmonic. Define $v(y) := -\Phi (|x| (\tilde{x}(x)-y))$. Now the conditions of the Green function need to be shown under that definition. We first show that $y \mapsto G_{B_1 (0)} (x,y)$ vanishes on the boundary, i.e. for $y \in \partial B_1 (0)$:
+    \begin{align*}
+        |x|^2 |\tilde{x}(x) -y |^2 &=  |x|^2 \sum_{i=1}^n \left( \frac{x_i}{|x|^2} - y_i \right)^2 = \sum_{i=1}^n \left( \frac{x_i}{|x|^2} - 2 x_i y_i + y_i^2 |x|^2 \right) \\
+        &= \frac{|x|^2}{|x|^2} - 2\sum_{i=1}^n x_i y_i + \underbrace{|y|}_{=1} |x|^2 = 1 -  2\sum_{i=1}^n x_i y_i+|x|^2  \\
+        &= |y|^2 -  2\sum_{i=1}^n x_i y_i+|x|^2 = |x-y|^2 \\
+        & \iff |x| |\tilde{x}(x) -y| = |x-y|
+    \end{align*}
+    Which implies that 
+    \[
+    \forall y \in \partial B_1 (0): \quad  G_{B_1 (0)} (x,y) = \Phi (x-y) - \Phi (|x| (\tilde{x}(x)-y)) =0.
+    \]
+    Next, in distribution it needs to be shown that $\Delta_y \Phi (|x| (\tilde{x}(x)-y))=0$ on $x,y \in B_1 (0)$. Note that 
+    \begin{align*}
+        \Phi (|x| (\tilde{x}(x)-y)) &= \begin{cases}
+            - \frac{1}{2 \pi} (\log (|\tilde{x}(x)-y|) + \log (|x|) )&, n =2\\
+            \frac{1}{n(n-2) \omega_n |\tilde{x}(x) -y|^{n-2}} \frac{1}{|x|^{n-2}} &,n >2
+        \end{cases}
+        \\
+        &= \begin{cases}
+            \Phi (\tilde{x}(x) - y) + \Phi (|x|) &,n=2 \\
+            \Phi (\tilde{x}(x) -y) \frac{1}{|x|^{n-2}} &, n>2
+        \end{cases}.
+    \end{align*}
+    We already have shown that $\Delta_y \Phi (x-y) = - \delta (x-y)$ and $\Delta_z \Phi (z) = - \delta (z)$. We will now show that $\Phi (|\cdot| (\tilde{x}(\cdot ) - y))$ has its singularity outside of $B_1 (0)$. This is the case because first for $x \in B_1 (0)$ it holds that $|x| <1$ which implies that 
+    \[
+    | \tilde{x}(x) | = |\frac{x}{|x|^2}| = \frac{1}{|x|} >1
+    \]
+    and second because 
+    \[
+    \Phi (|x| (\tilde{x}(x) -y)) \text{ singular } \iff y = \tilde{x}(x).
+    \]
+   Because by construction $\Phi$ has only on singularity and because $\tilde{x}(x) \notin B_1 (0)$ for $x \in B_1 (0)$ it follows that $-\Phi (|x| (\tilde{x}(x)-y)) = G_\Omega (x,y) - \Phi (x-y)$ is harmonic on $B_1 (0)$.
+}
 \end{document}
