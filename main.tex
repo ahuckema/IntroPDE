@@ -1671,4 +1671,153 @@ Later it will help us to solve the Dirichlet problem for $f=0$ and $g(x) = \Phi 
     \]
    Because by construction $\Phi$ has only on singularity and because $\tilde{x}(x) \notin B_1 (0)$ for $x \in B_1 (0)$ it follows that $-\Phi (|x| (\tilde{x}(x)-y)) = G_\Omega (x,y) - \Phi (x-y)$ is harmonic on $B_1 (0)$.
 }
+
+
+\thm{Poisson Represation Formula}{
+    For $f \in C^2 (\overline{B_r (z)})$ and $g \in C(\partial B_r (z))$ the unique solution of the Dirichlet Problem on $\Omega = B_r (z)$ is given by 
+    \[
+    u(x) = \frac{1}{r^{n-2}} \int_{B_r (z)} G_{B_1 (0)} \left( \frac{x-z}{r}, \frac{y-z}{r} \right) f(y) d^n y + \frac{1- \frac{|x-z|^2}{r^2}}{n \omega_n} \int_{\partial B_1 (0)} \frac{g(z+ry)}{|\frac{x-z}{r}-y|^n} d \sigma (y).
+    \]
+}
+\pf{
+    Remember that we can decompose the Dirichlet probelm into two subproblem. 
+    \begin{itemize}
+        \item [1.] $- \Delta u =f $ on $\Omega $ and $u=0$ on $\partial \Omega$ (Poisson equation with homogeneuous boundary data)
+        \item [2.] $\Delta u =0$ on $\Omega$ and $u=g$ on $\partial \Omega$ (Laplace equation with inhomogenous boundary data).
+    \end{itemize}
+    The affine map $\psi: \overline{B_r (z)} \to \overline{B_1 (0)}, x \mapsto \frac{x-z}{r}$ is a homomorphism from $B_r (z) $ to $B_1 (0)$ and also from $\partial B_r (z) $ onto $\partial B_1 (0)$. Further note that 
+    \begin{align*}
+        &r^{2-n} \Phi \left( \frac{x-z}{r} - \frac{y-z}{r} \right) - \Phi (x-y) \\
+        &= r^{2-n} \frac{1}{n (n-2) \omega_n |\frac{x-z}{r}-\frac{y-z}{r}|^{n-2}}  - \frac{1}{n(n-2) \omega_n |x-y|^{n-2}} =0 
+    \end{align*}
+    vanishes for $n>2$ and for $n=2$ it is constant: 
+    \begin{align*}
+        &r^{2-n} \Phi \left( \frac{x-z}{r} - \frac{y-z}{r} \right) - \Phi (x-y) \\
+        &= \frac{1}{2 \pi} \log (|\frac{x-z}{r}-\frac{y-z}{r}|) + \frac{1}{2 \pi} \log (|x-y|) \\
+        &= \frac{1}{2 \pi} \left( \log (|x-y|) - \log (|r|) \right) + \frac{1}{2 \pi } \log (|x-y|) =\frac{1}{2 \pi} \log (|r|).
+    \end{align*}
+    Due to the fact $\Phi (rx) = r^{2-n} \Phi (x)$ we can write for $x,y \in B_r (z)$ the Greens function as 
+    \begin{align*}
+        G_{B_1 (0)} (\psi (x),\psi (y)) &= \Phi (\psi (x)-\psi (y)) - \Phi ( |\psi (x)| (\tilde{x}(\psi (x)) -\psi (y))) \\
+        &= \frac{1}{r^{2-n}}  \Phi (x-z+z-y) - \frac{1}{r^{2-n}} \Phi ( |x-z| (\frac{x-z}{r|\psi (x)|^2} -y-z)) \\
+        &= \frac{1}{r^{2-n}}  \Phi (x-y) -  \Phi ( |\frac{x-z}{r}| (\tilde{x}(\frac{x-z}{r}) -\frac{y-z}{r})) \\
+        &= \frac{1}{r^{2-n}}  \Phi (x-y) -  \Phi (  |\frac{x-z}{r}| (\frac{x-z}{r|\frac{x-z}{r}|^2} -\frac{y-z}{r})) \\
+        &= \frac{1}{r^{2-n}}  \Phi (x-y) -  \Phi ( |\frac{x-z}{r}| (r \frac{x-z}{|x-z|^2} -\frac{y-z}{r})) \\
+        &= \frac{1}{r^{2-n}}  \Phi (x-y) -  \Phi ( \frac{1}{r} |\frac{x-z}{r}| (\underbrace{r^2 \frac{x-z}{|x-z|^2} + z}_{=: \tilde{x}_z^r (x) \in \partial B_r (z)}-y)) \\
+        &= \frac{1}{r^{2-n}} \left( \Phi (x-y) - \Phi ( |x-z| (\tilde{x}_z^r (x-z) -y))  \right) = \frac{1}{r^{2-n}} G_{B_r (z)} (x,y).
+    \end{align*}
+    The above is equivalent to 
+    \[
+    G_{B_r (z)} (x,y) = r^{2-n} G_{B_1 (0)} ( \frac{x-z}{r}, \frac{y-z}{r} ).
+    \]
+    We now do the first subproblem. Here the solution of the Poisson equation $-\Delta u =f$ is given by 
+    \[
+    u(x) = \int_{B_r (z)} G_{B_r (z)} (x,y) f(y) d^n y -\underbrace{ \int_{\partial B_r (z)}  g(z) \nabla_z G_{B_r (z)} (x,z) N d \sigma (z)}_{=0},
+    \]
+    i.e. the solution of the homognenous possion equation differs by a constant term from the solution of the solution of the inhmomogenous Poission equation (???). By definition of the Greens function the limit to the boundary of the second term vanishes. By symmetry we can thus show that for all $x_0 \in \partial B_r (z)$:
+    \[
+        \lim_{x \to x_0} u(x)=  \lim_{x \to x_0}\int_{B_r (z)} G_{B_r (z)} (x,y) f(y) d^n y = \int_{B_r (z)} \lim_{x \to x_0} G_{B_r (z)} (y,x) f(y) d^n y =0.
+    \]
+    Therefore, the solution on $B_r (z)$ extends continuosly to $\partial B_r (z)$ and is equal to $g=0$. Now we focus on the second problem. Note that for $x \in B_r (z)$ the solution then is given by 
+    \begin{align*}
+    u(x) &= \underbrace{\int_{B_r (z)} G_{B_r (z)} (x,y) f(\bar{y}) d^n y}_{=0} - \int_{\partial B_r (z)} g(y) \nabla_{y} G_{B_r (z)}  (x,y) \cdot N d \sigma (y) \\
+    &= - r^{2-n} \int_{\partial B_r (z)} g(y) \nabla_{\frac{y-z}{r}} G_{B_1 (0)}  ( \frac{x-z}{r},\frac{y-z}{r}) \cdot N d \sigma (y) \\
+    &= - r^{2-n} \int_{\partial B_r (z)} g(y) \nabla_{\psi(y)} G_{B_1 (0)}  ( \psi (x),\psi (y) ) \cdot N d \sigma (y) \\
+    &= - r^{2-n} \int_{\partial B_r (z)}  g(y) \nabla_{y} (G_{B_1 (0)}\circ \psi)  ( x,y ) \cdot N d \sigma (y) \\
+    &= - r^{2-n} \int_{\partial B_r (z)}  g(y) \nabla_{y} G_{B_1 (0)}  ( \psi (x),\psi (y) ) r^{-1} \cdot N d \sigma (y) \\
+    &= - r^{2-n} \int_{\partial B_1 (0)}  g(yr+z) \nabla_{y} G_{B_1 (0)}  ( \psi (x),\psi (yr+z) ) r^{-1} r^{n-1} \cdot N d \sigma (y) \\
+    &= -  \int_{\partial B_1 (0)}  g(yr+z) \nabla_{y} G_{B_1 (0)}  ( \psi (x),y )  \cdot N d \sigma (y) 
+    \end{align*}
+    In the following we will write $x := \psi (x) \in B_1 (0)$ (a little crude definition) and analyze for $y \in \partial B_1 (0)$ the term $K (x,y) :=  \nabla_y G_{B_r (z)}  (x,y) \cdot N$. We will show that this term is harmonic. Clearly it holds 
+    \begin{align*}
+        &\nabla_y |x-y|^{2-n} = (2-n) |x-y|^{1-n} \nabla_y |x-y| = (2-n) |x-y|^{1-n} \nabla_y \left( \sum_{i=1}^n (x_i - y_i)^2 \right)^{1/2} \\
+        &= (2-n) |x-y|^{1-n} \frac{1}{2} \frac{1}{|x-y|} \nabla (x-y)^2 \\
+        &=  (2-n) |x-y|^{1-n} \frac{(-1) (x-y)}{|x-y|}.
+    \end{align*}
+    Using the above and the fact that $|y|=1$  we get for $n >2$ (not done for $n=2$) 
+    \begin{align*}
+        K(x,y) &:=- \nabla_y \left( \Phi(x-y) - |x|^{2-n} \Phi (\tilde{x}(x) -y) \right) \frac{y}{|y|} \\
+        &= - \frac{1}{n(n-2) \omega_n } \nabla_y \left( \frac{1}{|x-y|^{n-2}} - |x|^{2-n} \frac{1}{|\tilde{x}(x) -y |^{n-2}} \right) y \\
+        &= - \frac{y}{n(n-2) \omega_n  } \nabla_y \left( |x-y|^{2-n} - |x|^{2-n} |\tilde{x}(x) -y |^{2-n} \right) \\
+        &= - \frac{y}{n (n-2)\omega_n  }\left( (2-n) |x-y|^{1-n} \frac{(-1) (x-y)}{|x-y|} - |x|^{2-n} (2-n) |\tilde{x}(x)-y|^{1-n} \frac{(-1)(\tilde{x}(x)-y)}{|\tilde{x}(x)-y|}  \right) \\
+        &=  \frac{y}{n \omega_n  }\left(  |x-y|^{1-n} \frac{(-1) (x-y)}{|x-y|} - |x|^{2-n}  |\tilde{x}(x)-y|^{1-n} \frac{(-1)(\tilde{x}(x)-y)}{|\tilde{x}(x)-y|}  \right) \\
+        &=  \frac{y}{n \omega_n  }\left(  \frac{y-x}{|x-y|^n} - |x|^{2-n}  \frac{y-\tilde{x}(x)}{|\tilde{x}(x)-y|^n}  \right) \\
+        &=  \frac{y(y-x) }{n \omega_n |x-y|^n }- \frac{y(y-\tilde{x}(x)) }{n \omega_n |\tilde{x}(x)-y|^n }|x|^{2-n}   \\
+        &=  \frac{y(y-x) }{n \omega_n |x-y|^n }- \frac{y(y-\tilde{x}(x)) }{n \omega_n |\tilde{x}(x)-y|^n }|x|^{2-n}   \\
+    \end{align*}
+    Due to the fact that 
+    \begin{align*}
+        &|\tilde{x}(x) -y|^2 |x|^2 = \sum_{i=1}^n |x|^2 \left( \frac{x_i}{|x|^2} - y_i \right)^2 \\
+        &= \sum_{i=1}^n |x|^2 \left( \frac{x_i^2}{|x|^4}- 2 \frac{x_i}{|x|^2} y_i + y_i^2 \right) \\
+        &= \sum_{i=1}^n  \left( \frac{x_i^2}{|x|^2}- 2 x_i y_i +|x|^2 y_i^2 \right) \\
+        &=  \frac{\sum_{i=1}^n x_i^2}{|x|^2}- \sum_{i=1}^n 2 x_i y_i +|x|^2 \sum_{i=1}^n y_i^2  \\
+        &=  1- \sum_{i=1}^n 2 x_i y_i +|x|^2  = |y|^2 -\sum_{i=1}^n 2 x_i y_i +|x|^2 = |x-y|^2\\
+        & \iff |\tilde{x}(x) -y| |x| = |x-y|
+    \end{align*}
+    we get that the above is 
+    \begin{align*}
+        K(x,y) &= \frac{y(y-x) }{n \omega_n |x-y|^n }- \frac{y(y-\tilde{x}(x)) }{n \omega_n |\tilde{x}(x)-y|^n }|x|^{2-n}   \\
+        &= \frac{y(y-x) }{n \omega_n |x-y|^n }- \frac{y(y-\tilde{x}(x)) }{n \omega_n |x-y|^n }|x|^{2} \\
+        &= \frac{yy-yx) }{n \omega_n |x-y|^n }- \frac{y y|x|^2 -y x  }{n \omega_n |x-y|^n } \\
+        &= \frac{ \overbrace{yy}^{= |y|=1} }{n \omega_n |x-y|^n }- \frac{y y|x|^2  }{n \omega_n |x-y|^n } = \frac{1-|x|^2  }{n \omega_n |x-y|^n } \\
+    \end{align*}
+    Because $y \in \partial B_1 (0)$ it follows for all $x \in B_1 (0)$ that 
+    \[
+    \Delta_x K(x,y) = - \Delta_x \nabla_y G_{B_1 (0)} (x,y) \frac{y}{|y|} = - \nabla_y \underbrace{\Delta_x G_{B_1 (0)} (x,y)}_{= \Delta_x G_{B_1 (0) } (x,y) = - \delta_0 (x-y) =0} \frac{y}{|y|} =0.
+    \]
+    Thus due to symmetry $x \mapsto K(x,y) $ is harmonic.\\
+    We now want to show that $u$ extends continuously to $\partial B_r (z)$ and is there equal to $1$. For $x \in B_1 (0)$ and $x_0 \in \partial B_1 (0)$ it holds with symmetry 
+    \[
+    \lim_{x \to x_0} u(z+rx) = \int_{\partial B_1 (0)} g(z+ry) \lim_{x \to x_0} K(x,y) d \sigma (y) = \int_{\partial B_1 (0)} g(z+ry) \lim_{x \to x_0} K(y,x) d \sigma (y) \text{ exists.}
+    \]
+    Next, observe that 
+    \begin{itemize}
+        \item $\forall (x,y) \in B_1 (0) \times \partial B_1 (0): $ $K(x,y) = \frac{1-|x|^2}{n \omega_n |x-y|^n}>0$. 
+        \item The mapping $y \mapsto K(\lambda x,y )$ is uniform convergent as $\lambda \to 1$ for $x \in \partial B_1 (0)$. This is due to the following: Choose $x \in \partial B_1 (0)$ and $y \in \partial B_1 (0) \setminus \partial B_\epsilon (x)$ for $\epsilon >0$ arbitary. Then 
+\begin{align*}
+    K(x \lambda ,y ) = \frac{1-|\lambda x|^2}{n \omega_n |\lambda x-y|^n} = \frac{1-\lambda^2}{n \omega_n |\lambda x-y|^n} \leq \frac{1-\lambda^2}{n \omega_n ( \epsilon- (1-\lambda) )^n}  \to 0, \lambda \to 1,
+\end{align*}
+although we used that $|\lambda x - y| \geq |x-y| - |  x-\lambda x |   \geq \epsilon - | x-\lambda x |  =  \epsilon-(1-\lambda) $. 
+\item Now choose $x \in \partial B_1 (0)$ and $y=x$, then 
+\[
+K(\lambda x,y) = \frac{1-|\lambda x|^2}{n \omega_n |\lambda x -x|^n} = \frac{1-\lambda^2}{n \omega_n (1-\lambda)^n} =\frac{(1-\lambda) (1+\lambda)}{n \omega_n (1-\lambda)^n} = \frac{ 1+\lambda}{n \omega_n (1-\lambda)^{n-1}} \to \infty, \lambda \to 1. 
+\]
+    \end{itemize}
+    We now want to show that for $x_0 \in \partial B_r (z)$ and $x \in B_r (z)$ that 
+    \[
+    \lim_{x \to x_0} u(x) = g(x_0).
+    \]
+    For that define $w \equiv 1$ on $\overline{B_1 (0)}$, then it holds 
+    \begin{align*}
+        &\int_{\partial B_1 (0)} K(x,y) d \sigma (y) = \int_{\partial B_1 (0)} w(y) \nabla_y G_{B_1 (0)} (x,y) \cdot N d \sigma (y)\\
+        &= \int_{\partial B_1 (0)} ( w(y) \nabla_y G_{B_1 (0)} (x,y) -  G_{B_1 (0)} (x,y) \nabla_y w(y) ) \cdot N d \sigma (y) \\
+        &\stackrel{Greens2}{=} \int_{ B_1 (0) }  w(y) \Delta_y G_{B_1 (0)} (x,y) -  G_{B_1 (0)} (x,y) \Delta_y w(y)  d^n y \\
+        &= \int_{ B_1 (0) }  \Delta_y G_{B_1 (0)} (x,y) d^n y =\int_{ B_1 (0) }  \delta_x (y) d^n y = 1.
+    \end{align*}
+    Using that it follows for all $\epsilon >0$ and $\delta >0$ such that $|x-y|< \delta$ it follows with continuity that $g(y)-g(x_0)< \frac{\epsilon}{2}$. Due to the fact that $\int_{\partial B_1 (0) \setminus \partial B_\delta (x_0) } K(x,y) d \sigma (y) \to 0$ as $x \to x_0$ for $|y-x_0|< \delta$ such that 
+    \[
+    \int_{\partial B_1 (0) \setminus \partial B_\delta (x_0) } K(x,y) d \sigma (y) \leq \frac{\epsilon}{4 \| g \|_\infty}
+    \]
+    it follows
+    \begin{align*}
+        | u(x) - g(x_0 )| &\leq \int_{\partial B_1 (0)} K(x,y) |g(y) -g(x_0)| d \sigma (y) \\
+        & \leq \int_{\partial B_1 (0) \setminus \partial B_\delta (x_0) } K(x,y) |g(y) -g(x_0)| d \sigma (y) + \int_{\partial B_\delta (x_0) } K(x,y) |g(y) -g(x_0)| d \sigma (y) \\
+        &\leq 2 \| g \|_\infty \int_{\partial B_1 (0) \setminus \partial B_\delta (x_0) } K(x,y) d \sigma (y) + \int_{\partial B_\delta (x_0) } K(x,y) \frac{\epsilon}{2}  d \sigma (y) \\
+        &\leq 2 \| g \|_\infty \underbrace{\int_{\partial B_1 (0) \setminus \partial B_\delta (x_0) } K(x,y) d \sigma (y)}_{\to 0, x \to x_0} + \frac{\epsilon}{2} \underbrace{ \int_{\partial B_1 (0) } K(x,y)   d \sigma (y)}_{=1} \\
+        &\leq 2 \| g \|_\infty  \frac{\epsilon}{4 \| g \|_\infty}  +  \frac{\epsilon}{2} =\epsilon .
+    \end{align*}
+    Because $\epsilon>0$ was chosen arbitrary the assertion follows.\\
+    Finally, we have shown in this proof that the solution of $1.$ is 
+    \[
+    u_1(x) = \int_{B_r (z)} G_{B_r (z)} (x,y) f(y) d^n y = \frac{1}{r^{n-2}} \int_{B_r (z)} G_{B_1 (0)} (\psi (x),\psi (y)) f(y) d^n y
+    \]
+    and for $2.$ is 
+    \[
+    u_2(x) = \int_{\partial B_r (z)} g(yr+z) \nabla_y G_{B_1 (0)} (\psi (x),y) \cdot N d \sigma (y) = \frac{1- |\psi (x)|^2}{n \omega_n} \int_{\partial B_r (z)} \frac{g(yr+z)}{|\psi (x) -y|^n} d \sigma (y).
+    \]
+    Thus in total the solution of the Dirichlet problem is 
+    \[
+    u(x) =\frac{1}{r^{n-2}} \int_{B_r (z)} G_{B_1 (0)} (\frac{x-z}{r},\frac{y-z}{r}) f(y) d^n y + \frac{1- |\frac{x-z}{r}|^2}{n \omega_n} \int_{\partial B_r (z)} \frac{g(yr+z)}{|\frac{x-z}{r} -y|^n} d \sigma (y).
+    \]
+}
 \end{document}
