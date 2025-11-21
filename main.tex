@@ -1820,4 +1820,23 @@ K(\lambda x,y) = \frac{1-|\lambda x|^2}{n \omega_n |\lambda x -x|^n} = \frac{1-\
     u(x) =\frac{1}{r^{n-2}} \int_{B_r (z)} G_{B_1 (0)} (\frac{x-z}{r},\frac{y-z}{r}) f(y) d^n y + \frac{1- |\frac{x-z}{r}|^2}{n \omega_n} \int_{\partial B_r (z)} \frac{g(yr+z)}{|\frac{x-z}{r} -y|^n} d \sigma (y).
     \]
 }
+\cor{
+    Harmonic functions on an open domain $\Omega \subset \mathbb{R}^n$ are analytic.
+}
+\pf{
+    Let $u$ be harmonic on $B_r (z)$ and extend continuously to $\partial B_r (z)$ where $u \equiv g$, for some $g \in C^2(\partial B_r (z))$. This can be represented as a Dirichlet problem. Its solution is the given by the result of the last theorem:
+    \begin{align*}
+     u(x) &= \frac{1}{r^{n-2}} \int_{B_r (z)} G_{B_1 (0)} \left( \frac{x-z}{r}, \frac{y-z}{r} \right) \underbrace{f(y)}_{=-\Delta u=0} d^n y + \frac{1- \frac{|x-z|^2}{r^2}}{n \omega_n} \int_{\partial B_1 (0)} \frac{g(z+ry)}{|\frac{x-z}{r}-y|^n} d \sigma (y) \\
+     &=  \frac{1- \frac{|x-z|^2}{r^2}}{n \omega_n} \int_{\partial B_1 (0)} \frac{u(z+ry)}{|\frac{x-z}{r}-y|^n} d \sigma (y) \\
+     &=  \frac{1- \frac{|x-z|^2}{r^2}}{n \omega_n} \int_{\partial B_r (z)} \frac{u(y)}{|\frac{x-z}{r}-\frac{y-z}{r}|^n} r^{1-n} d \sigma (y) \\
+     &=  \frac{r^2- |x-z|^2}{n r^2 \omega_n} \int_{\partial B_r (z)} \frac{u(y)}{|x-y|^n} r^{n} r^{1-n} d \sigma (y) \\
+     &=  \frac{r^2- |x-z|^2}{n r \omega_n} \int_{\partial B_r (z)} \frac{u(y)}{|x-y|^n} d \sigma (y) \\
+    \end{align*}
+    Note that for $x=z$ it follows that $|x-y|=r$ and 
+    \[
+    u(x) = \frac{r^2}{n r \omega_n} \int_{\partial B_r (z)} \frac{u(y)}{r^n} d \sigma (y) = \frac{1}{n r^{n-1} \omega_n} \int_{\partial B_r (z)} u(y) d \sigma (y),
+    \] 
+    which is exactly the mean value property.\\
+    Remember for a sequence of the form $(\sum_{i=1}^n a_i x^i)_{n \in \mathbb{N}}$ the radius of convergence is defined as $R:= \frac{1}{\overline{\lim_{i \to \infty}} \sqrt[n]{|a_i|}}$. A function is called analytic in $x_0$ if there exists a Taylor series $\sum_{k=1}^n \frac{f^{(k)} (x_0)}{k !} (x-x_0)^k$ that converges to $f(x_0)$ as $n \to \infty$ and its convergence radius $R$ is positive. ...?
+}
 \end{document}
