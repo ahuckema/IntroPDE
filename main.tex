@@ -1839,4 +1839,23 @@ K(\lambda x,y) = \frac{1-|\lambda x|^2}{n \omega_n |\lambda x -x|^n} = \frac{1-\
     which is exactly the mean value property.\\
     Remember for a sequence of the form $(\sum_{i=1}^n a_i x^i)_{n \in \mathbb{N}}$ the radius of convergence is defined as $R:= \frac{1}{\overline{\lim_{i \to \infty}} \sqrt[n]{|a_i|}}$. A function is called analytic in $x_0$ if there exists a Taylor series $\sum_{k=1}^n \frac{f^{(k)} (x_0)}{k !} (x-x_0)^k$ that converges to $f(x_0)$ as $n \to \infty$ and its convergence radius $R$ is positive. ...?
 }
+
+\lem{}{
+    Let $\Omega \subset \mathbb{R}^n$ be an open neighborhood of $0$ and $u$ a bounded harmonic function on $\Omega \setminus \{ 0\}$. Then $u$ extends as a harmonic function to $\Omega$.
+}
+\pf{
+    Let $B_r (0) \subset \Omega$ have compact closure in $\Omega$. With the theorem before the solution for the Dirichlet Problem where $f=0$ on $B_r (0)$ and $g=u$ on $\partial B_r (0)$ there exists a unique $\tilde{u} \in C^2  (B_r (0)) \cap C^0 (\overline{ B_r (0)})$. Note that $u$ is as defined in the lemma. We define 
+    \[
+    u_\epsilon (x) := \tilde{u}(x) - u(x) + \epsilon G_{B_r (0)} (x,0), \quad x \in B_r (0) \setminus \{ 0 \}, \quad \epsilon \in \mathbb{R}.
+    \]
+    By definition of the Greens function it holds in distribution that $- \Delta G_{B_r (0)} (x,0) = \delta_0$, $G_{B_r (0)} (x,0)$ vanishes on $\partial B_r (0)$ and it has a singularity in $x=0$, due to the fact that $G_{B_r (x,0)}$ is singular iff $\tilde{x}(x)=0$, which is equivalent to $x=0$.\\
+    Due to the fact that $G_{B_r (0)} (x,0)$ vanishes on $\partial B_r (0)$ it follows that for $x_0 \in \partial B_r (0)$ $\tilde{u}(x_0)= u(x_0)$, which yields $u_\epsilon (x_0) =0$. Further, as stated before, $G_{B_r (0)}(x,0)$ is singular in $x=0$. Due to the fact that $\tilde{u}$ and $u$ are bounded it follows for every $\epsilon >0$ that $u_\epsilon (x) \to \infty, x \to 0$. Note that $u_\epsilon$ is a harmonic function on $B_r (0) \setminus \{0\}$ (linear combination of harmonic functions).\\
+    We now want to show that for $\epsilon >0$ the function $u_\epsilon$ is non-negative. For that assume that $u_\epsilon$ takes a negative value on $B_r (0) \setminus \{0\}$. Due to the fact that there is a pole in $x=0$ with $u_\epsilon (0)=\infty$ and on the boundary we have $u_\epsilon(x)=0$ it follows that there exists a negative minimum value in the interior.  With the strong minimum principle it follows that $u_\epsilon$ is constant. This a contradiction to the fact that the pole in $x=0$ is equal to $+ \infty$.\\
+    The argument is analougous for $\epsilon< 0$ and $u_\epsilon$ non-positive.\\
+    In total it holds
+    \[
+    0 \leftarrow \lim_{\epsilon \nearrow 0} u_\epsilon (x) =\tilde{u}(x)-u(x)=  \lim_{\epsilon \searrow 0} u_\epsilon (x) \rightarrow 0, \quad x \in B_r (0) \setminus \{0\}.
+    \]
+    Thus $\tilde{u}$ is a harmonic extension of $u$ on $\Omega$.
+}
 \end{document}
