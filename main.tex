@@ -1946,9 +1946,107 @@ u(\frac{x}{t^\beta},1) = t^\alpha u(x,t) = v\left(\frac{x}{t^\alpha}\right)
 Then it follows with $y := \frac{x}{t^\beta}$ that
 \begin{align*}
    0&= \frac{\partial}{\partial t} u(x,t) + \sum_{i,j=1}^n \frac{\partial^2}{\partial x_i \partial x_j} u(x,t) = \frac{\partial}{\partial t} \left( \frac{1}{t^\alpha}  v\left( \frac{x}{t^\beta} \right) \right) + \frac{1}{t^\alpha} \sum_{i,j=1}^n \frac{\partial^2}{\partial x_i \partial x_j} \left(   v\left( \frac{x}{t^\beta} \right) \right)\\
-    &= -\frac{\alpha}{t^{\alpha+1}}v\left( \frac{x}{t^\beta} \right)- \frac{1}{t^\alpha} \sum_{i=1}^n \frac{x_i}{t^\beta} \frac{\partial}{\partial y}   v\left( y \right) + \frac{1}{t^{2 \alpha + \beta}} \sum_{i,j=1}^n \frac{\partial^2}{\partial y_i \partial y_j}  v\left( y \right)\\
-    &= - \alpha t^{-(\alpha+1)} v(y) - \beta t^{- (\alpha+1)} y^T \nabla v(y) + t^{-( \alpha +2 \beta)} \Delta v(y).
+    &= -\frac{\alpha}{t^{\alpha+1}}v\left( \frac{x}{t^\beta} \right)- \frac{1}{t^\alpha} \sum_{i=1}^n \frac{x_i}{t^\beta} \frac{\partial}{\partial y}   v\left( y \right) - \frac{1}{t^{2 \alpha + \beta}} \sum_{i,j=1}^n \frac{\partial^2}{\partial y_i \partial y_j}  v\left( y \right)\\
+    &= - \alpha t^{-(\alpha+1)} v(y) - \beta t^{- (\alpha+1)} y^T \nabla v(y) - t^{-( \alpha +2 \beta)} \Delta v(y).
 \end{align*}
+If we set $\beta = \frac{1}{2}$ then 
+\begin{align*}
+     &- \alpha t^{-(\alpha+1)} v(y) - \frac{1}{2} t^{- (\alpha+1)} y^T \nabla v(y) - t^{-( \alpha +1)} \Delta v(y) =0  \\
+     &\iff \alpha  v(y) + \frac{1}{2} y^T \nabla v(y) +  \Delta v(y) =0.
+\end{align*}
+Define $r:= |y| = \sqrt{y^T y}$ and $v(y) := w(r)$ then 
+\[
+\Delta v(y) ) \nabla_y \cdot \nabla_y w (|y|) = \nabla_y \cdot \left( w^\prime (r) \frac{y}{|y|}\right) = w^{\prime \prime }(r) + \frac{n-1}{r} w^\prime (r) 
+\]
+that gives us 
+\begin{align*}
+0=\alpha w(r)+ \frac{1}{2} y^T w^\prime (r) \frac{y}{|y|} + w^{\prime \prime} (r) + \frac{n-1}{r} w^\prime (r) = \alpha w(r)+ \frac{1}{2} r w^\prime (r) + w^{\prime \prime} (r) + \frac{n-1}{r} w^\prime (r) .
+\end{align*}
+This with $\alpha = \frac{n}{2}$ it follows  
+\begin{align*}
+    &0= r^{n-1} \left( \frac{n}{2} w(r)+ \frac{1}{2} r w^\prime (r) + w^{\prime \prime} (r) + \frac{n-1}{r} w^\prime (r) \right)\\
+    \iff 0&=   r^{n-1} \frac{n}{2} w(r)+  r^{n-1}\frac{1}{2} r w^\prime (r) +  r^{n-1} w^{\prime \prime} (r) +  r^{n-1}\frac{n-1}{r} w^\prime (r) \\
+    \iff 0&= \frac{1}{2} \left( r^n w (r) \right)^\prime + (r^{n-1} w^\prime (r))^\prime \\
+    \iff 0&= \frac{d}{dt} \left( \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r) \right) \\
+    \iff \int_{\mathbb{R}} 0 dr&= \int_\mathbb{R} \frac{d}{dt} \left( \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r) \right) dr = \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r)\\
+    &\iff a = \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r),
+\end{align*}
+where $a \in \mathbb{R}$ is an arbitrary constant. Due to the fact that $w$ and $w^\prime$ for $r \to \infty$ it follows $a=0$. This gives us the ODE 
+\[
+ w^\prime (r) = -\frac{1}{2} r w (r) ,
+\]
+whose solution is given by $w (r) = b e^{- \frac{r^2}{4}}$ and $b \in \mathbb{R}$ is arbitrary. For a special choice of $b$ we get the fundamental solution 
+\defn{}{
+    The fundamental solution of the heat equation is giveny by 
+    \[
+    \Phi (x,t) := \begin{cases}
+        \frac{1}{(4 \pi t)^{n_2} } e^{- \frac{|x|^2}{4t}} &, t>0 \\
+        0&,t \leq 0
+    \end{cases}, x \in \mathbb{R}^n.
+ \]
+}
+\lem{}{
+    For all $t >0$ the fundamental solution satisfies 
+    \[
+    \int_{\mathbb{R}^n} \Phi (x,t) d^n x=1.
+    \]
+}
+\pf{
+    For $y := \frac{x}{\sqrt{4 t}}$ it holds 
+    \[
+    \frac{1}{(4 \pi t)^{n/2} } \int_{\mathbb{R}^n} e^{- \frac{|x|^2}{4t}} d^n x = \frac{1}{ \pi^{n_2} } \int_{\mathbb{R}^n} e^{- y^2 } d^n y = \frac{1}{ \pi^{n_2} }\left(\int_{\mathbb{R}^n} e^{- y^2 } d y\right)^n = 1.
+    \]
+}
+
+\thm{}{
+    For $h \in C_b( \mathbb{R}^n, \mathbb{R})$ the function 
+    \[
+    u(x,t) := \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y 
+    \]
+    satisfies 
+    \begin{itemize}
+        \item $u \in C^\infty (\mathbb{R}^n,\mathbb{R})$ 
+        \item $\dot{u}- \Delta u =0$ on $\mathbb{R}^n \times \mathbb{R}^+$
+        \item $u$ extends continuously and bounded to $\mathbb{R}^n \times \mathbb{R}^+$ with $\lim_{t \searrow 0} u(x,t) =h(x)$ for all $x \in \mathbb{R}^n$. 
+    \end{itemize}
+}
+\pf{
+    i)\\
+    Since $\Phi (\cdot, \cdot)$ is smooth on $\mathbb{R}^n \times \mathbb{R}^+$ and $h$ is bounded it follows $u(x,t)$ is well defined, bounded and continuous on $\mathbb{R}^n \times \mathbb{R}^+$. Note that the function 
+    \[
+    \mathbb{R}^n \times \mathbb{R}^+ \to L^(\mathbb{R}^n) , (x,t) \mapsto D^{|\alpha|}_y \Phi (x-y,t)
+    \]
+    and the integral is a linear continuous operator from $L^1 (\mathbb{R}^n)$ to $\mathbb{R}$. Thus $u \in C^\infty (\mathbb{R}^n \times \mathbb{R}^+)$ and we can interchange differentiation and integration. \\
+    ii)\\
+    Because $\Phi$ solves the heat equation it follows 
+    \[
+    \dot{u}(x,t) - \Delta u(x,t) = \int_{\mathbb{R}^n} \left( \dot{\Phi} (x-y,t) - \Delta_x \Phi (x-y,t) \right) h(y) d^n y =0.
+    \]
+    iii)\\ 
+    The continuity of $h$ implies that it is uniformly continuos on compact subsets of $\mathbb{R}^n$, i.e. 
+    \[
+    \forall \epsilon \forall x \in K \subset \mathbb{R}^n \text{ compact } \exists \delta >0 \forall y \in B_\delta (x): \quad |h(y)-h(x)| < \epsilon.
+    \]
+    Furthermore, by construction $\exists T>0$ such that forall $t < T$ it holds 
+    \[
+    \int_{\mathbb{R}^n \setminus B_\delta (0)} \Phi (y,t) d^n y=\int_{\mathbb{R}^n \setminus B_\delta (0)} \frac{1}{t^{n/2}} \Phi (\frac{y}{\sqrt{t}},t) d^n y = \frac{t^{n/2}}{t^{n/2}} \int_{\mathbb{R}^n \setminus B_{\delta /t } (0) } \Phi (z,1) d^n z < \epsilon ,
+    \]
+    where we used that 
+    \[
+    \Phi (y,t) =  \frac{1}{(4 \pi t)^{n_2} } e^{- \frac{|x|^2}{4t}} = \frac{1}{t^{n/2}} \frac{1}{(4 \pi )^{n_2} } e^{- \frac{|x|^2}{4t}} = \frac{1}{t^{n/2}} \Phi ( \frac{y}{\sqrt{t}},1).
+    \]
+    It then follows that for all $ t < T$:
+    \begin{align*}
+        |u(x,t) - h(x) | &= \left| \int_{\mathbb{R}^n} \Phi (x-y,t) (h(y) - h(x)) d^n y \right| \\
+        & \leq \int_{ B_\delta (x) }  \Phi (x-y,t) \left|h(y) - h(x)\right|  d^n y +\int_{\mathbb{R}^n \setminus B_\delta (x) }\Phi (x-y,t) \left|h(y) - h(x)\right|  d^n y  \\
+        & \leq \epsilon \int_{\mathbb{R}^n} \Phi (x-y,t) d^n y + 2 \| h \|_\infty \int_{\mathbb{R}^n \setminus B_\delta (x) }\Phi (x-y,t)  d^n y \\
+        &\leq \epsilon + 2 \| h \|_\infty \epsilon = (1 + 2 \| h \|_\infty ) \epsilon.
+    \end{align*}
+    Because $\epsilon >0$ was chosen arbitrary the assertion follows.
+}
+
+
+
 
 
 \end{document}
