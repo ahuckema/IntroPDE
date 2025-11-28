@@ -2045,7 +2045,82 @@ whose solution is given by $w (r) = b e^{- \frac{r^2}{4}}$ and $b \in \mathbb{R}
     Because $\epsilon >0$ was chosen arbitrary the assertion follows.
 }
 
+\section{Inhomogeneous Initial value problem}
+THe homogenuous heat equation can be written as $\dot{u} = \Delta u$. Because the Laplace operator is a linear mapping from $C^2( \mathbb{R}^n) \to C^0 (\mathbb{R}^n)$ the heat equation becomes an ODE on an infinite dimensional Banach space. 
+\rmkb{
+    Remember that for an inhomogenous linear ODE 
+    \[
+    u^\prime (t) = a(t) u(t) + b(t), \quad u(0) = \eta 
+    \]
+    the soltion using variation of constants is given by 
+    \[
+    u(t) = \eta e^{A(t)} + \int_0^t b(x) e^{A(t) -A(s)} ds 
+    \]
+    where $A(t) := \int_0^t a(s) ds$.
+}
+There is the homogeneous initial value problem 
+\begin{align*}
+    \dot{u} (x,t) - \Delta u(x,t) =0, \quad (x,t) \in \mathbb{R}^n \times \mathbb{R}^+,\\
+    u(x,0) = h(x), \quad x \in \mathbb{R}^n
+\end{align*}
+and the inhomogenous initial value problem 
+\begin{align*}
+    \dot{u} (x,t) - \Delta u(x,t) =f(x,t), \quad (x,t) \in \mathbb{R}^n \times \mathbb{R}^+,\\
+    u(x,0) = 0, \quad x \in \mathbb{R}^n.
+\end{align*}
+Assume that $u$ is the solution of the inhomegenous initial value problem and $v_t$ the solution of the homogenous inital value problem with $v_t (x,0)=h_t(x)$. Further, assume that $f(x,t)=h_t (x)$, then 
+\[
+u(x,t)  =\int_0^t v_s(x,t-s)   ds=  \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) h_s (y ) d^n y ds = \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds.
+\]
+Remember the Leipniz rule: For any differentiable function $G(x,t)$ it holds 
+\[
+\frac{d}{dt} \int_0^t G(t,x) ds = \int_0^t \frac{\partial}{\partial t} G(t,x) ds + G(t,t).
+\]
+Using this we get 
+\begin{align*}
+&\dot{u}(x,t) - \Delta u(x,t) \\
+&= \int_0^t \int_{\mathbb{R}^n} \left(\dot{\Phi} (x-y,t-s) - \Delta \Phi (x-y,t-s) \right) f(y,s) d^n y ds +\lim_{s \to t} \int_{\mathbb{R}^n} \Phi (x-y,t-s)  f(y,t) d^n y\\
+&= \int_{\mathbb{R}^n} \delta (x-y)  f(y,t) d^n y=f(x,t).
+\end{align*}
+Thus is suffices to study the homogeneous initial value problem as we can just integrate over time and thus get the solution to the non-homogenous problem.
+\thm{}{
+    If $f$ is twice continuously and bounded differentiable on $\mathbb{R}^n \times \mathbb{R}^+$ then the solution of the inhomogenous initial value problem 
+    \[
+    \dot{u} - \Delta u = f \text{ on } \mathbb{R}^n /times \mathbb{R}^+, \quad \lim_{t \to 0} u(x,t) =0
+    \]
+    is given by 
+    \[
+    u(x,t) = \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n ds = \int_0^t \int_{\mathbb{R}^n} \Phi (y,s) f(x-y,t-s) d^n y ds.
+    \]
 
+}
+\pf{
+    We have already shown that 
+    \[
+    v_s (x,t) := \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y 
+    \]
+    solves the homoegenous initial value problem 
+\[
+\dot{u} - \Delta u = 0 \text{ on } \mathbb{R}^n /times \mathbb{R}^+, \quad \lim_{t \to 0} u(x,t) =f(x,t)
+\]
+and $v_s \in C^\infty (x,t)$. \\
+We can now show that for arbitary $\epsilon>0$ it holds 
+\[
+u_\epsilon (x,t) := \int_0^{t-\epsilon} v_s (x,t) ds = \int_0^{t-s} \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds
+\]
+satisfies 
+\[
+    \dot{u}_\epsilon (x,t) - \Delta u_\epsilon (x,t) = \int_{\mathbb{R}^n} \Phi (x-y,t-t+\epsilon) f(y,t-\epsilon) d^n y = \int_{\mathbb{R}^n} \Phi (x-y,\epsilon) f(y,t-\epsilon) d^n y
+\]
+which satisfies all the conditions from the previous theorem for homogenous initial value problems, giving us
+\[
+\dot{u}_\epsilon (x,t) - \Delta u_\epsilon (x,t) \to f(x,t) , \quad \epsilon \searrow 0.
+\]
+Finally, combining the above yields the assertion:
+\[
+f(x,t) = \lim_{\epsilon \to 0} \left( \dot{u}_\epsilon (x,t) - \Delta u_\epsilon (x,t) \right) = \lim_{\epsilon \to 0} \left( \frac{\partial}{\partial t} - \Delta  \right)u_\epsilon (x,t) = \left( \frac{\partial}{\partial t} - \Delta  \right)u (x,t)= \dot{u} (x,t) - \Delta u (x,t).
+\]
+}
 
 
 
