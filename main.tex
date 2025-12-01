@@ -2086,7 +2086,7 @@ Thus is suffices to study the homogeneous initial value problem as we can just i
 \thm{}{
     If $f$ is twice continuously and bounded differentiable on $\mathbb{R}^n \times \mathbb{R}^+$ then the solution of the inhomogenous initial value problem 
     \[
-    \dot{u} - \Delta u = f \text{ on } \mathbb{R}^n /times \mathbb{R}^+, \quad \lim_{t \to 0} u(x,t) =0
+    \dot{u} - \Delta u = f \text{ on } \mathbb{R}^n \times \mathbb{R}^+, \quad \lim_{t \to 0} u(x,t) =0
     \]
     is given by 
     \[
@@ -2101,12 +2101,12 @@ Thus is suffices to study the homogeneous initial value problem as we can just i
     \]
     solves the homoegenous initial value problem 
 \[
-\dot{u} - \Delta u = 0 \text{ on } \mathbb{R}^n /times \mathbb{R}^+, \quad \lim_{t \to 0} u(x,t) =f(x,t)
+\dot{u} - \Delta u = 0 \text{ on } \mathbb{R}^n \times \mathbb{R}^+, \quad \lim_{t \to 0} u(x,t) =f(x,t)
 \]
 and $v_s \in C^\infty (x,t)$. \\
 We can now show that for arbitary $\epsilon>0$ it holds 
 \[
-u_\epsilon (x,t) := \int_0^{t-\epsilon} v_s (x,t) ds = \int_0^{t-s} \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds
+u_\epsilon (x,t) := \int_0^{t-\epsilon} v_s (x,t) ds = \int_0^{t-\epsilon} \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds
 \]
 satisfies 
 \[
@@ -2118,10 +2118,130 @@ which satisfies all the conditions from the previous theorem for homogenous init
 \]
 Finally, combining the above yields the assertion:
 \[
-f(x,t) = \lim_{\epsilon \to 0} \left( \dot{u}_\epsilon (x,t) - \Delta u_\epsilon (x,t) \right) = \lim_{\epsilon \to 0} \left( \frac{\partial}{\partial t} - \Delta  \right)u_\epsilon (x,t) = \left( \frac{\partial}{\partial t} - \Delta  \right)u (x,t)= \dot{u} (x,t) - \Delta u (x,t).
+f(x,t) = \lim_{\epsilon \to 0} \left( \dot{u}_\epsilon (x,t) - \Delta u_\epsilon (x,t) \right) = \lim_{\epsilon \to 0} \left( \frac{\partial}{\partial t} - \Delta  \right)u_\epsilon (x,t) = \left( \frac{\partial}{\partial t} - \Delta  \right)u (x,t)= \dot{u} (x,t) - \Delta u (x,t)
 \]
+and the continuity of $v_s$ gives
+\[
+u(x,0) = \lim_{\epsilon \to 0} u_\epsilon (x,0)= \lim_{\epsilon \to 0} \int_0^{-\epsilon} \int_{\mathbb{R}^n} \Phi (x-y,-s) f(y,s) d^n y ds???
+\]
+
 }
 
+\cor{
+    The inhomogenous initial value problem 
+    \[
+    \dot{u} - \Delta u =f \text{ on } \Omega, \quad u(x,0)=h(x), \text{ on } \partial \Omega,
+    \]
+    has the solution of the form 
+    \[
+    u(x,t) = \int_{\mathbb{R}^n} \Phi (x-y,x) h(y) d^n y + \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds .
+    \]
+}
+
+\section{Mean Value Property}
+We want to use the fundamental solution $\Phi$ to describe the solution $u(x,t)$ as some mean on a smart chosen ball.
+\defn{}{
+    For every $(x,t) \in \mathbb{R}^n \times \mathbb{R}$ and $r>0$ define 
+    \[
+    E(x,t,r) := \{ (y,s) \in \mathbb{R}^{n+1} \mid s \leq t, \Phi (x-y, t-s)  \geq \frac{1}{r^n}  \}.
+    \]
+}
+It then holds that 
+\begin{align*}
+   & \Phi (x-y,t-s) \geq \frac{1}{r^n} \iff e^{-\frac{|x-y|^2}{4 (t-s) }}  \geq \frac{(4 \pi )^{n/2} (t-s)^{n/2} }{r^n} \\
+   &\iff  \left( \frac{r^2}{4(t-s)} \right)^{n/2} \frac{1}{\pi^{n/2}}  \geq  e^{\frac{|x-y|^2}{4 (t-s) }}  \\
+    & \iff - \frac{n}{2} \log(\pi) + \frac{n}{2} \left( 2 \log (r) - \log(4(t-s)) \right) \iff  \geq  \frac{|x-y|^2}{4 (t-s) }\\
+    &\iff 2 (t-s) n \big( 2 \log (r) - \log (t-s) - \log (4 \pi) \big) \geq |x-y|^2
+\end{align*}
+
+\thm{Mean Value Property for the Heat Equation}{
+    Let $u$ be the solution of the heat equation on an open domain $\Omega \subset \mathbb{R}^n \times \mathbb{R}$. Then $\forall (x,t) \in \Omega $ and $r>0$ with $E(x,t,r) \subset \Omega$: 
+    \[
+    u(x,t) = \frac{1}{C_n r^n} \int_{E(x,t,r)} u(y,s)  \frac{|x-y|^2}{(t-s)^2} d^n y ds, \quad C_n := \int_{E(0,0,r)} \frac{|y|^2}{s^2} d^n y ds.
+    \]
+}
+\pf{
+    Due to translation invariance (???) $(x,t) =(0,0)$, define 
+    \begin{align*}
+        S_{0,0}(r) &:= \frac{1}{r^n} \int_{E(0,0,r)} u(z,q) \frac{|z|^2}{q^2} d^n z dq =\frac{1}{r^n} \int_{E(0,0,1)} u(ry,r^2 s) \frac{|ry|^2}{(r^2 s)^2} d^n (ry) d (r^2 s) \\
+        &=\frac{1}{r^n} \int_{E(0,0,1)} u (ry,r^2 s) \frac{r^2}{r^4} \frac{|y|^2}{s^2} r^n r^2 d^n y ds = \int_{E(0,0,1)} u (ry,r^2 s) \frac{|y|^2}{s^2}  d^n y ds.
+    \end{align*}
+    The map $T: E(x,t,r) \to E(rx,r^2 t,r), \quad (y,s) \mapsto (ry,r^2 s)$ is bijective, because it is first a isomorphism, due to its linearity and 
+    \[
+    \det \begin{pmatrix}
+        \frac{\partial}{\partial y_1} T_1 (y,s) & &&\\
+        & \ddots && \\
+        && \frac{\partial}{\partial y_n} T_n (y,s) & \\
+        &&& r^2
+    \end{pmatrix} = 
+    \det \begin{pmatrix}
+        r \; Id_{n \times n} &0 \\ 0 & r^2
+    \end{pmatrix} =r^n r^2 > 0.
+    \]
+    Further, because 
+    \[
+    \Phi (r (x-z), r^2 t) = \frac{1}{(r^2)^{n/2} } \frac{1}{(4 \pi (x-z))^{n/2}} e^{- \frac{|r (x-z)|^2}{4 r^2 t} } = \frac{1}{r^n} \Phi (x-z,t)
+    \]
+    it follows that 
+    \begin{itemize}
+        \item $\forall (x,t) \in E(x,t,1) \Rightarrow  T(x,t) \in E(rx,r^2 t,r)$
+        \item $\forall (x,t) \in E(rx,r^2 t,r) \Rightarrow  T^{-1}(x,t) \in E(x,t,1)$
+    \end{itemize}
+    It then follows that 
+    \begin{align*}
+        S^\prime_{0,0} (r) &= \int_{E(0,0,1)} \frac{|y|^2}{s^2} \left( y^T \nabla u(ry,r^2s) + 2 rs \dot{u}(ry,r^2s) \right) d^n y ds \\
+        &= \frac{1}{r^{n+1}} \int_{E(0,0,r)} r^2 \frac{|\frac{y}{r}|^2}{s^2} \left( \frac{y^T}{r} \nabla u(y,s) + 2r \frac{s}{r^2} \dot{u}(y,s) \right) d^n y ds\\
+         &= \frac{1}{r^{n+1}} \int_{E(0,0,r)}  \frac{|y|^2}{s^2} \left( y^T \nabla u(y,s) + 2 s \dot{u}(y,s) \right) d^n y ds.
+    \end{align*}
+    Then for $x,t=0$ it holds
+    \begin{align*}
+       & |x-y|^2 \leq 2 (t-s) n \big( 2 \log(r) - \log (t-s) -\log (4 \pi) \big) \\
+       & \iff |y|^2 \leq - 2 s n \big( 2 \log(r) - \log (-s) -\log (4 \pi) \big) \\
+        & \iff |y|^2 \leq - 4 s n \big(  \log(r)  - \frac{1}{2}\log (-4 \pi s) \big) \\
+        & \iff 0\leq - |y|^2 - 4 s  \big( n \log(r)  - \frac{n}{2}\log (-4 \pi s) \big) \\
+         & \iff 0  \leq  \frac{|y|^2}{4s} +   n \log(r)  - \frac{n}{2}\log (-4 \pi s) 
+    \end{align*}
+    Define $\psi (y,s) := - \frac{n}{2} \log (- \pi s) + \frac{|y|^2}{4s} + n \log (r)$, then 
+    \[
+    E(0,0,r) = \{ (y,s) \in \mathbb{R}^{n+1} \mid \psi (y,s) \geq 0, \underbrace{s \leq t}_{???} \}
+    \]
+    can be written which yields that by definition $\psi$ vanishes on $\partial E(0,0,r)$. Using that 
+    \[
+    \frac{\partial}{\partial y_i} \psi (y,s) = \frac{1}{4s} 2 y_i= \frac{y_i}{2s} \quad \Rightarrow \quad 2 y^T \nabla \psi (y,s)= \frac{|y|^2}{s}
+    \]
+    it follows
+    \begin{align*}
+        &\frac{1}{r^{n+1}} \int_{E(0,0,r)} 2 \dot{u} \frac{|y|^2}{s} d^n y ds = \frac{1}{r^{n+1}} \int_{E(0,0,r)} 4 \dot{u} y^T \nabla \psi  d^n y ds \\
+        &=  \frac{1}{r^{n+1}} \left(  \int_{E(0,0,r)} (-4) \nabla \cdot ( \dot{u} y) \psi  d^n y ds +  \int_{\partial E(0,0,r)} 4 \dot{u} y^T \psi N  d \sigma (y,s) \right) \\
+        &=  - \frac{1}{r^{n+1}}  \int_{E(0,0,r)} 4   y^T \nabla  \dot{u}  \psi + 4   \dot{u} n \psi  d^n y ds \\
+        &=  - \frac{1}{r^{n+1}}  \int_{E(0,0,r)} 4  \frac{\partial}{\partial t} \left(  y^T \nabla u \psi  \right) - 4 y^T \nabla u \dot{\psi}  + 4   \dot{u} n \psi  d^n y ds \\
+         &=   \frac{1}{r^{n+1}}  \int_{E(0,0,r)} 4  y^T \nabla u \dot{\psi}  - 4   \dot{u} n \psi  d^n y ds \\
+         &=   \frac{1}{r^{n+1}}  \int_{E(0,0,r)}   4y^T \nabla u \left( - \frac{n}{2} \frac{-4 \pi}{-4 \pi s} - \frac{|y|^2}{4} s^{-2} \right) - 4   \dot{u} n \psi  d^n y ds \\
+         &=   \frac{1}{r^{n+1}}  \int_{E(0,0,r)}   y^T \nabla u \left( -  \frac{2n}{ s} - \frac{|y|^2}{ s^{2}}  \right) - 4   \dot{u} n \psi  d^n y ds 
+    \end{align*}
+    Then it follows 
+    \begin{align*}
+        S^\prime_{0,0} (r)& = \frac{1}{r^{n+1}} \int_{E(0,0,r)}  \frac{|y|^2}{s^2} \left( y^T \nabla u + 2 s \dot{u}(y,s) \right) d^n y ds \\
+        &= \frac{1}{r^{n+1}} \int_{E(0,0,r)}  \frac{|y|^2}{s^2} y^T \nabla u  d^n y ds + \frac{1}{r^{n+1}}  \int_{E(0,0,r)}   y^T \nabla u \left( -  \frac{2n}{ s} - \frac{|y|^2}{ s^{2}}  \right) - 4   \dot{u} n \psi  d^n y ds \\
+        &=  \frac{1}{r^{n+1}}  \int_{E(0,0,r)}  (-1)  y^T \nabla u   \frac{2n}{ s} - 4   \dot{u} n \psi  d^n y ds \\
+        &\stackrel{HeatEq}{=}  - \frac{1}{r^{n+1}}  \int_{E(0,0,r)}    y^T \nabla u   \frac{2n}{ s} + 4   \Delta u n \psi  d^n y ds \\
+        &=  - \frac{1}{r^{n+1}}  \int_{E(0,0,r)}    y^T \nabla u   \frac{2n}{ s} - 4 n  \nabla u^T  \nabla \psi  d^n y ds \\
+        &= - \frac{1}{r^{n+1}}  \int_{E(0,0,r)}    y^T \nabla u   \frac{2n}{ s} - 4 n  \nabla u^T  \frac{y}{2s}  d^n y ds \\
+         &= - \frac{1}{r^{n+1}}  \int_{E(0,0,r)} \nabla u^T \left(    y  \frac{2n}{ s} -    2 \frac{y}{s} \right) d^n y ds  =0.
+    \end{align*}
+    This shows that $S_{0,0}$ is constant. Further, it holds 
+    \begin{align*}
+        C_n &:= \int_{E(0,0,1)} \frac{|y|^2}{s^2} d^n y ds = \frac{1}{r^{n+1}} \int_{E(0,0,1)} \frac{1}{r} \frac{|y|^2}{s^2} r^n r^2 d^n y ds\\
+        &=\frac{1}{r^{n+1}} \int_{E(0,0,1)}  \frac{|ry|^2}{(rs)^2} r^n r^2 d^n y ds = \frac{1}{r^{n+1}} \int_{E(0,0,1)}  \frac{|z|^2}{q^2}  d^n z dq.
+    \end{align*}
+    Finally, 
+    \begin{align*}
+       &\lim_{r \to 0} \frac{1}{C_n} \int_{E(0,0,1)} u(ry,r^2 s) \frac{|y|^2}{s^2} d^n y ds = \frac{1}{C_n} \int_{E(0,0,1)} \lim_{r \to 0}  u(ry,r^2 s) \frac{|y|^2}{s^2} d^n y ds \\
+        &=u(0,0) \frac{1}{C_n} \int_{E(0,0,1)} \frac{|y|^2}{s^2} d^n y ds= u(0,0).
+    \end{align*}
+    Because $S_{0,0}(r)$ is constant and equalt to $u(0,0)$ for $r \to 0$ it follows it is equal to that point for every choice of $r>0$.
+    
+}
 
 
 \end{document}
