@@ -1435,7 +1435,7 @@ Let $u$ be a harmonic function that takes its maximum at $x \in \Omega \subset \
 \forall y \in B_r (x) \subset \Omega: \quad \frac{1}{r^n \omega_n} \int_{B_r (x)} |u(x) - u (y)| d^n y \stackrel{Max.}{=}\frac{1}{r^n \omega_n} \int_{B_r (x)} u(x) - u (y) d^n y \stackrel{MVP}{=} 0.
 \]
 Hence $u$ is constant on $B_r (x)$, i.e. $\forall y \in B_r (x): \max_{z \in \Omega} u(z) = u(y)=:M$.\\
-Define $\{ z \in \Omega \mid u(z) = M \}$. We have shown in the above that $A \neq \emptyset $ because $B_r (x) \subset A$. We will show that $A$ is closed an open an non-empty. This implies due to (*) that $A = \Omega$. \\
+Define $A:= \{ z \in \Omega \mid u(z) = M \}$. We have shown in the above that $A \neq \emptyset $ because $B_r (x) \subset A$. We will show that $A$ is closed and open and non-empty. This implies due to (*) that $A = \Omega$. \\
 Closed: Because the preimage of closed sets for continuous functions is again closed it follows that $u^{-1} (\{M\})=A$ is closed.\\
 Open:  Let $a \in A$ be arbitrary. Since $\Omega$ is open there exists $r>0$ such that $B_r (a) \subset \Omega$. Due to the fact that $a \in A$ it follows that $u(a)=M$ is the global maximum. With the arguments above it follows that 
 \[
@@ -1447,7 +1447,7 @@ All the above arguments imply that $u$ is constant on $\Omega$ where it takes it
 \[
 \nexists B,C \neq \emptyset \text{ open with } B \cap C = \emptyset \text{ and } \Omega = B \cup C.
 \]
-Since $A$ is closed it follows that $A^C$ is closed. Because $\Omega = A \cup A^C$ and $\Omega$ is connected one of the sets has to be empty. As $A \neq \emptyset$ it follows $A^C = \emptyset$.
+Since $A$ is closed it follows that $A^C$ is open. Because $\Omega = A \cup A^C$ and $\Omega$ is connected one of the sets has to be empty. As $A \neq \emptyset$ it follows $A^C = \emptyset$.
 }
 \thm{Weak Maximum Principle}{
     Let $u$ be harmonic on a bounded open domain $\Omega \subset \mathbb{R}^n$ that extends continuously to $\partial \Omega$. THen maximum of $u$ is then taken on $\partial \Omega$.
@@ -2241,6 +2241,156 @@ It then holds that
     \end{align*}
     Because $S_{0,0}(r)$ is constant and equalt to $u(0,0)$ for $r \to 0$ it follows it is equal to that point for every choice of $r>0$.
     
+}
+
+
+\section{Maximumsprinciple}
+
+For any open domain $\Omega \subset \mathbb{R}^n$ we define the parabolic cyclinder $\Omega_T := \Omega \times (0,T]$ and $\partial \Omega_T (\partial \Omega \times (0,T]) \cup (\bar{\Omega} \times \{0\})$.
+\thm{}{
+    Let $\Omega$ be a path connected and $u$ twice continuous differentiable solution of the heat equation on $\Omega_T$ with continuous extension to $\bar{\Omega}_T$. If $u$ takes the maximum in $\Omega_T$ then $u$ is constant $\Omega_T$.
+}
+\pf{
+    Let $(x_0,t_0) \in \Omega_T$ be the point where $u$ takes its maximum. Define 
+    \[
+    (x_0,t_0) \in A := \{ (x,t) \in \Omega_T \mid u(x,t) = \max_{(z,q) \in \bar{\Omega}_T} u(z,q) \}.
+    \]
+    Because $\Omega_T$ is an open domain 
+    \[
+    \exists r_0 >0: \quad E(x_0,t_0,r_0) \subset \Omega_T.
+    \]
+    Due to the path connectedness 
+     \[
+    \forall (x,t) \in \Omega \times (0,t_0) \exists n \in \mathbb{N} \text{ finite and } E(x_1,t_1,r_1),...,E(x_n,t_n,r_n) \subset \Omega \times (0,t_0)
+    \]
+    where $t_0 >...>t_n$, $(x_{i},t_i) \in E(x_{i-1},t_{i-1},r_{i-1})$ and $(x,t) \in E(x_n,t_n,r_n)$. This implies $u(x,t)$ is also the maximum. Thus $A= \mathring{ \Omega}_{t_0}$. Because $u$ is continuous in the interior and extends contiusly to the closure, it follows that $u$ is also equal to the maximum on $\overline{\Omega_{t_0}}$.\\
+    In order to show that the solution is constant on $\Omega_T$ we need analiticity.??? Not done here.
+}
+
+
+\thm{Weak Maximum Principle}{
+Let $\Omega \subset \mathbb{R}^n$ be open and bounded and $u$ a twice differntiable solution of the heat equation on $\Omega_T$ that continuously extends to $\bar{\Omega}_T$, then the maximum of $u$ is taken on $\partial \Omega_T$.
+}
+
+\thm{}{
+    On an open and bounded domain $\Omega \subset \mathbb{R}^n$ there exists at most one solution $u$ of the inhomogenous heat equation that extends continuously to $\bar{\Omega}_T$ and coincides on $\partial \Omega_T$ with a given function.
+}
+\pf{
+    Assume $u_1,u_2$ are tow solution of this problem and define $w:= u_1 - u_2$ then $(\partial_t - \Delta) w=0$ and $w\big|_{\partial_P \Omega_T} =0$. With the weak maximum priciple it follows that $\max_{(x,t) \in \bar{\Omega}_T} w(x,t)=0$ implies
+    \[
+    \forall (x,t) \in \Omega_T: \quad  w(x,t) \leq 0 .
+    \]  
+    Conversely, using the minimum principle it follows that 
+    \[
+    \forall (x,t) \in \Omega_T: \quad  w(x,t) \geq 0 .
+    \] 
+    Thus in total $\forall (x,t) \in \Omega_T: \quad  w(x,t) = 0 .$
+}
+In order to prove uniqueness of the initial value problem on $\mathbb{R}^n \times \mathbb{R}^+$ we need a bound on the growth of the solution at infinity.
+\thm{Maximum Principle for the Cauchy Problem}{
+For a bounded and continuous initial value $h$ on $\mathbb{R}^n$ and $u$ a solution on $\mathbb{R}^n \times (0,T]$ of 
+\[
+\dot{u}-\Delta u =0 \text{ on } \mathbb{R}^n \times (0,T) \text{ and } u(x,0)= h(x) \text{ on } \mathbb{R}^n \times \{ 0 \},
+\]
+which is bounded by 
+\[
+u(x,t) \leq A e^{a |x|^2}, \quad (x,t) \in \mathbb{R}^n \times [0,T] \text{ for } A,a >0,
+\]
+follows that $u$ is bounded by 
+\[
+\sup_{(x,t) \in \mathbb{R}^n \times [0,T]} u(x,t) = \sup_{x \in \mathbb{R}^n} h(x).
+\]
+}
+\pf{
+    Case $4aT < 1$:\\
+    There exists $\epsilon >0$ such that $4a (T+ \epsilon) <1$. For all $y \in \mathbb{R}^n$ and $\mu >0$
+    \[
+    v(x,t) := u(x,t) - \mu \cdot (T+\epsilon -t)^{-\frac{n}{2}} e^{\frac{|x-y|^2}{4(T+\epsilon -t) } }
+    \]
+    is a sultion to the heat equation. This can be seen when plugging this into the differential operator $(\partial_t - \Delta_x)(\cdot)$. Because the second summand is of the form of the fundamental solution, this works. Consider the parabolic boundary $\partial_P \Omega_T := B_r (y) \times \{0\} \cup \partial B_r (y) \times (0,T]$. Then due to $\frac{1}{4(t+\epsilon)} > a$
+    \begin{itemize}
+        \item For $x \in B_r (y)$ it holds 
+        \[
+             A e^{a |x|^2} \geq v(x,0) \geq u(x,0) - \underbrace{ \mu (T+\epsilon)^{- n/2} e^{\frac{|x-y|^2}{4 (T +\epsilon)}}}_{\geq 0}
+        \]
+        and thus $v(x,0) < u(x,0) = h(x) \leq \sup_{x \in \mathbb{R}^n} h(x).$
+        \item For $(x,t) \in  \partial B_r (y) \times (0,T]$ we want to find an upper bound that eventually drops beneath $\sup_{x \in \mathbb{R}^n} h(x)$. First, notice that 
+        \[
+        |x| = |x+y-y| \leq |x-y| + |y| = r + |y|.
+        \] 
+        Then we can show:
+        \begin{align*}
+            v(x,t) & \leq A e^{a |x|^2} - \mu (T+ \epsilon -t )^{-n/2} e^{\frac{r^2}{4 (t+ \epsilon -t)}} \leq A e^{a (|y|+r)^2} - \mu (T+ \epsilon -t )^{-n/2} e^{\frac{r^2}{4 (t+ \epsilon -t)}} 
+        \end{align*}
+        the second summand will drop underneath the first due to the fact that $\frac{1}{4 (t+ \epsilon -t)}> a$. Thus, on that intervall $v(x,t) \to - \infty$ as $r \to \infty$, as constants are neglegible in the limit.
+    \end{itemize} 
+    Both cases yield that on $\partial_P \Omega_T$ $v(x,t)$ is bounded by $\sup_{x \in \mathbb{R}^n} h(x)$ and $\mu >0$ arbitary. Because the second summand can be written as $\mu w(x,t)$ we can take the limit $\mu \searrow 0$ wich leads to $u$ being bounded by $\sup_{x \in \mathbb{R}^n} h(x)$. This implies 
+    \[
+    \sup_{(x,t) \in \mathbb{R}^n \times [0,T)} u(x,t) \leq \sup_{x \in \mathbb{R}^n} h(x).
+    \]
+    The verse trivially holds because 
+    \[
+   \sup_{x \in \mathbb{R}^n} h(x)= \sup_{x \in \mathbb{R}^n} u(x,0) \leq \sup_{(x,t) \in \mathbb{R}^n \times [0,T)} u(x,t). 
+    \]
+    Case $4aT>1$:\\
+    Decompose the intervall $[0,T] = [0,T_1] \cup .. \cup [T_M,T]$, although $4a (T_{m+1}-T_m)<1$. Then on the intevervall $[0,T_1]$ we can use the first proof part. The second intervall is treated as a new initial value property. On this intervall we can again use the first proof. This is then condinued $M$ times.
+}
+
+\thm{Existence and uniqueness of the Initial Value Problem}{
+    For $h\in C(\mathbb{R}^n)$ and $f \in C(\mathbb{R}^n \times [0,T])$ there exists at most one solution to the initial value problem 
+    \[
+    \dot{u} - \Delta u =f \text{ on } \mathbb{R}^n \times (0,T), \quad u=h \text{ on } \mathbb{R}^n \times \{0\},
+    \]
+    on $\mathbb{R}^n \times [0,T_0]$ which is bounded by $|u(x,t)| \leq A e^{a |x|^2}$, $a,A>0$ and $0 < T_0 \leq T$.\\
+    Additionally, if $h$ and $f$ are also bounded by $A e^{a|x|^2}$ on $\mathbb{R}^n \times [0,T]$, $a,A,T>0$, then the unique solution is given by 
+    \[
+    u(x,t) = \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y + \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds.
+    \]
+    This solution (might???) explode at some finite time $t \nearrow T_0 \geq \frac{1}{16 a}$.
+}
+\pf{
+    Using the maximum principle for the Cauchy problem we can again show that the vanishing of the difference of two solutions imply uniqueness.\\
+    To show existence we use that the solution can be written as 
+    \[
+    u(x,t) = \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y + \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds.
+    \]
+    and need to show boundedness. Choose $0 \leq t-s \leq \frac{1}{16 a}$, then 
+    \[
+    - \frac{|x-y|^2}{4 (t-s)} = -\frac{2+2}{4}\frac{|x-y|^2}{4 (t-s)}\leq -2 a |x-y|^2 - \frac{|x-y|^2}{8(t-s)},
+    \]
+    implies 
+    \begin{align*}
+        e^{-2 a |x|^2} e^{a|y|^2} \Phi (x-y, t-s) &= e^{-2 a |x|^2} e^{a|y|^2} \frac{1}{(4 \pi (t-s))^{n/2}} e^{-\frac{|x-y|^2}{4(t-s)}}\\
+        & \leq e^{-2 a |x|^2} e^{a|y|^2} \frac{1}{(4 \pi (t-s))^{n/2}} e^{-2 a |x-y|^2 - \frac{|x-y|^2}{8(t-s)}} \\
+        &= e^{-2 a |x|^2-2 a |x-y|^2  +a|y|^2} \frac{1}{(4 \pi (t-s))^{n/2}} e^{- \frac{|x-y|^2}{8(t-s)}}
+    \end{align*}
+    Now due to 
+    \[
+    -2 a |x-y|^2 = -2a \left( |x|^2 -2 x^T y + |y|^2 \right) \iff 2 x^T y = |x|^2 - |x-y|^2 + |y|^2
+    \]
+    it follows that the above is equal to 
+    \begin{align*}
+        e^{-2 a |x|^2-2 a |x-y|^2  +a|y|^2} \frac{1}{(4 \pi (t-s))^{n/2}} e^{- \frac{|x-y|^2}{8(t-s)}} &= e^{- a\left(  2|x|^2+2  |x-y|^2  -|y|^2 \right) } \frac{1}{(4 \pi (t-s))^{n/2}} e^{- \frac{|x-y|^2}{8(t-s)}} \\
+        &= e^{- a\left(  2|x|^2+  (2|x|^2- 4 x^T y +2|y|^2)  -|y|^2 \right) } \frac{1}{(4 \pi (t-s))^{n/2}} e^{- \frac{|x-y|^2}{8(t-s)}} \\
+         &= e^{- a\left(  2|x|^2+ ( 2|x|^2 - (|y|^2+ 4|x|^2 - |2x-y|^2)  +2|y|^2 ) -|y|^2 \right) } \frac{1}{(4 \pi (t-s))^{n/2}} e^{- \frac{|x-y|^2}{8(t-s)}} \\
+         &= e^{- a |2x-y|^2 } \frac{1}{(4 \pi (t-s))^{n/2}} e^{- \frac{|x-y|^2}{8(t-s)}} \\
+         &= 2^{n/2} e^{- a |2x-y|^2 } \frac{1}{(8 \pi (t-s))^{n/2}} e^{- \frac{|x-y|^2}{8(t-s)}}\\
+        &= 2^{n/2} e^{- a |2x-y|^2 } \frac{1}{(4 \pi 2(t-s))^{n/2}} e^{- \frac{|x-y|^2}{4 \cdot 2(t-s)}}.
+    \end{align*}
+    Due to the fact that $e^{- a |2x-y|^2} \leq e^{0} =1$ it follows 
+    \[
+    \Phi (x-y, t-s) \leq 2^{n/2}  e^{2 a |x|^2} e^{-a|y|^2} \Phi (x-y,2(t-s)).
+    \]
+    Then it follows 
+    \begin{align*}
+        u(x,t) &= \int_{\mathbb{R}^n} \Phi (x-y ,t) h(y) d^n y + \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds \\
+        & \leq \int_{\mathbb{R}^n} 2^{n/2} \Phi (x-y,2t) e^{2 a |x|^2} e^{-a|y|^2} A e^{a |y|^2} d^n y \\
+        &+ \int_0^t \int_{\mathbb{R}^n} 2^{n/2} \Phi (x-y,2(t-s)) e^{2 a |x|^2} e^{-a|y|^2} A e^{a |y|^2} d^n y ds \\
+        &\leq  2^{n/2} e^{2 a |x|^2} A \int_{\mathbb{R}^n }\Phi (x-y,2t) d^n y +  e^{2 a |x|^2} A  2^{n/2}  \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,2(t-s)) d^n y ds \\
+        &\leq  2^{n/2} e^{2 a |x|^2} A  +  e^{2 a |x|^2} A  2^{n/2}  t \\
+        &\leq  2^{n/2} e^{2 a |x|^2} A  (1+t).
+    \end{align*}
+    Thus $u$ is bounded if and only if $t-s \leq \frac{1}{16a}$. To incorporate the case that this constant may be larger than $T$ we require that $t -s \in [0, \min \{T,\frac{1}{16a}\}]$.
 }
 
 
