@@ -2390,8 +2390,116 @@ follows that $u$ is bounded by
         &\leq  2^{n/2} e^{2 a |x|^2} A  +  e^{2 a |x|^2} A  2^{n/2}  t \\
         &\leq  2^{n/2} e^{2 a |x|^2} A  (1+t).
     \end{align*}
-    Thus $u$ is bounded if and only if $t-s \leq \frac{1}{16a}$. To incorporate the case that this constant may be larger than $T$ we require that $t -s \in [0, \min \{T,\frac{1}{16a}\}]$.
+    Thus $u$ is bounded if and only if $t-s \leq \frac{1}{16a}$. To incorporate the case that this constant may be larger than $T$ we require that $t -s \in [0, \min \{T,\frac{1}{16a}\}]$.\\
+    ??? Something with 
+    \[
+    \tilde{u}(x,t) = \frac{1}{(T_0-t)^{n/2}} e^{\frac{|x|^2}{4(T_0-t)}} u(\frac{x}{T_0-t}, \frac{1}{T_0-t})
+    \]
+    is again a solution??? THis implIES the existence up to time $T_0$.
 }
+
+
+\exm{}{
+    We want to show here that if we have no bound for the initial value problem for the heat equation, then the solution is not unique. For $n=1$ define 
+    \[
+    u(x,t)= \sum_{l=0}^\infty g_l (t) x^l
+    \]
+    then 
+    \begin{align*}
+       0= (\frac{\partial}{\partial t} - \frac{\partial^2}{ \partial x^2}) u(x,t) &= \sum_{l=0}^\infty \dot{g}_l (t) x^l - l(l-1)g_l (t) x^{l-2} \\
+        &= \sum_{l=0}^\infty \dot{g}_l (t) x^l - \sum_{l=2}^\infty  l(l-1)g_l (t) x^{l-2} \\
+        &= \sum_{l=0}^\infty (\dot{g}_l (t) - (l+2)(l+1)g_{l+2} (t) ) x^{l} 
+    \end{align*}
+    Then we have for all even $l \in \mathbb{N}$  that 
+    \[
+    \dot{g}_l (t) - (l+2)(l+1)g_{l+2} (t)=0 \quad \iff \quad g_{l+2} (t) = \frac{\dot{g}_l (t)}{(l+2) (l+1)} = \frac{\ddot{g}_{l-2} (t)}{(l+2) (l+1) l (l-1) } =...= \frac{{g}_0^{((l+2)/2)} (t)}{(l+2)!}
+    \]
+    Thus for all $l \in \mathbb{N}$ the relation holds 
+    \[
+    g_{2l} (t) = \frac{{g}_0^{(l)} (t)}{(2l)!}
+    \]
+    We choose now all $g_l$ with odd $l \in \mathbb{N}$ as zero and then get 
+    \[
+    u(x,t) =\sum_{l=0}^\infty g_{l} (t) x^{l}= \sum_{l=0}^\infty g_{2l} (t) x^{2l} = \sum_{l=0}^\infty \frac{ g^{(l)}(t) }{(2l)! } x^{2l}.
+    \]
+    Thus, we have shown that the solution can be written as a series of an arbitrary function $g_0 \in C^\infty$. If this series exists and converges to $0$ as $t \searrow 0$, then we have found another solutition. A specific example is: 
+    \[
+    g_0 (t) =: g(t) =: e^{-t^{-2}} \textbf{1}_{t >0},\quad u(x,t) = \sum_{l=0}^\infty \frac{g^{(l) } (t)}{(2l)!} x^{2l} =: \sum_{l=0}^\infty g_l (t) x^l.
+    \]
+    For $t>0$ it then holds 
+    \begin{align*}
+        & g^\prime (t) = \frac{2}{t^3} e^{-t^{-2}} = t^{-1} 2 t^{-2} e^{-t^{-2}} =: t^{-1} p_1 (t^{-2}) e^{-t^{-2}},\\
+        &g^{\prime \prime} (t) = (-6) t^{-4} e^{-t^{-2}} + 2 t^{-3} 2t^{-3} e^{-t^{-2}} = \left( -6 t^{-4} + 4 t^{-6} \right) e^{-t^{-2}} = t^{-2} \underbrace{\left( -6 t^{-2} + 4 t^{-4} \right)}_{=: p_2 (t^{-2}) } e^{-t^{-2}} \\
+        &\vdots\\
+        &g^{(l)} (t) = t^{-l} p_l (t^{-2}) e^{-t^{-2}}
+    \end{align*}
+    where $p_l$ is of polynomial Degree $l$. Using the chain rule it then holds 
+    \begin{align*}
+       & g^{(l+1)} (t) = \frac{d}{dt} g^{(l)} (t) = - l t^{-(l+1)} p_l (t^{-2}) e^{-t^{-2}} - 2 t^{-(l+3)} p^\prime_l (t^{-2}) e^{-t^{-2}} + 2 t^{-(l+3)} p_l (t^{-2}) e^{-t^{-2}} \\
+        &= t^{-(l+1)} e^{-t^{-2}} \left( (-l) p_l (t^{-2}) - 2 t^{-2} p_l^\prime (t^{-2}) + 2 t^{-2} p_l (t^{-2}) \right) \\
+        &\iff t^{-l} p_l (t^{-2}) e^{-t^{-2}}=  t^{-(l+1)} e^{-t^{-2}} \left( (-l) p_l (t^{-2}) - 2 t^{-2} p_l^\prime (t^{-2}) + 2 t^{-2} p_l (t^{-2}) \right) \\
+        &\iff p_{l+1} (t^{-2})= 2 t^{-2} p_l (t^{-2})  -l p_l (t^{-2}) - 2 t^{-2} p_l^\prime (t^{-2}) 
+    \end{align*}
+    For $z:= t^{-2}$ we have 
+    \[
+     p_{l+1} (z)= 2 z p_l (z)  -l p_l (z) - 2 z p_l^\prime (z) .
+    \]
+    We set $p_0(z)=1$ then with the above $p_1(z) = 2z$. Because $p_l$ is a polynomial we can write it as 
+    \[
+    p_l (z) = \sum_{k=0}^l a_{l,k} z^k 
+    \]
+    We now want to show that $|a_{l,k}| \leq \frac{l! z^l}{2^k k!}$ for all $l,k \in \mathbb{N}$. \\
+    Induction start: $l=0,k=0$ is trivial\\
+    Induction step: Note that 
+    \begin{align*}
+        &p_{l+1} (z) = 2 z p_l (z)  -l p_l (z) - 2 z \sum_{k=0}^{l} a_{l,k} k z^{k-1}  \\
+        &=2  \sum_{k=0}^l a_{l,k} z^{k+1}   -l \sum_{k=0}^l a_{l,k} z^k  - 2  \sum_{k=0}^{l} a_{l,k} k z^{k} \\
+        &=2  \sum_{k=0}^l a_{l,k} z^{k+1}   -l \sum_{k=0}^l a_{l,k} z^k  - 2  \sum_{k=0}^{l} a_{l,k} k z^{k} \\
+        &=2  \sum_{k=1}^{l+1} a_{l,k-1} z^{k}   -l \sum_{k=0}^l a_{l,k} z^k  - 2  \sum_{k=0}^{l} a_{l,k} k z^{k} \\
+        &= \sum_{k=1}^l z^k (2 a_{l,k-1} -la_{l,k} - 2ka_{l,k})  + 2 a_{l,l} z^{l+1} - l a_{l,0} - 2 a_{l,0} \cdot 0 \\
+        &= \sum_{k=1}^l z^k (2 a_{l,k-1} -la_{l,k} - 2ka_{l,k})  + 2 a_{l,l} z^{l+1} - l a_{l,0} \\
+        &= \sum_{k=0}^{l+1} z^k (2 a_{l,k-1} -la_{l,k} - 2ka_{l,k})
+    \end{align*}
+    This the yields with the induction hypothethis that 
+    \begin{align*}
+        |a_{l+1,k}| &\leq 2 |a_{l,k-1}| + l |a_{l,k}| + 2k|a_{l,k}| \\
+        & \leq 2 \frac{l! 7^l}{2^{k-1} (k-1)!} + l \frac{l! 7^l}{2^{k} k!} + 2 k \frac{l! 7^l}{2^{k} k!} \\
+        & \leq 2 \cdot 2k \frac{l! 7^l}{2^{k} k!} + l \frac{l! 7^l}{2^{k} k!} + 2 k \frac{l! 7^l}{2^{k} k!} \\
+        & = \frac{(l+1)! 7^{l+1}}{2^{k} k!} \frac{2 \cdot 2k + l  + 2 k }{(l+1) 7} = \frac{(l+1)! 7^{l+1}}{2^{k} k!} \frac{  l  + 6 k }{(l+1) 7} 
+    \end{align*}
+    Since $k \leq k+1$ it follows 
+    \[
+    |a_{l+1,k}| \leq \frac{(l+1)! 7^{l+1}}{2^{k} k!} \frac{  l  + 6 (l+1) }{(l+1) 7}  \leq \frac{(l+1)! 7^{l+1}}{2^{k} k!} \frac{  7l + 7 }{(l+1) 7} =  \frac{(l+1)! 7^{l+1}}{2^{k} k!} .
+    \]
+    We can use this bound and the fact that $\frac{l!}{(2l)!} \leq \frac{1}{2^l l!}$ to find a bound for $u$:
+    \begin{align*}
+        |u(x,t)| &\leq \sum_{l=0}^\infty \left| \frac{t^{-l} p_l (t^{-2}) e^{-t^{-2}} }{(2l)!} x^{2l} \right| \leq \sum_{l=0}^\infty  \frac{t^{-l}  e^{-t^{-2}} }{(2l)!} |x^{2l}|  \sum_{k=0}^l |a_{l,k} | t^{-2k} \\
+        & \leq \sum_{l=0}^\infty  \frac{t^{-l}  e^{-t^{-2}} }{(2l)!} |x^{2l}|  \sum_{k=0}^l \frac{l!7^l}{2^k k!} t^{-2k} \\
+        & \leq \sum_{l=0}^\infty  \frac{t^{-l}  e^{-t^{-2}} }{2^l l!} |x^{2l}|  \sum_{k=0}^l \frac{7^l}{2^k k!} t^{-2k} \\
+        & \leq \sum_{l=0}^\infty \frac{1}{l!} \left( \frac{7|x|^2}{2t} \right)^l    e^{-t^{-2}}   \sum_{k=0}^\infty \frac{1}{k!}  \left( \frac{1}{2t^2} \right)^k \\
+        & =  e^{-t^{-2}} e^{\frac{7|x|^2}{2t}+ \frac{1}{2t^2}} =  e^{\frac{7|x|^2}{2t}- \frac{1}{2t^2}}
+    \end{align*}
+    For every $t>0$ this series is finitely bounded and thus absolutely convergent. Further, as $t \searrow 0$ it follows that on every compact subset $K \subset \mathbb{R}$ this series converges to zero, because 
+    \[
+    0 \leq |u(x,t)| \leq e^{\frac{7|x|^2}{2t}- \frac{1}{2t^2}} \leq e^{\frac{7 \sup_{x \in K} |x|^2 }{2t} - \frac{1}{2t^2} } \to 0.
+    \] 
+    In the theorem of the uniqueness of the solution we required that $|u(x,t)|$ be bounded independent of $t$ on $\mathbb{R}\times [0,T_0]$. However, our bound depends on time. Assume that there exists $a,C \in \mathbb{R}$ such that 
+    \[
+    e^{\frac{7|x|^2}{2t}- \frac{1}{2t^2}}  \leq e^{\frac{7|x|^2}{2t}}  \leq e^{ax^2+C}.
+    \]
+    This would imply that $\frac{7}{2t} \leq a $. But as $t \searrow 0$ $\frac{7}{2t} \to \infty$, which is a contradiction. Thus, we have found another solution of the heat equation that does not satify these upper bound conditions.\\
+    This example show that we found a solution that is zero on $\mathbb{R}$ at $t=0$ and then as soon as $t>0$ there is infinite heat at $+\infty$ and $-\infty$ that propagate into the center at infinite speed and result in a value of the solution at time $t>0$ and point $x \in \mathbb{R}$ of $u(x,t) = \sum_{l=0}^\infty \frac{g^{(l) } (t)}{(2l)!} x^{2l} $.
+}
+
+An alternative to using the maximum principle is using the yet to be defined Energy functional. There we cannot use an unbounded domain $\mathbb{R}$ but instead have to focus on a bounded domain $\Omega /subset \mathbb{R}$. The energy function is given by 
+\[
+e(t) := \int_\Omega u^2 (x,t) d^n x.
+\]
+Now using that 
+
+
+
+
 
 
 \end{document}
