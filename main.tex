@@ -2495,7 +2495,50 @@ An alternative to using the maximum principle is using the yet to be defined Ene
 \[
 e(t) := \int_\Omega u^2 (x,t) d^n x.
 \]
-Now using that 
+Now using $\dot{u}= \Delta u$ it follows 
+\begin{align*}
+\dot{e}(t) &= \int_\Omega \frac{d}{dt} u^2 (x,t) d^n x = 2 \int_\Omega u(x,t) \dot{u}(x,t) d^n x= 2 \int_\Omega u(x,t) \Delta u(x,t) d^n x \\
+&=-  2 \underbrace{\int_\Omega (\nabla u(x,t) )^2  d^n x }_{\geq 0} \leq 0.
+\end{align*}
+This implies that $e(\cdot)$ is monotonically decreasing. To show uniqueness of the solution, take two solutions $u_1,u_2$ from the heat eqaution and define their difference $w:= u_1-u_2$. Then $w$ is zero at $t=0$. Further, 
+\[
+\int_\Omega w^2 (x,0) d^n x =0
+\]
+and the fact that $e(\cdot)$ is monotonically decreasing it follows that 
+\[
+\forall t >0: \int_\Omega w^2 (x,t) d^n x =0
+\]
+which itself implies that $w(x,t)=0$ for all $(x,t) \in \Omega \times [0,T]$.
+
+
+\section{Heat Kernel}
+In analogy to Greens functions for the Laplace equation we define on open subsets $\Omega \subset \mathbb{R}^n$ the heat kernel $H_\Omega$:
+\defn{}{
+    For all $\Omega \subset \mathbb{R}^n$ open domain the heat kernel $H_\Omega: \Omega \times \Omega \times \mathbb{R}^+ \to \mathbb{R}$ of $\Omega$ is characterized by the two properties 
+    \begin{itemize}
+        \item For $(x,t) \in \Omega \times \mathbb{R}^+$ the function $y \mapsto H_\Omega (x,y,t)$ extends continuously to $\bar{\Omega}$ with value $0$ on $\partial \Omega$.
+        \item For $x \in \Omega$ the function $(y,t) \mapsto H_\Omega (x,y,t) - \Phi (x-y,t)$ solves the homogeneuous heat equation and extends continuously to $\bar{\Omega} \times \mathbb{R}^+_0$ with value $0$ on $\bar{\Omega} \times \{0\}$.
+    \end{itemize}
+
+}
+
+\lem{}{
+    If $u,v$ are two functions on $\Omega \times \mathbb{R}^+$ with an open domain $\Omega \subset \mathbb{R}^n$, then under sufficient regularity we have 
+    \begin{align*}
+        &\qquad \int_0^T \int_\Omega u(x,t) \left( \dot{v}(x,T-t) + \Delta v(x,T-t) \right) d^n x dt + \int_0^T \int_\Omega \left( \dot{u}(x,t) - \Delta u(x,t) \right) v(x,T-t) d^n x dt \\
+        &= \int_0^T \int_{\partial \Omega } \left( u(y,t) \nabla v(y,T-t) - \nabla u (y,t) v(y,T-t) \right) \cdot N d \sigma (y) dt + \int_\Omega u(x,T) v(x,0) - u(x,0) v(x,T) d^n x
+    \end{align*}
+}
+
+\pf{
+    \begin{align*}
+        &\int_0^T \int_\Omega u(x,t) \left( \dot{v}(x,T-t) + \Delta v(x,T-t) \right) d^n x dt + \int_0^T \int_\Omega \left( \dot{u}(x,t) - \Delta u(x,t) \right) v(x,T-t) d^n x dt \\
+       &=\int_0^T \int_\Omega u(x,t)  \dot{v}(x,T-t) +\dot{u}(x,t) v(x,T-t)   d^n x dt + \int_0^T \int_\Omega  u(x,t) \Delta v(x,T-t) - \Delta u(x,t)  v(x,T-t) d^n x dt \\
+       &=\int_0^T \int_\Omega  \frac{d}{dt} (v(x,T-t) u(x,t) )   d^n x dt + \int_0^T \int_\Omega \nabla( u(x,t) \nabla v(x,T-t) )- \nabla (\nabla u(x,t)  v(x,T-t) )d^n x dt \\
+       &=\int_\Omega  v(x,0) u(x,T)- v(x,T) u(x,0)    d^n x + \int_0^T \int_\Omega \big(  u(y,t) \nabla v(y,T-t) - \nabla u(y,t)  v(y,T-t) \big) \cdot N \; d \sigma (y)  dt 
+    \end{align*}
+}
+Because $\Phi$ has a singularity at $(0,0)$ and $(y,t) \mapsto H_\Omega (x,y,t)- \Phi (x-y,t)$ is zero on $ \bar{\Omega} \times \{0\}$ it must follow that $H_\Omega (x,y,t)$ has a singularity at $(x,x,0)$.
 
 
 
