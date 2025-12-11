@@ -845,7 +845,7 @@ where $\omega_n$ denotes the volume of the n-dimensional unit ball.
 
 
 \thm{}{
-    For $f \in C_0^1 (\mathbb{R}^n)$ the solution of the Poisson equation $\Delta u = f$ is given by the convolution
+    For $f \in C_0^1 (\mathbb{R}^n)$ the solution of the Poisson equation $-\Delta u = f$ is given by the convolution
     \[
     u(x) =(\Phi * f)(x)= \int_{\mathbb{R}^n} \Phi (x-y ) f(y) d^n y  = \int_{\mathbb{R}^n} \Phi (z) f(x-z) d^n z.
     \]
@@ -992,8 +992,8 @@ Thus due to the fact that we can write for every $\phi \in C_0^\infty (\mathbb{R
 \begin{align*}
     (f* \delta_0 )(\phi) &= \delta_0 (\phi * Pf) =\int_{\mathbb{R}^n} (\phi * Pf) (x) d \delta_0 (x) \\
     &= (\phi * Pf) (0) = \int_{\mathbb{R}^n } f(x) \phi (x) d^n x \\
-    &= \int_{\mathbb{R}^n } (-\Delta_x u(x) ) \phi (x) d^n x = \int_{\mathbb{R}^n } -\Delta_x (\Phi * f)  \phi (x) d^n x \\
-    &= \int_{\mathbb{R}^n } ((-\Delta_x \Phi) * f)  \phi (x) d^n x \\
+    &= \int_{\mathbb{R}^n } (-\Delta_x u(x) ) \phi (x) d^n x = \int_{\mathbb{R}^n } -\Delta_x (\Phi * f)(x)  \phi (x) d^n x \\
+    &= \int_{\mathbb{R}^n } ((-\Delta_x \Phi) * f)(x)  \phi (x) d^n x \\
     &= (f* (-\Delta_x \Phi) ) (\phi),
 \end{align*}
 it follows that $-\Delta_x \Phi = \delta_0$ in the distributional sense.
@@ -1981,10 +1981,11 @@ whose solution is given by $w (r) = b e^{- \frac{r^2}{4}}$ and $b \in \mathbb{R}
     \[
     \Phi (x,t) := \begin{cases}
         \frac{1}{(4 \pi t)^{n_2} } e^{- \frac{|x|^2}{4t}} &, t>0 \\
-        0&,t \leq 0
+        0&,t < 0
     \end{cases}, x \in \mathbb{R}^n.
  \]
 }
+For $t=0$ the Fundamental solution is not defined. It is defined as the limit from above, i.e. $\lim_{t \searrow 0 } \Phi (x,t)$.
 \lem{}{
     For all $t >0$ the fundamental solution satisfies 
     \[
@@ -2538,11 +2539,36 @@ In analogy to Greens functions for the Laplace equation we define on open subset
        &=\int_\Omega  v(x,0) u(x,T)- v(x,T) u(x,0)    d^n x + \int_0^T \int_\Omega \big(  u(y,t) \nabla v(y,T-t) - \nabla u(y,t)  v(y,T-t) \big) \cdot N \; d \sigma (y)  dt 
     \end{align*}
 }
-Because $\Phi$ has a singularity at $(0,0)$ and $(y,t) \mapsto H_\Omega (x,y,t)- \Phi (x-y,t)$ is zero on $ \bar{\Omega} \times \{0\}$ it must follow that $H_\Omega (x,y,t)$ has a singularity at $(x,x,0)$.
+Because $\Phi$ has a singularity at $(0,0)$ and $(y,t) \mapsto H_\Omega (x,y,t)- \Phi (x-y,t)$ is zero on $ \bar{\Omega} \times \{0\}$ it must follow that $H_\Omega (x,y,t)$ has a singularity at $(x,x,0)$.\\
+This is why we only integrate on $[0,T-\epsilon]$ and then take the limit $\epsilon \to 0$. We then get with the above 
+\begin{align*}
+    &\int_0^T \int_\Omega \left( \dot{u}(y,t) - \Delta u(y,t) \right) H_\Omega (x,y,T-t) d^n y dt \\
+    &= \int_0^T \int_{\partial \Omega} \left( u(y,t) \nabla_y H_\Omega (x,y,T-t) - \nabla_y u(y,t) H_\Omega (x,y,T-t) \right) \cdot N d \sigma (y) dt \\
+    &+ \int_\Omega u(y,T) H_\Omega (x,y,0) - u(y,0) H_\Omega (x,y,T) d^n y \\
+   & - \int_0^T \int_\Omega u(y,t) \left( \partial H_\Omega (x,y,T-t) + \Delta H_\Omega (x,y,T-t) \right) d^n y dt \\
+    &= \int_0^T \int_{\partial \Omega}  u(y,t) \nabla_y H_\Omega (x,y,T-t)  \cdot N d \sigma (y) dt \\
+    &+ \int_\Omega u(y,T) H_\Omega (x,y,0) d^n y - u(y,0)  H_\Omega (x,y,T) d^n y \\
+    &= \int_0^T \int_{\partial \Omega}  u(y,t) \nabla_y H_\Omega (x,y,T-t)  \cdot N d \sigma (y) dt +  u(x,T) -\int_\Omega u(y,0) H_\Omega (x,y,T) d^n y \\
+\end{align*}
+
+Although we used that 
+\begin{align*}
+    &\int_\Omega u(y,T) H_\Omega (x,y,0) d^n y = \int_\Omega u(y,T) \lim_{t \searrow 0} H_\Omega (x,y,t) d^n y\\
+    &=\int_\Omega u(y,T) \lim_{t \searrow 0} \Phi (x-y,t) d^n y= \lim_{t \searrow 0} \int_\Omega u(y,T)  \Phi (x-y,t) d^n y \\
+    &= \lim_{t \searrow 0} (u(\cdot,T) *  \Phi (\cdot,t))(x) = u(x,T).
+\end{align*}
 
 
-
-
-
+\thm{}{
+    Consider the initial value problem 
+    \[
+    \dot{u} - \Delta u=f \text{ on } \Omega \times (0,T),\quad u=g \text{ on } \partial \Omega \times [0,T],\quad u(x,0)=h(x) \text{ on } \Omega,
+    \]
+    where $f$ is on $\Omega \times (0,T)$, $g$ on $\partial \Omega \times [0,T]$ and $h$ on $\Omega$ all have appropiate regularity, then the unique solution is given by 
+    \begin{align*}
+        u(x,T) &= \int_0^T \int_\Omega f(y,t) H_\Omega (x,y,T-t) d^n y dt - \int_0^T \int_{\partial \Omega} g(z,t) \nabla_z H_\Omega (x,z,T-t) N d \sigma (z) dt\\
+        &+ \int_\Omega h(y) H_\Omega (x,y,T) d^n y.
+    \end{align*}
+}
 
 \end{document}
