@@ -2557,6 +2557,27 @@ Although we used that
     &=\int_\Omega u(y,T) \lim_{t \searrow 0} \Phi (x-y,t) d^n y= \lim_{t \searrow 0} \int_\Omega u(y,T)  \Phi (x-y,t) d^n y \\
     &= \lim_{t \searrow 0} (u(\cdot,T) *  \Phi (\cdot,t))(x) = u(x,T).
 \end{align*}
+Thus, it holds 
+\begin{align*}
+    u(x,T)= &\int_0^T \int_\Omega \left( \dot{u}(y,t) - \Delta u(y,t) \right) H_\Omega (x,y,T-t) d^n y dt +\int_\Omega u(y,0) H_\Omega (x,y,T) d^n y \\
+    &-\int_0^T \int_{\partial \Omega}  u(y,t) \nabla_y H_\Omega (x,y,T-t)  \cdot N d \sigma (y) dt 
+\end{align*}
+
+\lem{}{
+    For all $T>0$ and $x,y \in \bar{\Omega}$: $H_\Omega (x,y,T) = H_\Omega (y,x,T)$
+}
+\pf{
+    \begin{align*}
+        &H_\Omega(x,y,T) - H_\Omega(y,x,T) = \lim_{ t\searrow 0} (H_\Omega (x,\cdot,T) * \Phi (\cdot,t) )(y) -  \lim_{ t\searrow 0} (H_\Omega (y,\cdot,T) * \Phi (\cdot,t) )(x) \\
+        &= \int_\Omega H_\Omega (x,z,T) \lim_{ t\searrow 0} \Phi (y-z,t) d^n z - \int_\Omega H_\Omega (y,z,T) \lim_{ t\searrow 0} \Phi (x-z,t) d^n z \\
+        &= \int_\Omega H_\Omega (x,z,T) \lim_{ t\searrow 0} H_\Omega (y,z,t) d^n z - \int_\Omega H_\Omega (y,z,T) \lim_{ t\searrow 0} H_\Omega (x,z,t) d^n z \\
+        &= \int_\Omega H_\Omega (x,z,T)  H_\Omega (y,z,0) d^n z - \int_\Omega H_\Omega (y,z,T)  H_\Omega (x,z,0) d^n z \\
+       &= \int_0^T \int_\Omega H_\Omega (y,z,t) \left( \dot{H_\Omega }(x,z,T-t) + \Delta H_\Omega (x,z,T-t) \right) d^n z dt \\
+       & + \int_0^T \int_\Omega \left( \dot{H_\Omega }(y,z,t) - \Delta H_\Omega (y,z,t) \right) H_\Omega (x,z,T-t) d^n z dt \\
+        &- \int_0^T \int_{\partial \Omega } \left( H_\Omega (y,z,t) \nabla H_\Omega (x,z,T-t) - \nabla H_\Omega  (y,z,t) H_\Omega (x,z,T-t) \right) \cdot N d \sigma (z) dt \\
+        &=0
+    \end{align*}
+}
 
 
 \thm{}{
@@ -2570,5 +2591,43 @@ Although we used that
         &+ \int_\Omega h(y) H_\Omega (x,y,T) d^n y.
     \end{align*}
 }
+\pf{
+    Because $(\partial_t - \Delta)(\cdot) $ is a linear operator, we can split the full problem into three simpler subproblems $u= u_f + u_h+u_g$ where 
+    \begin{itemize}
+        \item $u_f$ solves $\dot{u} - \Delta u=f$, $u(x,0)=0$ and $u=0$ on $\partial \Omega \times [0,T]$
+        \item $u_h$ solves $\dot{u} - \Delta u=0$, $u(x,0)=h(x)$ and $u=0$ on $\partial \Omega \times [0,T]$
+         \item $u_g$ solves $\dot{u} - \Delta u=0$, $u(x,0)=0$ and $u(x,t)=g(x,t)$ on $\partial \Omega \times [0,T]$.
+    \end{itemize}
+    This is is possible, because $(\partial_t - \Delta)(u_f + u_h+u_g)= f+0+0=f(x)$, $(u_f + u_h+u_g)(x,0)= 0+h(x)+0=h(x)$ and $(u_f + u_h+u_g)(x,t)=0+0+g(x)= g(x)$ on $\partial \Omega \times [0,T]$.\\
+    Remembering that we have shown that 
+    \begin{align*}
+    u(x,T)= &\int_0^T \int_\Omega \left( \dot{u}(y,t) - \Delta u(y,t) \right) H_\Omega (x,y,T-t) d^n y dt +\int_\Omega u(y,0) H_\Omega (x,y,T) d^n y \\
+    &-\int_0^T \int_{\partial \Omega}  u(y,t) \nabla_y H_\Omega (x,y,T-t)  \cdot N d \sigma (y) dt ,
+\end{align*}
+we can plug in for the the three solutions in the above 
+\begin{align*}
+    & u_f (x,T) = \int_0^T \int_\Omega f(y,t) H_\Omega (x,y,T-t) d^n y dt \\
+    & u_h (x,T) = \int_\Omega h(y) H_\Omega (x,y,T) d^n y \\
+    & u_g (x,T) = - \int_0^T \int_{\partial \Omega }g(y) \nabla_y H_\Omega (x,y,T-t) \cdot N d \sigma (y) dt.
+\end{align*}
+Thus, $u= u_f+u_h+u_g$ yields the form of the theorem.
+}
+The appropiate regularity condition depend on the heat kernel and thus also on the domain???
+\lem{}{
+    For all $\Omega \subset \mathbb{R}^n$ bounded connected open domain the corresponding heat kernel $H_\Omega$ is positive on the corresponding parabolic cyclinder, if it exists.
+}
+\pf{
+    Define $w(x,t):= \Phi (x-y,t) - H_\Omega(x,y,t)$ on $\bar{\Omega} \times (0,T]$. Both summands solve the heat equation on $\Omega \times (0,T]$ and satisfy the weak maximum princple, i.e. the maximum is taken on the parabolic boundary. This is why we want to consider the difference on the parabolic boundary $\partial (\Omega \times (0,T])= (\partial \Omega \times [0,T])\cup (\bar{\Omega}\times \{0\})$.
+    \begin{itemize}
+        \item For $(x,t) \in \partial \Omega \times [0,T]:$ We have $w(x,t) = \Phi (x-y,t)-0$, because by definition $H_\Omega$ is on this set zero.
+        \item For $\bar{\Omega}\times \{0\}$, it is by definition equal to zero, as $ t \searrow 0$.
+    \end{itemize}
+    $ w- \Phi$ is again a solution and with the above satisfies on $\partial (\Omega \times (0,T])$ that $w- \Phi \leq 0$. Thus, for $x \neq y$
+    \[
+    w (x,t) - \Phi (x-y,t) \leq \max_{x \in \partial (\Omega \times (0,T])} (w(x,t) - \Phi (x-y,t)) = 0 \quad \Rightarrow \quad \forall (x,t) \in \Omega \times (0,T]: \quad  w(x,t) \leq \Phi (x-y,t) 
+    \]
+    which is equivalent to $H_\Omega (x,y,t) \geq 0$.
+}
+
 
 \end{document}
