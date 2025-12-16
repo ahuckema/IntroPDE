@@ -2000,6 +2000,7 @@ For $t=0$ the Fundamental solution is not defined. It is defined as the limit fr
 }
 
 \thm{}{
+    \label{Thm: Sol. has Form}
     For $h \in C_b( \mathbb{R}^n, \mathbb{R})$ the function 
     \[
     u(x,t) := \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y 
@@ -2630,4 +2631,172 @@ The appropiate regularity condition depend on the heat kernel and thus also on t
 }
 
 
+\section{Spectral Theory and the Heat Equation}
+Here we solve the initial value problem 
+\[
+\dot{u} - \Delta u =0, \text{ on } \Omega \times [0,T], \quad u=0, \text{ on } \partial \Omega \times [0,T], \quad u=h, \text{ on } \Omega \times \{0\},
+\]
+using the Laplace operator on $\Omega$. Clearly, if $h$ is an eigenfunction of the Laplace operator then 
+\[
+- \Delta h= \lambda h, \text{ on } \Omega \text{ and } h=0 \text{ on } \partial \Omega \times [0,T].
+\]
+\thm{}{
+    Let $T \in K(H)$ be a self adjoint compact linear operator, then there exists to every Eigenvalue problem 
+    \[
+    T(x) = \lambda x
+    \]
+    finite or countably many Eigenvector and Eigenvalue pairs $(\lambda_j,x_j) \in \mathbb{R} \setminus \{0\} \times H, j \in \mathbb{N}$ such that 
+    \begin{itemize}
+        \item $(x_j)_{j \in \mathbb{N}}$ is a orthogonal system 
+        \item $\forall x \in H$: $T(x) = \sum_{j \in \mathbb{N}} \lambda_j \langle x,x_j \rangle x_j$
+        \item If there are infinite Eigenvalues then $\lambda_i \to 0, j \to \infty$.
+    \end{itemize}
+}
+\pf{
+    See Functional Analyis 
+}
+The inverse of the Laplacian is a compact, self adjoint and positive linear operator on $L^2 (\Omega)$. Using the Theorem above we get that there exist $(\phi_i,\mu_i)_{i \in \mathbb{N}}$ eigenfunctions and eigenvalues such that 
+\[
+(-\Delta )^{-1} \phi_i = \mu_i \phi_i, \quad i \in \mathbb{N} \quad \iff \quad -\Delta \phi_i = \frac{1}{\mu_i} \phi_i.
+\]
+Thus the Eigenvalues $\lambda_i := \frac{1}{\mu_i}$ of the Laplacian go to infinity because $\mu_i \to 0$.\\
+Further, because $(\phi_i)_{i \in \mathbb{N}}$ is a orthonormal basis of $L^2 (\Omega)$, for any initial value we can write 
+\[
+h(x) = \sum_{i=1}^\infty \langle h,\phi_i\rangle \phi_i (x)
+\]
+Under the assumption that we can write the solution $u(x,t) = \sum_{i=1}^\infty \varphi_i (t) \phi_i (x)$, where $\varphi_i (0)=\langle h,\phi_i\rangle$ we get that the heat equation is given by 
+\begin{align*}
+&\frac{\partial}{\partial t}  u(x,t)  - \Delta u(x,t) =0 \iff   \sum_{i=1}^\infty \dot{\varphi}_i(t) \phi_i (x) -  \sum_{i=1}^\infty \varphi_i (t) \Delta \phi_i (x) =0 \\
+&\iff \forall i \in \mathbb{N}: \dot{\varphi}_i(t)  \phi_i (x) +\varphi_i (t) \lambda_i  \phi_i (x)  =0 \\
+&\iff \forall i \in \mathbb{N}: \dot{\varphi}_i(t) = -\varphi_i (t) \lambda_i 
+\end{align*}
+The solution of these ODEs is given by $\varphi_i (t) = e^{- \lambda_i (t -t_0)}$ for every $i \in \mathbb{N}$. With an initial value $\varphi_i(0)=\langle h,\phi_i\rangle$ we obtain the unique solution to the initial value problem of the heat equation as $u(x,t) = \sum_{i=1}^\infty e^{-\lambda_i t} \langle h,\phi_i\rangle \phi_i (x)$. This series exist, due to the fact that $\lambda_i \to \infty$ and $e^{- \lambda_i t} \to 0$ exponentially fast. However, this approach makes a strong assumption on the structure of the solution! We will now generalize via Fourie Transforms. Further, if $\Omega = \mathbb{R}^n$ then the eigenfunctions of the inverse Laplace operator do not exist, i.e. they are not in $L^2(\mathbb{R}^n)$. The Fourie transform gives us a way to integrate these Eigenfunctions.
+\vspace{1cm}
+
+We want to show that we can can translate $\int_{\mathbb{R}^n} e^{-(x-c)^2} d^n x$ by any constant $c \in \mathbb{C}$. It holds for any $x \in i \mathbb{R}^n$
+\begin{align*}
+    \pi^{n/2} e^{x^2}&= \pi^{n/2} \sum_{l=0}^\infty \frac{|x|^{2l}}{l!} = \int_{\mathbb{R}^n} e^{-(k-x)^2} d^n k \sum_{l=0}^\infty \frac{|x|^{2l}}{l!} \\
+    &= \int_{\mathbb{R}^n} e^{-(k-x)^2+x^2} d^n k = \int_{\mathbb{R}^n} e^{-k^2 + 2kx} d^n k = \int_{\mathbb{R}^n} e^{-k^2 + 2kx} d^n k,
+\end{align*}
+\lem{}{
+    If two analytical function agree on the real axis, then they agree on the entire complex plane. 
+}
+We now need to show that the last integral is an analytical function, because only then we have can imply that this translation is possible on the entire complex plane. Note that the first term is analytical, but that does necessarly imply that the last term is also analtical. It holds 
+\[
+\int_{\mathbb{R}^n} e^{-k^2 + 2kx} d^n k= \sum_{l=0}^\infty \int_{\mathbb{R}^n} e^{-k^2} \frac{(2kx)^l}{l!} d^n k =  \sum_{l=0}^\infty \int_{\mathbb{R}^n} e^{-k^2} \frac{(2kx)^{2l}}{(2l)!} d^n k .
+\]
+Using this we get
+\begin{align*}
+    \Phi (x-y,t) &= \frac{1}{(4 \pi t)^{n/2}} e^{- \frac{-(x-y)^2}{4t}}= e^{- \frac{(x-y)^2}{4t}} \frac{\pi^{n/2}}{(4 \pi^2 t)^{n/2}} = e^{ - \frac{|x-y|^2}{4t}} \frac{1}{(2 \pi \sqrt{t} )^n } \pi^{n/2} \\
+    &=e^{ - \frac{|x-y|^2}{4t}} \frac{1}{(2 \pi \sqrt{t} )^n } \int_{\mathbb{R}^n} e^{-(x-c)^2} d^n x, \quad x:= 2 \pi \sqrt{t} k \\
+    &= e^{ - \frac{|x-y|^2}{4t}}  \frac{(2 \pi \sqrt{t} )^n}{(2 \pi \sqrt{t} )^n }  \int_{\mathbb{R}^n} e^{ - (2 \sqrt{t} \pi k -c)^2} d^n k, \quad c:= i \frac{x-y}{2 \sqrt{t}}\\
+    &= e^{ - \frac{|x-y|^2}{4t}} \int_{\mathbb{R}^n} e^{ - (2 \sqrt{t} \pi k -i \frac{x-y}{2 \sqrt{t}})^2} d^n k\\
+    &= e^{ - \frac{|x-y|^2}{4t}} \int_{\mathbb{R}^n} e^{ - \left( 4 \pi^2 k^2 t - 4 \pi k \sqrt{t} i \frac{x-y}{2 \sqrt{t}} + i^2 \frac{(x-y)^2}{4t} \right)} d^n k\\
+    &=  \int_{\mathbb{R}^n} e^{ - 4 \pi^2 k^2 t + 2 \pi k  i (x-y) }  d^n k=  \int_{\mathbb{R}^n} e^{ - 4 \pi^2 k^2 t }  e^{2 \pi k  i (x-y) }  d^n k
+\end{align*}
+This then yields 
+\begin{align*}
+    h(x)&=\lim_{t \searrow 0} u(x,t) = \lim_{t \searrow 0} \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y\\
+    &= \lim_{t \searrow 0} \int_{\mathbb{R}^n}  \int_{\mathbb{R}^n} e^{ - 4 \pi^2 k^2 t } e^{2 \pi k  i x}  e^{-2 \pi k  iy } h(y)  d^n k d^n y\\
+    &\stackrel{Fubini}{=} \lim_{t \searrow 0} \int_{\mathbb{R}^n}  e^{ - 4 \pi^2 k^2 t } e^{2 \pi k  i x}  \underbrace{ \int_{\mathbb{R}^n} e^{-2 \pi k  iy } h(y)d^n y } _{=: \hat{h} (k)}  d^n k \\
+    &=  \lim_{t \searrow 0}   \int_{\mathbb{R}^n} e^{ - 4 \pi^2 k^2 t } e^{2 \pi k  i x} \hat{h} (k)  d^n k 
+\end{align*}
+
+\defn{}{
+    The Schwartz space $\mathcal{S}$ contains all smooth complex calued functions where all its partial derivatives are bounded, i.e.
+    \[
+    \mathfrak{S} := \left\{ f \in C^\infty (\mathbb{R}^n; \mathbb{C}) \mid \forall l \in \mathbb{N}, \forall \alpha \in \mathbb{N}_0^n \exists C \geq 0 \forall x \in \mathbb{R}^n: \quad |x|^{2l} |\partial^\alpha f(x)|\leq C \right\}.
+    \]
+}
+\defn{}{
+    The Fourier transform is defined as 
+    \[
+    \mathcal{F}: \mathfrak{S} \to \mathfrak{S}, h \mapsto \mathcal{F}(h):=\hat{h}, \quad \hat{k}(x) := \int_{\mathbb{R}^n} e^{-2 \pi i k^T y} h (y) d^n y.
+    \]
+}
+
+\lem{}{
+    Let $(X,\| \cdot \|_X)$ be a normed space, $(Y,\|\cdot \|_Y)$ a Banach space, $D$ a dense subspace of $X$ and $T \in L(D,Y)$ a linear operator. Then there exists only one unique continuous continuation $\hat{T} \in L(X,Y)$ such taht $\hat{T}_{\big|D}=T$ and $\| \hat{T} \| = \| T \|$.
+    }
+\pf{
+    See functional analysis
+}
+\lem{}{
+    The inverse of the Fourier transform is given by 
+    \[
+    \mathcal{P} \circ \mathcal{F}: \mathfrak{S} \to \mathfrak{S}, \quad \hat{h} \mapsto h, \quad h(x) := \int_{\mathbb{R}^n} e^{2 \pi i k^T x} \hat{h}(k) d^n k.
+    \]
+}
+
+\pf{
+    Consider the normed space $(C_0^\infty (\mathbb{R}^n , \mathbb{C}), \| \cdot \|_{L^1})$ and $( L^1 (\mathbb{R}^n), \| \cdot \|_{L^1})$ and the Banach space $(C_b (\mathbb{R}^n, \mathbb{C}) , \| \cdot \|_{L^\infty})$. Remember that $C_b (\mathbb{R}^n, \mathbb{C})$ is a closed subspace of $L^\infty( \mathbb{R}^n)$.\\
+     We begin by showing that the Fourie transform maps from the dense subspace $C_0^\infty(\mathbb{R}^n, \mathbb{C})$ of $L^1 (\mathbb{R}^n)$ to $C_b (\mathbb{R}^n, \mathbb{C})$, i.e. $\mathcal{F}_{\Big| C_0^\infty(\mathbb{R}^n, \mathbb{C})}: C_0^\infty(\mathbb{R}^n, \mathbb{C}) \to C_b (\mathbb{R}^n, \mathbb{C})$, exists. Then we can apply the Lemma above and argue that the denseness implies the existsence of a unique continuoation $\mathcal{F}_{\big| L^1(\mathbb{R}^n) }$. 
+    Because $v(y) = e^{- 2 \pi i ky} = \cos (-2 \pi ky ) + i \sin(-2 \pi ky )$ is inside the complex unit cyrcle, it follows that  
+    \[
+    |\hat{h}(k)| \leq \int_{\mathbb{R}^n} \underbrace{|v(y)|}_{\leq 1} |h(y)| d^n y \leq \int_{\mathbb{R}^n} |h(y)| d^n y = \| h \|_{L^1 (\mathbb{R}^n)}.
+    \]
+    As $h \in C_0^\infty (\mathbb{R}^n , \mathbb{C})$ was chosen arbitrary this inequality also holds for the supremum:
+    \[
+    \| \hat{h}(k) \|_{L^\infty (\mathbb{R}^n)} \leq  \| h \|_{L^1 (\mathbb{R}^n)}< \infty.
+    \]
+    The last norm is finite, because $h$ has compact support. Additionally it is appearant that the Fourier transform $\hat{h}(k)= \int_{\mathbb{R}^n} e^{-2 \pi i ky} h(y) d^n y$ is continuos, as all integrants are continuous. In total we have now shown that $\mathcal{F}_{\Big| C_0^\infty(\mathbb{R}^n, \mathbb{C})}: C_0^\infty(\mathbb{R}^n, \mathbb{C}) \to C_b (\mathbb{R}^n, \mathbb{C})$ exists. Thus, the Fourier Transform can be uniquely contiued on $L^1 (\mathbb{R}^n)$. In order for the image to be in the Schwartz space, we need to show multiple things: To show: $h$ decays faster than any inverse power $\Rightarrow$ Smoothness of $\hat{h}$. Smoothness of $h$ $\Rightarrow$ $\hat{h}$ decays faster than any inverse power.
+    \textbf{Step 1:} Smoothness of $h$ $\Rightarrow$ $\hat{h}$ decays faster than any inverse power. \\
+    Let $h \in C_0^\infty (\mathbb{R}^n, \mathbb{C})$, then using
+    \begin{align*}
+        &(\nabla v u )^\prime = \nabla v \nabla u + \Delta v u, \quad ( v\nabla u )^\prime = \nabla v \nabla u +  v \Delta u \\
+        &\implies v \Delta u= (v \nabla u)^\prime - \nabla v \nabla u= (v \nabla u)^\prime +( \nabla v u)^\prime - \Delta v u,
+    \end{align*}
+    and choosing $v(y):= e^{-2 \pi iky}$ the Fourie transform of $\Delta h$ is given by 
+    \begin{align*}
+        - \hat{\Delta h}(k)& = - \int_{\mathbb{R}^n} v(y) \Delta h(y) d^n y = \int_{\mathbb{R}^n} \Delta v(y) h(y) d^n y - \int_{\partial \mathbb{R}^n} v(z) \nabla h(z) + \nabla v(z) h(z) d \sigma (z) \\
+        &\stackrel{(*)}{=} \int_{\mathbb{R}^n} \Delta e^{- 2 \pi iky} h(y) d^n y = \int_{\mathbb{R}^n } 4 \pi^2 k^2 e^{- 2 \pi iky} h(y) d^n y \\
+        &= 4 \pi^2 k^2 \hat{h}(k).
+    \end{align*}
+    With the arguemnts above and the fact that the Laplacian is again in $C_0^\infty (\mathbb{R}^n , \mathbb{C})$ it follows 
+    \[
+    |\hat{\Delta h} (k)|  \leq \| \Delta h \|_{L^1 (\mathbb{R}^n)} =: C < \infty.
+    \]
+    This yields
+    \[
+    |\hat{h}(k)| =  \frac{|\hat{\Delta h} (k)| }{4 \pi^2 k^2} \leq \frac{C}{4 \pi^2 k^2} \quad \implies \quad \hat{h} (k) \in \mathcal{O}(\frac{1}{k^2}).
+    \]
+    Due to the fact that we can do this chain of arguments arbitrarly often, it follows that 
+    \[
+   \forall n \in \mathbb{N}: \quad \hat{h}(k) \in \mathcal{O}(k^{-n}).
+    \]
+    Thus, the Fourier transform decays faster than any inverse power.
+    
+\textbf{Step 2:} $h$ decays faster than any inverse power $\Rightarrow$ Smoothness of $\hat{h}$.\\
+Because $h$ decays faster than any inverse power, we can apply the DCT and get 
+\begin{align*}
+    |\frac{\partial}{\partial k_i} \hat{h}(k)| &\leq \left| \frac{\partial}{\partial k_i} \int_{\mathbb{R}^n} e^{-2 \pi i ky} h(y) d^n y \right| \stackrel{DCT}{=}  \left| \int_{\mathbb{R}^n} \frac{\partial}{\partial k_i}    e^{-2 \pi i ky} h(y) d^n y \right| \\
+    &\leq  \int_{\mathbb{R}^n}  \left| (-2 \pi i y_i)  e^{-2 \pi i ky} h(y)\right|  d^n y \\
+    &\leq  \int_{\mathbb{R}^n}  (-2 \pi \underbrace{|i|}_{=1} |y_i|)  \underbrace{\left|e^{-2 \pi i ky}\right|}_{\leq 1}  |h(y) | d^n y \\
+    &\leq 2 \pi \| |y| h(y) \|_{L^1(\mathbb{R}^n)}< \infty,
+\end{align*}
+which means that every partial derivative of $\hat{h}$ exists and thus, it is differentiable which implies continuity.\\
+Finally, we will now show that the inverse of the Fourier transform maps from $\mathfrak{S}$ to $\mathfrak{S}$. For that choose $f \in \mathfrak{S}$ arbitrary. Then with Theorem \ref{Thm: Sol. has Form} we have that
+\begin{align*}
+h(x) &:= \lim_{t \searrow 0} u(x,t) =\lim_{t \searrow 0} \int_{\mathbb{R}^n} \Phi (x-y,t) h(y)d^n y  =\lim_{t \searrow 0} \int_{\mathbb{R}^n} e^{-4 \pi^2 k^2 t} e^{2 \pi k i x} \hat{h}(k) d^n k\\
+&= \lim_{t \searrow 0} \int_{\mathbb{R}^n} e^{-4 \pi^2 k^2 t} e^{2 \pi k i x} \hat{h}(k) d^n k = \int_{\mathbb{R}^n} e^{2 \pi k i x} \hat{h}(k) d^n k.\\
+&= \int_{\mathbb{R}^n} e^{-2 \pi k i(- x)} (\mathcal{F}(h))(k) d^n k= ((P \circ \mathcal{F} \circ \mathcal{F} )(h) )(x).
+\end{align*}
+This is equivalent to 
+\[
+h= P \circ \mathcal{F} \circ \mathcal{F} \circ h \quad \iff \quad \textbf{1}_\mathfrak{S} = P \circ \mathcal{F} \circ \mathcal{F} \quad \iff \quad P = \mathcal{F} \circ \mathcal{F}.
+\]
+Further, it also holds 
+\begin{align*}
+    (P \circ \mathcal{F} \circ \hat{h} )(x) &= \int_{\mathbb{R}^n} e^{2 \pi i k x} \hat{h}(k) d^n k \\
+    &= \int_{\mathbb{R}^n} e^{-2 \pi i k (-x)} \hat{h}(k) d^n k= (\mathcal{F} \circ P \circ \hat{h})(x) 
+\end{align*}
+which yields that 
+\[
+P \circ \mathcal{F} = \mathcal{F} \circ P.
+\]
+Putting it all together yields 
+\[
+\mathcal{F} \circ P \circ \mathcal{F} = \mathcal{F} \circ \mathcal{F} \circ P = P \circ P = \textbf{1}_{\mathfrak{S}} \quad \iff \quad \mathcal{F}^{-1} = P \circ \mathcal{F}.
+\]
+    }
 \end{document}
