@@ -2716,7 +2716,7 @@ This then yields
 }
 
 \lem{}{
-    Let $(X,\| \cdot \|_X)$ be a normed space, $(Y,\|\cdot \|_Y)$ a Banach space, $D$ a dense subspace of $X$ and $T \in L(D,Y)$ a linear operator. Then there exists only one unique continuous continuation $\hat{T} \in L(X,Y)$ such taht $\hat{T}_{\big|D}=T$ and $\| \hat{T} \| = \| T \|$.
+    Let $(X,\| \cdot \|_X)$ be a normed space, $(Y,\|\cdot \|_Y)$ a Banach space, $D$ a dense subspace of $X$ and $T \in L(D,Y)$ a linear operator. Then there exists only one unique continuous continuation $\hat{T} \in L(X,Y)$ such that $\hat{T}_{\big|D}=T$ and $\| \hat{T} \| = \| T \|$.
     }
 \pf{
     See functional analysis
@@ -2799,4 +2799,54 @@ Putting it all together yields
 \mathcal{F} \circ P \circ \mathcal{F} = \mathcal{F} \circ \mathcal{F} \circ P = P \circ P = \textbf{1}_{\mathfrak{S}} \quad \iff \quad \mathcal{F}^{-1} = P \circ \mathcal{F}.
 \]
     }
+
+\defn{}{
+    The complex conjugate for a complex number $z := x+iy \in \mathbb{C}$ is defined as $\bar{z}:= z-iy$.
+}
+It holds that 
+\[
+\overline{\hat{g}(k)} = \overline{\int_{\mathbb{R}^n} g(y) e^{-2 \pi i k y} d^n y} = \int_{\mathbb{R}^n} \overline{g(y)} \overline{e^{-2 \pi i k y}} d^n y = \int_{\mathbb{R}^n} \overline{g(y)} e^{2 \pi i k y} d^n y.
+\]
+Using Fubini and the above it follows for every $h,g \in \mathfrak{S}$  
+\begin{align*}
+    \int_{\mathbb{R}^n} \hat{h}(k) \overline{\hat{g}(k)} d^n k &= \int_{\mathbb{R}^n} \int_{\mathbb{R}^n} \hat{h}(k) \overline{g(y)} e^{2 \pi i ky } d^n y d^n k \\
+    &= \int_{\mathbb{R}^n} \overline{g(y)}  \int_{\mathbb{R}^n} \hat{h}(k)  e^{2 \pi i yk } d^n k d^n y  = \int_{\mathbb{R}^n} h (k) \overline{g(y)} d^n k.
+\end{align*}
+For the hermitean skalar product 
+\[
+( f,g ) := \int_{\mathbb{R}^n} f(x) \overline{g(x)} d^n x
+\]
+it hold that for all $h,g \in \mathfrak{S}$
+\[
+(h,g) = \int_{\mathbb{R}^n} h(y) \overline{g(y)} d^n y = \int_{\mathbb{R}^n} \hat{h}(k) \overline{\hat{g}(k)} d^n k = (\hat{h}, \hat{g}).
+\]
+This means that the Fourier transform is an isometric isomporhism from $\mathfrak{S}$ to $\mathfrak{S}$. Because $\mathfrak{S}$ is dense in $L^2(\mathbb{R}^n)$ this property extends to $L^2 (\mathbb{R}^n)$.\\
+Note that for a hermitean scalar product it holds that 
+\[
+\overline{(f,f)} =(f,f).
+\]
+
+\defn{}{
+    For any connected domain $\Omega \subset \mathbb{R}^n$ let $W_0^{2,2} ( \Omega)$ be the closure of the Hilbert space
+    \[
+    \left(C_0^\infty (\Omega), \langle f,g \rangle_{W_0^{2,2}} := \int_\Omega \Delta f \overline{\Delta g} d^n x + \int_\Omega f \overline{g} d^n x = \langle \Delta f, \Delta g \rangle_{L^2 (\Omega)}+\langle f,g \rangle_{L^2 (\Omega)}  \right).
+    \]
+    i.e.
+    \[
+    W_0^{2,2} (\Omega) := \overline{C_0^\infty (\Omega)}^{\| \cdot \|_{W_0^{2,2}} } = \left\{ g \in L^2 (\Omega) \mid \exists (g_n)_{n \in \mathbb{N}} \subset C_0^\infty (\Omega): \quad g_n \to g \in L^2 (\Omega) \text{ and } \Delta g_n \to v \in L^2 (\Omega)  \right\}
+    \] 
+    also called Sobolev Space.
+}
+Because $W_0^{2,2}(\Omega)$ is defined to be complete, these limits exist.\\
+Let $h \in C_0^\infty (\Omega)$ be arbitary, then 
+\[
+\langle \Delta h ,\Delta h \rangle_{L^2 (\Omega)} = \int_\Omega (\Delta h) \overline{\Delta h} d^n x \leq \int_\Omega \Delta h \overline{\Delta h} d^n x + \int_\Omega h \overline{h} d^n x = \langle h,h \rangle_{W_0^{2,2}(\Omega)}.
+\]
+By definition any $h \in W_0^{2,2}(\Omega)$ the function $\Delta h \in L^2 (\Omega)$. Using Cauchy Schwartz it follows 
+\begin{align*}
+    &| \langle f, \Delta h \rangle_{L^2 (\Omega)}| = | \int_\Omega f  \overline{\Delta h} d^n x | \leq (\int_\Omega |f|^2 d^n x)^{1/2}  ( \int_\Omega  |\overline{\Delta h}|^2 d^n x)^{1/2} \\
+    &= \| f \|_{L^2 (\Omega)} \overline{\| \Delta h \|_{L^2 (\Omega)}} \\
+    &=  \| f \|_{L^2 (\Omega)} \| \Delta h \|_{L^2 (\Omega)} \leq \| f \|_{L^2 (\Omega)} \| h \|_{W_0^{2,2} (\Omega)} .
+\end{align*}
+
 \end{document}
