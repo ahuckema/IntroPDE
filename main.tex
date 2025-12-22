@@ -2903,6 +2903,48 @@ and finally that $e^{2 \pi i k x} $ are eigenfunctions of $-\frac{d^2}{dx^2}$, d
 \frac{d^2}{dx^2} e^{2 \pi i k x} = 4 \pi^2 k^2 e^{2 \pi i k x},
 \]
 with Eigenvalues $4 \pi^2 k^2 $, it follows with the theorem from Stone Weierstraß and the fact that $\cos ( 2 \pi x) + \sin (2 \pi x) = e^{2 \pi i x}$ that $(\left( e^{2 \pi i x} \right)^k)_{k \in \mathbb{N}}$ is a orthogonal system of $L^2(\mathbb{R}/ \mathbb{Z})$.
-
+\begin{align*}
+    &\int_{\mathbb{R} / \mathbb{Z}} H_{\mathbb{R} / \mathbb{Z}} (x,y,t) h(y) d^n y \\
+    &=u(x,t) = \left( e^{-tH} h \right) (x) = \sum_{k \in \mathbb{Z}} c_k \left( e^{-tH} e^{2 \pi ik \cdot} \right)(x) = \sum_{k \in \mathbb{Z}} c_k e^{2 \pi i k x - t 4 \pi^2 k^2 } \\
+    &= \sum_{k \in \mathbb{Z}} \int_{\mathbb{R} / \mathbb{Z}} h(y) e^{- 2 \pi i k y} d^n y e^{2 \pi i k x - t 4 \pi^2 k^2 }  \\
+    &= \int_{\mathbb{R} / \mathbb{Z}} \sum_{k \in \mathbb{Z}}  h(y) e^{2 \pi i k (x-y) - t 4 \pi^2 k^2 } d^n y ,
+\end{align*}
+although here $H e^{2 \pi i k x} = 4 \pi^2 k^2 e^{2 \pi i k x}$. Because we chose $h \in L^2 (\mathbb{R}/ \mathbb{Z})$ arbitrary it follows that 
+\[
+H_{\mathbb{R} / \mathbb{Z}} (x,y,t) = \sum_{ k \in \mathbb{Z}} e^{2 \pi i k (x-y) - 2 \pi i k y} =: \Theta (x-y, 4 \pi i t).
+\]
+We call $\Theta (x, \tau) := \sum_{k \in \mathbb{Z}} e^{2 \pi i k x + \pi i k^2 \tau}$ Jacobi's Theta function. It is finite, i.e. this sum converges, on the domain 
+\[
+(x,\tau) \in \mathbb{C} \times \times \{ \tau \in \mathbb{C} \mid \mathfrak{S} (\tau ) >0 \}, \quad \text{where } \mathfrak{S}(4 \pi it) = 4 \pi \mathcal{R}e(it).
+\]
+The limit of the sum is a complex differntiable function (holomorphic).
+\rmkb{
+    Jacobi's Theta function $\Theta$ satisfies the following properties
+    \begin{itemize}
+        \item $\Theta (x +1 , \tau) = \Theta (x,\tau)$
+        \item $\Theta (x+ \tau , \tau ) = e^{- \pi i \tau - 2 \pi i x} \Theta (x, \tau)$
+        \item $\Theta ( \frac{1}{2} + \frac{1}{2} \tau , \tau) =0$.
+    \end{itemize}
+    The first property holds due to the fact that $e^{2 \pi i k x}$ has period $1$:
+    \[
+    e^{2 \pi i k (x+1)} = e^{2 \pi i k x} e^{2 \pi i k} = e^{2 \pi i k x} (\cos (2 \pi k) + i \sin (2 \pi k)) = e^{2 \pi i k x} \cdot (1+0).
+    \]
+    The second property follows from: 
+    \begin{align*}
+        \Theta (x + \tau , \tau) &= \sum_{k \in \mathbb{Z}} e^{2 \pi i k (x + \tau) + \pi i k^2 \tau} = \sum_{k \in \mathbb{Z}} e^{2 \pi i k x + 2 \pi i k \tau + \pi i k^2 \tau } \\
+        &= \sum_{k \in \mathbb{Z}} e^{2 \pi i k x+ \pi i \tau + 2 \pi i k \tau + \pi i k^2 \tau - \pi i \tau } \\
+        &= \sum_{k \in \mathbb{Z}} e^{ 2 \pi i k x+\pi i \tau ( 1 + 2 k +  k^2) - \pi i \tau } \\
+        &= \sum_{k \in \mathbb{Z}} e^{ 2 \pi i k x+\pi i \tau ( k+1)^2 - \pi i \tau } \\
+        &= \sum_{k \in \mathbb{Z}} e^{ 2 \pi i (k+1) x- 2 \pi i  +\pi i \tau ( k+1)^2 - \pi i \tau } \\
+        &= \sum_{k \in \mathbb{Z}} e^{ 2 \pi i (k+1) x- 2 \pi i x +\pi i \tau ( k+1)^2 - \pi i \tau } \\
+        &= \sum_{k \in \mathbb{Z}} e^{ 2 \pi i (k+1) x +\pi i \tau ( k+1)^2} e^{- 2 \pi i x  - \pi i \tau } \stackrel{IndexShift}{=} \Theta (x,\tau) e^{- 2 \pi i x  - \pi i \tau }.
+    \end{align*}
+    The last property from 
+    \begin{align*}
+        \Theta ( \frac{1}{2} + \frac{\tau}{2} , \tau ) &= \sum_{k \in \mathbb{Z}} e^{ 2 \pi i k (\frac{1}{2} + \frac{\tau}{2}) + \pi i k^2 \tau  } = \sum_{k \in \mathbb{Z}} e^{\pi i k + \pi i k \tau + \pi i k^2 \tau } \\
+        &= \sum_{k \in \mathbb{Z}}(\cos (\pi k) + i \sin (\pi k))  e^{ \pi i  \tau (k+k^2) } = \sum_{k \in \mathbb{Z}} (-1)^k e^{ \pi i  \tau ((k+ \frac{1}{2})^2 - \frac{1}{4} )} \\
+        &= e^{-\frac{\pi i  \tau}{4}}\sum_{k \in \mathbb{Z}} (-1)^k e^{ \pi i  \tau (k+ \frac{1}{2})^2  } 
+    \end{align*}
+}
 
 \end{document}
