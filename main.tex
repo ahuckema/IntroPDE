@@ -2895,27 +2895,26 @@ e^{2 \pi i k x} = \left( e^{2 \pi i x} \right)^k,
 \]
 i.e. as polynomials. Its linear span 
 \[
-\{ \sum_{k=-N}^N c_k \left( e^{2 \pi i x} \right)^k \mid c_{-N},...,c_N \in \mathbb{R} \}
+\{ \sum_{k=-N}^N c_k \left( e^{2 \pi i x} \right)^k \mid c_{-N},...,c_N \in \mathbb{C} \}
 \] 
-forms an algebra on $\mathbb{C}$ (for $k>0$ we have real values and for $k<0$ complex ones) that seperates points and contains constants. Stone Weierstraß implies that this linear span is dense in $C(\mathbb{R} / \mathbb{Z})$. And with the above and transitivity it is also dense in $L^2 (\mathbb{R}/ \mathbb{Z})$.
-and finally that $e^{2 \pi i k x} $ are eigenfunctions of $-\frac{d^2}{dx^2}$, due to 
+forms an algebra on $\mathbb{C}$ (for $k>0$ we have real values and for $k<0$ complex ones) that seperates points and contains constants. Stone Weierstraß implies that this linear span is dense in $C(\mathbb{R} / \mathbb{Z})$. And with the above and transitivity it is also dense in $L^2 (\mathbb{R}/ \mathbb{Z})$. Finally, using that $e^{2 \pi i k x} $ are eigenfunctions of $-\frac{d^2}{dx^2}$, due to 
 \[
-\frac{d^2}{dx^2} e^{2 \pi i k x} = 4 \pi^2 k^2 e^{2 \pi i k x},
+-\frac{d^2}{dx^2} e^{2 \pi i k x} = 4 \pi^2 k^2 e^{2 \pi i k x},
 \]
-with Eigenvalues $4 \pi^2 k^2 $, it follows with the theorem from Stone Weierstraß and the fact that $\cos ( 2 \pi x) + \sin (2 \pi x) = e^{2 \pi i x}$ that $(\left( e^{2 \pi i x} \right)^k)_{k \in \mathbb{N}}$ is a orthogonal system of $L^2(\mathbb{R}/ \mathbb{Z})$.
+with Eigenvalues $4 \pi^2 k^2 $, it follows with the theorem from Stone Weierstraß and the fact that $\cos ( 2 \pi x) + i \sin (2 \pi x) = e^{2 \pi i x}$ that $(\left( e^{2 \pi i x} \right)^k)_{k \in \mathbb{Z}}$ is a orthogonal system of $L^2(\mathbb{R}/ \mathbb{Z})$.
 \begin{align*}
-    &\int_{\mathbb{R} / \mathbb{Z}} H_{\mathbb{R} / \mathbb{Z}} (x,y,t) h(y) d^n y \\
+    &\int_{\mathbb{R} / \mathbb{Z}} H_{\mathbb{R} / \mathbb{Z}} (x,y,t) h(y) d y \\
     &=u(x,t) = \left( e^{-tH} h \right) (x) = \sum_{k \in \mathbb{Z}} c_k \left( e^{-tH} e^{2 \pi ik \cdot} \right)(x) = \sum_{k \in \mathbb{Z}} c_k e^{2 \pi i k x - t 4 \pi^2 k^2 } \\
-    &= \sum_{k \in \mathbb{Z}} \int_{\mathbb{R} / \mathbb{Z}} h(y) e^{- 2 \pi i k y} d^n y e^{2 \pi i k x - t 4 \pi^2 k^2 }  \\
-    &= \int_{\mathbb{R} / \mathbb{Z}} \sum_{k \in \mathbb{Z}}  h(y) e^{2 \pi i k (x-y) - t 4 \pi^2 k^2 } d^n y ,
+    &= \sum_{k \in \mathbb{Z}} \int_{\mathbb{R} / \mathbb{Z}} h(y) e^{- 2 \pi i k y} d y e^{2 \pi i k x - t 4 \pi^2 k^2 }  \\
+    &= \int_{\mathbb{R} / \mathbb{Z}} \sum_{k \in \mathbb{Z}}  h(y) e^{2 \pi i k (x-y) - t 4 \pi^2 k^2 } d y ,
 \end{align*}
 although here $H e^{2 \pi i k x} = 4 \pi^2 k^2 e^{2 \pi i k x}$. Because we chose $h \in L^2 (\mathbb{R}/ \mathbb{Z})$ arbitrary it follows that 
 \[
-H_{\mathbb{R} / \mathbb{Z}} (x,y,t) = \sum_{ k \in \mathbb{Z}} e^{2 \pi i k (x-y) - 2 \pi i k y} =: \Theta (x-y, 4 \pi i t).
+H_{\mathbb{R} / \mathbb{Z}} (x,y,t) = \sum_{ k \in \mathbb{Z}} e^{2 \pi i k (x-y) - 4 \pi^2 k^2 t} =: \Theta (x-y, 4 \pi i t).
 \]
 We call $\Theta (x, \tau) := \sum_{k \in \mathbb{Z}} e^{2 \pi i k x + \pi i k^2 \tau}$ Jacobi's Theta function. It is finite, i.e. this sum converges, on the domain 
 \[
-(x,\tau) \in \mathbb{C} \times \times \{ \tau \in \mathbb{C} \mid \mathfrak{S} (\tau ) >0 \}, \quad \text{where } \mathfrak{S}(4 \pi it) = 4 \pi \mathcal{R}e(it).
+(x,\tau) \in \mathbb{C} \times  \{ \tau \in \mathbb{C} \mid \mathfrak{J} (\tau ) >0 \}, \quad \text{where } \mathfrak{J}(4 \pi it) := 4 \pi \mathcal{R}e(it).
 \]
 The limit of the sum is a complex differntiable function (holomorphic).
 \rmkb{
@@ -2945,6 +2944,136 @@ The limit of the sum is a complex differntiable function (holomorphic).
         &= \sum_{k \in \mathbb{Z}}(\cos (\pi k) + i \sin (\pi k))  e^{ \pi i  \tau (k+k^2) } = \sum_{k \in \mathbb{Z}} (-1)^k e^{ \pi i  \tau ((k+ \frac{1}{2})^2 - \frac{1}{4} )} \\
         &= e^{-\frac{\pi i  \tau}{4}}\sum_{k \in \mathbb{Z}} (-1)^k e^{ \pi i  \tau (k+ \frac{1}{2})^2  } 
     \end{align*}
+    We can see that 
+    \[
+    (k+\frac{1}{2})^2 = k^2 + k + \frac{1}{4} = 1 + 2k + k^2 -k -1 + \frac{1}{4} = (k+1)^2 - (k+1) + \frac{1}{4} = (- (k+1) + \frac{1}{2})^2.
+    \]
+    Using this and the fact that $|\mathbb{N}_0| = |\mathbb{Z}|$, it follows 
+    \begin{align*}
+    e^{-\frac{\pi i  \tau}{4}}\sum_{k \in \mathbb{Z}} (-1)^k e^{ \pi i  \tau (k+ \frac{1}{2})^2  } &= e^{-\frac{\pi i  \tau}{4}}\sum_{k \in \mathbb{N}_0} \left( (-1)^k e^{ \pi i  \tau (k+ \frac{1}{2})^2  } + (-1)^{-(k+1)} e^{ \pi i  \tau (-(k+1)+ \frac{1}{2})^2  } \right)  \\
+    &= e^{-\frac{\pi i  \tau}{4}}\sum_{k \in \mathbb{N}_0} (1-1)^k e^{ \pi i  \tau (-(k+1)+ \frac{1}{2})^2  } =0.
+    \end{align*}
+}
+
+\section{Heat Kernel of $(0, 1)$}
+The Eigenfunction of $- \frac{d^2}{dx^2}$ on $(0,1)$ that satisfies the Dirichlet fboundary conditions, i.e. having their roots at $\partial (0,1) = \{0,1\}$, are given by $\sqrt{2} \sin (k \pi x), k \in \mathbb{N}$: 
+\[
+- \frac{d^2}{dx^2} \sqrt{2} \sin (k \pi x)= - \sqrt{2} \frac{d}{dx} \cos (k \pi x) k \pi = \sqrt{2} k^2 \pi^2 \sin (k \pi x), \text{ i.e. $k^2 \pi^2$ are Eigenvalues.}
+\]
+Due to $k, k^\prime \in \mathbb{N}$:
+\[
+\int_0^1 \sqrt{2} \sin (k \pi x) \sqrt{2} \sin (k^\prime \pi x) dx \stackrel{???}{=} \int_0^1 \cos( (k-k^\prime) \pi x ) - \cos ((k+k^\prime ) \pi x) dx \stackrel{???}{=} \delta_{k,k^\prime}
+\]
+$(\sqrt{2} \sin (k \pi x))_{k \in \mathbb{N}}$ builds an orthonormal system of $C(0,1)$. Note that $(0,1) \cong \mathbb{R} / 2\mathbb{Z}$. Let $f$ be continuous on $[0,1]$ with roots at $\partial (0,1)$. Define the the odd reflection 
+\[
+\hat{f} (x) := \begin{cases}
+    f(x) &, x \in (0,1) \\
+    -f(-x) &, x \in (-1,0)
+\end{cases}
+\]
+then $\hat{f}$ is continous on $(-1,1)$ and $\hat{f}(-1) = \hat{f}(0)=\hat{f}(1)=0$. If we repeat this pattern for $(1,2), (2,3),...$ we get 
+\[
+\tilde{f} (x) := \begin{cases}
+    f(x-2n) &, x \in [2n,2n+1], n \in \mathbb{Z}\\
+    -f(2n-x)&, x \in [2n-1,2n], n \in \mathbb{Z}
+\end{cases}
+\]
+is continuous on $\mathbb{R}$ and has roots on $\mathbb{Z}$ and period $2$.
+\begin{align*}
+    \sum_{k \in \mathbb{Z}} c_k e^{i \pi k x} &= \tilde{f}(x) \\
+    &= - \tilde{f}(-x) = - \sum_{k \in \mathbb{Z}} c_k e^{i \pi k (-x)} =- \sum_{k \in \mathbb{Z}} c_{-k} e^{i \pi k x}  
+\end{align*}
+which implies that $\forall k \in \mathbb{Z}: c_k = - c_{-k}$. This yields 
+\begin{align*}
+    \tilde{f}(x) &= \sum_{k \in \mathbb{N}} \left( c_k e^{i \pi k x} + c_{-k} e^{- i \pi k x} \right) = \sum_{k \in \mathbb{N}} c_k \left( e^{i \pi k x} - e^{- i \pi kx}\right) \\
+    &= \sum_{k \in \mathbb{N}} c_k 2i \sin (\pi k x) =: \sum_{k \in \mathbb{N}} b_k \sin (\pi k x).
+\end{align*}
+Thus, the ONB $(\sin (\pi k x))_{k \in \mathbb{N}}$ lies dense in the set 
+\[
+\mathcal{A} := \left\{ \tilde{f} \in L^2 (\mathbb{R} / 2\mathbb{Z}) \mid \tilde{f} (x)= \begin{cases}
+ f(x-2n) &, x \in [2n,2n+1], n \in \mathbb{Z}\\
+    -f(2n-x)&, x \in [2n-1,2n], n \in \mathbb{Z}
+\end{cases}  \right\}.
+\]
+Due to the fact that 
+\[
+L^2((0,1)) \to \mathcal{A}, f \mapsto \frac{1}{\sqrt{2}} \tilde{f}
+\]
+(we need to scale with $\frac{1}{\sqrt{2}}$ in order to get an isomporphism) satisfies 
+\[
+\langle \frac{1}{\sqrt{2}}\tilde{f},\frac{1}{\sqrt{2}}\tilde{g} \rangle_{\mathcal{A}} = \frac{1}{2} \int_0^2 \tilde{f}(x) \tilde{g}(x) dx =\frac{1}{2} 2 \int_0^1 f(x) g(x) dx =  \langle f,g  \rangle_{L^2((0,1))},
+\]
+i.e. this mapping is an isomporhism. This finally implies that $(\sqrt{2}\sin (\pi k x))_{k \in \mathbb{N}}$ builds an ONB of $L^2((0,1))$. Putting it all together, we can now write $\forall h \in L^2((0,1))$: 
+\[
+h(x) = \sum_{k \in \mathbb{N}} \underbrace{ \langle \sqrt{2} \sin (k \pi y) , h \rangle_{L^2} }_{=: a_k} \sqrt{2} \sin (k \pi x).
+\]
+For the initial value problem of the Heat equation 
+\begin{align*}
+    & \dot{u}+ Hu =0, \quad \text{ on } (0,1) \times \mathbb{R}^+ \\
+    & u(x,0) = h(x), \quad x \in (0,1) \\
+    & u(0,t)=u(1,t) =0, \quad t \in \mathbb{R}^+
+\end{align*}
+where $H:= - \frac{d^2}{dx^2}$, the solution is given by 
+\begin{align*}
+    \int_{(0,1)} H_{(0,1)} (x,y,t) h(y) dy &= u(x,t) = \left( e^{-tH} h \right)(x) \\
+    &= \sum_{k \in \mathbb{N}} \langle \sqrt{2} \sin ( \pi y, h) \rangle_{L^2} e^{-t k^2 \pi^2} \sqrt{2} \sin (k\pi x) \\
+    &= \sum_{k \in \mathbb{N}} 2 \int_0^1 \sin (k \pi y) h(y) dy e^{-t k^2 \pi^2} \sin (k \pi x) \\
+    &= \int_0^1 \sum_{k \in \mathbb{N}} 2  \sin (k \pi y)   e^{-t k^2 \pi^2} \sin (k \pi x) h(y) dy
+\end{align*}
+which implies that 
+\[
+H_{(0,1)} (x,y,t) = \sum_{k \in \mathbb{N}} 2  \sin (k \pi y)    \sin (k \pi x) e^{-t k^2 \pi^2}.
+\]
+Using that $\sin (A) \sin (B) = \cos (A-B) - \cos (A+B)$ it follows that 
+\[
+H_{(0,1)} (x,y,t) = \sum_{k \in \mathbb{N}} e^{- \pi^2 k^2 t} \cos (k \pi (x-y)) - \sum_{k \in \mathbb{N}} e^{- \pi^2 k^2 t} \cos (k \pi (x+y)).
+\]
+Remembering Jacobi's Theta function: 
+\begin{align*}
+    \Theta (x,\tau ) &:= \sum_{k \in \mathbb{Z}} e^{\pi i k^2 /tau + 2 \pi i k x} = e^0 + \sum_{k \in \mathbb{N}} e^{\pi i k^2 \tau } \left( e^{ 2 \pi i k x} + e^{ -2 \pi i k x} \right) \\
+    &= 1+ 2 \sum_{k \in \mathbb{N}} e^{\pi i k^2 \tau} \cos (2 \pi k x) \\
+    &\iff \frac{1}{2} \Theta (x,\tau) - \frac{1}{2} = \sum_{k \in \mathbb{N}} e^{\pi i k^2 \tau} \cos (2 \pi k x),
+\end{align*}
+leads to 
+\begin{align*}
+    H_{(0,1)} (x,y,t) &= \sum_{k \in \mathbb{N}} e^{- \pi^2 k^2 t} \cos (k \pi (x-y)) - \sum_{k \in \mathbb{N}} e^{- \pi^2 k^2 t} \cos (k \pi (x+y)) \\
+    &= \frac{1}{2} \Theta (\frac{x-y}{2}, i t \pi) - \frac{1}{2} \Theta (\frac{x+y}{2}, i t \pi ).
+\end{align*}
+Interpretation: ???\\
+The heat kernel on the cartesian product of two domains can be easily be calculated as the heat kernels of both domains:
+\lem{}{
+    If $\Omega \subset \mathbb{R}^m$ and $\Omega^\prime \subset \mathbb{R}^n$ are two open, bounded and connected domains with heat kernels $H_\Omega$ and $H_{\Omega^\prime}$ respectively, the heat kernel of $\Omega \times \Omega^\prime$ is given  
+    \[
+    \forall (x,x^\prime),(y,y^\prime ) \in \bar{\Omega}\times \bar{\Omega}^\prime, t \in \mathbb{R}^+: \quad H_{\Omega \times \Omega^\prime} ((x,x^\prime),(y,y^\prime),t) = H_\Omega (x,y,t) H_{\Omega^\prime} (x^\prime,y^\prime ,t), 
+    \]
+}
+\pf{
+    We need to show that $H_{\Omega \times \Omega^\prime}$ satisfies the definition of the heat kernel of $\Omega \times \Omega^\prime$: 
+    \begin{itemize}
+        \item [i)] $\forall (x,x^\prime,t) \in \Omega \times \Omega^\prime \times \mathbb{R}^+: \quad (y,y^\prime) \mapsto H_{\Omega \times \Omega^\prime} ((x,x^\prime),(y,y^\prime),t)$ extends continuously to $\bar{\Omega}$ with $0$ on $\partial (\Omega \times \Omega^\prime)$.
+        \item For $(x,x^\prime) \in \Omega \times \Omega^\prime$ the function $(y,y^\prime,t) \mapsto H_{\Omega \times \Omega^\prime} ((x,x^\prime),(y,y^\prime),t) - \Phi (x-y,t) \Phi (x^\prime-y^\prime ,t)$ solves the homogenuous heat equation and extends continuously to $\bar{\Omega} \times \bar{\Omega}^\prime \times [ii)] \mathbb{R}_0^+$ with $0$ on $\bar{\Omega} \times \bar{\Omega}^\prime \times \{0\}.$
+    \end{itemize}
+    \begin{itemize}
+        \item [i)] Due to $\partial (\Omega \times \Omega^\prime) = (\partial \Omega \times \bar{\Omega}^\prime ) \cup (\bar{\Omega} \times \partial \Omega^\prime)$ we have 
+         \[
+        \lim_{(x,x^\prime) \to \partial (\Omega \times \Omega^\prime)} H_\Omega (x,y,t) H_{\Omega^\prime} (x^\prime,y^\prime,t) = (\lim_{x \to \partial \Omega} H_\Omega (x,y,t) H_{\Omega^\prime}(x^\prime,y^\prime,t)) + (\lim_{x^\prime \to \partial \Omega^\prime }H_\Omega (x,y,t) H_{\Omega^\prime}(x^\prime,y^\prime,t) )=0.
+        \]
+        The continuous extension is trivial due to the product.
+        \item  [ii)] First, note that 
+         \[
+        \Delta_{\Omega \times \Omega^\prime} = \sum_{j=1}^{n+m} \frac{\partial^2}{\partial x_j^2} = \sum_{i=1}^n \frac{\partial^2}{\partial x_i^2} + \sum_{k=1}^m \frac{\partial^2}{\partial x_k^2} = \Delta_\Omega + \Delta_{\Omega^\prime} 
+        \]
+        leads to 
+        \begin{align*}
+            &\dot{H}_{\Omega} H_{\Omega^\prime} + H_{H} \dot{H}_{\Omega^\prime} - \dot{\Phi} \Phi^\prime - \Phi \dot{\Phi}^\prime - \big( \Delta_\Omega H_\Omega H_{\Omega^\prime} + \Delta_{\Omega^\prime} H_{\Omega^\prime} H_\Omega - \Delta_\Omega \Phi \Phi^\prime - \Delta_{\Omega^\prime } \Phi^\prime \Phi   \big) \\
+            &= (\dot{H}_\Omega - \Delta_\Omega H_\Omega) H_{\Omega^\prime} + (\dot{H}_{\Omega^\prime} - \Delta_{\Omega^\prime} H_{\Omega^\prime} ) H_\Omega - \big( (\dot{\Phi} - \Delta_\Omega \Phi ) \Phi^\prime + (\dot{ \Phi}^\prime - \Delta_{\Omega^\prime} \Phi^\prime) \Phi \big)=0
+        \end{align*}
+        where $\dot{\Phi} $ is defined on $\Omega^\prime$. Finally, 
+        \begin{align*}
+           & \lim_{t \to 0} H_{\Omega \times \Omega^\prime} ((x,x^\prime ) , (y,y^\prime),t) = \lim_{t \to 0} H_\Omega (x,y,t) \lim_{t \to 0} H_{\Omega^\prime} (x^\prime,y^\prime,t)\\
+           & = \delta_y (x) \delta_{y^\prime} (x^\prime) = \lim_{t \to 0} \Phi (x-y,t) \lim_{t \to 0} \Phi (x^\prime -y^\prime,t).
+        \end{align*}
+    \end{itemize}
 }
 
 \end{document}
