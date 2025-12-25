@@ -3040,6 +3040,9 @@ leads to
     &= \frac{1}{2} \Theta (\frac{x-y}{2}, i t \pi) - \frac{1}{2} \Theta (\frac{x+y}{2}, i t \pi ).
 \end{align*}
 Interpretation: ???\\
+\rmkb{
+    Exercises:...
+}
 The heat kernel on the cartesian product of two domains can be easily be calculated as the heat kernels of both domains:
 \lem{}{
     If $\Omega \subset \mathbb{R}^m$ and $\Omega^\prime \subset \mathbb{R}^n$ are two open, bounded and connected domains with heat kernels $H_\Omega$ and $H_{\Omega^\prime}$ respectively, the heat kernel of $\Omega \times \Omega^\prime$ is given  
@@ -3051,13 +3054,20 @@ The heat kernel on the cartesian product of two domains can be easily be calcula
     We need to show that $H_{\Omega \times \Omega^\prime}$ satisfies the definition of the heat kernel of $\Omega \times \Omega^\prime$: 
     \begin{itemize}
         \item [i)] $\forall (x,x^\prime,t) \in \Omega \times \Omega^\prime \times \mathbb{R}^+: \quad (y,y^\prime) \mapsto H_{\Omega \times \Omega^\prime} ((x,x^\prime),(y,y^\prime),t)$ extends continuously to $\bar{\Omega}$ with $0$ on $\partial (\Omega \times \Omega^\prime)$.
-        \item For $(x,x^\prime) \in \Omega \times \Omega^\prime$ the function $(y,y^\prime,t) \mapsto H_{\Omega \times \Omega^\prime} ((x,x^\prime),(y,y^\prime),t) - \Phi (x-y,t) \Phi (x^\prime-y^\prime ,t)$ solves the homogenuous heat equation and extends continuously to $\bar{\Omega} \times \bar{\Omega}^\prime \times [ii)] \mathbb{R}_0^+$ with $0$ on $\bar{\Omega} \times \bar{\Omega}^\prime \times \{0\}.$
+        \item [ii)] For $(x,x^\prime) \in \Omega \times \Omega^\prime$ the function $(y,y^\prime,t) \mapsto H_{\Omega \times \Omega^\prime} ((x,x^\prime),(y,y^\prime),t) - \Phi (x-y,t) \Phi (x^\prime-y^\prime ,t)$ solves the homogenuous heat equation and extends continuously to $\bar{\Omega} \times \bar{\Omega}^\prime \times  \mathbb{R}_0^+$ with $0$ on $\bar{\Omega} \times \bar{\Omega}^\prime \times \{0\}.$
     \end{itemize}
     \begin{itemize}
-        \item [i)] Due to $\partial (\Omega \times \Omega^\prime) = (\partial \Omega \times \bar{\Omega}^\prime ) \cup (\bar{\Omega} \times \partial \Omega^\prime)$ we have 
-         \[
-        \lim_{(x,x^\prime) \to \partial (\Omega \times \Omega^\prime)} H_\Omega (x,y,t) H_{\Omega^\prime} (x^\prime,y^\prime,t) = (\lim_{x \to \partial \Omega} H_\Omega (x,y,t) H_{\Omega^\prime}(x^\prime,y^\prime,t)) + (\lim_{x^\prime \to \partial \Omega^\prime }H_\Omega (x,y,t) H_{\Omega^\prime}(x^\prime,y^\prime,t) )=0.
-        \]
+        \item [i)] Due to $\partial (\Omega \times \Omega^\prime) = (\partial \Omega \times \bar{\Omega}^\prime ) \cup (\bar{\Omega} \times \partial \Omega^\prime)$ we have the two cases for $(\xi, \eta ) \in \partial (\Omega \times \Omega^\prime)$:
+        \begin{itemize}
+            \item Case 1: $(\xi, \eta ) \in  \bar{\Omega} \times \partial \Omega^\prime$: 
+            \[
+            \lim_{y^\prime \to \eta} H_\Omega (x,y,t) H_{\Omega^\prime} (x^\prime,y^\prime,t) = \lim_{y^\prime \to \eta}  H_\Omega (x,y,t) H_{\Omega^\prime}(x^\prime,y^\prime,t)=0
+            \]
+            \item Case 2:  $(\xi, \eta ) \in \partial \Omega \times \bar{\Omega}^\prime $: 
+            \[
+            \lim_{y \to \xi} H_\Omega (x,y,t) H_{\Omega^\prime} (x^\prime,y^\prime,t) = \lim_{y \to \xi}  H_\Omega (x,y,t) H_{\Omega^\prime}(x^\prime,y^\prime,t)=0
+            \]
+        \end{itemize}
         The continuous extension is trivial due to the product.
         \item  [ii)] First, note that 
          \[
@@ -3065,15 +3075,37 @@ The heat kernel on the cartesian product of two domains can be easily be calcula
         \]
         leads to 
         \begin{align*}
-            &\dot{H}_{\Omega} H_{\Omega^\prime} + H_{H} \dot{H}_{\Omega^\prime} - \dot{\Phi} \Phi^\prime - \Phi \dot{\Phi}^\prime - \big( \Delta_\Omega H_\Omega H_{\Omega^\prime} + \Delta_{\Omega^\prime} H_{\Omega^\prime} H_\Omega - \Delta_\Omega \Phi \Phi^\prime - \Delta_{\Omega^\prime } \Phi^\prime \Phi   \big) \\
+            &(\frac{\partial }{\partial t} - \Delta_{\Omega \times \Omega^\prime} ) ( H_\Omega H_{\Omega^\prime} - \Phi^\prime \Phi )= (\frac{\partial }{\partial t} - \Delta_{\Omega} -  \Delta_{\Omega^\prime} ) ( H_\Omega H_{\Omega^\prime} - \Phi^\prime \Phi )\\
+            &=\dot{H}_{\Omega} H_{\Omega^\prime} + H_{\Omega} \dot{H}_{\Omega^\prime} - \dot{\Phi} \Phi^\prime - \Phi \dot{\Phi}^\prime - \big( \Delta_\Omega H_\Omega H_{\Omega^\prime} + \Delta_{\Omega^\prime} H_{\Omega^\prime} H_\Omega - \Delta_\Omega \Phi \Phi^\prime - \Delta_{\Omega^\prime } \Phi^\prime \Phi   \big) \\
             &= (\dot{H}_\Omega - \Delta_\Omega H_\Omega) H_{\Omega^\prime} + (\dot{H}_{\Omega^\prime} - \Delta_{\Omega^\prime} H_{\Omega^\prime} ) H_\Omega - \big( (\dot{\Phi} - \Delta_\Omega \Phi ) \Phi^\prime + (\dot{ \Phi}^\prime - \Delta_{\Omega^\prime} \Phi^\prime) \Phi \big)=0
         \end{align*}
-        where $\dot{\Phi} $ is defined on $\Omega^\prime$. Finally, 
-        \begin{align*}
-           & \lim_{t \to 0} H_{\Omega \times \Omega^\prime} ((x,x^\prime ) , (y,y^\prime),t) = \lim_{t \to 0} H_\Omega (x,y,t) \lim_{t \to 0} H_{\Omega^\prime} (x^\prime,y^\prime,t)\\
-           & = \delta_y (x) \delta_{y^\prime} (x^\prime) = \lim_{t \to 0} \Phi (x-y,t) \lim_{t \to 0} \Phi (x^\prime -y^\prime,t).
-        \end{align*}
+        where $\Phi^\prime $ is defined on $\Omega^\prime$ and $\Phi$ on $\Omega$.
     \end{itemize}
+    Fix $x \in \Omega$. Define $W(x,y,t) :=  H_\Omega (x,y,t)- \Phi (x-y,t)$ then $(\partial_t - \Delta) W(x,y,t)=0$ on $\Omega \times (0,T]$. By definition $W(x,y,t) =0$ on $\bar{\Omega} \times \{0\}$. It holds that with using the first condition of the heat kernel that for $y \in \partial \Omega$ it holds $H_\Omega (x,y,t)=0$ which implies that 
+    \[
+    \forall y \in \partial \Omega: \quad W(x,y,t)= -\Phi (x-y,t)\leq 0.
+    \]
+    For $t\searrow 0$ both summands are the same delta distribution, i.e. $\lim_{t \searrow 0} W(x,y,0)=0$ for $x,y \in \bar{\Omega}$. Because we can write the boundary parabolic cylinder as $\partial \Omega_T = (\partial \Omega \times [0,T]) \cup (\bar{\Omega} \times \{0\})$ we have just shown that $W(x,y,t) \leq 0$ on $\partial \Omega_T$. Using the maximum principle it follows that $\forall (y,t) \in \Omega_T: W(x,y,t) \leq 0$. This implies 
+    \[
+    \forall (y,t) \in \Omega_T:\quad  H_\Omega (x,y,t) \leq \Phi (x-y,t) = \frac{1}{(4 \pi t)^{n/2}} \underbrace{e^{- \frac{|x-y|^2}{4t}}}_{\leq 1} \leq \frac{1}{(4 \pi t)^{n/2}}.
+    \] 
+    Thus, $H_\Omega$ is polynomially bounded $\mathcal{O} (t^{-n/2})$ for $t \to 0$.\\
+    Define $d_x := dist (x, \partial \Omega)>0$. Then, for $t \in (0,T]$:
+    \begin{align*}
+        &\sup_{y \in \partial \Omega} |W(x,y,t)| = \sup_{y \in \partial \Omega} \left| \frac{1}{(4 \pi t)^{n/2}} e^{- \frac{|x-y|^2}{4t}} \right| \\
+        &\leq \frac{1}{(4 \pi t)^{n/2}} e^{- \frac{d_x^2}{4t}}.
+    \end{align*}
+    Because with the maximum principle the solution is in the interior smaller than on the boundary, it follows 
+    \[
+    \forall (y,t) \in \Omega_T: \quad |W(x,y,t)| \leq \frac{1}{(4 \pi t)^{n/2}} e^{- \frac{d_x^2}{4t}}.
+    \]
+    Thus, as $t \to 0$ it follows that $H_\Omega (x,y,t) - \Phi (x-y,t)$ vanishes exponentially fast. \\
+    Using this we finally have  
+        \begin{align*}
+           & \lim_{t \searrow 0} (H_{\Omega} (x,y,t) H_{\Omega^\prime} (x^\prime,y^\prime,t) - \Phi (x-y,t) \Phi^\prime (x^\prime-y^\prime,t) ) \\
+           &= \lim_{t \searrow 0} \underbrace{ \left( H_{\Omega} (x,y,t)- \Phi (x-y,t) \right)}_{\in \mathcal{O}(e^{-\frac{1}{t}})} \underbrace{ H_{\Omega^\prime} (x^\prime,y^\prime,t)}_{\in \mathcal{O}(t^{-n/2})} + \underbrace{\Phi (x-y,t)}_{\in \mathcal{O}(t^{-n/2})} \underbrace{( H_{\Omega^\prime} (x^\prime,y^\prime,t) -  \Phi^\prime (x^\prime-y^\prime,t))}_{\in \mathcal{O}(e^{-\frac{1}{t}})}  =0.
+        \end{align*}
 }
+
 
 \end{document}
