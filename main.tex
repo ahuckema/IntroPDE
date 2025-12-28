@@ -3108,4 +3108,177 @@ The heat kernel on the cartesian product of two domains can be easily be calcula
 }
 
 
+We now have a formula for heat kernels on all tori $(\mathbb{R}/\mathbb{Z})^n$ and on all cartesian products of $(0,1)^n$. However, the boundary $\partial (0,1)^n$ is not a continuously differentiable submanifold of $\mathbb{R}^n$. The faces are $n-1$ dimensional submanifolds, the edges and corners are $n-2$ dimionsal and $n-3$ dimensional submanifolds respectively. Thus, when applying the divergence theorem, we get additional boundary terms. Luckily, these additional terms vanish, due to the fact that they are zero sets on the $\mathbb{R}^{n-1}$ Lesbesgue measure. Thus, the divergence theorem still holds and we can use all previous results. Hence, for the initial value Problem
+\[
+\dot{ u} - \Delta u=0, \quad \text{ on } (0,1)^n \times (0,T], \quad u(x,0)=h(x), \quad x \in (0,1)^n, \quad u(x,t) =0, \quad x \in \partial (0,1)^n, t \in (0,T],
+\]
+the heat kernel is given by 
+\[
+H_{(0,1^n)}(x,y,t) = \prod_{i=1}^n H_{(0,1)} (x_i,y_i,t),
+\]
+thus for $y:= (y_1,...,y_n) \in (0,1)^n$ and $x=(x_1,...,x_n) \in (0,1)^n$ the solution is given by  
+\begin{align*}
+    u(x,t) = \int_{(0,1)^n} H_{(0,1)^n} (x,y,t) h(y) d^n y &= \int_{(0,1)^n} \prod_{i=1}^n H_{(0,1)} (x_i,y_i,t) h(y) d^n y .
+\end{align*}
+Due to 
+\[
+\Phi (x-y,t) = \frac{1}{(4 \pi t)^{n/2}} e^{- \frac{|x-y|^2}{4t}} = \frac{1}{r^n} \frac{1}{(4 \pi \frac{t}{r^2})^{n/2}} e^{- \frac{|\frac{x-y}{r}|^2}{4\frac{t}{r^2}}} = \frac{1}{r^n} \Phi \left( \frac{x-y}{r}, \frac{t}{r^2} \right) 
+\]
+it follows 
+\begin{align*}
+    H_{(0,r)} (x,y,t) &= \sum_{k \in \mathbb{Z}} \left( \Phi (x-y +2 kr,t) - \Phi (x+y+2kr,t) \right) \\
+    &= \sum_{k \in \mathbb{Z}} \frac{1}{r} \left( \Phi (\frac{x-y +2 kr}{r},t/r^2) - \Phi (\frac{x+y+2kr}{r},t/r^2) \right) \\
+    &= \sum_{k \in \mathbb{Z}} \frac{1}{r} \left( \Phi (\frac{x-y }{r} +2k,t/r^2) - \Phi (\frac{x+y}{r}+2k,t/r^2) \right) \\
+    &= \frac{1}{r} H_{(0,1)} \left( \frac{x}{r}, \frac{y}{r}, \frac{t}{r^2} \right).
+\end{align*}
+This leads to 
+\[
+ H_{(0,r)^n} (x,y,t) = \prod_{i=1}^n \frac{1}{r} H_{(0,1)} \left( \frac{x_i}{r}, \frac{y_i}{r}, \frac{t}{r^2} \right) = \frac{1}{r^n} H_{(0,1)^n} \left( \frac{x}{r}, \frac{y}{r}, \frac{t}{r^2} \right).
+\]
+\cor{
+    Any $u$ solution of the homogeneous heat equation on $[0,r]^n \times [0,T] \subset \mathbb{R}^n \times \mathbb{R}$ satisfies 
+    \[
+    u(x,T) = - \underbrace{\int_0^T \int_{\partial [0,r]^n} u(z,t) \nabla_z H_{[0,r]^n} (x,z,T-t) \cdot N(z) d \sigma (z) dt}_{=0} + \int_{[0,r]^n}  \underbrace{u(y,0)}_{=h(y)} H_{[0,r]^n} (x,y,T) d^n y.
+    \]
+}
+\cor{
+    Any solution $u$ of the homogenuous heat equation on an open domain $\Omega_T \subset \mathbb{R}^n \times \mathbb{R}$ is smooth and for fixed $t$ it is analyitic wrt. $x$.
+}
+\pf{
+    \begin{itemize}
+        \item To show $u \in C^\infty (\Omega \times (0,T])$ .\\
+        Because $\Phi$ is smooth and $y \mapsto H_\Omega (x,y,t) - \Phi (x-y,t)$ extends continuously to $\bar{\Omega } \times \mathbb{R}^+$ it follows that $H_\Omega$ is smooth wrt. $x$ and $y$ (symmetry of heat kernel) on $\Omega \times \Omega \times \mathbb{R}^+$. Thus, $u$ from the corollary above is in $C^\infty (\Omega \times (0,T])$, because the integrant is smooth wrt. $x$ and $y$ and the integration is over $y$.
+        \item To show that $u(\cdot , t)$ is analyitic for fixed $t$.\\
+        For $y \in \partial \Omega$ it follows that $\Phi (x-y,t) \to 0$, $t \searrow 0$ and all partial derivatives of $\Phi$ also satisfy this property, i.e. $D^\alpha \Phi (x-y,t) \to 0$ for $t \searrow 0$. $H_\Omega$ inherits all of these property by definition of the heat kernel ii). Thus,
+        \[
+        \left| \frac{H_\Omega^{(n)} (x,\xi,t)}{n!} (x-y)^n \right| \to 0, \quad \forall \xi \in (x,y), \quad t \searrow 0.
+        \]
+        Thus, for fixed $t$ the Taylor series of $H_\Omega$ around $x$ converges $\forall y \in \Omega$. Because the integration and differentiation can be interchanged (due to smoothness of $H_\Omega$ wrt. $x$ and $y$) it follows that the Taylor series of $u(\cdot , t)$ around $x$ converges $\forall x \in \Omega$. Thus, $u(\cdot , t)$ is analyitic.
+    \end{itemize}
+    ???
+}
+
+\chapter{Wave Equation}
+
+We consider the homogeneous and inhomogenuous wave equation $\frac{\partial^2}{\partial t^2} u - \Delta u=0$ and $\frac{\partial^2}{\partial t^2} u - \Delta u=f$ respectively on open subsets of $\mathbb{R}^n \times \mathbb{R}$. It is a linear second order PDE. The matrix for the coefficients of the differential operator has one positive and $n$ negative eigenvalues, i.e. it is neither definite or semi definite. The theory to derive a solution in this case is completely different to the chapters before. We have information that propagates with finite speed through space. See electromagnetic waves.
+\section{D'Alemberts Formula $n=1$}
+Consider the initial value proplem 
+\begin{align*}
+    &\frac{\partial^2}{\partial t^2} u - \frac{\partial^2}{\partial x^2} u=0, \quad (x,t) \in \mathbb{R} \times \mathbb{R}^+,\\
+    & u(x,0)=g(x), \quad \frac{\partial}{\partial t} u(x,0) = h(x), \quad x \in \mathbb{R}.
+\end{align*}
+We chose these initial conditions, because we interpret this PDE as an ODE on the vector space of smooth functions on $\mathbb{R}$, i.e. $C^\infty (\mathbb{R})$, then ODE theory suggests to fix an initial value and an initial velocity (first derivative) at an initial time $t_0$. We set $t_0=0$. We clearly want to have uniqueness of the solution.\\
+Note that for $n=1$ we have 
+\[
+\frac{\partial^2}{\partial t^2}  - \frac{\partial^2}{\partial x^2} = \left( \frac{\partial}{\partial t} + \frac{\partial }{\partial x} \right) \left( \frac{\partial}{\partial t} - \frac{\partial }{\partial x} \right).
+\]
+In the homogenuous case we know that if $u$ solves the homogeneous wave equation, then $v(x,t) := \left( \frac{\partial}{\partial t} - \frac{\partial }{\partial x} \right) u(x,t)$ solves the transport equation $\frac{\partial}{\partial t} v + \frac{\partial }{\partial x} v=0$. Using the method of characteristics, the unique solution of this transport equation with initial value $v(x,0) = a(x)$ is given by
+\[v(x,t) = a(x-t).
+\]
+Thus, we have
+\[\left( \frac{\partial}{\partial t} - \frac{\partial }{\partial x} \right) u(x,t) = a(x-t).
+\]
+This is an inhomogeneous transport equation with constant coefficients. Let $X(s) := x+t-s$ and $U(s) := u(X(s),s)$, then
+\[
+\frac{d}{ds} U(X(s),s) = \frac{\partial}{\partial t} u (X(s),s) +  \frac{\partial}{\partial x} u (X(s),s) \underbrace{\frac{dX}{ds}}_{=-1} = \frac{\partial}{\partial t} u (X(s),s) - \frac{\partial}{\partial x} u (X(s),s) = a(X(s)-s) = a(x+t-2s)
+\]
+is an ODE, whose solution is given by 
+\[
+U(t) - U(0) = \int_0^t a(x+t-2s) ds.
+\]
+Thus, we have for $b(x+t) := u(x+t,0)$ that 
+\[
+u(x,t) = \int_0^t a(x+t-2s) ds + b (x+t) \stackrel{y= x+t-2s, \quad dy=(-2) ds}{=} \int_{x+t-2\cdot 0}^{x+t-2t} (- \frac{1}{2}) a(y) dy + b(x+t) =  \frac{1}{2} \int_{x-t}^{x+t} a(y) dy + b(x+t).
+\]
+Inserting the initial values, i.e. 
+\[
+u(x,0) = b(x) = g(x) , \quad a(x) =v(x,0) = \left( \frac{\partial}{\partial t} - \frac{\partial}{\partial x} \right) u(x,0) = h(x) - g^\prime (x),
+\]
+we get 
+\begin{align*}
+    u(x,t) &= \frac{1}{2} \int_{x-t}^{x+t} g(y) - g^\prime (y) dy + g(x+t)\\
+    &= - \frac{1}{2} (g(x+t) - g(x-t))  + g(x+t) + \frac{1}{2} \int_{x-t}^{x+t} h(y) dy \\
+    &= \frac{1}{2} (g(x+t) + g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t} h(y) dy.
+\end{align*}
+Thus we have used the homoegenous and the inhomogenous transport equation to derive 
+\thm{D'Alemberts Formula}{
+If $g: \mathbb{R} \to \mathbb{R}$ is twice continuously differentiable and $h: \mathbb{R} \to \mathbb{R}$ is continuously differentiable, then 
+\[
+u(x,t) =\frac{1}{2} (g(x+t) + g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t} h(y) dy
+\]
+is twice continuously differentiable and the unique solution of the initial value problem
+\begin{align*}
+    &\frac{\partial^2}{\partial t^2} u - \frac{\partial^2}{\partial x^2} u=0, \quad (x,t) \in \mathbb{R} \times \mathbb{R}^+,\\
+    & u(x,0)=g(x), \quad \frac{\partial}{\partial t} u(x,0) = h(x), \quad x \in \mathbb{R}.
+\end{align*}
+}
+Thus, we can write 
+\[
+u(x,t) = \frac{1}{2} (g(x+t) + g(x-t)) + \frac{1}{2} (H(x+t) -H(x-t)) = \underbrace{\frac{1}{2} (g(x+t) + H(x+t))}_{=: F(x+t)} + \underbrace{\frac{1}{2} (g(x-t) - H(x-t)) }_{=: G(x-t)}.
+\]
+It follows 
+\[
+ \left( \frac{\partial}{\partial t} - \frac{\partial}{\partial x} \right) F(x+t) = = F^\prime (x+t) \cdot 1 - F^\prime (x+t) \cdot 1 =0,
+\]
+and 
+\[
+ \left( \frac{\partial}{\partial t} + \frac{\partial}{\partial x} \right) G(x-t) = G^\prime (x-t) \cdot (-1) + G^\prime (x+t) \cdot 1 =0,
+\]
+which implies 
+\[
+ \left( \frac{\partial^2}{\partial t^2} - \frac{\partial^2}{\partial x^2} \right) u(x,t) = \left( \frac{\partial}{\partial t} - \frac{\partial}{\partial x} \right) \left( \frac{\partial}{\partial t} + \frac{\partial}{\partial x} \right) (F(x+t) + G(x-t)) =0,
+\]
+if $F$ and $G$ are twice differentiable. We have shown that every function of the form $u(x,t) = F(x+t) + G(x-t)$ solves the homogeneous wave equation. \\
+
+We interpret the fact, that the value of the solution at $(x,t)$ depends only on the values of $F$ and $G$ at $x+t$ and $x-t$ respectively, i.e. $u(x,t)$ depends excusively on the intervall $[x-t,x+t]$, which means information speed spreads with speed $1$ in both directions.\\
+
+Further, in the heat equation we had the property that the solution increases in regularity over time. Here, the regularity stays the same, i.e. if $H$ and $G$ are k-times differentiable, then $u$ is also k-times differentiable.\\
+
+Later in this chapter the following will be of importance. Consider the initial value problem 
+\begin{align*}
+   & \frac{\partial^2}{\partial t^2} u(x,t) - \frac{\partial^2}{\partial x^2} u(x,t) =0, \quad (x,t) \in \mathbb{R}^+ \times \mathbb{R}^+ \\
+    & u(x,0) = g(x), \quad \frac{\partial}{\partial t} u(x,0) = h(x), \quad x \in \mathbb{R}^+ , \quad u(0,t)=0, t \in \mathbb{R}_0^+. 
+\end{align*}
+Define the point reflection of $u,g,h$ as 
+\[
+\tilde{u}(x,t)= \begin{cases}
+    u(x,t) &, x \geq 0 \\
+    -u(-x,t) &, x\leq 0
+\end{cases}, \quad \tilde{g}(x)= \begin{cases}
+    g(x) &, x \geq 0 \\
+    -g(-x) &, x\leq 0
+\end{cases}, \quad \tilde{h}(x)= \begin{cases}
+    h(x) &, x \geq 0 \\
+    -h(-x) &, x\leq 0
+\end{cases}
+\]
+then $\tilde{u}, \tilde{g},\tilde{h}$ are defined on the entire space $\mathbb{R}^+ \times \mathbb{R}_0^+$. Next, we see that for the solution $\tilde{u}$ of the initial value problem 
+\begin{align*}
+    & \frac{\partial^2}{\partial t^2} \tilde{u}(x,t) - \frac{\partial^2}{\partial x^2} \tilde{u}(x,t) =0, \quad (x,t) \in \mathbb{R} \times \mathbb{R}^+ \\
+     & \tilde{u}(x,0) = \tilde{g}(x), \quad \frac{\partial}{\partial t} \tilde{u}(x,0) = \tilde{h}(x), \quad x \in \mathbb{R}
+\end{align*}
+the function $(x,t) \mapsto -\tilde{u}(-x,t)$ also solves the same initial value problem. By uniqueness (under sufficient regularity) of the solution it follows that both solution coincide: $\tilde{u} (x,t)= - \tilde{u}(-x,t)$.\\
+\begin{itemize}
+    \item For $t \leq x$ the solution $u(x,t)$ depends on the domain $[x-t,x+t] \subset \mathbb{R}^+_0$, i.e. only the non negative part of the real axis. Using D'Alemberts formula it follows 
+    \[
+    u(x,t)= \frac{1}{2} (g(x+t) + g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t} h(y) dy.
+    \]
+    \item However, for $x \leq t$ the solution depends on the domain $[x-t,x+t]$ which contains negative values. Using the point reflection we get
+    \begin{align*}
+        \tilde{u}(x,t) &= \frac{1}{2} ( \underbrace{\tilde{g}(x+t)}_{=g(x+t)} + \underbrace{\tilde{g}(x-t)}_{=-g(t-x)}) + \frac{1}{2} \int_{x-t}^{x+t} \tilde{h}(y) dy \\
+        &= \frac{1}{2} ( g(x+t) - g(t-x)) + \frac{1}{2} \left( \int_{x-t}^{t-x} \tilde{h}(y) dy+ \int_{t-x}^{x+t} \tilde{h}(y) dy  \right) \\
+        &= \frac{1}{2} ( g(x+t) - g(t-x)) + \frac{1}{2}  \int_{t-x}^{x+t} h(y) dy 
+    \end{align*}
+    Although we used in the last step that an integral over an odd function on a symmetric intervall vanishes.
+\end{itemize}
+Thus, it total 
+\[
+u(x,t) = \begin{cases}
+    \frac{1}{2} (g(x+t) + g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t} h(y) dy &, 0\leq t \leq x \\
+    \frac{1}{2} ( g(x+t) - g(t-x)) + \frac{1}{2}  \int_{t-x}^{x+t} h(y) dy &,0 \leq x \leq t
+\end{cases}.
+\]
+This describes waves moving on $[0,\infty)$ where waves moving towards $x=0$ get reflected. This is prescribed using point reflection, i.e. the waves moves through $x=0$ and gets inverted.
+
+
 \end{document}
