@@ -14,7 +14,7 @@
 
 \setlist[itemize]{itemsep=5pt} % Adjust the length as needed
 \setlist[enumerate]{itemsep=5pt} % Adjust the length as needed
-
+\usepackage{esint}
 
 \usepackage[ruled,vlined]{algorithm2e}
 % \usepackage{lmodern} %  Latin Modern font
@@ -3279,6 +3279,200 @@ u(x,t) = \begin{cases}
 \end{cases}.
 \]
 This describes waves moving on $[0,\infty)$ where waves moving towards $x=0$ get reflected. This is prescribed using point reflection, i.e. the waves moves through $x=0$ and gets inverted.
+
+\section{Spherical Means of the Wave equation}
+The methods of spherical means is a technique that transforms the initial value problem of the wave equation on $\mathbb{R}^n$ into a lower dimensional problem by using the translation invariance and local rotaional averaging. Define $x \in \mathbb{R}^n, t \geq 0, r>0$: 
+\[
+U(x,r,t) := \frac{1}{n \omega_n r^{n-1}} \int_{\partial B_r (x)} u(y,t) d \sigma (y) =: \fint_{\partial B_r (x)} u(y,t) d \sigma (y),
+\]
+where $\fint$ denotes the average value and $\omega_n$ the volume of the n-dimensional unit ball. Analogously we define 
+\[
+G(x,r) := \fint_{\partial B_r (x)} g(y) d\sigma (y), \quad H(x,r) := \fint_{\partial B_r (x)} h(y) d\sigma (y).
+\]
+\lem{}{
+    If $u\in C^m (\mathbb{R}^n \times \mathbb{R}^+_0)$ is a m-times continuously differentiable solution of the initial value problem 
+    \[
+    \frac{\partial^2}{\partial t^2} u - \Delta u=0 , \quad \text{ on } \mathbb{R}^n \times \mathbb{R}^+ , \quad u(x,0)=g(x), \quad \frac{\partial}{\partial t} u(x,0) = h(x), \quad x \in \mathbb{R}^n,
+    \]
+    then the spherical mean $ (r,t) \mapsto U(x,r,t)$ for fixed $x \in \mathbb{R}^n$ is a m-times differntiable function that satisfies the initial value problem (Euler-Poisson-Darboux equation):
+    \begin{align*}
+        & \frac{\partial^2}{\partial t^2} U(x,r,t) - \frac{\partial^2}{\partial r^2} U(x,r,t) - \frac{n-1}{r} \frac{\partial}{\partial r} U(x,r,t) =0, \quad (r,t) \in \mathbb{R}^+ \times \mathbb{R}^+ ,\\
+        & U(x,r,0) = G(x,r), \quad \frac{\partial}{\partial t} U(x,r,0) = H(x,r), \quad r \in \mathbb{R}^+.
+    \end{align*}
+}
+\pf{
+    We want to show that the equation for $u$ holds, if $u$ satisfies this initial value problem. Further, we need to show that all summands exist if $r \to 0$.
+    \begin{itemize}
+        \item We begin with
+    \begin{align*}
+        U(x,r,t) &= \frac{1}{n \omega_n r^{n-1}} \int_{\partial B_r (x)} u(y,t) d \sigma (y) = \frac{1}{n \omega_n r^{n-1}} \int_{\partial B_1 (0)} u(x+r z,t) r^{n-1} d \sigma (z) \\
+        &= \frac{1}{n \omega_n} \int_{\partial B_1 (0)} u(x+r z,t) d \sigma (z).
+    \end{align*}
+    where we see that the integral becomes independent of $t$ are $r$. It follows 
+    \begin{align*}
+        \frac{\partial }{\partial r} U(x,r,t) &= \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \frac{\partial}{\partial r} u(x+ry,t) d \sigma (y) = \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \nabla_x u(x+ry,t) \cdot y d \sigma (y),\\
+        &= \frac{1}{n \omega_n} \frac{r^n}{r^n} \int_{ B_1 (0)}  \nabla \cdot \nabla u (x+ry,t) d^n y = \frac{1}{n } \fint_{ B_1 (0)}  \nabla \cdot \nabla u (x+ry,t) d^n y \\
+        &= \frac{r}{n } \fint_{ B_r (x)}  \Delta u (y,t) d^n y.
+    \end{align*}
+    The summand in the equation exists, due to 
+    \[
+    \lim_{r \to 0} \frac{n-1}{r} \frac{\partial}{\partial r} U(x,r,t) = \lim_{r \to 0} \frac{n-1}{n} \fint_{ B_r (x)}  \Delta u (y,t) d^n y = \frac{n-1}{n} \Delta u (x,t). 
+    \]
+    \item Next, we have 
+    \begin{align*}
+        \frac{\partial^2}{\partial r^2} U(x,r,t) &= \frac{\partial}{\partial r} \frac{r}{n } \fint_{ B_r (x)}  \Delta u (y,t) d^n y\\
+        &=  \frac{\partial}{\partial r} \frac{r}{ n \omega_n r^n } \int_{ B_r (x)}  \Delta u (y,t) d^n y = \frac{\partial}{\partial r} \frac{1}{ n \omega_n r^{n-1} } \int_{ B_r (x)}  \Delta u (y,t) d^n y\\
+        &= \frac{-(n-1)}{ n \omega_n r^{n} } \int_{ B_r (x)}  \Delta u (y,t) d^n y + \frac{1}{ n \omega_n r^{n-1} } \int_{ B_r (x)} \frac{\partial}{\partial r} \Delta u (y,t) d^n y \\
+        &= \frac{1-n}{ n \omega_n r^{n} } \int_{ B_r (x)}  \Delta u (y,t) d^n y + \frac{1}{ n \omega_n r^{n-1} } \int_{ \partial B_r (x)} \Delta u (y,t) d \sigma(y) \\
+        &= \left( \frac{1}{n} -1  \right) \fint_{ B_r (x)}  \Delta u (y,t) d^n y + \fint_{ \partial B_r (x)} \Delta u (y,t) d \sigma(y).
+    \end{align*}
+    And in the limit we have 
+    \begin{align*}
+    &\lim_{r \to 0 }  \frac{\partial^2}{\partial r^2} U(x,r,t) = \lim_{r \to 0 } \left( \left( \frac{1}{n} -1  \right) \fint_{ B_r (x)}  \Delta u (y,t) d^n y + \fint_{ \partial B_r (x)} \Delta u (y,t) d \sigma(y) \right) \\
+    &= \left( \frac{1}{n} -1 \right) \Delta u (x,t) + \Delta u (x,t) = \frac{1}{n} \Delta u (x,t),
+    \end{align*}
+    which exists.
+    \item Finally, due to the fact, that $u$ is the solution of the initial value problem stated on $\mathbb{R}^n \times \mathbb{R}^+$ in the theorem, we have 
+    \begin{align*}
+        \frac{\partial }{\partial r} r^{n-1} \frac{\partial}{\partial r} U(x,r,t) &= \frac{\partial }{\partial r} r^{n-1} \frac{r}{n} \fint_{B_r (x)} \Delta u(y,t) d^n y\\
+        &=\frac{\partial }{\partial r} \frac{r^n}{n\omega_n r^n} \int_{B_r (x)} \Delta u(y,t) d^n y = \frac{\partial }{\partial r} \frac{1}{n\omega_n } \int_{B_r (x)} \Delta u(y,t) d^n y \\
+        &=  \frac{1}{n\omega_n } \int_{\partial B_r (x)} \Delta u(y,t) d  \sigma(y ) \\
+        &= \frac{1}{n\omega_n } \int_{\partial B_r (x)} \frac{\partial^2}{\partial t^2} u(y,t) d  \sigma(y ) = r^{n-1}\frac{\partial^2}{\partial t^2}  \frac{1}{n\omega_n r^{n-1} } \int_{\partial B_r (x)}  u(y,t) d  \sigma(y )\\
+        &= r^{n-1} \frac{\partial^2}{\partial t^2} U(x,r,t).
+    \end{align*}
+    This is equivalent to
+    \begin{align*}
+       & r^{n-1} \frac{\partial^2}{\partial t^2} U(x,r,t) = (n-1) r^{n-2} \frac{\partial}{\partial r} U(x,r,t) + r^{n-1} \frac{\partial^2}{\partial r^2} U(x,r,t) \\
+        &\iff \frac{\partial^2}{\partial t^2} U(x,r,t) = \frac{n-1}{r} \frac{\partial}{\partial r} U(x,r,t) + \frac{\partial^2}{\partial r^2} U(x,r,t).
+    \end{align*}
+    \end{itemize}
+     
+  
+
+}
+\section{Solution in 3 Dimensions}
+We will see that the wave equation can be transformed into a one dimensional wave equation, if the dimension is odd. However, if the dimension is even, this is not possible. We start with the three dimensional case $n=3$.\\
+Fix $x \in \mathbb{R}^3$. Consider the initial value problem for the spherical mean
+\begin{align*}
+    & \frac{\partial^2}{\partial t^2} U(x,r,t) - \frac{\partial^2}{\partial r^2} U(x,r,t) - \frac{2}{r} \frac{\partial}{\partial r} U(x,r,t) =0, \quad (r,t) \in \mathbb{R}^+ \times \mathbb{R}^+ ,\\
+    & U(x,r,0) = G(x,r), \quad \frac{\partial}{\partial t} U(x,r,0) = H(x,r), \quad r \in \mathbb{R}^+.
+\end{align*}
+By substiuting $ \tilde{U} (x,r,t) := r U(x,r,t)$ we get
+\begin{align*}
+    & \frac{\partial^2}{\partial t^2} \frac{\tilde{U}}{r} - \frac{\partial^2}{\partial r^2} \frac{\tilde{U}}{r} - \frac{2}{r} \frac{\partial}{\partial r} \frac{\tilde{U}}{r} = \frac{1}{r} \frac{\partial^2}{\partial t^2} \tilde{U} - \frac{\partial}{\partial r} \left( \frac{1}{r} \frac{\partial}{\partial r} \tilde{U} - \frac{\tilde{U}}{r^2} \right) - \frac{2}{r} \left( \frac{1}{r} \frac{\partial}{\partial r} \tilde{U} - \frac{\tilde{U}}{r^2} \right) \\
+    &= \frac{1}{r} \frac{\partial^2}{\partial t^2} \tilde{U} - \left( \frac{-1}{r^2} \frac{\partial}{\partial r} \tilde{U} + \frac{1}{r} \frac{\partial^2}{\partial r^2} \tilde{U} - \frac{1}{r^2} \frac{\partial}{\partial r} \tilde{U} + \frac{2}{r^3} \tilde{U}  \right) + \frac{2}{r^3} \tilde{U} - \frac{2}{r^2} \frac{\partial}{\partial r} \tilde{U} \\
+    &= \frac{1}{r} \left( \frac{\partial^2}{\partial t^2} \tilde{U} - \frac{\partial^2}{\partial r^2} \tilde{U} \right) =0\\
+    &\iff  \frac{\partial^2}{\partial t^2} \tilde{U} - \frac{\partial^2}{\partial r^2} \tilde{U}  =0
+\end{align*}
+Due to $\lim_{t \to 0} U(x,r,t) =u(x,t)$ it follows 
+\[
+\tilde{U} (x,0,t) = \lim_{t \to 0} r U(x,r,t,) =0 \cdot u(x,t)=0.
+\]
+We now get an additional condition for the transformed initial value problem:
+\begin{align*}
+    & \frac{\partial^2}{\partial t^2} \tilde{U} - \frac{\partial^2}{\partial r^2} \tilde{U} =0, \quad \text{ on } \{x\} \times \mathbb{R}^+ \times \mathbb{R}^+, \quad \tilde{U}(x,0,t) =0, \quad t \in \mathbb{R}_0^+ ,\\
+    & \tilde{U}(x,r,0) = r G(x,r)=: \tilde{G}(x,r), \quad \frac{\partial}{\partial t} \tilde{U}(x,r,0) = r H(x,r) =: \tilde{H}(x,r), \quad r \in \mathbb{R}^+.
+\end{align*}
+This is the initial value problem of the last section whoose solution is given by 
+\[
+\tilde{U} (x,r,t) = \frac{1}{2} ( \tilde{G} (x,r+t) + \tilde{G} (x,t-r)) + \frac{1}{2} \int_{t-r}^{r+t} \tilde{H} (x,s) ds, \quad 0 \leq r \leq t.
+\]
+Using the continuity of $r \mapsto \tilde{U} (x,r,t)$ we get
+\[
+u(x,t) = \lim_{r \searrow 0} U(x,r,t) = \lim_{t \searrow 0} \frac{\tilde{U}(x,r,t)}{r},
+\]
+which implies for all $x \in \mathbb{R}^3, t >0$:
+\begin{align*}
+    u(x,t) &= \lim_{r \searrow 0} \frac{1}{2} \left( \frac{\tilde{G}(x,t+r)- \tilde{G}(x,t-r)}{r} \right) + \lim_{r \searrow 0} \frac{1}{2r} \int_{t-r}^{t+r} \tilde{H} (x,s) ds\\
+    &= \frac{\partial}{\partial t} \tilde{G}(x,t) + \tilde{H}(x,t) \\
+    &= \frac{\partial}{\partial t} (t G(x,t)) + t H(x,t) \\
+    &= G(x,t) + t \frac{\partial}{\partial t} G(x,t) + t H(x,t) \\
+    &= \fint_{\partial B_t (x)} g(y) d \sigma (y) + t \frac{\partial}{\partial t} \fint_{\partial B_t (x)} g(y) d \sigma (y) + t \fint_{\partial B_t (x)} h(y) d \sigma (y)\\
+    &=  t \frac{\partial}{\partial t} \fint_{\partial B_1 (0)} g(x+tz) d \sigma (z) +  \fint_{\partial B_t (x)}(t h(y) + g(y)) d \sigma (y)\\
+    &=  t  \fint_{\partial B_1 (0)} \nabla_x g(x+tz) \cdot z d \sigma (z) +  \fint_{\partial B_t (x)}(t h(y) + g(y)) d \sigma (y)\\
+    &=  t  \fint_{\partial B_t (x)} \nabla_x g(z) \cdot \frac{z-x}{t} d \sigma (z) +  \fint_{\partial B_t (x)}(t h(y) + g(y)) d \sigma (y) \\
+    &= \fint_{\partial B_t (x)} th(y) + g(y) + \nabla_x g(y) \cdot (y-x) d \sigma (y).
+\end{align*}
+Also called Kirchhoffs formula. Note that the solution at $(x,t)$ depends only on the values of $g$ and $h$ on the sphere $\partial B_t (x)$, i.e. information propagates with speed $1$ in all directions.
+
+    
+\section{Solution in 2 Dimensions}
+
+In two dimensions the Euler-Poisson-Darboux equation cannot be transferred into the one dimensional wave equation. We present a method to transfer the two dimensional initial value problem into a three dimensional one, by choosing initial values that only depend on $x_1$ and $x_2$ but not on $x_3$.\\
+Let $\bar{u}$ be on $\mathbb{R}^3 \times \mathbb{R}^+_0$ a solution of the initial value problem
+\begin{align*}
+    & \frac{\partial^2}{\partial t^2} \bar{u} - \Delta \bar{u} =0, \quad \text{ on }\mathbb{R}^3 \times \mathbb{R}^+ ,\\
+    & \bar{u}(x,0) = g(\bar{x}), \quad \frac{\partial}{\partial t} \bar{u}(x,0) = h(\bar{x}), \quad x \in \mathbb{R}^3,
+\end{align*} 
+where $\bar{x} := (x_1,x_2) \in \mathbb{R}^2$. \\
+Note that for a arbitary function $f$ that only depends on $\bar{x}$ it holds
+\[
+\frac{\partial}{\partial x_3} \fint_{\partial B_r (x)} f(y) d \sigma (y) = \frac{\partial}{\partial x_3} \fint_{\partial B_r (0)} f(y+x) d \sigma (y) = \frac{1}{n \omega_n r^{n-1}} \int_{\partial B_r (0)}\underbrace{ \frac{\partial}{\partial x_3} f(y+x)}_{=0} d \sigma (y) =0,
+\]
+i.e. the mean over $\partial B_r (x)$ of $f$ is only dependent on $\bar{x}$ and $r$. \\
+Because $\bar{u}$ is by definition independent of $x_3$ we have 
+\[
+\Delta_{\mathbb{R}^3} \bar{u} = \frac{\partial^2}{\partial x_1^2} \bar{u} + \frac{\partial^2}{\partial x_2^2} \bar{u} +  \underbrace{\frac{\partial^2}{\partial x_3^2} \bar{u}}_{=0} = \Delta_{\mathbb{R}^2} \bar{u},
+\]
+Thus $\frac{\partial^2}{\partial t^2} \bar{u} - \Delta_{\mathbb{R}^3} \bar{u} =0 =\frac{\partial^2}{\partial t^2} \bar{u} - \Delta_{\mathbb{R}^2} \bar{u}$. Thus, if $u$ is the solution of the two dimensional initial value problem, then $\bar{u}(x,t)= u(\bar{x},t)$, $x \in \mathbb{R}^3$. In particular for $x:= (\bar{x},0)$ we have this equality. Using Kirchhoff's Formula it holds 
+\[
+\bar{u}(\underbrace{(\bar{x},0)}_{=x} ,t) = \fint_{\partial B_t (x)} th (y) + g(y) d \sigma (y) + \fint_{\partial B_t (x)} \nabla_{y} g(y) \cdot (y-x) d \sigma (y).
+\]
+We now want to transform this over to integrals on the two dimensional disc. For the Jacobi transformation, define the two parametrizations 
+\begin{align*}
+    & \phi_+ : B_r^2 (\bar{x}) \to \mathbb{R}^3, \quad z \mapsto (z,\gamma(z))^T := \begin{pmatrix}
+        z_1 \\ z_2 \\ \sqrt{r^2 -|z-\bar{x}|^2}
+    \end{pmatrix} \\
+    & \phi_- : B_r^2 (\bar{x}) \to \mathbb{R}^3, \quad z \mapsto (z,-\gamma(z))^T := \begin{pmatrix}
+        z_1 \\ z_2 \\ -\sqrt{r^2 -|z-\bar{x}|^2}
+    \end{pmatrix} .
+\end{align*}
+The equator $\{ y \in B_r^3 (x) \mid y_3 =0 \}$ has measure zero and can thus be neglected. The Jacobi Matrix is 
+\[
+D \phi_+ = \begin{pmatrix}
+    1 & 0\\
+    0 & 1 \\
+   - \frac{1}{2} 2 (z_1-x_1) (r^2- |z-\bar{x}|^2)^{-1/2} & - \frac{1}{2} 2 (z_2-x_2) (r^2- |z-\bar{x}|^2)^{-1/2}
+\end{pmatrix}
+\]
+and 
+\[
+D \phi_- = \begin{pmatrix}
+    1 & 0\\
+    0 & 1 \\
+    \frac{1}{2} 2 (z_1-x_1) (r^2- |z-\bar{x}|^2)^{-1/2} &  \frac{1}{2} 2 (z_2-x_2) (r^2- |z-\bar{x}|^2)^{-1/2}
+\end{pmatrix}
+\]
+then 
+\[
+(D \phi_+)^T D \phi = \begin{pmatrix}
+    1+ (z_1 -x_1)^2 (r^2 - |z-\bar{x}|^2)^{-1} & (z_1 -x_1) (z_2-x_2) (r^2 - |z-\bar{x}|^2)^{-1}  \\
+    (z_1 -x_1) (z_2-x_2) (r^2 - |z-\bar{x}|^2)^{-1}  & 1+ (z_2 -x_2)^2 (r^2 - |z-\bar{x}|^2)^{-1}
+\end{pmatrix} = (D \phi_-)^T D \phi_-,
+\]
+which leads to 
+\begin{align*}
+\det ( (D \phi_+)^T D \phi  ) &= \left( 1 + \frac{(z_1 - x_1)^2}{r^2 - |z-\bar{x}|^2} \right) \left( 1 + \frac{(z_2 - x_2)^2}{r^2 - |z-\bar{x}|^2} \right) - \left(  \frac{(z_1 - x_1)^2 (z_2 - x_2)^2}{(r^2 - |z-\bar{x}|^2)^2} \right) \\
+&=1+  \frac{(z_1 - x_1)^2+ (z_2 - x_2)^2}{r^2 - |z-\bar{x}|^2} = \frac{r^2}{r^2 - |z-\bar{x}|^2} .
+\end{align*}
+This now implies that for any $f$ 
+\begin{align*}
+&\fint_{\partial B_t^3 (x)} f(z) d \sigma (z)=\fint_{\partial B_t^3 (x) \{y >0 \}} f(z) d \sigma (z) + \fint_{\partial B_t^3 (x) \{y <0 \}} f(z) d \sigma (z) \\
+&= \frac{1}{4 \pi t^2} \int_{ B_t^2 (x) } f(z) \sqrt{\det ( (D \phi_+)^T D\phi_+ )} d^2 z + \frac{1}{4 \pi t^2} \int_{ B_t^2 (x)} f(z) \sqrt{\det ( (D \phi_-)^T D\phi_- )} d^2 z \\
+&= 2 \frac{1}{4 \pi t^2} \int_{ B_t^2 (x)} f(z) \frac{t}{\sqrt{t^2 - |z- \bar{x}|^2}} d^2 z = \frac{1}{2 \pi t^2} \int_{ B_t^2 (x)} f(z) \frac{t}{\sqrt{t^2 - |z- \bar{x}|^2}} d^2 z \\
+&= \frac{1}{2 \pi t} \int_{ B_t^2 (x)} f(z) \frac{1}{\sqrt{t^2 - |z- \bar{x}|^2}} d^2 z = \frac{t}{2}  \fint_{ B_t^2 (x)} f(z) \frac{1}{\sqrt{t^2 - |z- \bar{x}|^2}} d^2 z
+\end{align*}
+Applying this now to the Kirchhoff's Formula we get for $x := (\bar{x},0)$
+\begin{align*}
+    u(\bar{x},t) &= \bar{u} (x,t) = \fint_{\partial B_t^3 (x)} th (y) + g(y) d \sigma (y) + \fint_{\partial B_t^3 (x)} \nabla_{y} g(y) \cdot (y-x) d \sigma (y) \\
+    &= \frac{t}{2} \fint_{B_t^2 (\bar{x})} \frac{th(z) + g(z)}{\sqrt{t^2 - |z-\bar{x}|^2}} d^2 z +  \frac{t}{2} \fint_{B_t^2 (\bar{x})} \frac{\nabla_z g(z) \cdot (z- \bar{x})}{\sqrt{t^2 - |z-\bar{x}|^2}} d^2 z \\
+    &= \frac{t}{2} \fint_{B_t^2 (\bar{x})} \frac{th(z) + g(z)+\nabla_z g(z) \cdot (z- \bar{x})}{\sqrt{t^2 - |z-\bar{x}|^2}} d^2 z 
+\end{align*}
+In three dimensions we had that the solution only depended on $\partial B_t (x)$. This implied that information triversion speed is $1$. In the two dimensional case we now have the solution depending on the entire ball $B_t (\bar{x})$, which yields that the information speed is everything from $0$ to $1$.\\
+
+Further, we call the method of deriving the solution of an initial value problem, by transforming the problem onto an initial value problem in a higher dimensional space, method of descent. In that higher dimensional space the initial values do not depend on all coordinates. We need to show that the solution also deos not depend on these coordinates. We just did this in two dimensions, i.e. $\bar{u}(x,t) = u(\bar{x},t)$.\\
+A natural question is weather we can apply this method to the solution of the initial value problem in one dimension.
+
 
 
 \end{document}
