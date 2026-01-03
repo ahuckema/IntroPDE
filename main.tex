@@ -3473,6 +3473,123 @@ In three dimensions we had that the solution only depended on $\partial B_t (x)$
 Further, we call the method of deriving the solution of an initial value problem, by transforming the problem onto an initial value problem in a higher dimensional space, method of descent. In that higher dimensional space the initial values do not depend on all coordinates. We need to show that the solution also deos not depend on these coordinates. We just did this in two dimensions, i.e. $\bar{u}(x,t) = u(\bar{x},t)$.\\
 A natural question is weather we can apply this method to the solution of the initial value problem in one dimension.
 
-
+\section{Solution in odd Dimensions}
+In any odd dimension we can transform the Euler-Poisson-Darboux equation into the one dimensional wave equation.
+\lem{}{
+    Let $\phi: \mathbb{R} \to \mathbb{R}$ be a $k+1$ times continuously differentiable function, then $\forall k \in \mathbb{N}$ it holds 
+    \begin{align*}
+        &i) \; \left( \frac{d}{dr} \right)^2 \left( \frac{1}{r} \frac{d}{dr} \right)^{k-1} r^{2k-1} \phi (r) = \left( \frac{1}{r} \frac{d}{dr} \right)^k r^{2k} \frac{d}{dr} \phi (r) \\
+        &ii) \; \left( \frac{1}{r} \frac{d}{dr} \right)^{k-1} r^{2k-1} \phi (r) = \sum_{j=0}^{k-1} \beta_{k,j} r^{j+1} \frac{d^j}{d r^j} \phi (r), \quad \text{where $\beta_{k,j}$ do not depend on }\phi \\
+        &iii) \; \beta_{k,0} = 1 \cdot 3 \cdot 5 \cdot ... \cdot (2k-1) = \frac{(2k-1)!}{2 \cdot 4 \cdot ... \cdot (2k-2)} = \frac{(2k-1)!}{2^{k-1} (k-1)!}
+    \end{align*}
+}
+\pf{
+    Skipped 
+}
+Let the dimension be $n= 2k+1 \geq 3$ and $u \in C^{k+1} (\mathbb{R}^n \times \mathbb{R}_0^+)$ be the solution of the initial value problem 
+\begin{align*}
+    & \frac{\partial^2}{\partial t^2} u - \Delta u =0 ,\quad \text{ on } \mathbb{R}^n \times \mathbb{R}^+ \\
+    &U(x,0)=g(x), \quad \frac{\partial}{\partial t} u(x,0)=h(x), \quad x \in \mathbb{R}^n.
+\end{align*}
+Define 
+\begin{align*}
+    & \tilde{U}(x,r,t) := \left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{k-1} r^{2k-1} U(x,r,t) \\
+    & \tilde{G}(x,t) := \left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{k-1} r^{2k-1} G(x,r), \quad \tilde{H}(x,r) := \left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{k-1} r^{2k-1} H(x,r).
+\end{align*}
+\lem{}{
+    If $u \in C^{k+1} (\mathbb{R}^{2k+1} \times \mathbb{R}_0^+)$ solves the initial value problem of the wave equation, then $\tilde{U}(x,r,t)$ solves for all fixed $x \in \mathbb{R}^{2k+1}$ the following initial value problem 
+    \begin{align*}
+        &\frac{\partial^2}{\partial t^2} \tilde{U} - \frac{\partial^2}{\partial r^2} \tilde{U} = 0, \quad \text{ on } \{x\} \times \mathbb{R}^+ \times \mathbb{R}^+, \quad \tilde{U}(x,0,t)=0, \quad t \in \mathbb{R}_0^+\\
+        & \tilde{U}(x,r,0)=\tilde{G}(x,r) , \quad \frac{\partial}{\partial t} \tilde{U} (x,r,0) = \tilde{H}(x,r), \quad r \in \mathbb{R}^+.
+    \end{align*}
+}
+\pf{
+    Let $U$ be the solution of the Euler-Poisson-Darboux equation in dimension $n=2k+1$, then we have 
+    \begin{align*}
+        \frac{\partial^2}{\partial r^2} \tilde{U} (x,r,t) & \stackrel{Def.}{=} \frac{\partial^2}{\partial r^2} \left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{k-1} r^{2k-1} U(x,r,t)\\
+        &\stackrel{i)}{=} \left( \frac{1}{r} \frac{\partial}{\partial r} \right)^k r^{2k} \frac{\partial}{\partial r} U(x,r,t) \\
+        &= \left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{k-1} \left( \frac{2k r^{2k-1}}{r}  \frac{\partial}{\partial r} U(x,r,t) + \frac{1}{r} r^{2k} \frac{\partial^2}{\partial r^2} U(x,r,t) \right) \\
+         &= \left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{k-1} r^{2k-1} \left( \frac{2k}{r}  \frac{\partial}{\partial r} U(x,r,t) +  \frac{\partial^2}{\partial r^2} U(x,r,t) \right) \\
+         &\stackrel{(*)}{=} \left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{k-1} r^{2k-1} \frac{\partial^2}{\partial t^2} U(x,r,t) = \frac{\partial^2}{\partial t^2} \tilde{U}(x,r,t),
+    \end{align*}
+    altough we used in $(*)$ that $2k=n-1$ by definition of the dimension. Finally, we need to check the boundary condition,i.e. to show that $\tilde{U}$ vanishes as $r\to 0$: 
+    \begin{align*}
+        \lim_{r \to 0} \tilde{U}(x,r,t) &= \lim_{r \to 0} \left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{k-1} r^{2k-1} U(x,r,t) \stackrel{ii)}{=} \lim_{r \to 0}  \sum_{j=0}^{k-1} \beta_{k,j} r^{j+1} \frac{\partial^j}{\partial r^j} U(x,r,t) \\
+        &=\sum_{j=0}^{k-1} \beta_{k,j} \cdot 0 \cdot \underbrace{ \frac{\partial^j}{\partial r^j} U(x,r,t) \big|_{r=0}}_{< \infty}=0.
+    \end{align*}
+}
+Thus, we have reduced the odd dimensional initial value problem into a one dimensional initial value problem on the intervall $[0,\infty)$. As we have already considered this problem, we know its solution 
+\[
+\tilde{U} (x,r,t) = \frac{1}{2} (\tilde{G}(x,t+r)- \tilde{G}(x,t-r)) + \frac{1}{2} \int_{t-r}^{t+r} \tilde{H}(x,s) ds.
+\]
+With the relation
+\begin{align*}
+&\tilde{U}(x,r,t) = \sum_{j=0}^{k-1} \beta_{k,j} r^{j+1} \frac{\partial^j}{\partial r^j} U(x,r,t) = \beta_{k,0} r U(x,r,t) + \mathcal{O}(r^2) \\
+&\iff \frac{\tilde{U}(x,r,t)}{\beta_{k,0} r} = U(x,r,t) + \mathcal{O}(r) \\
+& \iff \lim_{r \to 0} \frac{\tilde{U}(x,r,t)}{\beta_{k,0} r} = \lim_{r \to 0} U(x,r,t) = u(x,t),
+\end{align*}
+which finally implies that 
+\begin{align*}
+    u(x,t) &= \frac{1}{\beta_{k,0}} \lim_{r \to 0} \frac{\tilde{U}(x,r,t)}{r} = \frac{2^{k-1} (k-1)!}{(2k-1)!} \lim_{r \to 0}\left(\frac{1}{2r} (\tilde{G}(x,t+r)- \tilde{G}(x,t-r)) + \frac{1}{2r} \int_{t-r}^{t+r} \tilde{H}(x,s) ds \right) \\
+    &= \frac{2^{k-1} (k-1)!}{(2k-1)!} \left( \frac{\partial}{\partial t} \tilde{G}(x,t) + \tilde{H}(x,t) \right).
+\end{align*}
+\thm{}{
+    For odd $n\geq 3$ the solution of the initial value problem 
+    \[
+    \frac{\partial^2}{\partial t^2} u - \Delta u =0, \quad \text{ on } \mathbb{R}^n \times \mathbb{R}^+, \quad u(x,0)=g(x), \quad \frac{\partial}{\partial t} u(x,0)=h(x), x \in \mathbb{R}^n,
+    \]
+    with $g \in C^{\frac{n+3}{2}}(\mathbb{R}^n)$, $h \in C^{\frac{n+1}{2}}(\mathbb{R}^n)$ the solution is given by 
+    \[
+    u(x,t) = \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})! }{(n-2)!} \left( \frac{\partial}{\partial t} \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-3}{2}} t^{n-2} \fint_{\partial B_t (x)} g(y) d \sigma (y) + \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-3}{2}} t^{n-2} \fint_{\partial B_t (x)} h(y) d \sigma (y) \right).
+    \]
+}
+\pf{We can split the above initial value problem into the following subproblems 
+\[
+\begin{cases}
+    \frac{\partial^2}{\partial t^2} u - \Delta u =0, \quad \text{ on } \mathbb{R}^n \times \mathbb{R}^+\\
+    u(x,0)=0, \quad x \in \mathbb{R}^n,\\
+    \frac{\partial}{\partial t} u(x,0)=h(x), x \in \mathbb{R}^n,
+\end{cases} \quad \text{ and }\quad \begin{cases}
+    \frac{\partial^2}{\partial t^2} u - \Delta u =0, \quad \text{ on } \mathbb{R}^n \times \mathbb{R}^+\\
+    u(x,0)=h(x), \quad x \in \mathbb{R}^n,\\
+    \frac{\partial}{\partial t} u(x,0)=0, x \in \mathbb{R}^n,
+\end{cases}
+\]
+I.e. if $u$ and $v$ are the solutions to the first and second initial value problem respectively, then their sum $u+v$ is the solution to the initial value problem in the theorem.\\
+Note that if $v$ is the solution to the first problem, then $u(x,t):=\frac{\partial}{\partial t} v(x,t) $ is the solution to the second problem: 
+\begin{align*}
+   & \frac{\partial^2}{\partial t^2} u - \Delta u = \frac{\partial}{\partial t} \left( \frac{\partial^2}{\partial t^2} v - \Delta v \right) =0 \\
+    & u(x,0) = \frac{\partial}{\partial t} v(x,0) = h(x) \\
+    & \frac{\partial}{\partial t} u(x,0) = \frac{\partial^2}{\partial t^2} v(x,0) = \Delta v(x,0)=0.
+\end{align*}
+Thus, we only need to focus on the first initial value problem. Using that $n-1=2k \iff k-1= \frac{n-3}{2}$, we get with $g=0$: 
+    \begin{align*}
+        \frac{\partial^2}{\partial t^2} u(x,t) &= \frac{\partial^2}{\partial t^2} \frac{2^{k-1} (k-1)!}{(2k-1)!} \tilde{H}(x,t)  = \frac{\partial^2}{\partial t^2} \frac{2^{k-1} (k-1)!}{(2k-1)!} \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{k-1} t^{2k-1} H(x,t) \\
+        &\stackrel{i)}{=}  \frac{2^{k-1} (k-1)!}{(2k-1)!} \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{k} t^{2k} \frac{\partial}{\partial t} H(x,t) \\
+        &=  \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-1}{2}}   t^{n-1} \frac{\partial}{\partial t} \frac{1}{n \omega_n t^{n-1}} \int_{\partial B_t (x)} h(y) d\sigma (y) \\
+        &=  \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-1}{2}}   t^{n-1} \frac{\partial}{\partial t}\frac{1}{n \omega_n t^{n-1}} \int_{\partial B_1 (0)} h(x+tz) t^{n-1} d\sigma (z) \\
+        &=  \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-1}{2}}   t^{n-1} \frac{1}{n \omega_n } \int_{\partial B_1 (0)} \frac{\partial}{\partial t} h(x+tz)  d\sigma (z) \\
+        &=  \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-1}{2}}   t^{n-1} \frac{1}{n \omega_n t^{n-1} } \int_{\partial B_1 (0)} \nabla_x t^{n-1} h(x+tz) \cdot z  d\sigma (z) \\
+        &=  \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-1}{2}}   t^{n-1} \frac{1}{n \omega_n t^{n-1} } \int_{\partial B_t (x)}  \nabla h(z) \cdot \underbrace{\frac{z-x}{t}}_{=N(z)}  d\sigma (z) \\
+        &= \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-1}{2}} \left( \frac{1}{t} \frac{\partial}{\partial t} \right) \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{-1}  \frac{1}{n \omega_n  } \int_{ B_t (x)} \Delta h(z) d^n z \\
+         &= \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-3}{2}}   \frac{1}{n \omega_n t } \frac{\partial}{\partial t} \int_{ B_t (x)} \Delta h(z) d^n z\\
+         &= \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-3}{2}}   \frac{1}{n \omega_n t }  \int_{ \partial B_t (x)} \Delta h(z) d^n z\\
+        &= \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-3}{2}} t^{n-2}  \frac{1}{n \omega_n t^{n-1} }  \int_{ \partial B_t (0)} \Delta h(z+x) d^n z\\
+        &= \frac{2^{\frac{n-3}{2}} (\frac{n-3}{2})!}{(n-2)!} t \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-3}{2}} t^{n-2}   \fint_{ \partial B_t (0)} \Delta h(z+x) d^n z = \Delta u(x,t).
+    \end{align*}
+    Finally, it only remains to show the boundary limit for $t \to 0$. First, notice that 
+    \[
+    \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-3}{2}} t^{n-2} = \left( \frac{1}{t} \frac{\partial}{\partial t} \right)^{\frac{n-1}{2}} (n-2) t^{n-4}  \sim t^{n-2- 2 \frac{n-3}{2}} = t^1.
+    \]
+    Using this we get that the solution is asymptotically equvalent wrt. $t$ to :
+    \[
+    u(x,t) \sim \frac{\partial}{\partial t} t \fint_{\partial B_t (x)} g(y) d \sigma (y) + t \fint_{\partial B_t(x)} h(y) d \sigma (y).
+    \]
+    Thus we get 
+    \begin{align*}
+     & u(x,0)=  \lim_{t \to 0} \left( \frac{\partial}{\partial t} t \fint_{\partial B_t (x)} g(y) d \sigma (y) + t \fint_{\partial B_t(x)} h(y) d \sigma (y) \right) = g(x) \\
+      &\frac{\partial}{\partial t} u(x,0) = \lim_{t \to 0} \left( \frac{\partial}{\partial t} t \fint_{\partial B_t (x)} g(y) d \sigma (y) + t \fint_{\partial B_t(x)} h(y) d \sigma (y) \right)
+    \end{align*}
+}
 
 \end{document}
