@@ -92,93 +92,19 @@ is canonical, meaning that every element in $M$ is mapped to a unique equivalenz
 }
 
 
-
-
-
-
-
-
-\chapter{First order PDEs}
-
-\defn{}{
-    On $\Omega \subset \mathbb{R}^n$ the function $F: \Omega \times \mathbb{R}^{k+1} \to \mathbb{R}$ satisfying the equation 
+\thm{Inverse function Theorem}{
+    Let $X,Y$ be two Banach spaces and $U \subset X$ open and $f: U \to Y$. If $f^\prime$ at $x_0 \in U$ is invertible and continuous then it follows that $\exists V \subset U$ amd $W \subset Y$ open subsets of $x_0$ and $f(x_0)$ respectively such that 
     \[
-    F(D^k u(x),...,Du(x),u(x),x)=0, \quad k \in \mathbb{N}^n_0
+    f\big|_{V}: V \to W, 
+    \] 
+    is bijective and $\exists f^{-1}: W \to V$ is differentiable. Further, 
+    \[
+    (f^{-1})^\prime (y) = (f^\prime (f^{-1} (y)))^{-1}, \quad y \in W.
     \]
-    is called partial differential equation of order $|k|:= \sum_{i=1}^n k_i$ where $D^ku := (\partial^{k_1} \cdots \partial^{k_n})u$ are all partial derivatives of at most order $k$.
 }
 
-\defn{}{
-$u$ is called classical solution of the PDE if it is $k$-times differentiable and satisfies the PDE.
-}
-
-\rmkb{
-Some Notation:\\
-We write $\dot{u} := \frac{\partial}{\partial t} u$ and if $u: \Omega\times \mathbb{R}_+ \to \mathbb{R}$, where $\Omega \subset \mathbb{R}^d$ we write $(1,b) \nabla u = \dot{u}+b \nabla_xu$.\\
-We also often write $b \nabla u:= \langle b,\nabla u \rangle$.
-}
-
-\section{Homogeneous Transport}
-Consider the PDE
-$$
-\dot{u} + b \nabla u =0
-$$
-which is called linear transport equation. We first assume that $u$ is differentiable and satisfies the equation above, i.e. is a classical solution. For fixed initial values $(x_0,t_0) \in \mathbb{R}^n \times \mathbb{R}$ the function
-$$
-z(s) := u(x_0 + sb,t_0+s)
-$$
-is differentiable (because $u$ is). One can now show that its derivative vanishes
-$$
-z^\prime (s) = b \nabla_x u(x_0 + sb,t_0+s) +\underbrace{ \frac{\partial}{\partial t} u(x_0 + sb,t_0+s)}_{=\dot{u}(x_0 + sb,t_0+s) } \cdot 1 \stackrel{PDE}{=}0.
-$$
-Thus $u$ is constant on the linear function $x(s) := x_0 + sb$. Therefore, $u$ is constant along all lines with direction $(b,1)$. Further, $u$ is completely determined by all values on these parallel lines??? (WHy not $z(s,t) = u(x_0 + sb,t_0 +t)$???)
-
-\defn{}{
-We call for such a transport equation the following
-$$
-\dot{u}+f(u)=0, \quad u(x,0)=u_0(x)
-$$
-Cauchy problem. Here $\dot{u}+f(u)=0$ is called conservation law and $f$ is the flux (stems from inflow and outflow) function.
-}
-For initial values $(x_0,t_0)$ we can now solve the PDE, this is because the solution $u$ is constant on $x(t)$ and thus
-$$
-u(x(t),t)= u(x_0 +tb,t) \stackrel{const}{=} u(x_0,0) = g(x_0) = g(x-tb)
-$$
-where we used that $x=x_0+tb$ is equivalent to $x_0 =x-tb$. This if $g$ is differentiable on $\mathbb{R}^n$ then the above solves the PDE. If $g$ is not differentiable there does not exist a solution in a classical sense!
-\section{Inhomogenous linear transport Equation}
-We now consider 
-$$
-\dot{u} + b \nabla u =f
-$$
-with initial values $(x_0,0) \in \mathbb{R}^n \times \mathbb{R}$ and again we define $z(s) := u(x_0 + sb,s)$ yielding
-$$
-z^\prime (s) = b \nabla u(x_0+sb,s) + \dot{u}(x_0+sb,s) \stackrel{PDE}{=} f(x_0+sb,s)
-$$
-Because we now $z(0) = u(x_0,0)=g(x_0)$ we actually have to solve the IVP of an ODE
-$$
-z^\prime (s)= f(x_0+sb,s), \quad z(0) =g(x_0).
-$$
-We can integrate and determine $z(s)$ completely??? Only if the ODE is solvable???\\
-The solution to the ODE tells us the value $z(s) = u(x_0 +sb,s)$ on the line $x(t) := s_0 + sb$. Using this, we can now write the solution down explicitly
-\begin{align*}
-    u(x(t),t) = z(t)  &= z(0) + \int_0^t z^\prime (s) ds \\
-    &=g(x_0)+ \int_0^t f(x_0+sb,s) ds\\
-    &= g(x-tb) + \int_0^t\underbrace{ f(x-tb-sb,s)}_{=f(x+(s-t)b,s)} ds
-\end{align*}
-which looks like the variation of constant approach from ODEs. In the following chapters, we want to generalize this approach for solving PDEs using ODEs.
-\section{Scalar Conservation Law}
-A scalar conservation law is a homogeneous non-linear transport equation with one space dimension
-$$
-\dot{u}(x,t) + \frac{\partial }{\partial x} f(u(x,t)) \stackrel{(*)}{=} \dot{u}(x,t) + f^\prime (u(x,t)) \frac{\partial }{\partial x} u(x,t) =0,
-$$
-where (*) only works if $f$ is differentiable. THen we have on every compact interval $[a,b]$ (why???) that
-\begin{align*}
-    \frac{d}{dt} \int_a^b u(x,t) dx = \int_a^b \dot{u}(x,t) dx \stackrel{PDE}{=} - \int_a^b \frac{\partial}{\partial x} f(u(x,t)) dx = f(u(a,t))- f(u(b,t)).
-\end{align*}
-The change of a quantity in an interval $[a,b]$ thus soly depends on the in- and outflow of that quantity at the boundary with speed $f$ at time $t$.???
 
 
-\section{Reminder}
 
 \defn{}{
 A set $X$ and a system of sets $\mathcal{O} \subseteq \mathcal{P}(X) = \{ A \mid A \subseteq X \}$ with
@@ -299,6 +225,214 @@ This is space, that we do not want to consider, because its not a Hausdorff spac
 We call a topological Hausdorff space with an Atlas differentiable Manifold. 
 }
 The Idea here is that using an open cover of the topological space $X$, for each open set, we map using a map to an open subset of euklidean space, i.e. this what we call locally euklidean. 
+
+
+
+\chapter{First order PDEs}
+
+\defn{}{
+    On $\Omega \subset \mathbb{R}^n$ the function $F: \Omega \times \mathbb{R}^{k+1} \to \mathbb{R}$ satisfying the equation 
+    \[
+    F(D^k u(x),...,Du(x),u(x),x)=0, \quad k \in \mathbb{N}^n_0
+    \]
+    is called partial differential equation of order $|k|:= \sum_{i=1}^n k_i$ where $D^ku := (\partial^{k_1} \cdots \partial^{k_n})u$ are all partial derivatives of at most order $k$.
+}
+
+\defn{}{
+$u$ is called classical solution of the PDE if it is $k$-times differentiable and satisfies the PDE.
+}
+
+\rmkb{
+Some Notation:\\
+We write $\dot{u} := \frac{\partial}{\partial t} u$ and if $u: \Omega\times \mathbb{R}_+ \to \mathbb{R}$, where $\Omega \subset \mathbb{R}^d$ we write $(1,b) \nabla u = \dot{u}+b \nabla_xu$.\\
+We also often write $b \nabla u:= \langle b,\nabla u \rangle$.
+}
+
+\section{Homogeneous Transport}
+For $u: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$, $b \in \mathbb{R}^n$ one of the simplest partial differential equations is the homogeneuos transport equation 
+\[
+\dot{u} + n \cdot \nabla u=0,
+\]
+where $\cdot$ denotes in the entire script the dot product and $\nabla$ the sum of all partial derivatives wrt. $x$ only. We begin by assuming that $u$ is differentiable, then define
+\[
+\forall (x_0 , t_0) \in \mathbb{R}^n \times \mathbb{R}: \quad z(s) := u (x_0 + sb,t_0 s),
+\]
+is a differentiable function wrt. $s \in \mathbb{R}$. The first derivative is 
+\[
+z^\prime (s) =b \nabla_x u(x_0 + sb,t_0+s) +\underbrace{ \frac{\partial}{\partial t} u(x_0 + sb,t_0+s)}_{=\dot{u}(x_0 + sb,t_0+s) } \cdot 1 = b \cdot \nabla (x_0 + sb,t_0 s) + \dot{u}(x_0+sb,t_0+s) \stackrel{Def. \; PDE}{=} 0.
+\]
+Therefore, we conclude that $u$ is constant along all lines in the direction $(b,1)$. Because these lines make up the entire space $\mathbb{R}^n \times \mathbb{R}$ $u$ is completely determined by these lines.
+\defn{Initial Value Problem (Cauchy Problem)}{
+We seek to find a solution $u: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ of the linear homogenuous transport equation 
+$$
+\dot{u}+b \cdot \nabla u=0, \quad u(x,0)=g(x)
+$$
+where $g: \mathbb{R}^n \to \mathbb{R}$ is some function.
+}
+The one dimensional homogeneous transport equation $\dot{u} + \nabla f(u)=0$ is also called conservation law and $f$ is the flux (stems from inflow and outflow) function.
+
+
+
+
+
+
+
+
+
+For initial values $(x_0,t_0)$ we can now solve the PDE, this is because the solution $u$ is constant on $x(t)$ and thus
+$$
+u(x(t),t)= u(x_0 +tb,t) \stackrel{const}{=} u(x_0,0) = g(x_0) = g(x-tb)
+$$
+where we used that $x=x_0+tb$ is equivalent to $x_0 =x-tb$. Thus, if $g$ is differentiable on $\mathbb{R}^n$ then the above solves the PDE. If $g$ is not differentiable there does not exist a solution in a classical sense! Now lets generalize.
+\section{Inhomogenous linear transport Equation}
+For $u,f : \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$, $b \in \mathbb{R}^n$ we call 
+\[
+\dot{u} + b \cdot \nabla u =f ,
+\]
+linear inhomogeneous transport equation.
+\defn{Initial Value Problem (Cauchy Problem)}{
+For $f: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$, $b \in \mathbb{R}^n$ we seek to find a solution $u: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ of the linear homogenuous transport equation 
+$$
+\dot{u}+b \cdot \nabla u=0, \quad u(x,0)=g(x)
+$$
+where $g: \mathbb{R}^n \to \mathbb{R}$ is some function.
+}
+In a similar way as before, we define 
+\[
+\forall (x_0,\underbrace{t_0}_{=0}) \in \mathbb{R}^n \times \mathbb{R}: \quad z(s):= u(x_0 +sb,s),
+\]
+which is differentiable wrt. $s$ and satisfies 
+\[
+z^\prime (s) = b \cdot \nabla u(x_0 +sb,s)+ \dot{u}(x_0 +sb,s) \stackrel{PDE \; Def}{=} f(x_0 + sb,s).
+\]
+Note that the right hand side is only a function of $s$. Moreover, $z(0) = u(x_0,0)=g(x_0)$ is known. This is exactly an ODE. THe solution might not be constant along the lines $(x_0 + sb,s)$, but it is only dependend on $f$. I.e. for every initial value $(x_0,0)$ we have an ODE along the parallel lines. This means that $u$ is completely determined by them. We can solve this ODE in the same way as in ODE theory: 
+\begin{align*}
+    u(x,t) &= z(t) = z(0) + \int_0^t z^\prime (s) ds = g(x_0) + \int_0^t f(x_0 + sb,s) ds \\
+    &= g(x-tb) + \int_0^t f(x-tb+sb,s) ds.
+\end{align*}
+\section{Scalar Conservation Law}
+We now consider a one dimensional non-linear transport equation called scalar conservation law: Find $u: \mathbb{R} \times \mathbb{R} \to \mathbb{R}$ such that 
+\[
+\dot{u} (x,t) + \frac{\partial }{\partial x} f(u(x,t)) = \dot{u}(x,t) + f^\prime (u(x,t)) \frac{\partial}{\partial x} u(x,t) =0,
+\]
+for a smooth function $f: \mathbb{R} \to \mathbb{R}$. For any compact intervall $[a,b] \subset \mathbb{R}$ we have 
+\[
+\frac{d}{dt} \int_a^b u(x,t) = \int_a^b \dot{u} (x,t) = - \int_a^b \frac{\partial}{\partial x} g(u(x,t)) dx = f(u(a,t)) - f(u(b,t)).
+\]
+This means that the change of "mass" on the intervall $[a,b]$ over time is soley dependend on the boundary $\partial [a,b] = \{a,b\}$. \\
+We now want to apply the method of characteristics here. However, now we cannot presume that the characteristic curves $(x(s),s)$ are parallel strate lines. Define $z(s) := u(x(s),t(s))$, then 
+\[
+z^\prime (s) = \frac{\partial}{\partial x} u(x(s) , t(s) ) x^\prime (s) + \frac{\partial}{\partial t} u(x(s),t(s)).
+\] 
+Choose $x^\prime (s) := f^\prime (u(x(s),t(s)))$ and $t^\prime (s)=1$, then we have 
+\[
+z^\prime (s) = \frac{\partial}{\partial x} u(x(s) , s ) f^\prime (s) (u(x(s),s) ) + \dot{u}(x(s),s) =0 ,
+\]
+Thus, along these curves the solution is constant. We now need to answer the following questions 
+\begin{itemize}
+    \item How to determine z?\\
+    We assume the characteristics begin at $(x_0,0)$, i.e. $x(0)=x_0$. Because we have shown that $z$ is constant along $(x(s),s)$ it follows 
+    \[
+    z(s) = u(x(0),0 ) = u(x_0,0) = g(x_0),
+    \]
+    which answers the question.
+    \item Does $x(s)$ exists? \\
+    First, note that 
+    \[
+    x^\prime (s) = f^\prime (u(x(s),s)) = f^\prime (z(s) ) = f^\prime (g(x_0)),
+     \]
+     which implies that 
+     \[
+     x(s) = \underbrace{x(0)}_{=x_0} + s f^\prime (g(x_0)) = x_0 + s f^\prime (g(x_0)) .
+     \]
+     Thus, $x(s)$ exists.
+\end{itemize}
+Is $u$ uniquely determined by the characteristic lines? This is a difficult question, whose answer will be answered in the remainder of this section. First, see that if $\mathbb{R} \to \mathbb{R}, s \mapsto x(s)$ is surjective we know that every point $(x,t)$ has at least one line going through assigning at least one initial value. In that case $u$ would be completly determined by the initial values, however not unqiue, because we can have two initial values $x_1$ and $x_2$ such that 
+\[
+ g(x_1) \stackrel{constant}{=} u(x_1 + s f^\prime (g(x_1)) , t ) = u (x_2 + s f^\prime (g(x_2)) , t)  \stackrel{constant}{=}g(x_2). 
+\]
+If additionally this mapping is injective, then there is exactly one initial value dtermining the solution at $u(x(t),t)$. However, bijectivity alone does not suffice. ??? We need further that this map and its inverse is continuously differentiable.???
+
+\thm{}{
+    Let $f \in C^2 (\mathbb{R},\mathbb{R})$, $g \in C^1 (\mathbb{R},\mathbb{R})$ and $f^{\prime \prime} (g(x)) g^\prime (x) > - \alpha$ for all $x \in \mathbb{R}$ and for some $\alpha \geq 0$ then it follows that there exists a unique $u \in C^1 (\mathbb{R},\mathbb{R})$ called $C^1$ solution of the initial value problem 
+    \[
+    \frac{\partial}{\partial t} u(x,t) + f^\prime (u(x,t)) \frac{\partial}{\partial x} u(x,t) =0, \quad u(x,0) = g(x)
+    \]
+    on $\mathbb{R}\times [0,\alpha^{-1})$ if $\alpha>0$ and on $\mathbb{R}\times [0,\infty)$ if $\alpha=0$.
+}
+\pf{
+    We have already shown that the solution on $(x(t),t)$, where $x(t) = x_0 + t f^\prime (g(x_0))$, is constant and equal to $g(x_0)$, i.e. 
+    \[
+    u(x(t),t) = g(x_0).
+    \]
+    \begin{itemize}
+        \item Let $t \geq 0$ such that $1-t \alpha >0$:\\
+        Then it follows 
+        \[
+        \frac{\partial}{\partial x_0} x(t) = \frac{\partial}{\partial x_0} (x_0 + t f^\prime g(x_0)) = 1 + t g^\prime (x_0) f^{\prime \prime} (g(x_0)) \stackrel{Assumption}{\geq } 1 -t \alpha >0.
+        \]
+        This implies  that $x(t)$ is strictly increasing in $x_0$ and by that is injective. Further, because $f,g \in C^1$ the term $f^\prime (g(x_0))$ is bounded for all $x_0 \in \mathbb{R}$ and implying 
+        \[
+        \lim_{x_0 \to \pm \infty} x_0 + t f^\prime (g(x_0))= \pm \infty.
+        \]
+        This with property with the strictly increasing condition wrt. $x_0$ implies surjectivity. Thus, $x$ is bijective. We now want to apply the inverse function theorem. For that we need to show that $x^\prime (t)$ is invertible and continuous wrt. $x_0$.\\
+        Invertibility: Because we have shown that $ \frac{\partial}{\partial x_0} x(t)$ is positive, it is also invertible (compare positive definite).\\
+        $x(t)$ is continuous wrt. $x_0$, as it is a composition of functions in $C^1$ and $C^2$. \\
+        Thus, with the inverse function theorem, it follows that $x^{-1}$ exists locally (on open subsets). Due to the fact that $x(t)$ is a bijection wrt. $x_0$ it follows that this existence extends globally. We have now shown that $x(t)$ is a $C^1$ diffeomorphism from $\mathbb{R}$ to $\mathbb{R}$. This implies 
+        \[
+        \forall x \in \mathbb{R} \exists ! x_0 \in \mathbb{R}: \quad x(t) = x_0 + t f^\prime (g(x_0)).
+        \]
+        So finally, $u(x(t),t) = u ( x_0 + t f^\prime (g(x_0)), t) = u(x_0,0) = g(x_0)$ solves the equation for all $t \in [0,\infty)$.
+        \item Let $t \geq $ such that $1-t \alpha \leq 0$:\\
+        All arguments are the same, except for the positivity of the derivative of the characteristic: 
+        \[
+        \frac{\partial}{\partial x_0} x(t) \stackrel{like \; above}{\geq} 1 - t \alpha >0 \quad \iff \quad t \leq \frac{1}{\alpha} \quad \iff \quad 1-t\alpha \leq 0.
+        \]
+        Thus, with the above arguments $u(x(t),t) = u ( x_0 + t f^\prime (g(x_0)), t) = u(x_0,0) = g(x_0)$ solves the equation for all $t \in [0,\alpha^{-1})$.
+    \end{itemize}
+}
+
+\rmkb{
+    For $f(u) := \frac{1}{2} u^2$ the Burgers equation is 
+    \[
+    \dot{u}(x,t) + \frac{\partial}{\partial x} f(u(x,t)) = \dot{u} (x,t) + u(x,t) \frac{\partial}{\partial x} u(x,t) =0,
+    \]
+    is called Burgers erquation. Because $f^\prime (u)) = u$ it follows $x(t) = x_0 + g(x_0) t$. Thus, if the initial value $g$ is continuously differentiable and monotonically increasing if follows 
+    \[
+    f^{\prime \prime} (g(x)) g^\prime (x) \geq 1 \cdot \underbrace{g^\prime (x)}_{\geq 0} > - \alpha, \quad \alpha \geq 0,
+    \] 
+    which implies the solution of the initial value problem is 
+    \[
+    u(x+t g (x) ,t) = g(x),
+    \]
+    on $\mathbb{R} \times [0,\infty)$ or $\mathbb{R} \times [0,\alpha^{-1})$.
+}
+
+\section{Weak Solutions}
+In the above we required the solution to be differentiable. Further, we had cases where there were no or non-unique solutions. In this section we take scalar conservation laws and discuss a more general approach for solutions. We focus on the intervall $\Omega = [a,b]$, $a < b \in \mathbb{R}$. The scalar conservation law $\frac{\partial}{\partial t} u + \frac{\partial}{\partial x} f(u) =0$ integrated on $[a,b]$ is 
+\[
+ \int_a^b  \frac{\partial}{t} u(x,t) dx = - \int_a^b \frac{\partial}{\partial x} f(u(x,t)) dx = f(u(a,t)) - f(u(b,t)).
+\]
+Thus, if we assume that $u$ is not differentiable we can formulate this initial value problem as 
+\[
+ \frac{\partial}{t} \int_a^b   u(x,t) dx = f(u(a,t)) - f(u(b,t)).
+\]
+In the last theorem the classical solution was formulated in such a way that it existed either up to time $\alpha^{-1}$ or $\infty$ depending on $\alpha\geq 0$. After time $\alpha^{-1}$ this solution does not exist in classical sense. Here we want to formulate a weak solution, that exists for all $t>0$. As the characteristic curves intersect beyond this time discontinuities will appear. Let $\{ (x,t) \mid x= y(t) \}$ be such a discontinuity, that moves along this graph, where we assume that $y$ is a $C^1$ function. We solve for the solution by splitting the intervall $[a,b] = [a,y(t)] \cup [y(t),b]$, i.e. 
+\begin{align*}
+    &f(u(a,t)) - f(u(b,t)) \\
+    &\stackrel{above}{=} \frac{d}{dt} \int_a^b u(x,t) dx = \frac{d}{dt} \int_a^{y(t)} u(x,t) dx + \frac{d}{dt} \int_{y(t)}^b u(x,t) dx\\
+    &\stackrel{Leipnitz}{=} y^\prime (t) \lim_{ x \nearrow y(t) } u(x,t) - 0 \cdot \lim_{ x \searrow y(t) } u(x,t) + \int_a^{y(t)} \frac{\partial}{\partial t } u(x,t) dx \\
+    &+ 0 \cdot \lim_{ x \nearrow y(t) } u(x,t) - y^\prime (t) \lim_{ x \searrow y(t) } u(x,t) + \int_{y(t)}^b \frac{\partial}{\partial t } u(x,t) dx \\
+    &=  y^\prime (t) \underbrace{\lim_{ x \nearrow y(t) } u(x,t)}_{=: u_l (y(t),t)} - y^\prime (t) \underbrace{\lim_{ x \searrow y(t) } u(x,t)}_{=: u_r (y(t),t)}+ \int_a^{y(t)} \frac{\partial}{\partial t } u(x,t) dx + \int_{y(t)}^b \frac{\partial}{\partial t } u(x,t) dx \\
+    &\stackrel{PDE}{=} y^\prime (t) (u_l (y(t),t) - u_r (y(t),t)) - \int_a^{y(t)} \frac{\partial}{\partial x} f(u(x,t)) dx - \int_{y(t)}^b \frac{\partial}{\partial x} f(u(x,t)) dx \\
+    &= y^\prime (t) (u_l (y(t),t) - u_r (y(t),t)) + f(u(a,t)) - f(u(b,t)) + \lim_{x \searrow y(t)} f(u(x,t)) - \lim_{x \nearrow y(t)} f(u(x,t))\\
+    &= y^\prime (t) (u_l (y(t),t) - u_r (y(t),t))+ f(u(a,t)) - f(u(b,t)) + f(u_r (y(t),t)) - f(u_l(y(t),t))
+\end{align*}
+The above is equivalent to 
+\[
+y^\prime (t) = \frac{  f(u_l(y(t),t)) -f(u_r (y(t),t)) }{u_l (y(t),t) - u_r (y(t),t)}.
+\]
+
 
 \section{Non-characteristic Hypersurfaces}
 We now consider $F: W \to \mathbb{R}$ with $W \subset \mathbb{R}^n \times \mathbb{R} \times \Omega$ open as the first order PDE
