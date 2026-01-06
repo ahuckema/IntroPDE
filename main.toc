@@ -6,32 +6,32 @@
 \contentsline {section}{\numberline {2}Inhomogenous linear transport Equation}{8}{section.1.2}%
 \contentsline {section}{\numberline {3}Scalar Conservation Law}{9}{section.1.3}%
 \contentsline {section}{\numberline {4}Weak Solutions}{11}{section.1.4}%
-\contentsline {section}{\numberline {5}Non-characteristic Hypersurfaces}{12}{section.1.5}%
-\contentsline {section}{\numberline {6}Method of Characteristics}{14}{section.1.6}%
-\contentsline {chapter}{\numberline {2}General Concepts}{17}{chapter.2}%
-\contentsline {section}{\numberline {1}Divergence Theorem}{17}{section.2.1}%
-\contentsline {section}{\numberline {2}Distributions}{19}{section.2.2}%
-\contentsline {chapter}{\numberline {3}Laplace equation}{27}{chapter.3}%
-\contentsline {section}{\numberline {1}Fundamendal Solution}{27}{section.3.1}%
-\contentsline {section}{\numberline {2}Mean Value Property}{32}{section.3.2}%
-\contentsline {section}{\numberline {3}Maximum Principle}{43}{section.3.3}%
-\contentsline {section}{\numberline {4}Green's Function}{45}{section.3.4}%
-\contentsline {section}{\numberline {5}Dirichlet Principle}{56}{section.3.5}%
-\contentsline {section}{\numberline {6}A PDE with no solutions}{57}{section.3.6}%
-\contentsline {chapter}{\numberline {4}Heat Equation}{59}{chapter.4}%
-\contentsline {section}{\numberline {1}Fundamental Solution of the Heat Equation}{59}{section.4.1}%
-\contentsline {section}{\numberline {2}Inhomogeneous Initial value problem}{62}{section.4.2}%
-\contentsline {section}{\numberline {3}Mean Value Property}{64}{section.4.3}%
-\contentsline {section}{\numberline {4}Maximumsprinciple}{67}{section.4.4}%
-\contentsline {section}{\numberline {5}Heat Kernel}{74}{section.4.5}%
-\contentsline {section}{\numberline {6}Spectral Theory and the Heat Equation}{77}{section.4.6}%
-\contentsline {section}{\numberline {7}Heat Kernel of $S^1$}{84}{section.4.7}%
-\contentsline {section}{\numberline {8}Heat Kernel of $(0, 1)$}{86}{section.4.8}%
-\contentsline {chapter}{\numberline {5}Wave Equation}{91}{chapter.5}%
-\contentsline {section}{\numberline {1}D'Alemberts Formula $n=1$}{91}{section.5.1}%
-\contentsline {section}{\numberline {2}Spherical Means of the Wave equation}{94}{section.5.2}%
-\contentsline {section}{\numberline {3}Solution in 3 Dimensions}{96}{section.5.3}%
-\contentsline {section}{\numberline {4}Solution in 2 Dimensions}{97}{section.5.4}%
-\contentsline {section}{\numberline {5}Solution in odd Dimensions}{99}{section.5.5}%
-\contentsline {section}{\numberline {6}Solution in even Dimension}{104}{section.5.6}%
+\contentsline {section}{\numberline {5}Non-characteristic Hypersurfaces}{14}{section.1.5}%
+\contentsline {section}{\numberline {6}Method of Characteristics}{18}{section.1.6}%
+\contentsline {chapter}{\numberline {2}General Concepts}{19}{chapter.2}%
+\contentsline {section}{\numberline {1}Divergence Theorem}{19}{section.2.1}%
+\contentsline {section}{\numberline {2}Distributions}{21}{section.2.2}%
+\contentsline {chapter}{\numberline {3}Laplace equation}{29}{chapter.3}%
+\contentsline {section}{\numberline {1}Fundamendal Solution}{29}{section.3.1}%
+\contentsline {section}{\numberline {2}Mean Value Property}{34}{section.3.2}%
+\contentsline {section}{\numberline {3}Maximum Principle}{45}{section.3.3}%
+\contentsline {section}{\numberline {4}Green's Function}{47}{section.3.4}%
+\contentsline {section}{\numberline {5}Dirichlet Principle}{58}{section.3.5}%
+\contentsline {section}{\numberline {6}A PDE with no solutions}{59}{section.3.6}%
+\contentsline {chapter}{\numberline {4}Heat Equation}{61}{chapter.4}%
+\contentsline {section}{\numberline {1}Fundamental Solution of the Heat Equation}{61}{section.4.1}%
+\contentsline {section}{\numberline {2}Inhomogeneous Initial value problem}{64}{section.4.2}%
+\contentsline {section}{\numberline {3}Mean Value Property}{66}{section.4.3}%
+\contentsline {section}{\numberline {4}Maximumsprinciple}{69}{section.4.4}%
+\contentsline {section}{\numberline {5}Heat Kernel}{76}{section.4.5}%
+\contentsline {section}{\numberline {6}Spectral Theory and the Heat Equation}{79}{section.4.6}%
+\contentsline {section}{\numberline {7}Heat Kernel of $S^1$}{86}{section.4.7}%
+\contentsline {section}{\numberline {8}Heat Kernel of $(0, 1)$}{88}{section.4.8}%
+\contentsline {chapter}{\numberline {5}Wave Equation}{93}{chapter.5}%
+\contentsline {section}{\numberline {1}D'Alemberts Formula $n=1$}{93}{section.5.1}%
+\contentsline {section}{\numberline {2}Spherical Means of the Wave equation}{96}{section.5.2}%
+\contentsline {section}{\numberline {3}Solution in 3 Dimensions}{98}{section.5.3}%
+\contentsline {section}{\numberline {4}Solution in 2 Dimensions}{99}{section.5.4}%
+\contentsline {section}{\numberline {5}Solution in odd Dimensions}{101}{section.5.5}%
+\contentsline {section}{\numberline {6}Solution in even Dimension}{106}{section.5.6}%
 \contentsfinish 

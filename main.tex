@@ -432,44 +432,191 @@ The above is equivalent to
 \[
 y^\prime (t) = \frac{  f(u_l(y(t),t)) -f(u_r (y(t),t)) }{u_l (y(t),t) - u_r (y(t),t)}.
 \]
+This is called the Rankine-Hugonoit condition, where $y^\prime(t)$ is the speed of the discontinuity, also called shock speed.
+\exm{}{
+    Consider the Burgers equation 
+    \begin{align*}
+    &\dot{u} + \frac{\partial}{\partial x} \frac{1}{2} u^2 = \dot{u} +u \frac{\partial}{\partial x} u =0, \quad \text{ on } \mathbb{R} \times \mathbb{R}^+\\
+    & u(x,0)= g(x) = \begin{cases}
+        1 &, x \leq 0\\
+        1-x &, 0 \leq x < 1\\
+        0 &,1 \leq x
+    \end{cases}
+    \end{align*}
+    As $f^\prime (u) =u$ it follows that the characteristics are given by 
+    \[
+    x(t) = x_0 + t f^\prime (g(x_0))= x_0 + t g(x_0) = \begin{cases}
+        x_0 + t &, x_0 \leq 0 \\
+        x_0 + t (1-x_0) &, 0 < x_0 < 1\\
+        x_0 &, 1 \leq x_0 
+    \end{cases}
+    \]
+    We see that at time $t=1$ the characteristics intersect. Its inverse is given by 
+    \[
+    x_0 \mapsto \begin{cases}
+         x-t &, x_0 \leq 0 \iff x-t\leq \\
+        \frac{x-t}{1-t}) &, 0 < x_0 < 1 \iff  t < x <1\\
+        x &, 1 \leq x_0 \iff 1 \leq x
+    \end{cases}
+    \]
+    We have shown that the solution of this type of PDE is constant along the characteristic curvers, i.e. 
+    \[
+    u(x(t),t) = g(x_0) = \begin{cases}
+       1 &, x_0 \leq 0 \iff x\leq t\\
+        1- \frac{x-t}{1-t} = \frac{1-x}{1-t} &, 0 < x_0 < 1 \iff  t < x <1\\
+        0 &, 1 \leq x_0 \iff 1 \leq x
+    \end{cases}
+    \]
+    is the solution for $t<1$. One can show that for $t>1$ a solution of the form exists of the form 
+    \[
+    u(x,t) = \begin{cases}
+        1 &, x<y(t) \\
+        0 &,x>y (t)
+    \end{cases}
+    \]
+    where $y(t)$ is the discontinuity that arises after $t=1$. Note that this solution exists if and only if the Rankine-Hugonoit condition is satisfied. The speed of the shock is the Rankine-Hugonoit condition 
+    \[
+    y^\prime (t) =\frac{  f(u_l(y(t),t)) -f(u_r (y(t),t)) }{u_l (y(t),t) - u_r (y(t),t)} = \frac{\frac{1}{2}\cdot 1^2-0}{1-0}=\frac{1}{2}.
+    \]
+    The characteristic on which the shock moves is a linear function going through $(1,1)$ and having slope $1/2$, i.e.
+    \[
+    y(t) = \frac{1}{2} (t-1) +1 .
+    \]
+}
 
+\exm{}{
+    Consider the Burgers equation 
+    \begin{align*}
+    &\dot{u} + \frac{\partial}{\partial x} \frac{1}{2} u^2 = \dot{u} +u \frac{\partial}{\partial x} u =0, \quad \text{ on } \mathbb{R} \times \mathbb{R}^+\\
+    & u(x,0)= g(x) = \begin{cases}
+        0 &, x < 0\\
+        1 &, x>0
+    \end{cases}
+\end{align*}
+    Then, 
+    \[
+    u(x,t) = \begin{cases}
+        0 &, x<y(t)\\
+        1 &, y(t)>x
+        \end{cases}
+    \quad \text{ is a solution } \quad \iff \quad y^\prime (t) =  \frac{  f(u_l(y(t),t)) -f(u_r (y(t),t)) }{u_l (y(t),t) - u_r (y(t),t)} = \frac{1}{2}.
+    \]
+    This time the shock starts in $(0,0)$ which implies that $y(t) = \frac{t}{2}$. However, now there exists another continuous solution that also satisfies the Rankine-Hugonoit condition:
+    \[
+    u(x,t) = \begin{cases}
+        0 &, x \leq 0\\
+        \frac{x}{t} &, 0 < x < t \\
+        1 &, t \leq x
+    \end{cases}
+    \]
+    Which solution is now the correct one?
+}
+Since the goal is to maximize regularity, we only accept a discontinuous weak solution if there are not continuous solutions. Thus in the above case, we would choose the continuous solution. Can we specify this?:
+\defn{Lax Entropy Condition}{
+    A discontinuity of a weak solution along a $C^1$ path $t \mapsto y(t)$ satisfies the Lax Entropy condition if 
+    \[
+    f^\prime ( y_l (y(t),t)) > \dot{y}(t) > f^\prime (u_r (y(t),t)).
+    \]
+    A weak solution with discontinuities along $C^1$ paths is called an admissible solution, if it satisfies both the Rankine Hugonoit condition and the Lax Entropy condition.
+}
+So we choose a weak solution with discontinuities to be the "physically correct" one, if it satisfies additionally to the Rankine Hugonoit condition the Lax Entropy condition. In the following we show the uniqueness and existence of the admissible solution.
+\thm{Uniqueness}{
+    Let $f \in C^1 (\mathbb{R},\mathbb{R})$ be conves and $u$ and $v$ two admissible solution of 
+    \[
+    \dot{u} (x,t) + f^\prime (u(x,t)) \frac{\partial}{\partial x} u(x,t) =0, \quad u \in L^1 (\mathbb{R}),
+     \]
+     then $t \mapsto \| u(\cdot,t) - v(\cdot,t) \|_{L^1(\mathbb{R})}$ is monotonically decreasing.
+}
+\pf{
+    ???Skipped
+}
+As the norm is non negative it follows that it reaches zero eventually??? This implies uniqueness, if of the admissible solution if it exists.
+\thm{Existence}{
+    For $f \in C^2 (\mathbb{R},\mathbb{R})$ is strictly convex and $g \in L^1 (\mathbb{R}) \cap L^\infty(\mathbb{R})$, then 
+    \[
+    \exists ! u \text{ admissible solution of } \quad \dot{u} + f^\prime (u) \frac{\partial}{\partial x} u = 0, \text{ on }\mathbb{R} \times \mathbb{R}^+, \text{ and } u(x,0)=g(x), x \in \mathbb{R}.
+    \]
+}
 
 \section{Non-characteristic Hypersurfaces}
-We now consider $F: W \to \mathbb{R}$ with $W \subset \mathbb{R}^n \times \mathbb{R} \times \Omega$ open as the first order PDE
-$$
-F(\nabla u(x),u(x),x)=0
-$$
-where the solution $u:\Omega \to  \mathbb{R}$ is defined on the open domain $\Omega \subseteq \mathbb{R}^n$ and has the boundary condition
-$$
-u(y) = g(y), \quad \forall y \in \Sigma := \{ x \in \Omega \mid \varphi (x) = \varphi (x_0)  \}
-$$
-on the level set of a function $\varphi$.\\
-In this section we will show that we can reformulate the boundary condition of the Cauchy problem as
-$$
-u(y) = g(y), \quad \forall y \in \Omega \cap H, \text{ where } H:= \{ x \in \mathbb{R}^n \mid xe_n =x_0 e_n =0 \}
-$$
-is the unique hyperplane through $x_0 \in \Omega$ that is orthogonal to $e_n =(0,....,0,1)$.\\
-If $\nabla \varphi (x_0)\neq 0$ we can assume w.l.o.g that $\frac{\partial}{\partial x_n} \varphi (x_0) \neq 0$ which leads wit the inverse function theorem to the conclusion that
-$$
-x \mapsto \Phi(x) := (x_1,...,x_{n-1},\varphi(x))
-$$
-is continuous differentiable and for every $x$ in an open neighborhood of $x_0$ it holds that $x = \Phi^{-1} (x).$ Then it holds that 
-$$
-\varphi (x) = \varphi (x_0) \quad \iff \quad y e_n =  (\Phi (x))_n =\varphi (x).
-$$
-We call this straightening of the boundary at $x_0$. Then for a function $v: \Omega^\prime \to \mathbb{R}$ and $u:= v \circ \Phi$ we get that 
-$$
-\nabla u(x) = \nabla v (\Phi (x)) = \nabla v (y) \Phi^\prime (\Phi^{-1}(y)),
-$$
-where $\Phi^\prime$ is the Jacobi Matrix. Thus, we get the relation that $u$ is a solution of $F(\nabla u(x), u(x) ,x)=0$ $\iff$ $v$ is a solution of 
-$$
-G(\nabla v(y),y(y),y) := F(\nabla v(y) \Phi^\prime (\Phi^{-1}(y)),v(y) , \Phi^{-1}(y))=0
-$$
-Next, we ask ourselves the question what information we can gather about $u$ using the Hyperplane $H$? Due to the fact that the Hyperplane is orthogonal to $e_n$, we can compute the partial derivatives of $u$ on the hyperplane in $n-1$ directions, i.e. for $x_0 \in H$:
-$$
-\frac{\partial}{\partial x_i} u(x_0) = \lim_{h \to 0} \frac{u(x_0+he_i)-u(x_0)}{h} \stackrel{Boundray}{=} \lim_{h \to 0} \frac{g(x_0+he_i)-g(x_0)}{h} = \frac{\partial }{\partial x_i} g(x_0), i=1,...,n-1.
-$$
-This does not work for $\frac{\partial}{\partial x_n} g(x_0)$, because $g$ is only defined on $H \cap \Omega$ which is orthogonal to $e_n$. 
+Until now we had boundary conditions at time $t=0$ and on the entire domain. To generalize consider $\Sigma \subset \Omega \subseteq \mathbb{R}^n$ where $\Omega$ is our domain and on the level set of $\varphi$ given by $\Sigma :=\{ x \in \Omega \mid \varphi (x) = \varphi (x_0) \}$ we define the boundary condition. We assume that $\varphi$ is a $C^1$ function. \\
+Consider the first order PDE 
+\[
+F(\nabla u (x), u(x), x)=0, \quad u(y) = g(y), \quad \forall y \in \Sigma,
+\]
+where $F: W \subset \mathbb{R}^n \times \mathbb{R} \times \Omega \to \mathbb{R}$ and $g: \Omega^\prime \to \mathbb{R}$. First, we show that locally (on open neighborhoods of $x_0$) that the boundary condition of every Cauchy problem (i.e. the above) can be brought into the following form:
+\[
+u(y) = g(y), \quad \forall y \in \Omega \cap H, \quad \text{ where } 
+H:= \{ x \in \mathbb{R}^n \mid x^T e_n = x_0^T e_n \}.
+\]
+Here $e_n$ is the unit vector. We show that $H$ is unique in $x_0$ and orthogonal to $e_n$. \\
+Assume $\nabla \varphi (x_0) \neq 0$, i.e. there exists at least one $i\leq n$ such that $\frac{\partial}{\partial x_i} \varphi(x_0) \neq 0$. Simply permuting the coordinates gives us that $\frac{\partial}{\partial x_n} \varphi(x_0) \neq 0$. This condition will be now used:\\
+Define $\Phi: \Omega \to \mathbb{R}, \quad x \mapsto (x_1,...,x_{n-1},\varphi (x))$, then its Jacobian is given by 
+\[
+D \Phi (x) = \begin{pmatrix}
+    Id_{n-1 \times n-1}\\
+    \nabla \varphi (x_0)^T
+\end{pmatrix}.
+\]
+Thus $\Phi^\prime$ is continuous and invertible(due to the non negativity assumed above), which implies with the inverse function theorem that in a neighborhood of $x_0$ there eixsts $x= \Phi^{-1} (y)$.\\
+Due to $\Phi (x) =y$ it gollows that 
+\[
+\varphi (x_0) = \varphi (x) = y_n = y \cdot e_n \quad \iff \quad \varphi (x_0) = \varphi (x).
+\]
+Next, we show that $H$ is orthogonal to $e_n$. For every tangent vector $w \in H$ consisting of the difference of two elements $w:= p-q$, where $p,q \in H$, it follows 
+\[
+w^T e_n = p^T e_n - q^T e_n = \varphi (x_0)-\varphi (x_0)=0.
+\]
+So the boundary straightens at $x_0$. We just transformed the boundary using $\Phi$. This also has to be done with the solution. Define $u:= v \circ \Phi$. It satisfies 
+\[
+\nabla u (x) = \nabla v(\Phi (x)) \Phi^\prime (x) = \nabla v(y) \Phi^\prime (\Phi^{-1} (y)).
+\]
+If $u$ satisfies the PDE 
+\[
+F(\nabla u (x), u(x),x) =0,
+\]
+then it is equivalen to 
+\[
+F(\nabla u (x), u(x),x)  = F(  \nabla v(y) \Phi^\prime (\Phi^{-1} (y)), u(\Phi^{-1}(x)) , \Phi^{-1} (y)) =0.
+\]
+Thus, we can indeed assume locally that the boundary condition is a hyperplane, if we adjust the PDE respectively.\\
+Next, we ask ourselves the question what information we can gather about $u$ using the Hyperplane $H$? We can determine some partial derivatives of $u$ 
+\[
+\forall i=1,...,n-1: \frac{\partial}{\partial x_i} u(x_0) = \lim_{h \to 0} \frac{u(x_0+he_i)-u(x_0)}{h} = \lim_{h \to 0}  \frac{g(x_0+he_i)-g(x_0)}{h} = \frac{\partial}{\partial x_i} g(x_0).
+\]
+However
+\[
+\frac{\partial}{\partial x_n} u(x_0) = \lim_{h \to 0} \frac{u(x_0+he_n)-u(x_0)}{h}
+\]
+cannot be determined, as $x_0+he_n$ is not in $H$.\\
+In the remainder of this section, we can show that the PDE on this simplified hyperplane $H$ only depends on $F$ and the initial condition $g$. We do this by substituting some variables. For $x_0 \in H$ it holds 
+\[
+F(\nabla u(x_0),u(x_0),x_0) = F( \left( \frac{\partial}{\partial x_1} g(x_0),..., \frac{\partial}{\partial x_{n-1}} g(x_0), \frac{\partial}{\partial x_n} u(x_0) \right), g(x_0) , x_0 )=0,
+\]
+which has only free variable.\\
+We want the characteristics curves $x(s)$ to move away from $H$ to $\Omega$, i.e. their slope needs to be orthogonal to $H$, which is formally 
+\[
+\dot{x}(s)^T e_n \neq 0.
+\]
+We can transform the PDE into an ODE wrt. the characteristics: We do this by differentiating the ODE. For $p(x) := \nabla u(x)$ we have
+\begin{align*}
+    0 &= \frac{\partial}{\partial x_i} F(\nabla u(x),u(x),x) = \sum_{j=1}^n \frac{\partial}{\partial p_j} F(p(x),u(x),x) \frac{\partial}{\partial x_i } p(x) + \frac{\partial}{\partial u(x)} F(p(x),u(x),x) \frac{\partial}{\partial x_i} u(x) + \frac{\partial}{\partial x_i} F(p(x),u(x),x)\\
+    &= \sum_{i=1}^n \frac{\partial}{\partial p_i} F(p(x),u(x),x) \frac{\partial}{\partial x_i } p(x) + \frac{\partial}{\partial u(x)} F(p(x),u(x),x) \frac{\partial}{\partial x_i} u(x) + \frac{\partial}{\partial x_i} F(p(x),u(x),x)\\
+    &\iff \sum_{i=1}^n \frac{\partial}{\partial p_i} F(p(x),u(x),x) \frac{\partial}{\partial x_i } p(x) = - \frac{\partial}{\partial u(x)} F(p(x),u(x),x) \frac{\partial}{\partial x_i} u(x) - \frac{\partial}{\partial x_i} F(p(x),u(x),x)
+\end{align*}
+If we now consider the time differential of $p(x) = \nabla u(x)$ along the characteristic
+\[
+\frac{d}{ds} \nabla u(x(s)) = \sum_{j=1}^n \frac{\partial}{\partial x_j} \nabla u(x(s)) \dot{x}_j (s)
+\]
+we have 
+\[
+ \sum_{j=1}^n \frac{\partial}{\partial x_j} \nabla u(x(s)) \dot{x}_j (s) = - \frac{\partial}{\partial u(x)} F(p(x),u(x),x) \frac{\partial}{\partial x_i} u(x) - \frac{\partial}{\partial x_i} F(p(x),u(x),x) \quad \iff \quad \dot{x}_j (s)= \frac{\partial}{\partial p_i} F(p(x),u(x),x) .
+\]
+
+
+
+
+
 \rmkb{
 For future purposes we define
 $$
