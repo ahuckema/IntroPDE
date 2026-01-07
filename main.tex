@@ -103,6 +103,12 @@ is canonical, meaning that every element in $M$ is mapped to a unique equivalenz
     \]
 }
 
+\thm{Implicit Function Theorem}{
+    Let $X$ and $Y$ be Banach spaces, $U \subset X \times Y$ open, $f: U \to Y$ differentiable. If $f^\prime$ in $(x_0,y_0) \in U$ continuous and $\frac{\partial}{\partial y} f(y_0,y_0)$ invertible, then there exists $V \subset X, W \subset Y, O \subset U$ open neighborhoods of $x_0, f(x_0,y_0)$ and $(x_0,y_0)$ repectively and $g: V \times W \to Y$ differentiable such that 
+    \[
+  \forall z \in W:\quad  f^{-1} (\{z\}) \cap O = Graph (g(\cdot,z))
+    \]
+}
 
 
 
@@ -594,114 +600,150 @@ In the remainder of this section, we can show that the PDE on this simplified hy
 F(\nabla u(x_0),u(x_0),x_0) = F( \left( \frac{\partial}{\partial x_1} g(x_0),..., \frac{\partial}{\partial x_{n-1}} g(x_0), \frac{\partial}{\partial x_n} u(x_0) \right), g(x_0) , x_0 )=0,
 \]
 which has only free variable.\\
-We want the characteristics curves $x(s)$ to move away from $H$ to $\Omega$, i.e. their slope needs to be orthogonal to $H$, which is formally 
+We want the characteristics curves $x(s)$ to move away from $H$ to $\Omega$, i.e. transversal to $H$, which is formally 
 \[
-\dot{x}(s)^T e_n \neq 0.
+\dot{x}(s)^T e_n \neq 0 \quad \iff \quad 0\neq \dot{x}(s)^T e_n = \nabla_p F(p(x),u(x),x)^T e_n = \frac{\partial}{\partial p_n}F(p(x),u(x),x)
 \]
-We can transform the PDE into an ODE wrt. the characteristics: We do this by differentiating the ODE. For $p(x) := \nabla u(x)$ we have
-\begin{align*}
-    0 &= \frac{\partial}{\partial x_i} F(\nabla u(x),u(x),x) = \sum_{j=1}^n \frac{\partial}{\partial p_j} F(p(x),u(x),x) \frac{\partial}{\partial x_i } p(x) + \frac{\partial}{\partial u(x)} F(p(x),u(x),x) \frac{\partial}{\partial x_i} u(x) + \frac{\partial}{\partial x_i} F(p(x),u(x),x)\\
-    &= \sum_{i=1}^n \frac{\partial}{\partial p_i} F(p(x),u(x),x) \frac{\partial}{\partial x_i } p(x) + \frac{\partial}{\partial u(x)} F(p(x),u(x),x) \frac{\partial}{\partial x_i} u(x) + \frac{\partial}{\partial x_i} F(p(x),u(x),x)\\
-    &\iff \sum_{i=1}^n \frac{\partial}{\partial p_i} F(p(x),u(x),x) \frac{\partial}{\partial x_i } p(x) = - \frac{\partial}{\partial u(x)} F(p(x),u(x),x) \frac{\partial}{\partial x_i} u(x) - \frac{\partial}{\partial x_i} F(p(x),u(x),x)
-\end{align*}
-If we now consider the time differential of $p(x) = \nabla u(x)$ along the characteristic
-\[
-\frac{d}{ds} \nabla u(x(s)) = \sum_{j=1}^n \frac{\partial}{\partial x_j} \nabla u(x(s)) \dot{x}_j (s)
-\]
-we have 
-\[
- \sum_{j=1}^n \frac{\partial}{\partial x_j} \nabla u(x(s)) \dot{x}_j (s) = - \frac{\partial}{\partial u(x)} F(p(x),u(x),x) \frac{\partial}{\partial x_i} u(x) - \frac{\partial}{\partial x_i} F(p(x),u(x),x) \quad \iff \quad \dot{x}_j (s)= \frac{\partial}{\partial p_i} F(p(x),u(x),x) .
-\]
-
-
-
-
-
-\rmkb{
-For future purposes we define
-$$
-p_{0,i} := \frac{\partial}{\partial x_i} u(x_0), \quad p_i := \frac{\partial}{\partial x_i} u(x), \quad p_0:= (p_{0,1},...,p_{0,n}), \quad p:=(p_1,...,p_n)
-$$
-and 
-$$
-z = u(x), \quad z_0:= u(x_0).
-$$
-We then only write
-$$
-F(\nabla u(x_0) , u(x_0) ,x_0)= F(p_0, g(x_0) ,x_0)=0.
-$$
-}
-Whether or not the PDE has a solution hence depends on $F$ and the initial condition $g$. Next, follows a simple criterion for the existence of a solution.
+although the equivalence will be shown in the next section. This property is required for the method of characteristics to completely determine $u$ on the entire domain. Thus, if a Hyperplane does not lie in such a way that the characteristics move away from it, we call it non-characteristic:
 \defn{}{
-Consider the PDE $F(p,z,x)=0$ with $2n+1$ variables and suppose there exists a solution $(p_0,z_0,x_0)$. We call the hyperplane $H := \{ x \mid x_n =x_{0,n} \}$ non-characteristic at $x_0 := (x_{0,1},...,x_{0,n})$ if
-$$
-\frac{\partial}{\partial p_n} F(p_0,z_0,x_0)\neq 0.
-$$
+    Consider the PDE as a function of $2n+1$  variables given by 
+    \[
+    F(p,z,x)=0, \quad x,p \in \mathbb{R}^n, z \in \mathbb{R}.
+    \]
+    Suppose that $(p_0,z_0,x_0)$ is a solition, then the hyperplane $H := \{ x \in \Omega \mid x_n = x_{0,n} \}$ is called non-characteristic at $x_0 := (x_{0,1},...,x_{0,n})$ if 
+    \[
+    \frac{\partial}{\partial p_n} F(p_0,z_0,x_0) \neq 0.
+    \]
 }
 \exm{}{
-Consider 
-$$
-\frac{\partial u}{\partial x_1} =0, \quad u(x_1,0)=g(x_1)
-$$
-i.e. the PDE is for $n=2$ given by $F(p_1,p_2,z,x_1,x_2)=p_1=0$. We then see that
-$$
-\frac{\partial}{\partial p_2} F(p,z,x)= \frac{\partial}{\partial p_2} p_1 =0
-$$
-which implies that the non-characteristic property does not hold. This now leads to two observations
-\begin{itemize}
-    \item The PDE and the initial condition are only compatible if $g$ is constant, i.e. we need 
-    $$
-    \frac{\partial}{\partial x_1} g(x)=0, \quad x \in H \cap \Omega.
-    $$
-    to hold
-    \item ???
-\end{itemize}
+    Consider the PDE 
+    \[
+    F(p_1,p_2,z,x_1,x_2) = \frac{\partial}{\partial x_1} u(x,t) = p_1 =0, \quad u(x_1,0) = g(x_1), \quad (x,t) \in \mathbb{R}^2 \times \mathbb{R}.
+    \]
+    Here we have $\frac{\partial}{\partial x_2} p_1 =0$, i.e. not the non characteristic Property. We can now construct characteristics that lie inside the Hyperplane. Let $(x_1(s),x_2 (s))$ be that characteristic along which we evaluate the solution $z(s) := u(x_1 (s),x_2 (s))$. Differentiation yields 
+    \[
+    z^\prime (s) = \frac{\partial}{\partial x_1} u(x(s))  x^\prime_1 (s)+\frac{\partial}{\partial x_2} u(x(s))  x^\prime_2 (s)  .
+    \]
+    If we choose $x_1^\prime (s) =1$ and $x_2^\prime (s) =0$ we have 
+    \[
+    \frac{\partial}{\partial x_1} u (x(s),s) =0= z^\prime (s),
+    \]
+    meaning the method of characteristics is applicaple???\\
+    However, these characteristics lie inside the Hyperplane for all $s>0$:
+    \[
+    \begin{pmatrix}
+        x_1 (s) \\ x_2 (s)
+    \end{pmatrix}
+    = \begin{pmatrix}
+        x_{0,1} + s \cdot 1 \\ x_{0,2} + 0
+    \end{pmatrix} \in H.
+    \]
 }
- 
-\thm{}{
-Let $F: W \to \mathbb{R}$, $g : H \to \mathbb{R}$ be continuous differentiable and $x_0 \in \Omega \cap H$, $z_0 := g(x_0)$ and
-$$
-\forall i=1,..,n-1: \quad p_{0,i} := \frac{\partial}{\partial x_i} g(x_0).
-$$
-If there exists a $p_{0,n}$ with $F(p_0,z_0,x_0)=0$ and $H$ is non-characteristic at $x_0$, then for $\Omega_{x_0} \subset \Omega$ open neighborhood of $x_0$ we have that 
-$$
-\exists x \in \Omega_{x_0} \cap H: \quad F(q(x),g(x),x)=0, \quad q_i (x) = \frac{\partial}{\partial x_i} g(x), i=1,...,n-1, \quad q(x_0)= p_0.
-$$
+\lem{}{
+    Let $F: W \to \mathbb{R}$ and $g: H \to \mathbb{R}$ continuous differential, $x_0 \in \Omega \cap H$ and $z_0 = g(x_0)$, $p_{0,1} = \frac{\partial}{\partial x_1} g(x_0), ..., p_{0,n-1} = \frac{\partial}{\partial x_{n-1}} g(x_0)$. If $\exists p_{0,n}$ such that $\frac{\partial}{\partial p_n} F(p_0,z_0,x_0)\neq 0$ (non characteristic) and $F(p_0,z_0,x_0)=0$ then forall $x_0$ in an open neighborhood $\Omega_{x_0} \subset \Omega$ of $x_0$ there exists a $x \in \Omega_x \cap H$, a unique solution $q$ of 
+    \[
+    F(q(x),g(x),x) =0, \quad q_i (x) = \frac{\partial}{\partial x_i} g(x), \quad i=1,...,n-1, \quad q(x_0) = p_0.
+    \]
 }
 \pf{
-We define the function $l: (x,q_n) \mapsto F(q_1 (x),...,q_{n-1}(x),q_n,g(x),x)$, then by assumption of the PDE we have that
-$$
-l(x_0,p_{0,n})=0 \quad \text{ and } \quad \frac{\partial}{\partial x_n} l(x_0,p_{0,n}) \neq 0
-$$
-although the second condition stems from the fact that we assumed that $H$ is not characteristic at $x_0$.  The non negativity then yields that the inverse exists wrt. the partial derivative and we can apply the implicit theorem, i.e. there exist $\Omega_{x_0} \subset \Omega \cap H$, $W \subset \mathbb{R}$, $O \subset (\Omega \cap H)\times \mathbb{R}  $ open neighborhoods around $x_0/l(x_0,p_{0,n}) / (x_0,p_{0,n})$, then there exists a $q_n: V \times W \to Y$ such that
-$$
-\forall z \in W: \quad l^{-1}( \{ z\}) \cap O = Graph(q_n(\cdot,z)).
-$$
-???
+Define $l: (x,q_n) \mapsto F(q_1 (x),...,q_{n-1} (x),q_n,g(x),x)$. By construction at $(x_0,p_{0,n})$ it takes $0$ as a value. To apply the implicit function theorem, we need that $l^\prime$ is continuous in $(x_0,q_{0,n})$ and $\frac{\partial}{\partial q} l(x_0,q_{0,n})$ invertible. This follows from the definition of $g$ and the non characteristic assumption of the Hyperplane/ $\frac{\partial}{\partial p_n} F(p_0,z_0,x_0)\neq 0$. Thus, the preimage of the differential equation wrt. $q_n$ can be represented as a graph of a continuous function. This implies uniqueness of the the solution.
 }
 
 \section{Method of Characteristics}
-We now want to find a more general approach for the chartacteristics. Up to now we have done it in every example by hand. In general, we want to solve the PDE on some curve along the domain. These curvers will be later ODEs. Let $x(s)$ be some curve on the domain and define $z(s) := u(x(s))$ as the solution along that curve. We also need to consider $p(s) := \nabla u(x(s))$, the gradient along this curve, as this appears in the PDE $F$. The big question is now, how we should choose this curve $s \mapsto x(s)$? We begin by noticing that
-$$
-p_i^\prime (s) = \frac{d}{ds} \frac{\partial u(x(s))}{\partial x_i} = \sum_{j=1}^n \frac{\partial^2 u(x(s))}{\partial x_j \partial x_i} x_j^\prime (s).
-$$
-Using this we now want to reformulate the total derivative of $F(\nabla u(x),u(x),x)$:
+
+Our goal in this section is to show that the method of characaterstics exists.\\
+Let $x(s)$ be a curve in the domain $\Omega \subset \mathbb{R}^n$ and $u(s):= u(x(s))$ the value of the solution along that curve. We now also consider the gradient of the solution along the curve $p(s):= \nabla u(x(s))$. Question: How should the curve $s \mapsto x(s)$ be chosen? This we will now derive.
+\[
+\frac{d}{ds} p_i (s) = \frac{d}{ds} \frac{\partial}{\partial x_i} u(x(s)) = \sum_{j=1}^n \frac{\partial}{\partial x_j} \frac{\partial}{\partial x_i} u(x(s)) x^\prime_j (s)=\sum_{j=1}^n \frac{\partial^2}{\partial x_j \partial x_i} u(x(s)) x^\prime_j (s)
+\]
+The total derivative of the PDE $F(\nabla u(x), u(x),x)=0$ wrt. $x_i$ along the curve $x(s)$ is 
 \begin{align*}
-    0 &= \frac{d}{ds} F(\nabla u(x), u(x) ,x) \\
-    &= \sum_{j=1}^n \frac{\partial}{\partial p_j} F(p,u(x),x) \frac{\partial}{\partial x_i} p_j + \frac{\partial}{\partial u} F(p,u(x),x) \frac{\partial}{\partial x_i} u(x) + \frac{\partial}{\partial x_i} F(p,u(x),x).
+    0& = \frac{d}{dx_i} F(\nabla u(x(s)),u(x(s),x(s))\\
+    &=\sum_{j=1}^n \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)) \frac{\partial}{\partial x_i} p_j (s) + \frac{\partial}{\partial z(s)} F(p(s),z(s),x(s)) \frac{\partial}{\partial x_i} z(s) \\
+    &+ \frac{\partial}{\partial x_i} F(p(s),z(s),x(s)) \\
 \end{align*}
-Due to commutivity $\partial_i \partial_j u= \partial_j \partial_i u$ and the above equality with zero we get that the above is equivalent to
-$$
-\sum_{j=1}^n \frac{\partial}{\partial p_j} F(p,u(x),x) \frac{\partial}{\partial x_j} p_i = - \frac{\partial}{\partial u} F(p,u(x),x) \frac{\partial}{\partial x_i} u(x) - \frac{\partial}{\partial x_i} F(p,u(x),x).
-$$
-Next, we want to eliminate the explicit dependence of $u$. As the curve $x$ was chosen up to now as arbitrary, if one compares with the equation with $p_i^\prime$, we can simplify, if we choose
-$$
-x_j^\prime (s) := \frac{\partial F(p,u(x),x)}{\partial p_j}
-$$
-i.e. yielding
-$$
-p_i^\prime (s)= \sum_{j=1}^n \underbrace{\frac{\partial}{\partial p_j} F(p,u(x),x)}_{=x_j^\prime(s)} \frac{\partial}{\partial x_j} p_i = - \frac{\partial}{\partial u} F(p,u(x),x) \frac{\partial}{\partial x_i} u(x) - \frac{\partial}{\partial x_i} F(p,u(x),x).
-$$
+With commutativity of the partial derivative, the above is equivalent to 
+\begin{align*}
+     &\sum_{j=1}^n \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)) \frac{\partial^2}{\partial x_j \partial x_i} u(x(s)) \\
+    &=- \frac{\partial}{\partial z(s)} F(p(s),z(s),x(s)) \frac{\partial}{\partial x_i} u(x(s)) - \frac{\partial}{\partial x_i} F(p(s),z(s),x(s)) \\
+\end{align*}
+This we can plug into the first equation 
+\begin{align*}
+    \frac{d}{ds} p_i (s) &= \sum_{j=1}^n \frac{\partial}{\partial x_j} \frac{\partial}{\partial x_i} u(x(s)) x^\prime_j (s)\\
+    &= \sum_{j=1}^n \frac{\partial}{\partial x_j} \frac{\partial}{\partial x_i} u(x(s)) \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)).
+\end{align*}
+Finally, it holds 
+\begin{align*}
+    \frac{d}{ds} z(s) = \frac{d}{ds} u(x(s)) = \sum_{j=1}^n \frac{\partial}{\partial x_j} u(x(s)) x^\prime_j(s) = \sum_{j=1}^n p_j (s) \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)).
+\end{align*}
+In total we have derived the ODEs 
+\begin{align*}
+    &\frac{d}{ds} x_i (s) = \frac{\partial}{\partial p_i} F(p(s),z(s),x(s)), \quad i=1,...,n\\
+    & \frac{d}{ds} p_i (s) = \sum_{j=1}^n \frac{\partial}{\partial x_j} \frac{\partial}{\partial x_i} u(x(s)) \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)), \quad i=1,...,n \\
+    & \frac{d}{ds} z(s) = \sum_{j=1}^n p_j (s) \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)).
+\end{align*}
+which is a $2n+1$ dimensional system and closed (as it only depends on $u$). Something is now surpirsing??? \\
+In the following theorem it will be shown that under the condition that the characteristic curves $x(s)$ exist as the solution of the $n$ dimensional ODE, then we can solve the other two ODEs systems.
+\thm{}{
+    Let $F$ be a real differentiable function on an open subset $W \subset \mathbb{R}^n \times \mathbb{R} \times \mathbb{R}^n$ and $\Omega \subset \mathbb{R}^n$ open and $u:\Omega \to \mathbb{R}$ a twice differentiable solution of $F(\nabla u(x),u(x),x)=0$. THen if a solution $s \mapsto x(s)$ of the ODE 
+    \[
+    x_i^\prime (s) = \frac{\partial}{\partial p_i} F(p(s),z(s),x(s)), \quad i=1,...,n
+    \]
+    exists, then $p_i (s) := \frac{\partial}{\partial x_i} u(x(s))$ and $z(s):= u(x(s))$ solve the following ODEs 
+    \begin{align*}
+    &\frac{d}{ds} p_i (s) = \sum_{j=1}^n \frac{\partial}{\partial x_j} \frac{\partial}{\partial x_i} u(x(s)) \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)), \quad i=1,...,n \\
+    & \frac{d}{ds} z(s) = \sum_{j=1}^n p_j (s) \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)).
+    \end{align*}
+}
+This Theorem reduces the problem of finding a unique solution ot the PDE as a question of finding a unique solution to an ODE system. We now want to show that a solution exists. Due to crossing characteristics global existence will not be possible. In the following Theorem we skow local existence.
+\thm{}{
+    Let $F: W\to \mathbb{R}$, $g: H \to \mathbb{R}$ three times differentiable functions and suppose $(p_0,z_0,x_0) \in W$ such that 
+    \[
+    F(p_0,z_0,x_0)=0, \quad z_0 = g(x_0), \quad p_{0,1} = \frac{\partial}{\partial x_1} g(x_0), ..., p_{0,n-1} = \frac{\partial}{\partial x_{n-1}} g(x_0).
+    \]
+    Additionally assume $H$ is non characteristic at $x_0$, i.e. $\frac{\partial}{\partial p_n} F(p_0,z_0,x_0)\neq 0$. \\
+    Then it follows that in $\Omega_{x_0}\subset \Omega$ open neighborhood of $x_0$ there exists a unique solution $u$ of the boundary value proplem 
+    \[
+    F(\nabla u(x),u(x),x)=0, \quad x \in \Omega_{x_0}, \quad u(y) = g(y), \quad y \in \Omega_{x_0} \cap H.
+    \]
+}
+\pf{
+    ???
+}
+We now explore the connection between the ad hoc versions of the method of characteristics from the previous sections to the one introduced here. THe point is that they are the same mehtod, but only simplified special cases, where they do not depend on $p= \nabla u$.
+\begin{itemize}
+    \item Inhomogeneous linear transport equation: \\
+    We define $(p_1,...,p_{n+1}) := (\frac{\partial}{\partial x_1} u(x(s)),..., \frac{\partial}{\partial x_n} u(x(s)), \frac{\partial}{\partial s} u(x(s)) )$, then the PDE is 
+    \[
+    0= F(p,z,(x,t)) = \frac{\partial}{\partial t} u(x,t) + b \cdot \nabla u(x,t) = b_1 p_1 +...+ b_n p_n + p_{n+1} - f(x,t).
+    \]
+    Plugging into two of the three ODEs yields 
+    \begin{align*}
+       & x_i^\prime (s) = \frac{\partial}{\partial p_i} F(p(s),z(s),x(s)) = b_i, \quad x_{n+1}^\prime (s) = t^\prime (s) = \frac{\partial}{\partial p_{n+1}} F(p(s),z(s),x(s)) = 1\\
+        &z^\prime (s) = \sum_{j=1}^n \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)) + \frac{\partial}{\partial p_{n+1}} F(p(s),z(s),x(s)) p_{n+1} (s)\\
+        &= b \cdot \nabla u(x,t) + \frac{\partial}{\partial t} u(x,t)= f(x,t)
+    \end{align*}
+    These systems do not depend on the $p^\prime (s)$ ODE, meaning we can solve for $x(s)$ and $z(s)$ independently from $p(s)$. In fact, we do not even have to solve for $p(s)$ due this fact.
+    \item Homogeneous linear conservation Law:\\
+    This case is even simpler as before. We have 
+    \[
+    \dot{u} (x,t) + f^\prime (u(x,t)) \nabla u(x,t) =0,\quad u(x,0)=g(x), \quad \forall x \in \mathbb{R}^n
+    \]
+    where $g: \mathbb{R}^n \to \mathbb{R}$ and $f: \mathbb{R} \to \mathbb{R}^n$.. Again, set $x_{n+1} = t$, then 
+    \[
+    0= F(p,z,(x,t)) = \dot{u}(x,t) + f^\prime (z) \cdot (p_1,...,p_n) = p_{n+1} + f^\prime (z) \cdot (p_1,...,p_n).
+    \]
+    This gives 
+    \[
+    x_i^\prime (s) = f_i^\prime (z), \quad x_{n+1}^\prime (s) = t^\prime (s)=1, \quad z^\prime (s)= \frac{\partial}{\partial t} u(x,t) + f^\prime \cdot (p_1,...,p_n) =0.
+    \]
+    Because the initial value of the second ODE is $z(0)=g(x)$ it follows that the characteristic is $x_i (s) = x + s f_i^\prime (g(x))$ where $t(s)=s$. Because $z^\prime (s) =0$ the solution is constant along the characteristc. This finally yields the same form we have derived before:
+    \[
+    u(x+tf^\prime (g(x)),t) = g(x), \quad \forall (x,t) \in \mathbb{R}^n \times \mathbb{R}.
+    \]
+\end{itemize}
+
+
 
 
 \chapter{General Concepts}
