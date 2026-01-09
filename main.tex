@@ -751,31 +751,37 @@ We now explore the connection between the ad hoc versions of the method of chara
 
 
 \section{Divergence Theorem}
-Now follows a generalization of fundamental theorem of calculus, i.e. partial integration to higher dimensions. In order for this to be feasible, we assume that $\Omega \subseteq \mathbb{R}^n$ is some compact space which then implies that $\partial \Omega \subseteq \mathbb{R}^{n-1}$. We can show that its a submanifold, which we now define.  
+We will do here a generalization of the fundamental theorem of calculus to a higher dimension. First, we generalize partial integration. Second in what sense higher dimensional scalar convervation laws describe conserved quantity???
 \defn{}{
-For $U \subset \mathbb{R}^k$ and $f: U \to \mathbb{R}^{n-k}$ the Graph of $f$ is defined as
-$$
-graph(f) := \{ (x,y) \in U \times \mathbb{R}^{n-k} \mid y= f(x) \} \subset \mathbb{R}^n.
-$$
+    The graph of a function $\lambda: U \subset \mathbb{R}^k \to \mathbb{R}^{n-k}$ is the $k$-dimensional subset 
+    \[
+    graph (\lambda) := \{ (x,y) \in U \times \mathbb{R}^{n-k} \mid y = \lambda (x) \} \subset \mathbb{R}^n.
+    \]
 }
-We neglect the order of the components in $\mathbb{R}^n$???
+We allow reordering of the components of the graph, i.e. both $\{ (x,y,x^2 + y^2)  \in \mathbb{R}^3\}$ and $\{ (x,x^2+z^2,z) \in \mathbb{R}^3\}$ are graphs.
 \defn{}{
-A subset $A \subset \mathbb{R}^n$ is called $k$-dimensional submanifold if it is a $k$-dimensional graph locally, i.e. 
-$$
-\forall x \in A \exists O_x \subset \mathbb{R}^n \text{ open area around }x: \quad A \cap O_x \text{ is a $k$-dimensional Graph.}
-$$
+    A subset $A \subset \mathbb{R}^n$ is called $k$-dimensional submanifold if it is a $k$-dimensional graph locally, i.e. 
+    \[
+    \forall x \in A \exists O_x \subset \mathbb{R}^n \text{ open: } A_x := A \cap O_x \text{ is a k-dimensional graph.}
+    \]
+    We say that a graph or submanifold is in $C^l$, if locally the graph of $\lambda \in C^l$. 
 }
+\exm{}{
+    The circle $S^1 := \{ (x,y\in \mathbb{R}^2 \mid x^2 +y^2 =1 \}$ is an example for a submanifold, that is not a graph globally, but only locally. This is because $y = \pm \sqrt{1-x^2}$ is not a function. However we can write the circle as the union of four graphs 
+    \begin{align*}
+        & S^1 = \{ (x,\sqrt{1-x^2}) \mid x\in (-1,1) \} \cup \{ (x,-\sqrt{1-x^2}) \mid x\in (-1,1) \}\\
+        &\{ (\sqrt{1-y^2},y) \mid y\in (-1,1) \} \cup \{ (-\sqrt{1-y^2},y) \mid y\in (-1,1) \} .
+    \end{align*}
+}
+A parametrization will be a toll that can cover more of a graph of a submanifold, which allows us to do less work.
 \defn{}{
-A Graph or submanifold is in $C^l$ if the function $f$ of the Graph is in $f \in C^l$.
+    A continuously differentiable injection $\Phi: U \subset \mathbb{R}^k \to A \subset \mathbb{R}^n$ is called a parametrisation of a submanifold $A$.\\
+    It is called regular if the Jacobian of $\Phi^\prime := D\Phi$ has rank $k$ at every point in $U$.
 }
-
+Because the Jacobain of $\Phi$ is a $n\times k$ matrix, its rank cannot be larger than $k$. This is why we call a refular parametrisation of full rank.
 \rmkb{
-The Graph $(x,f(x))$ of a function $f: \mathbb{R}^m \to \mathbb{R}^n$ can be written as a parametrization 
-$$
-\phi:U \to graph (f) , x \mapsto (x,f(x)), \quad U \subset \mathbb{R}^m, graph(f) \subset \mathbb{R}^{m+n}
-$$
-and for $f \in C^1 (\mathbb{R}^m,\mathbb{R}^n)$ the Jacobian of the parametrization is
-$$
+A graph is a parametrisation $\Phi: U \to graph (\lambda) , x \mapsto (x,\lambda(x))$ and its Jacobian is 
+\[
 \frac{\partial}{\partial x} \phi(x_0) = \begin{pmatrix}
     1 &0 &\cdots& &0 \\
     0 &1 & 0 &\cdots &0\\
@@ -785,21 +791,29 @@ $$
     \vdots &&\ddots &&\vdots\\
     \frac{\partial}{\partial x_1} f_{n} (x_0) && \cdots &&\frac{\partial}{\partial x_m} f_{n} (x_0) 
 \end{pmatrix}
-$$
-and is of full rank, due to the identity matrix.
+\]
+which is of full rank (rank $k$).
 }
-
 \exm{}{
-Counterexample of regular parametrization.
+    The parametrisation $(x,y) \mapsto (x,0,0)$ of the submanifold of the $x$ axis in $\mathbb{R}^3$ is not regular, because 
+    \[
+    \Phi^\prime = \begin{pmatrix}
+        1 & 0\\
+        0&0 \\
+        0&0
+    \end{pmatrix}
+    \]
+    is not full rank. The coordinate $y$ does not really play a role.
 }
-
 \defn{}{
-Let $A \subset \mathbb{R}^n$ be a subset with regular parametrization $\phi: U \to A$ with $U \subset \mathbb{R}^k$ and $f \in C^0 (A,\mathbb{R}^m???)$, then we define
-$$
-\int_A f d \sigma := \int_U f \circ \phi \cdot det ((\phi^\prime)^T \phi^\prime) d \mu
-$$
+    Let $A \subset \mathbb{R}^n$ be a subset with a regular parametrisation $\Phi: U \to A$ and $f: A \to \mathbb{R}$ continuous, then define 
+    \[
+    \int_A f d\sigma := \int_U f \circ \Phi \sqrt{\det ((\Phi^\prime)^T \Phi^\prime)} d \mu_{\mathbb{R}^k}.
+    \]
 }
-We will now show that the choice of parametrisation is independend of this Integral, which is indeed what is what we want to hold true. Further, one can interpret $det ((\phi^\prime)^T \phi^\prime)$ as a correction of the distortion of the parametrization.
+ The parametrisation maps an infinitisimal cube in $U$, i.e. euklidean space, to a parallelotop, i.e. $\{ c_1 v_1 +...+c_k v_k \mid c_i \in [0,1] \}$ a generalisation of a parallelolgram, wehere the $k$ column vectors in $\Phi^\prime$ are the vectors spanning the prallelotop. This distorsion is denoted in $\sqrt{\det(...)}$.\\
+ \textbf{Does the value of the integral $\int_A f d\sigma$ depend on the regular parameterisation?}\\
+
 
 \lem{}{
 Let $A := graph(\lambda)$, then $\int_A f d\sigma$ is independent of the choice of the regular parametrization.
@@ -834,6 +848,151 @@ $$
 $$
 which in turn implies that $\Upsilon = \phi^{-1} \circ \psi = \Pi_A \circ \psi$ which is by definition a composition of continuous differentiable functions.
 }
+
+
+Many submanifolds cannot be covered by a single parametrisation.
+\exm{}{
+    We cannot find one parametrisation of the sphere, as it is compact, but parametrisations are defined on open sets. However, we can choose two parametrisations that cover the sphere.
+}
+The problem with choosing multiple parametrisations to cover a submanifold is that the open sets can overlap. We do not want to integrate over an area twice. The solution is the following
+\defn{}{
+    Let $\Omega \subset \mathbb{R}^n$ be covered by a sountable familiy $(U_i)_{i\in \mathbb{N}}$ of open subsets of $\mathbb{R}^n$, i.e. $\bigcup_{i \in \mathbb{N}} U_i=\Omega$. We call a smooth partition of unity a countable family $(h_i)_{i \in \mathbb{N}}$ of smooth functions $h_i: \Omega \to [0,1]$ that satisfy 
+    \begin{itemize}
+        \item $\forall x \in \Omega$ $\exists O_x \subset \Omega$ neigborhood of $x$ on which all but finitely many $h_i$ vanish 
+        \item $\forall x \in \Omega: \quad \sum_{i=1}^\infty h_i (x)=1$
+        \item $\forall h_i$ vanishes outside of a compact subset of $U_i$.
+    \end{itemize}
+}
+\thm{}{
+    For every countable family of open subsets of $\mathbb{R}^n$ a partition of unity exists.
+}
+\defn{}{
+    Let $A \subset \mathbb{R}^n$ be a compact $k$-dimensional submanifold. Because $A$ is compact and $A \subset \bigcup_{x \in A} O_x$ only finite many parametrisations are needed to cover it.\\
+    Choose the partition of unity $(h_i)_{i \in \mathbb{N}}$ such that the support is completely contained within the corresponding $O_i$. For continuous $f: A \to \mathbb{R}$ we define 
+    \[
+    \int_A f d \sigma := \sum_{i \leq n} \int_{A_i} h_i f d \sigma.
+    \]
+}
+The idea here is that each $h_i f$ is zero outside of $A_i$, which yields a intefration only over $A_i$. We assume $A$ to be compact so that we avoid any issues with convergence.
+\lem{}{
+    The integral $\int_A f d\sigma$ neither depends on the choice of the partition of unity nor the parametrisation.
+}
+\pf{
+
+}
+These "manifold" integrals have similar propertiess as usual ones, however changes of variables is a little different.
+\lem{}{
+    $\forall a,b \in \mathbb{R}$ and $f,g \in C(A)$ holds
+    \begin{itemize}
+        \item $\int_A a f + bg d\sigma = a \int_A f d\sigma + b \int_a g d \sigma $
+        \item $f \leq g$ on $A$ implies $\int_A f d\sigma \leq \int_A g d \sigma$
+        \item $\big| \int_A f d \sigma \big|\leq \int_A |f| d \sigma$
+        \item If $P: \mathbb{R}^n \to \mathbb{R}^n$ is euclidean motion (translation, reflection, rotation) and $s \in \mathbb{R}^+$ the scaling factor it holds 
+        \[
+        \int_A f d \sigma = s^k \int_{(sP)^{-1} (A)} f \circ (sP) d \sigma. ???
+        \]
+    \end{itemize}
+}
+
+We will now work with bounded and open sets $\Omega \subset \mathbb{R}$. THeir boundaries can be very complicated, even fractal. We will require $\partial \Omega$ to be $(n-1)$ dimensional submanifolds. Compactness of $\partial \Omega$ yields boundedness of $\Omega$. This is why we will require $\Omega$ to be bounded. \\
+Vectors that lie perpendicular to the boundary can be found, as the boundary is a graph locally, which means we can find tangential vectos to the submanifold. The tangential vectors wrt. to the $i^{th}$ component is
+are 
+\[
+v_i= \begin{pmatrix}
+    0 \\
+    \hdots \\
+    0\\
+    1 \\
+    0\\
+    \hdots\\
+    0\\
+    \partial_i \lambda
+\end{pmatrix}.
+\]
+Then we have 
+\[
+(0,0,...,0,1,0,...,0,\partial_i \lambda) \begin{pmatrix}
+    - \nabla \lambda\\
+    1
+\end{pmatrix} = - \partial \lambda + \partial_i \lambda =0,
+\]
+i.e.  $ \begin{pmatrix}
+    - \nabla \lambda\\
+    1
+\end{pmatrix} $ is perpendicular to the boundary. The unit vector pointing outward from the boundary is then 
+\[
+N:= \pm \frac{1}{\sqrt{1+ |\nabla \lambda|^2}} \begin{pmatrix}
+    - \nabla \lambda\\ 1
+\end{pmatrix}.
+\]
+Note that for $\Phi (x) = (x,\lambda(x))^T$ we have $\Phi^\prime = \begin{pmatrix}
+    Id_{n-1 \times n-1} \\ \nabla \lambda^T
+\end{pmatrix}$ which implies that $\det((\Phi^\prime)^T \Phi^\prime) = 1+|\nabla \lambda|^2$. 
+\thm{}{
+    Let $\Omega \subset \mathbb{R}^n$ be bounded and open such that $\partial \Omega$ is $(n-1)$ dimensional submanifold of $\mathbb{R}^n$. Let $F: \bar{\Omega}\to \mathbb{R}^n$ be continuous and differentiable on $\Omega$ such that $F^\prime$ continuosly extends to $\partial \Omega$. Then 
+    \[
+    \int_\Omega  \nabla \cdot F d \mu= \int_{\partial \Omega} F \cdot N d \sigma
+    \]
+    where $N$ is the outward pointing normal.
+}
+\rmkb{
+    Let $f,g$ be two functions such that $\forall x \in \partial \Omega$: $f(x) g(x)=0$, then 
+    \[
+    \int_\Omega f \partial_i g d\mu = - \int_\Omega \partial f g d \mu + \underbrace{\int_\Omega \partial_i (fg) d \mu }_{= \int_{\partial \Omega} fg \cdot N d \sigma =0}
+    \]
+    So for any multi-index $\gamma \in \mathbb{N}_0$ it holds 
+    \[
+    \int_\Omega f \partial^\gamma g d \mu = (-1)^{|\gamma|} \int_\Omega g \partial^\gamma f d\mu .
+    \]
+}
+\rmkb{
+    For any continousy differentiable function $F: \mathbb{R} \to \mathbb{R}^n$ we call 
+    \[
+    \dot{u}(x,t) + \nabla \cdot F(u(x,t)) = \dot{u}(x,t) + F^\prime (u(x,t)) \cdot \nabla u(x,t) =0
+    \]
+    conservation law. This is because for any open and bounded $\Omega \subset \mathbb{R}^n$ with $(n-1)$-dimensional submanifold $\partial \Omega$ of $\mathbb{R}^n$ we obtain 
+    \[
+    \frac{d}{dt} \int_\Omega u(x,t) d^n x =\int_\Omega \dot{u}(x,t) d^n x = - \int_\Omega \nabla \cdot F(u(x,t)) d^n x= - \int_{\partial \Omega} F(u(x,t)) \cdot N(x) d \sigma (x),
+    \]
+    meaning the change over $\Omega$ only depends on the flux $- F(u(\cdot,t))$ on the boundary $\partial \Omega$.
+}
+\rmkb{
+    The surface area of a ball in realtion to its volume is as follows (for later important). Let $\omega_n$ denote the volume of the $n$-dimensional unit ball. We scale it by $r^n$. Then $n$ times that we have (using $\nabla \cdot x =n)$ 
+    \[
+    n \omega_n r^n = \int_{B_r (0)} \nabla \cdot x d\mu = \int_{\partial B_r (x)} x \cdot N(x) d \sigma (x) = \int_{\partial B_r (0)} \underbrace{x \cdot \frac{x}{|x|}}_{= r \cdot x} d \sigma (x) = r \sigma_n (r),
+    \]
+    although we used that $r=|x| = \sqrt{x \cdot x}$.
+}
+One can think of a ball $B_R (0)$ as spheres $\partial B_r(0)$, where $r \in (0,R)$. The origin can be ignored as it has measure zero. The spheres are level sets of a function.
+\cor{(Co-Area)\\
+Let $l: \Omega \to \mathbb{R}$ be a $C^1$ non-negative function and suppose 
+\[
+\forall t \in [0,T]: \quad \Omega_t := \{ x \in \Omega \mid l(x) < t \}
+\]
+is a domain to which the divergence theorem applies, then 
+\[
+\forall f \in C^1 (\Omega): \quad \int_{\Omega_T} f |\nabla l| dx = \int_0^T \int_{\partial \Omega_t} f d\sigma dt.
+\]
+}
+\pf{
+    Note that the gradient of a function is always normal to its level set and pointing in the direction of steepest increase, i.e. $N= |\nabla l|^{-1} \nabla l$ is the outward pointing unit normal of $\partial \Omega_t$. Define $F := fN$ a vector valued function. In particular $F \cdot N = fN \cdot N = f$. With the product rule it holds 
+    \begin{align*}
+        \nabla \cdot ((T-l)F) &= \nabla (T-l)\cdot F + (T-l) \nabla \cdot F\\
+        &= - \nabla l \cdot F + (T-l) \nabla \cdot F\\
+        &= - \nabla l \cdot fN + (T-l) \nabla \cdot F \\
+        &= - l \frac{\nabla l \cdot \nabla l}{|\nabla l|} + (T-l) \nabla \cdot F = - f |\nabla l | +(T-l) \nabla \cdot F .
+    \end{align*}
+    Using this it follows using the divergence theorem twice it follows 
+    \begin{align*}
+        \int_{\Omega_T} f |\nabla l | dx &= \int_{\Omega_T} (T-l) \nabla \cdot F dx - \int_{\Omega_T} \nabla \cdot ((T-l)F)dx \\
+        &= \int_{\Omega_T} (T-l) \nabla\cdot F dx -\underbrace{\int_{\partial \Omega_T} (T-l) F \cdot N dx}_{=0, l=T \text{ on } \partial \Omega_T \text{ as } \Omega_T := \{l<T\}}\\
+        &= \int_{\Omega_T} \int_{l(x)}^T 1 dt \nabla \cdot F dx = \int_{\Omega_T} \int_{l(x)}^T \nabla \cdot F dt  dx\\
+        &=\int_{\Omega_T} \int_{0}^T \textbf{1}_{\{t \geq l(x)\}} \nabla \cdot F dt  dx =\int_{0}^T \int_{\Omega_T}  \textbf{1}_{\{t \geq l(x)\}} \nabla \cdot F dt  dx \\
+        &= \int_{0}^T \int_{\mathbb{R}^n}  \textbf{1}_{\{t \geq l(x)\}\cap \Omega_T} \nabla \cdot F   dx dt = \int_{0}^T \int_{\Omega_t}  \nabla \cdot F   dx dt \\
+        &= \int_{0}^T \int_{\partial \Omega_t}    F\cdot N  d\sigma dt = \int_{0}^T \int_{\partial \Omega_t}    fN\cdot N  d\sigma dt=\int_{0}^T \int_{\partial \Omega_t}    f d\sigma dt
+    \end{align*}
+}
+
 
 
 \section{Distributions}
