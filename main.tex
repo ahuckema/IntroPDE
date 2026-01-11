@@ -996,38 +996,45 @@ is a domain to which the divergence theorem applies, then
 
 
 \section{Distributions}
-If a differentiable function is a dsitribtion, the two types of derivatives are equal. Furtherm distributions are differentiable (even infinitely often). The price we pay for that is that two distributions cannot be multiplied.\\
-An important tool will be a familiy of functions $(\lambda_\epsilon)_{\epsilon \geq 0}$ called mollifier with the two properties that
-$$
-supp \lambda_\epsilon = \overline{B_\epsilon(0)}, \quad \text{ and }\quad \int \lambda_\epsilon d\mu =1.
-$$
-An example for such a mollifier is
-$$
-\lambda (x) := \begin{cases}
-    C e^{\frac{1}{|x|^2 -1}} &, |x|<1\\
-    0&,|x|\geq 1
-\end{cases}
-$$
-which is smooth on $\mathbb{R}^n$, its support is $\overline{B_\epsilon(0)}$ and it is non-negative. Note that this example already proves the existence of a test function, because we can choose $C$ in such a way that its integral is $1$. If we rescale $x$ and $\lambda$ we get the mollifier
-$$
-\lambda_\epsilon (x) := \epsilon^{-n} \lambda (x/\epsilon)
-$$
-which satisfies the properties??? We call it standard mollifier.\\
-We also call mollifiers approximate identity, because of the following: For any $f \in C^0(\Omega;\mathbb{R})$ with $0 \in \Omega$ it holds with continuity that
-$$
+We now introduce a generalization of the partial derivative and to the solution to a partial differential equation. A more general approach to a functions then satsfy these generalized partial derivatives and if they are differentiable the partial derivative as well. These functions are infinitely differentiable wrt. to this weak derivative, however they cannot be multiplied by each other. \\
+In what way do non-linear PDEs result in a non linear equation on distribution???\\
+We begin by defining a class of functions that are well behaved. For that define 
+\[
+supp \; f := \{ x \mid f(x)\neq 0\}
+\]
+On an open set $\Omega \subset \mathbb{R}^n$ we define the set of test functions $C_0^\infty (\Omega)$ as the set of all smooth functions whoose support is a compact subset of $\Omega$. Within these test functions there is a subclass called mollifiers 
+\defn{}{
+    The family of non-negative test functions $(\lambda_\epsilon)_{\epsilon \geq 0}$ with $supp \; \lambda_\epsilon = \overline{B_\epsilon (0)}$ and $\int \lambda_\epsilon d \mu =1$ is called mollifiers.
+}
+\exm{}{
+    \[
+    \lambda (x) = \begin{cases}
+        C e^{\frac{1}{|x|^2 -1}} &, |x|< 1 \\
+        0 &, |x|\geq 1
+    \end{cases}
+    \]
+    is a smooth function on $\mathbb{R}^n$, its support is $\overline{B_1 (0)}$ and its non-negative. We need to choose the constant $C$ in such a way that the integral is one. Rescaling yields this property 
+    \begin{align*}
+        & \int_{\mathbb{R}^n} \lambda_\epsilon (x) d^n x = \frac{1}{\epsilon^n} \int_{B_1 (0)} \lambda (\frac{x}{\epsilon}) d^n x = \frac{1}{\epsilon^n} \int_{B_\epsilon (0)} \lambda (x) \epsilon^n d^n x\\
+        &= C \int_{B_\epsilon (0)} e^{\frac{1}{|x^2|-1} }  d^n x=1 \quad \iff \quad C= \frac{1}{\int_{B_\epsilon (0)} e^{\frac{1}{|x^2|-1} }  d^n x}.
+    \end{align*}
+}
+We call this example standard mollifier. \\
+For a continuous function $f$ on $\Omega$ with $0 \in \Omega$ we call the following equation approximate identity
+\[
+\int_\Omega f \lambda_\epsilon d\mu = \int_{B_\epsilon (0)} f \lambda_\epsilon d\mu \approx \int_{B_\epsilon (0)} f(0) \lambda_\epsilon d\mu = f(0),
+\]
+where we used that
+\[
 \forall x \in B_\epsilon(0): \quad f(x) \approx f(0).
-$$
-This implies that
-$$
-\int_\Omega f \lambda_\epsilon d\mu = \int_{B_\epsilon (0)} f \lambda_\epsilon d\mu \approx \int_{B_\epsilon (0)} f(0) \lambda_\epsilon d\mu = f(0).
-$$
-In the next Lemma we show that there is even an equality as $\epsilon \searrow 0$.
+\]
+In the next lemma we show that in the limit $\epsilon \searrow 0$ we get equality.
 \lem{}{
 Let $f \in C(\Omega)$ and $(\lambda_\epsilon)_{\epsilon \geq 0}$ a mollifier. The following family
 $$
 f_\epsilon (x) := \int_\Omega f(y) \lambda_\epsilon (x-y) d^n y
 $$
-is smooth and converges uniformly on any compact subset of $\Omega$ to $f$ as $\epsilon \searrow 0$. Same for derivatives???
+is smooth and converges uniformly on any compact subset of $\Omega$ to $f$ as $\epsilon \searrow 0$. As the derivative of smooth functions is again smooth, this result also holds for their derivatives.
 }
 \pf{
 1.\\
@@ -1042,10 +1049,21 @@ Then we have that
     &= |\int_\Omega (f(y)-f(x)) \lambda_\epsilon (x-y) d^n y \\
     &\leq \sup_{y \in B_\epsilon (0)} |f(y)-f(x)|.
 \end{align*}
-Due to the fact that continuous functions are uniformly continuous on a compact subset we get convergence $f_\epsilon \to f$ as $\epsilon \searrow 0$.
+Due to the fact that continuous functions are uniformly continuous on a compact subset we get convergence $f_\epsilon \to f$ as $\epsilon \searrow 0$.\\
 2.\\
-If $f$ is smooth we can compute the derivatives of $f_\epsilon$ in the following way: Warum $2\epsilon$ ball???
+As the partial derivaitve is the limit of the difference quotient, we need to show for all $x_0 \in \Omega$ on an open ball $B_\delta (x_0)$ that 
+\[
+\partial^\alpha f_\epsilon (x) = (\partial^\alpha f)_\epsilon (x).
+\]
+Due to the fact that the mollifier is defined on $B_\epsilon (x)$ choose $\delta = 2 \epsilon$. Then we have 
+\[
+\partial^\alpha f_\epsilon (x) =\partial^\alpha  \int_{B_\epsilon (x)} \lambda_\epsilon (x-z) f (z) d^n z= \int_{B_\epsilon (0)} \lambda_\epsilon (z) \partial^\alpha f (x-z) d^n z= \int_{B_\epsilon (0)} \lambda_\epsilon (z) (\partial^\alpha f) (x-z) d^n z = (\partial^\alpha f)_\epsilon (x).
+\]
+As the partial derivative of a smooth function is smooth again, the assertion follows with the first step.
 }
+
+
+
 For $f,g \in C_0^\infty (\mathbb{R}^n)$ we define the convolution as
 $$
 (g * f)(x) := \int_{\mathbb{R}^n} g(x-y) f(y) d^n y = \int_{\mathbb{R}^n} g(z)f(x-z) d^n z,
@@ -1138,32 +1156,69 @@ $$
  $$
  Next, one can show that 
  $$
- \delta: \mathcal{D}(\mathbb{R}^n) \to \mathbb{R}, \quad \phi \mapsto \phi(0)
+ \delta_0: \mathcal{D}(\mathbb{R}^n) \to \mathbb{R}, \quad \phi \mapsto \phi(0)
  $$
- is a distribution.???
+ is a distribution, because $\forall \phi \in \mathcal{D}(\Omega)$ with $supp \; \phi \subset K$: 
+ \[
+ |\delta_0 (\phi)| = |\phi (0)| \leq \sup_{x \in K} |\phi (x)|.
+ \]
 }
+Distributions that can be written $\forall f \in L_{loc}^1 (\Omega)$ as 
+\[
+F_f : C_0^\infty (\Omega) \to \mathbb{R}, \quad \phi \mapsto \int_\Omega f \phi d \mu 
+\]
+are called regular, i.e. they can be written in the integral form. The Dirac distribution cannot be written in this way, as no function in $L_{loc}^1(\Omega)$ exists that vanishes on $\mathbb{R}^n \setminus \{0\}$ and one/infinte ??? on $\{0\}$ does not exist (later proven where???). \\
+One can also show that the Dirac distribution is the limit of mollifiers.
 
 \lem{}{
 If $f \in L_{loc}^1(\Omega)$ satisfies $F_f (\phi) \geq 0$ $\forall \phi \in C_0^\infty (\Omega)$ then it follows $f \geq 0$ a.e. and $L_{loc}^1 (\Omega) \to \mathcal{D}^\prime (\Omega),$ $f \mapsto F_f$ is injective.
 }
-\pf{
-For a mollifier $(\lambda_\epsilon)_{\epsilon >0}$ it holds that
+\pf{ As we only show the non negativity, which is a local statement, it suffices to show it for $f \in L^1 (\Omega)$, i.e. any arbitary compact subset. We can then extend $f$ to $\mathbb{R}^n$ by setting it on $\mathbb{R}^n \setminus \Omega$ to zero.\\
+    First, we want to show that $(f * \lambda_\epsilon)_{\epsilon >0}$ converges to $f \in L^1 (\Omega)$ using the "standard machinery" (Gebetsmühle). It holds that for a mollifier $(\lambda_\epsilon)_{\epsilon >0}$ 
 \begin{align*}
     \| \lambda_\epsilon *f -f \|_1 &= \int_{\mathbb{R}^n} \left| \int_{B_\epsilon(0)} \lambda_\epsilon (y) f(x-y) d^n y -f(x) \right| d^n x \\
     &\leq \int_{\mathbb{R}^n}  \int_{B_\epsilon(0)} \lambda_\epsilon (y)\left|  f(x-y) -f(x) \right| d^n y d^n x \\
     &\leq \int_{B_\epsilon(0)}\int_{\mathbb{R}^n}   \lambda_\epsilon (y)\left|  f(x-y) -f(x) \right| d^n x d^n y \\
     &\leq \sup_{ y \in B_\epsilon(0)}\int_{\mathbb{R}^n}   \lambda_\epsilon (y)\left|  f(x-y) -f(x) \right| d^n x \\
-    &\leq \sup_{ y \in B_\epsilon(0)}  \lambda_\epsilon (y)\|   f(\cdot-y) -f(\cdot) \|_{L^1(\Omega)}
+    &\leq \sup_{ y \in B_\epsilon(0)} \|   f(\cdot-y) -f(\cdot) \|_{L^1(\Omega)}
 \end{align*}
-For step functions
+\begin{itemize}
+    \item For indicator function 
+    \[
+    \textbf{1}_A (x)= \begin{cases}
+        1&, x \in A \\
+        0&, x \notin A
+    \end{cases}, \quad A= [a_1,b_1] \times ... \times [a_n,b_b]
+    \]
+    we have with the above 
+    \[
+    \| \lambda_\epsilon * \textbf{1}_A - \textbf{1}_A \|_1 \leq \sup_{y \in B_\epsilon (0)} \| \textbf{1}_{A-y} - \textbf{1}_A \| \to 0, \quad \epsilon \to 0.
+    \]
+    \item For step functions
 $$
-f (x) := \sum_{i=1}^n a_i \textbf{1}_{Q_i} (x), \quad \bigcup_{i=1}^n Q_i =???
+f (x) := \sum_{i=1}^n a_i \textbf{1}_{Q_i} (x), \quad \bigcup_{i=1}^n Q_i =\Omega
 $$
 Then using triangle inequality we get
 $$
-\| \lambda_\epsilon * f-f \|_1 \leq \sum_{i=1}^n \| \lambda_\epsilon * a_i -a_i \|_{L^1(Q_i)} \leq \sum_{i=1}^n \sup_{y \in B_\epsilon(0)}  \|   a_i -a_i \|_{L^1(Q_i)} ???
+\| \lambda_\epsilon * f-f \|_1 \leq \sum_{i=1}^n \| \lambda_\epsilon * (a_i\textbf{1}_A) -a_i \textbf{1}_A \|_{L^1(Q_i)} \leq \sum_{i=1}^n \sup_{y \in B_\epsilon(0)} |a_i| \| \textbf{1}_{A-y} - \textbf{1}_A \|_{L^1(Q_i)} \to 0, \quad \epsilon \to 0.
 $$
-and because the step function lie dense in $L^1 (\Omega)$ in the limit and choosing $\epsilon>0$ sufficiently small we get that the supremum gets arbitrary small. Nur lim inf gegen Null gezeigt??? Muss schnell genug gegen 0???.
+\end{itemize}
+Because the step function lie dense in $L^1 (\Omega)$ we get convegence.\\
+Next, we need to show that the limit of $(\lambda_\epsilon * f)$, i.e. $f$ is non negative, however, as $f \in L^1(\Omega)$ we have that $f$ is only almoust everywhere non negative. Both of these need to be shown.
+\begin{itemize}
+    \item For $\epsilon>0$ it holds 
+    \[
+    \forall x \in \Omega: \quad (\lambda_\epsilon * f) (x) = \int_{\mathbb{R}^n} \lambda_\epsilon (x-y) f(y) d^n y= F_f (\lambda_\epsilon (x-\cdot)) \stackrel{Assumption}{\geq} 0.
+    \] 
+    \item In the above we have shown that there exists $(\epsilon_n)_{n \in \mathbb{N}}$ such that 
+    \[
+    \| \lambda_{\epsilon_n} * f -f \|_1 \leq 2^{-n}, \quad \forall n \in \mathbb{N},
+    \]
+    which implies that $\sum_{n \in \mathbb{N}} |\lambda_{\epsilon_n} *f - f | $ converges in $L^1$. This means that almoust everywhere the value of this series is finite. This then requires that almoust everywhere we have 
+    \[
+    (f* \lambda_{\epsilon_n}) (x) \to f(x) .
+    \]
+\end{itemize}
 }
 
 
@@ -1172,7 +1227,7 @@ $$
 (supp F)^C = \bigcup_{\Omega^\prime \in \mathcal{P} (\Omega)} \{\Omega^\prime \subset \Omega \mid F(\phi) =0, \forall \phi \in \mathcal{D}(\Omega^\prime) \}
 $$
 The support of a delta distribution is $\{0\}$ and for a $L_{loc}^1(\Omega)$ is the support in the classical sense.\\
-We now want to define as many operations as possible on distributions and thus extend operations on functions. The idea is to compare $F_f$ and $F_{Af}$, where $A$ is some operation. If we can write the operation in a way that only depends on the distribution and not directly on the function it is a suitable definition of be generalized.\\
+We now want to define as many operations as possible on distributions and thus extend operations on functions. The idea is to compare $F_f$ and $F_{Af}$, where $A$ is some operation. If we can write the operation in a way that only depends on the distribution and not directly on the function it is a suitable definition to be generalized.\\
 First, we consider the multiplication by a smooth function $g \in C^\infty (\Omega)$ and $F: L_{loc}^1(\Omega) \to \mathbb{R}$
 $$
 F_{fg} (\phi) = \int_\Omega (gf) \phi dx = \int_\Omega f(g \phi) dx = F_f (g\phi).
@@ -1184,10 +1239,11 @@ $$
 gF: \mathcal{D}(\Omega) \to \mathbb{R}, \quad \phi \mapsto F(g \phi).
 $$
 }
+Note that the product of a distribution with a non-smooth function is not defined, because then $g \phi$ is not a test function. This is why we require $g$ to be in $C^\infty(\Omega)$.
 \rmkb{
 Remember that for two topoligical spaces $X$ and $Y$ the mapping $f: X \to Y$ is called an embedding of two topological spaces, if it is bijective, continuous and its inverse is continuous. ...???
 }
-Note that the producti of a distribution with a non-smooth function is not defined, because then $g \phi$ is not a test function.\\
+
 The most important operation for distributions is its derivative. Integrating by parts yields
 $$
 F_{\partial_i f}(\phi) = \int_\Omega \partial_i f \phi d^n x= - \int_\Omega f\partial_i\phi d^n x=- F_f (\partial_i \phi).
@@ -1198,7 +1254,7 @@ $$
 \partial_i F: \mathcal{D}^\prime \to \mathbb{R}, \quad \phi \mapsto - F(\partial_i \phi).
 $$
 }
-Hence, test functions are infinitely differentiable.
+Hence, because test functions are infinitely differentiable, it follows that distributions are infinitely differentiable.
 \rmkb{
 These two new operations are distributions again and are clearly linear. One would need to show as well that they obey the continuity definition.
 }
@@ -1273,16 +1329,23 @@ Due to $supp \;T_x Pg = x- supp \; g$ we have that $T_x Pg \in \mathcal{D}(\math
 \begin{align*}
     \| \int_{\mathbb{R}^n} (T_x Pg)(\cdot) \phi(x) d^n x -S_n \|_{K,\alpha} &\leq \sum_{i=1}^n |E_i| \int_{\mathbb{R}^n} \| (T_x Pg)(\cdot) \phi(x) - (T_{x_i} Pg)(\cdot) \phi (x_i)\|_{K,\alpha} d^n x
 \end{align*}
-
-
 }
+
+\rmkb{
+    This Lemma implies that the convolution of two distributions $F,G \in \mathcal{D}^\prime (\mathbb{R}^n)$ where $supp \; G$ is compact, is a well defined distribution 
+    \[
+    F*G: \mathcal{D}(\Omega) \to \mathbb{R}, \quad \phi \mapsto F(\phi * PG) , \quad PG(\phi) := G(P\phi).
+    \]
+    So the convolution with the $\delta$-distribution is well defined. Remarkably, $F*\delta =F$, i.e. the $\delta$-distribution is the neutral element of convolutions.
+}
+
 
 \chapter{Laplace equation}
 We begin by solving the Laplace equation that is given by 
 \[
-\Delta u = f
+\Delta u = \frac{\partial^2}{\partial x_1^2 } u + ...+   \frac{\partial^2}{\partial x_n^2 } u   = 0
 \]
-....
+If the right hand side $f\neq 0$ we call this equation Possion eqution, i.e. $\Delta u =f$. This is a linear PDE with the solution $u: \mathbb{R}^n \to \mathbb{R}$.
 \section{Fundamendal Solution}
 This equation is invaraint wrt. all rotations and translations. This leads to the notion that our solution should also have these conditions. We defeine $r:= |x| := \sqrt{x^T x}$ which defines the length of the position vector, i.e. the solution should only depend on this $r$. Further, define $u(x) := v(r) $. Then for $w(r) := v^\prime (r)$
 \[
@@ -1312,7 +1375,7 @@ Note that for the solution the constant $C_2$ can be chosen arbitrarly as it wil
 \] 
 We now need to determine $C_1$.
 \defn{}{
-    The solution of the Laplace equation is 
+    The fundamental solution of the Laplace operator is 
     \[
     \Phi (x) :=\begin{cases}
     -\frac{1}{2\pi} \log |x| &, n=2\\
@@ -1323,10 +1386,14 @@ where $\omega_n$ denotes the volume of the n-dimensional unit ball.
 
 }
 
-
+In the following we will show that the solution of $-\Delta u =f$ is the convolution of $f$ with the fundamental solution $\Phi$. Note that due to 
+\[
+\| (f*g)(x) \|_1 \leq  \|\int f dx \|_1 \| \int g dx\|_1 ,
+\]
+it follows that the convolution is well defined for functions in $L^1(\mathbb{R}^n)$. However, as we need the solution to be twice differentiable, we need $f$ to be twice differentiable.
 
 \thm{}{
-    For $f \in C_0^1 (\mathbb{R}^n)$ the solution of the Poisson equation $-\Delta u = f$ is given by the convolution
+    For $f \in C_0^2 (\mathbb{R}^n)$ the solution of the Poisson equation $-\Delta u = f$ is given by the convolution
     \[
     u(x) =(\Phi * f)(x)= \int_{\mathbb{R}^n} \Phi (x-y ) f(y) d^n y  = \int_{\mathbb{R}^n} \Phi (z) f(x-z) d^n z.
     \]
@@ -1480,12 +1547,12 @@ Thus due to the fact that we can write for every $\phi \in C_0^\infty (\mathbb{R
 it follows that $-\Delta_x \Phi = \delta_0$ in the distributional sense.
 
 \section{Mean Value Property}
-The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:= \{ x \in \Omega \mid \forall \epsilon>0: \mathcal{U}_\epsilon (x) \cap A \neq \emptyset \}$, i.e. open balls, that are close to $A$ are also have a overlap with $A$) in $\Omega$ is equal to the mean of $u$ on the boundary of the ball. In the following we will show that this porperatry holds for any harmonic function. Remember, these were functions that satisfy $\Delta u =0$. One can also show that if this mean value property holds for a function $u$ then it is harmonic. We will also show that the mean on $B_r (x)$ is the mean over the means of $u$ on $\partial B_{r^\prime } (x)$ for all $r^\prime \in [0,r]$. I.e. after having shown both directions, the mean value property is equivalent to functions beeing harmonic.
+The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:= \{ x \in \Omega \mid \forall \epsilon>0: \mathcal{U}_\epsilon (x) \cap A \neq \emptyset \}$) in $\Omega$ is equal to the mean of $u$ on the boundary of the ball. In the following we will show that this porperatry holds for any harmonic function. Remember, these were functions that satisfy $\Delta u =0$. One can also show that if this mean value property holds for a function $u$ then it is harmonic. We will also show that the mean on $B_r (x)$ is the mean over the means of $u$ on $\partial B_{r^\prime } (x)$ for all $r^\prime \in [0,r]$. I.e. after having shown both directions, the mean value property is equivalent to functions beeing harmonic.
 
 
 \lem{}{
     \begin{itemize}
-        \item Let $u \in C^2 (\Omega)$ be harmonic on an open domain $\Omega \subset \mathbb{R}^n$ containing $\overline{B_r (x)}$. THe mean of $u$ on $B_r (x)$ and on $\overline{B_r (x)}$ is equal to $u(x)$, i.e. the center.
+        \item Let $u \in C^2 (\Omega)$ be harmonic on an open domain $\Omega \subset \mathbb{R}^n$ containing $\overline{B_r (x)}$. The mean of $u$ on $B_r (x)$ and on $\overline{B_r (x)}$ is equal to $u(x)$, i.e. the center.
         \item If for $u \in C^2 (\Omega)$ the means on all Balls $B_r (x)$ with compact closure in $\Omega$ or all means on the boundaries of such balls is equal to $u(x)$ then $u$ is harmonic.
     \end{itemize}
 }
@@ -1619,11 +1686,11 @@ The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:=
         \end{align*}
     }
 
-
+The next result shows that smooth harmonic functions do not blow up in the interior of a domain, by showing that all their partial derivatives are bounded. On an open ball $B_r (x)$ the value of any partial derivative of a smooth harmonic function in the center of that ball is bounded by above by a finite constant depnding on the radius and the supremum on the closure of the ball. Liouvilles Theorem will then use this result and show that bounded harmonic functions are constant. This can be seen in the form of the upper bound of the following corollary, as this bound goes to zero as $r \to \infty$.
     \cor{
         Let $u$ be a smooth harmonic function on an open domain $\Omega \subset \mathbb{R}^n$ and $B_r (x) $ with closure in $\Omega$. Then $\forall \alpha \in \mathbb{N}_0^n$ it holds that
         \[
-        |\partial^\alpha u(x)| \leq C(n,|\alpha|) r^{-|\alpha|} \| u \|_{L^\infty (\overline{B_r (x)})}, \quad C(n,|\alpha|) = 2^{|\alpha| (1+ |\alpha|)} n^{|\alpha|}.
+        |\partial^\alpha u(x)| \leq C(n,|\alpha|) r^{-|\alpha|} \| u \|_{L^\infty (\overline{B_r (x)})}, \quad C(n,|\alpha|) = 2^{\frac{|\alpha| (1+ |\alpha|)}{2}} n^{|\alpha|}.
          \]
     }
     \pf{
@@ -1646,12 +1713,14 @@ The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:=
         \]
         This goes to zero as $r \to \infty$, i.e. all partial derivatives of order $\alpha$ dissapear. Thus $u$ is constant.
     }
-    We now want to transfer the mean value property to distributions. Let $u \in C^2 (\Omega)$ be harmonic, then $\forall B_r (x) \subset \Omega$ and $\psi \in C_0^\infty (\Omega)$ it holds 
+
+The average of a function being constant on balls $B_r (x)$ is equivalent to taking a test function $\psi$ that is rotationally symmetric and satisfies $\int \psi dx=0$ and satisfies the condition $\int u \psi dx=0$, as rotationally symmetric functions can be for example the difference of two averaging kernels.\\
+We now want to transfer the mean value property to distributions. Let $u \in C^2 (\Omega)$ be harmonic, then $\forall B_r (x) \subset \Omega$ and $\psi \in C_0^\infty (\Omega)$ it holds 
     \begin{align*}
         &\int_{B_r (x)} u(y) \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n} d^n y = \int_0^r \int_{\partial B_s (x)} u(y) \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n} d \sigma (y) ds \\
         &= \int_0^r \frac{\psi (s)}{n s^{n-1} \omega_n} \int_{\partial B_s (x)} u(y) d \sigma (y) ds = \int_0^r \psi (s) u(x) ds = u(x) \int_0^r \psi (s) ds.
     \end{align*}
-
+If we choose a smart assumption to get the right hand side to become zero, this equation will imply that the value of the mean of $u$ does not depend on the radius and thus is equal to the center.
 \thm{Weak Mean Value Property}{
     Let $U \in \mathcal{D}^\prime (\Omega)$ be a harmonic distribution on an open domain $\Omega \subset \mathbb{R}^n$. For each ball $B_r (x) \subset \Omega$ and each $\psi \in C_0^\infty ((0,r))$ with $\int_0^r \psi d\mu =0$ the distribution $U$ vanishes on the followsing test function $f \in C_0^\infty (\Omega)$ with 
     \[
@@ -1800,11 +1869,11 @@ Although we used that for a mollifier $(\lambda_\epsilon)_{\epsilon \geq 0}$ it 
     \]
     with compact closure in the open domain $\Omega \subset \mathbb{R}^n$. Then there exists $C(\Omega,\Omega^\prime) >0$ such that any non-negative harmonic function $u$ on $\Omega$ satisfies 
     \[
-    \sup_{x \in \Omega^\prime} u(x) \leq C \inf_{x \in \Omega^\prime u(x)}
+    \sup_{x \in \Omega^\prime} u(x) \leq C \inf_{x \in \Omega^\prime} u(x)
     \]
     and
     \[
-    \forall x,y \in \Omega^\prime: \frac{1}{C} u(y) \leq u (x) \leq C (y).
+    \forall x,y \in \Omega^\prime: \frac{1}{C} u(y) \leq u (x) \leq C u(y).
     \]
 }
 \pf{
@@ -2400,6 +2469,20 @@ This implies $I(u-v)=0$??? and larger set of functions???
 
 \section{A PDE with no solutions}
 Skipped for now ???
+
+
+\section{Summary}
+We began by exploiting the rotational and translational invariance of the Laplacian to derive the fundamental solution $\Phi$. With that we get the solution of the Poisson equation as the convolution $u = \Phi * f$. On bounded domains we then showed that a function is harmonic, i.e. $\Delta u =0$ $\iff$ it satisfies the mean value property. This results from the fact that the mean value function $\mathcal{S}(r)$ is constant which is equivalent to $\Delta u=0$. This then implies regularity for smooth harmonic functions in the interior: 
+    \[
+    |\partial^\alpha u(x)| \leq C(n,|\alpha|) r^{- |\alpha|} \| u \|_{L^\infty (\overline{B_r(x)})}.
+    \]
+    With Liouvilles we got that harmonic functions on $\mathbb{R}^n$ which are bounded are constant.\\
+    The next step was to generalize these results to distributions. For that we introduced rotationally symmertric kernels $f$ such that $U (f)=0$ results in the mean of $u$ being constant regardless of the radius of the average. Weyl's Lemma then shows that harmonic distributions are regular, i.e. they are of the form $F_u$, where $u \in C^\infty (\Omega)$, i.e. smooth. Using the fundamental Lemma of the calculus of variations, i.e $L_{loc}^1(\Omega)\to \mathcal{D}^\prime (\Omega), f \mapsto F_f$ being injective, we get the result that every distribution $U$ that satisfies the weak mean value property corresponds to a smooth harmonic function, meaning that every weak soltion to the Laplace equation coincides with a smooth strong solution.\\
+    Harnacks inequality then yields that the solution on open path-connected Domains with compact closure at individual points are comparable by a finite multiplicative factor from other points. This tells us, that the solution deos not osccilate pointwise too much. Harnacks princpile tells us that if a sequence of monotone harmonic functions is bounded (which implies converge on $\mathbb{R}^n$) at a specific point, this is equivalent to convergence of that sequence on entire compact subsets of open path connected domains. Later the Dirichlet principle gives us that the limit of energy functionals solve Dirichlet problem. A sequence of energy functionals that converge to that minimizer does then with the Dirichlet principle exist and is indeed harmonic.\\
+    The strong maximum principle states that harmonic functions cannot attain their extremum in the interior of an open path connected domain unless its constant. The weak maximum principle ensures that the maximum is attained on the boundary of bounded domains. This result is then applied to arbitrary linear elliptic differential operators.\\
+    So far we have not considered boundary conditions. To solve the Dirichlet problem, we introced the Greens functions in order to construct solutions for the Poisson equation with boundary condition $u=g$. Using Greens identities and the Greens representation theorem we can write down the solution to the Poisson equation in terms of the Greens function. Using the symmetry of the Greens function we can write it on $B_1 (0)$ in terms of the fundamental solution $\Phi$. Then Poissions representation theorem gives us a specific form of the solution of the Dirichlet Problem on $B_r (z)$, which can be written such that it only depends on the boundary $\partial B_r (z)$. This can be then used to imply that all harmonic functions are analitic. Finally, we can conclude that every bounded harmonic function on $\Omega \setminus \{0\}$ has to extend to $\Omega$ harmonically, which means that it is smooth at the origin and it does not explode there.\\
+    The Dirichlet principle gives us an equivalent formulation of the Dirichlet problem to a minimization problem of a variational equation with unqiue solution.
+
 
 \chapter{Heat Equation}
 We now focus on $\frac{\partial}{\partial t} u - \Delta u=0$ the heat eqaution and is inhomogenous form $\dot{u} - \Delta u=f$, where $u$ is defined on the open domain $\Omega \subset \mathbb{R}^n \times \mathbb{R}$ and $f$ on $\Omega$. We will extend statements about harmonic function to solution of the heat equation. This equation models the diffusion of some quantity. (The heat equation follows from the scalar conservation law???)\\
