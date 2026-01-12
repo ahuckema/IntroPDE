@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  11 JAN 2026 19:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (TeX Live 2025) (preloaded format=pdflatex 2025.3.8)  12 JAN 2026 18:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1315,6 +1315,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [2]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -1327,9 +1330,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 Overfull \hbox (15.79572pt too wide) in paragraph at lines 181--181
 \T1/cmr/m/n/12 which leads to the con-clu-sion that $\OML/cmm/m/it/12 X$ \T1/cmr/m/n/12 has to be ei-ther $\OT1/cmr/m/n/12 ([] \OML/cmm/m/it/12 X; [] X\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 [[] \OML/cmm/m/it/12 X; [] X\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 ([] \OML/cmm/m/it/12 X; [] X\OT1/cmr/m/n/12 ]$ \T1/cmr/m/n/12 or $\OT1/cmr/m/n/12 [[] \OML/cmm/m/it/12 X; [] X\OT1/cmr/m/n/12 ]$\T1/cmr/m/n/12 . 
  []
-
-
-Underfull \vbox (badness 2080) has occurred while \output is active []
 
 
 
@@ -2038,7 +2038,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefi
                    \relax 
 l.1730 }
         
-Underfull \vbox (badness 5893) has occurred while \output is active []
+Underfull \vbox (badness 5832) has occurred while \output is active []
 
 
 
@@ -2421,7 +2421,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@myremark.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2626 }
+l.2646 }
         
 
 
@@ -2435,7 +2435,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2662 }
+l.2691 }
         
 
 
@@ -2449,17 +2449,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2705 }
-        
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2714 }
-        
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2728 }
+l.2734 }
         
 
 
@@ -2470,6 +2460,19 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [76]
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2744 }
+        
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2758 }
+        
+Underfull \vbox (badness 4752) has occurred while \output is active []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2488,21 +2491,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [78]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2818 }
-        
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2839 }
-        
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.2843 }
-        
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2512,10 +2500,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [79]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.4}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2848 }
+        
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.2869 }
+        
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.2873 }
         
 
 
@@ -2526,10 +2524,10 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [80]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.5}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.2916 }
+l.2899 }
         
 
 
@@ -2540,16 +2538,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [81]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@myexample.1}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.5}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3058 }
+l.2946 }
         
-Overfull \hbox (10.45404pt too wide) detected at line 3058
-[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 l \OT1/cmr/m/n/12 + 2)(\OML/cmm/m/it/12 l \OT1/cmr/m/n/12 + 1)\OML/cmm/m/it/12 g[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = 0   \OMS/cmsy/m/n/12 ([])   \OML/cmm/m/it/12 g[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = [] = [] = \OML/cmm/m/it/12 ::: \OT1/cmr/m/n/12 = []
- []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2559,7 +2552,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [82]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@myexample.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3088 }
+        
+Overfull \hbox (10.45404pt too wide) detected at line 3088
+[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 (\OML/cmm/m/it/12 l \OT1/cmr/m/n/12 + 2)(\OML/cmm/m/it/12 l \OT1/cmr/m/n/12 + 1)\OML/cmm/m/it/12 g[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = 0   \OMS/cmsy/m/n/12 ([])   \OML/cmm/m/it/12 g[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = [] = [] = \OML/cmm/m/it/12 ::: \OT1/cmr/m/n/12 = []
+ []
 
 
 
@@ -2580,9 +2580,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [84]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2592,17 +2589,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [85]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[86]
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3089 }
+l.3119 }
         
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3097 }
+l.3127 }
         
-Overfull \hbox (2.52504pt too wide) detected at line 3097
+Overfull \hbox (2.52504pt too wide) detected at line 3127
 []
  []
 
@@ -2615,26 +2621,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[86]
+[87]
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3133 }
+l.3163 }
         
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[87]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.4}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.3158 }
-        
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2644,16 +2639,14 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [88]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.5}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3183 }
+l.3188 }
         
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.3218 }
-        
+Underfull \vbox (badness 1484) has occurred while \output is active []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2663,20 +2656,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [89]
-Overfull \hbox (8.01738pt too wide) in paragraph at lines 3236--3239
-\T1/cmr/m/n/12 we ob-tain the unique so-lu-tion to the ini-tial value prob-lem of the heat equa-tion as $\OML/cmm/m/it/12 u\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; t\OT1/cmr/m/n/12 ) = [][] \OML/cmm/m/it/12 e[]\OMS/cmsy/m/n/12 h\OML/cmm/m/it/12 h; ^^^[]\OMS/cmsy/m/n/12 i\OML/cmm/m/it/12 ^^^[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 )$\T1/cmr/m/n/12 .
- []
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.5}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3247 }
+l.3213 }
         
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.3}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3250 }
+l.3248 }
         
 
 
@@ -2687,19 +2675,20 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [90]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.4}) has been already used, duplicate ignored
+Overfull \hbox (8.01738pt too wide) in paragraph at lines 3266--3269
+\T1/cmr/m/n/12 we ob-tain the unique so-lu-tion to the ini-tial value prob-lem of the heat equa-tion as $\OML/cmm/m/it/12 u\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; t\OT1/cmr/m/n/12 ) = [][] \OML/cmm/m/it/12 e[]\OMS/cmsy/m/n/12 h\OML/cmm/m/it/12 h; ^^^[]\OMS/cmsy/m/n/12 i\OML/cmm/m/it/12 ^^^[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 )$\T1/cmr/m/n/12 .
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3278 }
+l.3277 }
         
-LaTeX Font Info:    Trying to load font information for U+euf on input line 3278.
- (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
-File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
-)
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.5}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.3}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3284 }
+l.3280 }
         
 
 
@@ -2710,17 +2699,40 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [91]
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.4}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3308 }
+        
+LaTeX Font Info:    Trying to load font information for U+euf on input line 3308.
+ (/usr/local/texlive/2025/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+)
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.5}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3314 }
+        
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[92]
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.6}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3288     }
+l.3318     }
             
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.7}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3297 }
+l.3327 }
         
-Overfull \hbox (1.76578pt too wide) in paragraph at lines 3369--3369
+Overfull \hbox (1.76578pt too wide) in paragraph at lines 3399--3399
 []\T1/cmr/m/n/12 Consider the normed space $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\U/msb/m/n/12 R[]\OML/cmm/m/it/12 ; \U/msb/m/n/12 C\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 k ^^A k[]\OT1/cmr/m/n/12 )$ \T1/cmr/m/n/12 and $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 L[]\OT1/cmr/m/n/12 (\U/msb/m/n/12 R[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 k ^^A k[]\OT1/cmr/m/n/12 )$ \T1/cmr/m/n/12 and the Ba-nach space $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 C[]\OT1/cmr/m/n/12 (\U/msb/m/n/12 R[]\OML/cmm/m/it/12 ; \U/msb/m/n/12 C\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; \OMS/cmsy/m/n/12 k ^^A
  []
 
@@ -2733,7 +2745,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[92]
+[93]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2742,18 +2754,18 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[93]
+[94]
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.8}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3373 }
+l.3403 }
         
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.9}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3407 }
+l.3437 }
         
-Overfull \hbox (4.93576pt too wide) detected at line 3407
+Overfull \hbox (4.93576pt too wide) detected at line 3437
 \OML/cmm/m/it/12 W[]\OT1/cmr/m/n/12 (
 ) := [][] = []
  []
@@ -2767,38 +2779,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[94]
+[95]
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.10}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3430 }
-        
-
-
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
-
-[95]
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3451.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 3451.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3451.
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@myremark.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.3520 }
+l.3460 }
         
 
 
@@ -2811,13 +2796,22 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 [96]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3522.
+(hyperref)                removing `math shift' on input line 3481.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3522.
+(hyperref)                removing `superscript' on input line 3481.
 
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 3481.
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@myremark.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3550 }
+        
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2828,6 +2822,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 
 [97]
 
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 3552.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 3552.
+
+
+
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
 (fancyhdr)                Make it at least 14.49998pt, for example:
@@ -2836,16 +2839,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [98]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@myremark.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.3609 }
-        
-Underfull \hbox (badness 10000) in paragraph at lines 3605--3609
-
- []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2855,11 +2848,16 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [99]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@myremark.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3616 }
+l.3639 }
         
+Underfull \hbox (badness 10000) in paragraph at lines 3635--3639
+
+ []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2869,6 +2867,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [100]
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3646 }
+        
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2878,16 +2881,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [101]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.3707 }
-        
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.3}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.3710 }
-        
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2897,34 +2890,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [102]
-Chapter 5.
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3728.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 3728.
-
-
-Overfull \hbox (15.6276pt too wide) in paragraph at lines 3738--3740
-\T1/cmr/m/n/12 In the ho-mogen-u-ous case we know that if $\OML/cmm/m/it/12 u$ \T1/cmr/m/n/12 solves the ho-mo-ge-neous wave equa-tion, then $\OML/cmm/m/it/12 v\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; t\OT1/cmr/m/n/12 ) := [] \OML/cmm/m/it/12 u\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; t\OT1/cmr/m/n/12 )$
- []
-
-
-
-[103
-
-]
-Overfull \hbox (1.53879pt too wide) detected at line 3756
-\OML/cmm/m/it/12 u\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; t\OT1/cmr/m/n/12 ) = [][] \OML/cmm/m/it/12 a\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 t \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 s\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ds \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 b\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) [] [][](\OMS/cmsy/m/n/12 ^^@[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dy \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 b\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = [] [][] \OML/cmm/m/it/12 a\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dy \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 b\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 :
- []
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3778 }
+l.3737 }
+        
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3740 }
         
 
 
@@ -2934,27 +2908,7 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[104]
-Underfull \hbox (badness 10000) in paragraph at lines 3794--3796
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3797--3798
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3799--3800
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 3823--3826
-
- []
-
-
+[103]
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2963,11 +2917,35 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[105]
+[104]
+Chapter 5.
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 3781.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 3781.
+
+
+Overfull \hbox (15.6276pt too wide) in paragraph at lines 3791--3793
+\T1/cmr/m/n/12 In the ho-mogen-u-ous case we know that if $\OML/cmm/m/it/12 u$ \T1/cmr/m/n/12 solves the ho-mo-ge-neous wave equa-tion, then $\OML/cmm/m/it/12 v\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; t\OT1/cmr/m/n/12 ) := [] \OML/cmm/m/it/12 u\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; t\OT1/cmr/m/n/12 )$
+ []
+
+
+
+[105
+
+]
+Overfull \hbox (1.53879pt too wide) detected at line 3809
+\OML/cmm/m/it/12 u\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; t\OT1/cmr/m/n/12 ) = [][] \OML/cmm/m/it/12 a\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 t \OMS/cmsy/m/n/12 ^^@ \OT1/cmr/m/n/12 2\OML/cmm/m/it/12 s\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ds \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 b\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) [] [][](\OMS/cmsy/m/n/12 ^^@[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 a\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dy \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 b\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 t\OT1/cmr/m/n/12 ) = [] [][] \OML/cmm/m/it/12 a\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 y\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 dy \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 b\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 t\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 :
+ []
+
+
 pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.3866 }
+l.3831 }
         
 
 
@@ -2978,6 +2956,26 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [106]
+Underfull \hbox (badness 10000) in paragraph at lines 3847--3849
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3850--3851
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3852--3853
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3876--3879
+
+ []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -2987,6 +2985,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [107]
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.3919 }
+        
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3014,16 +3017,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [110]
-Underfull \hbox (badness 10000) in paragraph at lines 4034--4036
-
- []
-
-
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.4049 }
-        
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3033,14 +3026,6 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [111]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.4069 }
-        
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3050,10 +3035,15 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [112]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.3}) has been already used, duplicate ignored
+Underfull \hbox (badness 10000) in paragraph at lines 4087--4089
+
+ []
+
+
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.4109 }
+l.4102 }
         
 
 
@@ -3064,6 +3054,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [113]
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.2}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4122 }
+        
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3076,9 +3071,11 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [114]
-Underfull \vbox (badness 6641) has occurred while \output is active []
-
-
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.3}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4162 }
+        
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3088,6 +3085,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [115]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3097,11 +3097,9 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
 [116]
-pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.4218 }
-        
+Underfull \vbox (badness 6641) has occurred while \output is active []
+
+
 
 
 Package fancyhdr Warning: \headheight is too small (12.0pt): 
@@ -3119,30 +3117,53 @@ Package fancyhdr Warning: \headheight is too small (12.0pt):
 (fancyhdr)                You might also make \topmargin smaller:
 (fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
 
-[118] (./main.aux)
+[118]
+pdfTeX warning (ext4): destination with the same identifier (name{tcb@cnt@mydefinition.1}) has been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.4271 }
+        
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[119]
+
+
+Package fancyhdr Warning: \headheight is too small (12.0pt): 
+(fancyhdr)                Make it at least 14.49998pt, for example:
+(fancyhdr)                \setlength{\headheight}{14.49998pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+
+[120] (./main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 903B373B6D3AA632D8694F637328488A;5885.
+(rerunfilecheck)             Checksum: D13666AB42B224F8F7C52381C8C3E23E;5975.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 45065 strings out of 473190
- 898823 string characters out of 5715801
- 1904308 words of memory out of 5000000
- 67406 multiletter control sequences out of 15000+600000
+ 45071 strings out of 473190
+ 898897 string characters out of 5715801
+ 1903308 words of memory out of 5000000
+ 67409 multiletter control sequences out of 15000+600000
  578112 words of font info for 91 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  101i,22n,145p,1025b,1879s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/esint-type1/esint10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbi1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfbx2488.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb>
-Output written on main.pdf (118 pages, 753035 bytes).
+Output written on main.pdf (120 pages, 760576 bytes).
 PDF statistics:
- 951 PDF objects out of 1000 (max. 8388607)
- 751 compressed objects within 8 object streams
- 180 named destinations out of 1000 (max. 500000)
- 445 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 967 PDF objects out of 1000 (max. 8388607)
+ 765 compressed objects within 8 object streams
+ 183 named destinations out of 1000 (max. 500000)
+ 453 words of extra memory for PDF output out of 10000 (max. 10000000)
 

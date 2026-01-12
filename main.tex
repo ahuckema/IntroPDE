@@ -1357,9 +1357,9 @@ which leads to
 \]
 We see that this is only an ODE in $r$. Solving it is not hard: First it can be seen that
 \[
-v^{\prime \prime} (r) + \frac{n-1}{r} v^\prime (r) =0 \quad \iff \quad (r^{n-1} v^\prime (r) )^\prime= \frac{v^\prime (r)}{n-1} r^{n-2} + v^{\prime \prime} r^{n-1}  =0.
+v^{\prime \prime} (r) + \frac{n-1}{r} v^\prime (r) =0 \quad \iff \quad (r^{n-1} v^\prime (r) )^\prime= (n-1) v^\prime (r) r^{n-2} + v^{\prime \prime} r^{n-1} = r^n ( \frac{n-1}{r} v^\prime (r) + v^{\prime \prime}  ) =0.
 \]
-Then we define $C_1 := r^{n-1} v^\prime (r)$ which can also be written as $v^\prime (r) =C_1 r^{1-n}$. This formulation now leads t0
+As the derivative stays constant we define $C_1 := r^{n-1} v^\prime (r)$ which can also be written as $v^\prime (r) =C_1 r^{1-n}$. This formulation now leads t0
 \[
 v(r) = \begin{cases}
     C_2 + \frac{C_1}{2-n} r^{2-n} &, n \neq 2\\
@@ -1726,7 +1726,7 @@ If we choose a smart assumption to get the right hand side to become zero, this 
     \[
     y \mapsto f(y) := \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n}, \quad supp \; f \subset B_r (x) \subset \Omega,
     \]
-    i.e. $U_f =0$.
+    i.e. $U (f) =0$.
 }
 
 \pf{
@@ -2000,7 +2000,7 @@ All the above arguments imply that $u$ is constant on $\Omega$ where it takes it
 Since $A$ is closed it follows that $A^C$ is open. Because $\Omega = A \cup A^C$ and $\Omega$ is connected one of the sets has to be empty. As $A \neq \emptyset$ it follows $A^C = \emptyset$.
 }
 \thm{Weak Maximum Principle}{
-    Let $u$ be harmonic on a bounded open domain $\Omega \subset \mathbb{R}^n$ that extends continuously to $\partial \Omega$. THen maximum of $u$ is then taken on $\partial \Omega$.
+    Let $u$ be harmonic on a bounded open domain $\Omega \subset \mathbb{R}^n$ that extends continuously to $\partial \Omega$. Then the maximum of $u$ is then taken on $\partial \Omega$.
 }
 \pf{
 Because $\Omega$ is bounded it follows that $\bar{\Omega} = \Omega \cup \partial \Omega$ is closed and bounded, which implies with Heine Borel that $\bar{\Omega}$ is compact. A continuous function on a compact set attains its maximum value $M$ at some point $x \in \bar{\Omega}$. There are now two cases:
@@ -2060,7 +2060,7 @@ With the same proof idea one can show that $Lu \leq 0$ implies that $u$ takes it
 \section{Green's Function}
 Now we want to find conditions that ensure the existence and uniqueness of harmonic functions on path-connected, open and bounded domains $\Omega \subset \mathbb{R}^n$. We will introduce boundary value problems, that means the harmonic function or some of its derivatives extend continuously to the boundary and coincide with some function on $\partial \Omega$.
 \defn{}{
-    We call $u$ m-times differentiable on $\bar{\Omega}$ if it is m-times continuousyl differentiable on $\Omega$ and all partial derivates of order of at most $m$ extend continuously to $\partial \Omega$.
+    We call $u$ m-times differentiable on $\bar{\Omega}$ if it is m-times continuously differentiable on $\Omega$ and all partial derivates of order of at most $m$ extend continuously to $\partial \Omega$.
 }
 
 \lem{Greens First Formula}{
@@ -2075,11 +2075,11 @@ If we subtract the above by itself, while exchanging the role of $u$ and $v$ we 
     \begin{align*}
         &\int_\Omega v(y) \Delta u (y) d^n y + \int_\Omega \nabla v (y) \nabla u(y) d^n y - \int_\Omega \Delta v(y) u (y) d^n y - \int_\Omega \nabla v(y) \nabla u(y) d^n y \\
         &= \int_{\partial \Omega } v(z) \nabla (z) N d\sigma (z) - \int_{\partial \Omega} u (z) \nabla v(z) N d \sigma (z) \\
-        & \iff \int_\Omega v(y) \Delta u (y)-\Delta v(y) u (y) d^n y =  \int_{\partial \Omega } (v(z) \nabla (z) - u (z) \nabla v(z) )N d \sigma (z) 
+        & \iff \int_\Omega v(y) \Delta u (y)-\Delta v(y) u (y) d^n y =  \int_{\partial \Omega } (v(z) \nabla u (z) - u (z) \nabla v(z) )N d \sigma (z) 
     \end{align*}
 }
 \thm{Greens Representation Theorem}{
-Let the divergence theorem hold true on an open and bounded domain $\Omega \subset \mathbb{R}^n$. THen for two $u,v \in C^2 (\bar{\Omega})$ it holds
+Let the divergence theorem hold true on an open and bounded domain $\Omega \subset \mathbb{R}^n$. Then for two $u,v \in C^2 (\bar{\Omega})$ it holds
 \[
  u(x) = -\int_{\Omega }  \Phi (x-y) \Delta u(y) d^n y + \int_{\partial \Omega} (  \Phi (x-y) \nabla u(y) - u(y) \nabla_y \Phi (x-y)) N d\sigma (y) 
 \]
@@ -2480,7 +2480,7 @@ We began by exploiting the rotational and translational invariance of the Laplac
     The next step was to generalize these results to distributions. For that we introduced rotationally symmertric kernels $f$ such that $U (f)=0$ results in the mean of $u$ being constant regardless of the radius of the average. Weyl's Lemma then shows that harmonic distributions are regular, i.e. they are of the form $F_u$, where $u \in C^\infty (\Omega)$, i.e. smooth. Using the fundamental Lemma of the calculus of variations, i.e $L_{loc}^1(\Omega)\to \mathcal{D}^\prime (\Omega), f \mapsto F_f$ being injective, we get the result that every distribution $U$ that satisfies the weak mean value property corresponds to a smooth harmonic function, meaning that every weak soltion to the Laplace equation coincides with a smooth strong solution.\\
     Harnacks inequality then yields that the solution on open path-connected Domains with compact closure at individual points are comparable by a finite multiplicative factor from other points. This tells us, that the solution deos not osccilate pointwise too much. Harnacks princpile tells us that if a sequence of monotone harmonic functions is bounded (which implies converge on $\mathbb{R}^n$) at a specific point, this is equivalent to convergence of that sequence on entire compact subsets of open path connected domains. Later the Dirichlet principle gives us that the limit of energy functionals solve Dirichlet problem. A sequence of energy functionals that converge to that minimizer does then with the Dirichlet principle exist and is indeed harmonic.\\
     The strong maximum principle states that harmonic functions cannot attain their extremum in the interior of an open path connected domain unless its constant. The weak maximum principle ensures that the maximum is attained on the boundary of bounded domains. This result is then applied to arbitrary linear elliptic differential operators.\\
-    So far we have not considered boundary conditions. To solve the Dirichlet problem, we introced the Greens functions in order to construct solutions for the Poisson equation with boundary condition $u=g$. Using Greens identities and the Greens representation theorem we can write down the solution to the Poisson equation in terms of the Greens function. Using the symmetry of the Greens function we can write it on $B_1 (0)$ in terms of the fundamental solution $\Phi$. Then Poissions representation theorem gives us a specific form of the solution of the Dirichlet Problem on $B_r (z)$, which can be written such that it only depends on the boundary $\partial B_r (z)$. This can be then used to imply that all harmonic functions are analitic. Finally, we can conclude that every bounded harmonic function on $\Omega \setminus \{0\}$ has to extend to $\Omega$ harmonically, which means that it is smooth at the origin and it does not explode there.\\
+    So far we have not considered boundary conditions. To solve the Dirichlet problem, we introced the Greens functions in order to construct solutions for the Poisson equation with boundary condition $u=g$. Using Greens identities and the Greens representation theorem we can write down the solution to the Poisson equation in terms of the Greens function. Using the symmetry of the Greens function we can write it on $B_1 (0)$ in terms of the fundamental solution $\Phi$. Then Poissions representation theorem gives us a specific form of the solution of the Dirichlet Problem on $B_r (z)$, which can be written such that it only depends on the boundary $\partial B_r (z)$. This can be then used to imply that all harmonic functions are analytic. Finally, we can conclude that every bounded harmonic function on $\Omega \setminus \{0\}$ has to extend to $\Omega$ harmonically, which means that it is smooth at the origin and it does not explode there.\\
     The Dirichlet principle gives us an equivalent formulation of the Dirichlet problem to a minimization problem of a variational equation with unqiue solution.
 
 
@@ -2612,18 +2612,42 @@ For $t=0$ the Fundamental solution is not defined. It is defined as the limit fr
 }
 
 \section{Inhomogeneous Initial value problem}
-THe homogenuous heat equation can be written as $\dot{u} = \Delta u$. Because the Laplace operator is a linear mapping from $C^2( \mathbb{R}^n) \to C^0 (\mathbb{R}^n)$ the heat equation becomes an ODE on an infinite dimensional Banach space. 
+The homogenuous heat equation can be written as $\dot{u} = \Delta u$. Because the Laplace operator is a linear mapping from $C^2( \mathbb{R}^n) \to C^0 (\mathbb{R}^n)$ the heat equation becomes an ODE on an infinite dimensional Banach space. 
 \rmkb{
-    Remember that for an inhomogenous linear ODE 
+    First read the section to the Fourier Transform. Here the connection of the heat equation to an ODE and the fundamental solution is discussed to motivate Duramels principle. The inhomogeneous heat equation $\dot{u}= \Delta u +f$ can be viewed as an ODE on an infinite functional space on which $u$ is defined, i.e. we have the operator $H:= \Delta$. Then the solution to this linear ODE is given by 
     \[
-    u^\prime (t) = a(t) u(t) + b(t), \quad u(0) = \eta 
+    \forall x \in \mathbb{R}^n: \quad u(x,t) = \int_0^t e^{(t-s)H} f(s) ds.
     \]
-    the soltion using variation of constants is given by 
+    However, it is not quite clear what $e^{t \Delta}$ would mean. Remember that 
     \[
-    u(t) = \eta e^{A(t)} + \int_0^t b(x) e^{A(t) -A(s)} ds 
+    \mathcal{F}(\Delta u)(k) = - 4 \pi^2 |k|^2 \hat{u}(k)
     \]
-    where $A(t) := \int_0^t a(s) ds$.
+    Using this we get 
+    \begin{align*}
+    \mathcal{F}(e^{t \Delta} f) (k) &= \mathcal{F}\left( \sum_{n \in \mathbb{N}} \frac{t^n}{n!} \Delta^n f \right)(k) = \sum_{n \in \mathbb{N}} \frac{t^n}{n!}\mathcal{F}\left(  \Delta^n f \right)(k) \\
+    &= \sum_{n \in \mathbb{N}} \frac{t^n}{n!} (-4 \pi^2 |k|^2)^n \hat{f}(k) = e^{-4 \pi^2 |k|^2 t} \hat{f}(k)
+    \end{align*}
+    which is equivalent to 
+    \[
+    (e^{t \Delta} f )(x) = \mathcal{F}^{-1} \left( e^{- 4 \pi^2 |k|^2 t } \hat{f}(k)\right)= \mathcal{F}^{-1} \left( e^{- 4 \pi^2 |k|^2 t } \right) * f(x)
+    \]
+    and using 
+    \[
+    \mathcal{F}^{-1} \left( e^{4 \pi^2 |k|^2 t} \right) (x) = \int_{\mathbb{R}^n} e^{2 \pi i k x} e^{-4 \pi^2 |k|^2 t} d^n k \stackrel{???}{=} \frac{1}{(4 \pi t)^{n/2} } e^{- \frac{-|x|^2}{4t}} = \Phi (x,t)
+    \]
+    implying
+    \[
+    (e^{t\Delta} f)(x) = (\Phi (\cdot,t) * h)(x),
+    \]
+    which implies that 
+    \[
+    u(x,t) = \int_0^t e^{(t-s)H} f(s) ds= \int_0^t (\Phi(\cdot,t-s) * f)(x) ds= \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y) d^n y ds.
+    \]
 }
+
+
+
+
 There is the homogeneous initial value problem 
 \begin{align*}
     \dot{u} (x,t) - \Delta u(x,t) =0, \quad (x,t) \in \mathbb{R}^n \times \mathbb{R}^+,\\
@@ -2634,21 +2658,26 @@ and the inhomogenous initial value problem
     \dot{u} (x,t) - \Delta u(x,t) =f(x,t), \quad (x,t) \in \mathbb{R}^n \times \mathbb{R}^+,\\
     u(x,0) = 0, \quad x \in \mathbb{R}^n.
 \end{align*}
-Assume that $u$ is the solution of the inhomegenous initial value problem and $v_t$ the solution of the homogenous inital value problem with $v_t (x,0)=h_t(x)$. Further, assume that $f(x,t)=h_t (x)$, then 
+Assume that $u$ is the solution of the inhomegenous initial value problem and $v_t$ the solution of the homogenous inital value problem with $v_t (x,0)=h_t(x)$. Further, assume that $f(x,t)=h_t (x)$, then define
 \[
-u(x,t)  =\int_0^t v_s(x,t-s)   ds=  \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) h_s (y ) d^n y ds = \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds.
+u(x,t):= \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds =  \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) h_s (y ) d^n y ds .
 \]
-Remember the Leipniz rule: For any differentiable function $G(x,t)$ it holds 
+We now want to show that $u$ solves the inhomogeneous PDE $\dot{u}-\Delta u =f$. Remember the Leipniz rule: For any differentiable function $G(x,t)$ it holds 
 \[
-\frac{d}{dt} \int_0^t G(t,x) ds = \int_0^t \frac{\partial}{\partial t} G(t,x) ds + G(t,t).
+\frac{d}{dt} \int_0^t G(t,s) ds = \int_0^t \frac{\partial}{\partial t} G(t,s) ds + G(t,t).
 \]
 Using this we get 
 \begin{align*}
-&\dot{u}(x,t) - \Delta u(x,t) \\
+&\dot{u}(x,t) - \Delta u(x,t)= \frac{\partial}{\partial t} \int_0^t v_s (x,t-s) ds + \int_0^t \Delta v_s (x,t-s) ds \\
+&=  \int_0^t\frac{\partial}{\partial t} v_s (x,t-s) ds + v_t(x,0) + \int_0^t \Delta v_s (x,t-s) ds \\
 &= \int_0^t \int_{\mathbb{R}^n} \left(\dot{\Phi} (x-y,t-s) - \Delta \Phi (x-y,t-s) \right) f(y,s) d^n y ds +\lim_{s \to t} \int_{\mathbb{R}^n} \Phi (x-y,t-s)  f(y,t) d^n y\\
 &= \int_{\mathbb{R}^n} \delta (x-y)  f(y,t) d^n y=f(x,t).
 \end{align*}
-Thus is suffices to study the homogeneous initial value problem as we can just integrate over time and thus get the solution to the non-homogenous problem.
+It solves the inhomogeneous heat equation. Because 
+\[
+u(x,t)=\int_0^t v_s(x,t-s)   ds 
+\]
+it suffices to study the homogeneous initial value problem as we can just integrate over time and thus get the solution to the non-homogenous problem.
 \thm{}{
     If $f$ is twice continuously and bounded differentiable on $\mathbb{R}^n \times \mathbb{R}^+$ then the solution of the inhomogenous initial value problem 
     \[
@@ -2661,7 +2690,7 @@ Thus is suffices to study the homogeneous initial value problem as we can just i
 
 }
 \pf{
-    We have already shown that 
+    We have already shown that
     \[
     v_s (x,t) := \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y 
     \]
@@ -2692,7 +2721,7 @@ u(x,0) = \lim_{\epsilon \to 0} u_\epsilon (x,0)= \lim_{\epsilon \to 0} \int_0^{-
 \]
 
 }
-
+In the following Corallary we call this initial value problem also Cauchy problem. It can be easily solved by splitting the solution $u=v+w$ into the initial value problems of the homogeneous and inhomogeneous heat equation.
 \cor{
     The inhomogenous initial value problem 
     \[
@@ -2703,6 +2732,7 @@ u(x,0) = \lim_{\epsilon \to 0} u_\epsilon (x,0)= \lim_{\epsilon \to 0} \int_0^{-
     u(x,t) = \int_{\mathbb{R}^n} \Phi (x-y,x) h(y) d^n y + \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds .
     \]
 }
+The first sum is the solution of the homogeneous initial value problem and the second is the solution to the inhomogeneous initial value problem.
 
 \section{Mean Value Property}
 We want to use the fundamental solution $\Phi$ to describe the solution $u(x,t)$ as some mean on a smart chosen ball.
@@ -3057,7 +3087,7 @@ follows that $u$ is bounded by
     This example show that we found a solution that is zero on $\mathbb{R}$ at $t=0$ and then as soon as $t>0$ there is infinite heat at $+\infty$ and $-\infty$ that propagate into the center at infinite speed and result in a value of the solution at time $t>0$ and point $x \in \mathbb{R}$ of $u(x,t) = \sum_{l=0}^\infty \frac{g^{(l) } (t)}{(2l)!} x^{2l} $.
 }
 
-An alternative to using the maximum principle is using the yet to be defined Energy functional. There we cannot use an unbounded domain $\mathbb{R}$ but instead have to focus on a bounded domain $\Omega /subset \mathbb{R}$. The energy function is given by 
+An alternative to using the maximum principle is using the yet to be defined Energy functional. There we cannot use an unbounded domain $\mathbb{R}$ but instead have to focus on a bounded domain $\Omega \subset \mathbb{R}$. The energy function is given by 
 \[
 e(t) := \int_\Omega u^2 (x,t) d^n x.
 \]
@@ -3279,7 +3309,7 @@ This then yields
 \defn{}{
     The Fourier transform is defined as 
     \[
-    \mathcal{F}: \mathfrak{S} \to \mathfrak{S}, h \mapsto \mathcal{F}(h):=\hat{h}, \quad \hat{k}(x) := \int_{\mathbb{R}^n} e^{-2 \pi i k^T y} h (y) d^n y.
+    \mathcal{F}: \mathfrak{S} \to \mathfrak{S}, h \mapsto \mathcal{F}(h):=\hat{h}, \quad \hat{h}(x) := \int_{\mathbb{R}^n} e^{-2 \pi i k^T y} h (y) d^n y.
     \]
 }
 
@@ -3721,6 +3751,29 @@ This leads to
     \end{itemize}
     ???
 }
+
+
+
+
+\section{Summary}
+We first noticed that scaling invariance of the soltuion to the heat equation on $\mathbb{R}^n$, where $u(x,t) $ is a solution $\iff$ $u(\lambda x,\lambda^2 t)$ is also a solution. This suggests the self-similar Ansatz $u(x,t) = v(\frac{x}{\sqrt{t}})$ leading to the fundamental solution $\Phi$. This fundamental solution is non negative, its integral is one, i.e. it is similar to mollifiers. I.e. we get something like an approximate identity if we take the convolution of $\Phi$ with the initial value as $t \searrow 0$. Also the solution to the homogeneuous initial value problem on $\mathbb{R}^n$ is the convolution $u=\Phi * h$ for $t>0$. As the solution depends on the entire $\mathbb{R}^n$ the speed of information propagation is infinite. Next, we showed that we can view the inhomogeneous heat equation as an ODE on an infinite dimensional functional space and showed that the solution is given by 
+\[
+\int_0^t \Phi (\cdot , t-s) * f(\cdot ,s ) ds.
+\]
+Further, the inhomogeneous heat equation can be obtained from choosing the initial value as $f(\cdot,t)$ and integrating over the solution of the homogeneous initial value problem. THe solution to the Cauchy problem is then obtained by splitting the solution $u=v+w$ into the inhomogeneous and homogeneous initial value problem (superposition).\\
+Unlike the Laplace equatin the solution to the heat equation satisfies a mean value property on a space time region (not a ball) called heat balls $E(x,t,r)$, which is defined through $\Phi$.\\
+The maximums princpiles are defined on $\Omega_T$, where the parabolic boundary is $\partial \Omega_T = (\partial \Omega \times (0,T]) \cup (\Omega \times \{0\})$. If $u\in C^2$ is a solution of the heat equation on $\Omega_T$, which is path connected, and extends continuously to $\overline{\Omega_T}$ and takes its maximum in $\Omega_T$, then it is constant on $\Omega_T$. \\
+If $\Omega$ is open and boundad and $u \in C^2$ is the solution to the heat equation extending constinuousky to $\bar{\Omega_T}$, it follows that the maximum is on $\partial \Omega_T$. Using these we can show the existence and uniqueness of the Cauchy problem on an open and bounded domain.\\
+On $\mathbb{R}^n$ the uniqueness is more constrained. A counterexample shows this. To show the uniqueness here, we first define the maximums principle for the Cauchy problem on $\mathbb{R}^n$ for bounded solutions 
+\[
+u(x,t) \leq A e^{a|x|^2}.
+\]
+This is then used to show the existence and uniqueness of such solutions on $\mathbb{R}^n$.\\
+Another approach to show uniquness is the usage of energy functions 
+\[
+e(t) := \int_\Omega u^2 (x,t) d^n x.
+\]
+Up to now we have only found explicit forms for the solutions on the interior of the domain, by ignoring the boundary. Here heat kernels come into play. They are symmetric, positive and give us a form for the solution on $\bar{\Omega}$. Using spectral thoery we can show the existence of these heat kernels by deriving explicit formulas on $S^1$ and $(0,1)$ and finally generalizing to any $[0,r]^n \times [0,T]$. Further, this section shows that convolution with $\Phi$ is analougously to summation of eigenfunctions and gives us a justification to treat the heat equation as an ODE.
 
 \chapter{Wave Equation}
 
