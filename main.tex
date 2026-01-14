@@ -1751,12 +1751,22 @@ If we choose a smart assumption to get the right hand side to become zero, this 
 }
 
 \lem{}{
-    On an open domain $\Omega \subset \mathbb{R}^n$ for each harmonic distribution $U \in \mathcal{D}^\prime (\Omega)$ there exists $u\in C^\infty (\Omega)$ harmonic such that $H=F_u$.
+    On an open domain $\Omega \subset \mathbb{R}^n$ for each harmonic distribution $U \in \mathcal{D}^\prime (\Omega)$ there exists $u\in C^\infty (\Omega)$ harmonic such that $U=F_u$.
 }
 \pf{
+
+\begin{itemize}
+    \item Idea: We construct $u \in C^\infty (\Omega)$ as 
+    \[
+    u(x) := U (g_x), \quad g_x (y) := \frac{\phi (|x-y|)}{n |y-x|^{n-1} \omega_n}, \quad \phi \in C_0^\infty ((0,r)), \quad \int_0^r \phi (s) ds=1
+    \]
+    and show that $F_u=:\tilde{U}$ satisfies the weak mean value property, $u$ is harmonic and $U=\tilde{U}$. This only works if $u$ is constructed independently from $\phi$ and $r$.
+\end{itemize}
+
+
     First, we shall find a $u$ as it was proposed in the lemma. For every $x \in \Omega$ choose a ball $B_r (x) \subset \Omega$ and a test function $\phi \in C_0^\infty ((0,r))$ with $\int_0^r \phi (s)ds =1$. Then we define 
     \[
-    u(x) := u(g_x), \quad g_x (y) := \frac{\phi (|y-x|)}{n |y-x|^{n-1} \omega_n}.
+    u(x) := U(g_x), \quad g_x (y) := \frac{\phi (|y-x|)}{n |y-x|^{n-1} \omega_n}.
     \]
 Now we need to show that $u$ is well defined, i.e. independent of the choice of $r$ and $\phi$. For that define 
 \[
@@ -1776,7 +1786,7 @@ g_x (y) = g_0 (y-x) = (T_x g_0 ) (y)
 \]
 which leads to 
 \[
-u(x) = U(g_x) = U(T_x g_0 ) = U (t_x P g_0) = (g_0 * U )(x)
+u(x) = U(g_x) = U(T_x g_0 ) = U (T_x P g_0) = (g_0 * U )(x)
 \]
 due to the fact that $g_0(\cdot)$ is symmetric, i.e. $g_0 = P g_0$. Thus because we can write any distribution as a function
 \[
@@ -2493,7 +2503,7 @@ u(x,t) \text{ is solution } \Rightarrow \forall \lambda\in \mathbb{R}: \quad u(\
 \]
 This is because 
 \[
-\frac{\partial}{\partial t} u(\lambda x, \lambda^2 t) + \sum_{i,j=1}^n \frac{\partial^2}{\partial x_i \partial x_j} u(\lambda x, \lambda^2 t) = \lambda^2 \frac{\partial}{\partial (\lambda^2 t)} u(\lambda x, \lambda^2 t) - \lambda^2 \sum_{i,j=1}^n \frac{\partial^2}{\partial (\lambda x_i) \partial (\lambda x_j)} u(\lambda x, \lambda^2 t) =0.
+\frac{\partial}{\partial t} u(\lambda x, \lambda^2 t) - \sum_{i,j=1}^n \frac{\partial^2}{\partial x_i \partial x_j} u(\lambda x, \lambda^2 t) = \lambda^2 \frac{\partial}{\partial (\lambda^2 t)} u(\lambda x, \lambda^2 t) - \lambda^2 \sum_{i,j=1}^n \frac{\partial^2}{\partial (\lambda x_i) \partial (\lambda x_j)} u(\lambda x, \lambda^2 t) =0.
 \]
 This suggests that the ratio $\frac{x^2}{t}$ is of interest. We invoke 
 \[
@@ -2509,8 +2519,8 @@ u(\frac{x}{t^\beta},1) = t^\alpha u(x,t) = v\left(\frac{x}{t^\alpha}\right)
 \]
 Then it follows with $y := \frac{x}{t^\beta}$ that
 \begin{align*}
-   0&= \frac{\partial}{\partial t} u(x,t) + \sum_{i,j=1}^n \frac{\partial^2}{\partial x_i \partial x_j} u(x,t) = \frac{\partial}{\partial t} \left( \frac{1}{t^\alpha}  v\left( \frac{x}{t^\beta} \right) \right) + \frac{1}{t^\alpha} \sum_{i,j=1}^n \frac{\partial^2}{\partial x_i \partial x_j} \left(   v\left( \frac{x}{t^\beta} \right) \right)\\
-    &= -\frac{\alpha}{t^{\alpha+1}}v\left( \frac{x}{t^\beta} \right)- \frac{1}{t^\alpha} \sum_{i=1}^n \frac{x_i}{t^\beta} \frac{\partial}{\partial y}   v\left( y \right) - \frac{1}{t^{2 \alpha + \beta}} \sum_{i,j=1}^n \frac{\partial^2}{\partial y_i \partial y_j}  v\left( y \right)\\
+   0&= \frac{\partial}{\partial t} u(x,t) - \sum_{i,j=1}^n \frac{\partial^2}{\partial x_i \partial x_j} u(x,t) = \frac{\partial}{\partial t} \left( \frac{1}{t^\alpha}  v\left( \frac{x}{t^\beta} \right) \right) - \frac{1}{t^\alpha} \sum_{i,j=1}^n \frac{\partial^2}{\partial x_i \partial x_j} \left(   v\left( \frac{x}{t^\beta} \right) \right)\\
+    &= -\frac{\alpha}{t^{\alpha+1}}v\left( \frac{x}{t^\beta} \right)- \frac{1}{t^\alpha} \sum_{i=1}^n \beta \frac{x_i}{t^{\beta+1}} \frac{\partial}{\partial y_i}   v\left( y \right) - \frac{1}{t^{ \alpha + 2\beta}} \sum_{i,j=1}^n \frac{\partial^2}{\partial y_i \partial y_j}  v\left( y \right)\\
     &= - \alpha t^{-(\alpha+1)} v(y) - \beta t^{- (\alpha+1)} y^T \nabla v(y) - t^{-( \alpha +2 \beta)} \Delta v(y).
 \end{align*}
 If we set $\beta = \frac{1}{2}$ then 
@@ -2520,7 +2530,7 @@ If we set $\beta = \frac{1}{2}$ then
 \end{align*}
 Define $r:= |y| = \sqrt{y^T y}$ and $v(y) := w(r)$ then 
 \[
-\Delta v(y) ) \nabla_y \cdot \nabla_y w (|y|) = \nabla_y \cdot \left( w^\prime (r) \frac{y}{|y|}\right) = w^{\prime \prime }(r) + \frac{n-1}{r} w^\prime (r) 
+\Delta v(y) = \nabla_y \cdot \nabla_y w (|y|) = \nabla_y \cdot \left( w^\prime (r) \frac{y}{|y|}\right) = w^{\prime \prime }(r) + \frac{n-1}{r} w^\prime (r) 
 \]
 that gives us 
 \begin{align*}
@@ -2531,8 +2541,8 @@ This with $\alpha = \frac{n}{2}$ it follows
     &0= r^{n-1} \left( \frac{n}{2} w(r)+ \frac{1}{2} r w^\prime (r) + w^{\prime \prime} (r) + \frac{n-1}{r} w^\prime (r) \right)\\
     \iff 0&=   r^{n-1} \frac{n}{2} w(r)+  r^{n-1}\frac{1}{2} r w^\prime (r) +  r^{n-1} w^{\prime \prime} (r) +  r^{n-1}\frac{n-1}{r} w^\prime (r) \\
     \iff 0&= \frac{1}{2} \left( r^n w (r) \right)^\prime + (r^{n-1} w^\prime (r))^\prime \\
-    \iff 0&= \frac{d}{dt} \left( \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r) \right) \\
-    \iff \int_{\mathbb{R}} 0 dr&= \int_\mathbb{R} \frac{d}{dt} \left( \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r) \right) dr = \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r)\\
+    \iff 0&= \frac{d}{dr} \left( \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r) \right) \\
+    \iff \int_{\mathbb{R}} 0 dr&= \int_\mathbb{R} \frac{d}{dr} \left( \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r) \right) dr = \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r)\\
     &\iff a = \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r),
 \end{align*}
 where $a \in \mathbb{R}$ is an arbitrary constant. Due to the fact that $w$ and $w^\prime$ for $r \to \infty$ it follows $a=0$. This gives us the ODE 
@@ -2544,7 +2554,7 @@ whose solution is given by $w (r) = b e^{- \frac{r^2}{4}}$ and $b \in \mathbb{R}
     The fundamental solution of the heat equation is giveny by 
     \[
     \Phi (x,t) := \begin{cases}
-        \frac{1}{(4 \pi t)^{n_2} } e^{- \frac{|x|^2}{4t}} &, t>0 \\
+        \frac{1}{(4 \pi t)^{n/2} } e^{- \frac{|x|^2}{4t}} &, t>0 \\
         0&,t < 0
     \end{cases}, x \in \mathbb{R}^n.
  \]
@@ -2573,7 +2583,7 @@ For $t=0$ the Fundamental solution is not defined. It is defined as the limit fr
     \begin{itemize}
         \item $u \in C^\infty (\mathbb{R}^n,\mathbb{R})$ 
         \item $\dot{u}- \Delta u =0$ on $\mathbb{R}^n \times \mathbb{R}^+$
-        \item $u$ extends continuously and bounded to $\mathbb{R}^n \times \mathbb{R}^+$ with $\lim_{t \searrow 0} u(x,t) =h(x)$ for all $x \in \mathbb{R}^n$. 
+        \item $u$ extends continuously and bounded to $\mathbb{R}^n \times [0,\infty )$ with $\lim_{t \searrow 0} u(x,t) =h(x)$ for all $x \in \mathbb{R}^n$. 
     \end{itemize}
 }
 \pf{
@@ -2633,7 +2643,7 @@ The homogenuous heat equation can be written as $\dot{u} = \Delta u$. Because th
     \]
     and using 
     \[
-    \mathcal{F}^{-1} \left( e^{4 \pi^2 |k|^2 t} \right) (x) = \int_{\mathbb{R}^n} e^{2 \pi i k x} e^{-4 \pi^2 |k|^2 t} d^n k \stackrel{???}{=} \frac{1}{(4 \pi t)^{n/2} } e^{- \frac{-|x|^2}{4t}} = \Phi (x,t)
+    \mathcal{F}^{-1} \left( e^{-4 \pi^2 |k|^2 t} \right) (x) = \int_{\mathbb{R}^n} e^{2 \pi i k x} e^{-4 \pi^2 |k|^2 t} d^n k \stackrel{???}{=} \frac{1}{(4 \pi t)^{n/2} } e^{- \frac{-|x|^2}{4t}} = \Phi (x,t)
     \]
     implying
     \[
@@ -2729,7 +2739,7 @@ In the following Corallary we call this initial value problem also Cauchy proble
     \]
     has the solution of the form 
     \[
-    u(x,t) = \int_{\mathbb{R}^n} \Phi (x-y,x) h(y) d^n y + \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds .
+    u(x,t) = \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y + \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds .
     \]
 }
 The first sum is the solution of the homogeneous initial value problem and the second is the solution to the inhomogeneous initial value problem.
@@ -3002,7 +3012,7 @@ follows that $u$ is bounded by
     \]
     then 
     \begin{align*}
-       0= (\frac{\partial}{\partial t} - \frac{\partial^2}{ \partial x^2}) u(x,t) &= \sum_{l=0}^\infty \dot{g}_l (t) x^l - l(l-1)g_l (t) x^{l-2} \\
+       0= (\frac{\partial}{\partial t} - \frac{\partial^2}{ \partial x^2}) u(x,t) &= \sum_{l=0}^\infty \left( \dot{g}_l (t) x^l - l(l-1)g_l (t) x^{l-2} \right) \\
         &= \sum_{l=0}^\infty \dot{g}_l (t) x^l - \sum_{l=2}^\infty  l(l-1)g_l (t) x^{l-2} \\
         &= \sum_{l=0}^\infty (\dot{g}_l (t) - (l+2)(l+1)g_{l+2} (t) ) x^{l} 
     \end{align*}
@@ -3760,10 +3770,10 @@ We first noticed that scaling invariance of the soltuion to the heat equation on
 \[
 \int_0^t \Phi (\cdot , t-s) * f(\cdot ,s ) ds.
 \]
-Further, the inhomogeneous heat equation can be obtained from choosing the initial value as $f(\cdot,t)$ and integrating over the solution of the homogeneous initial value problem. THe solution to the Cauchy problem is then obtained by splitting the solution $u=v+w$ into the inhomogeneous and homogeneous initial value problem (superposition).\\
-Unlike the Laplace equatin the solution to the heat equation satisfies a mean value property on a space time region (not a ball) called heat balls $E(x,t,r)$, which is defined through $\Phi$.\\
+Further, the inhomogeneous heat equation can be obtained from choosing the initial value as $f(\cdot,t)$ and integrating over the solution of the homogeneous initial value problem. The solution to the Cauchy problem is then obtained by splitting the solution $u=v+w$ into the inhomogeneous and homogeneous initial value problem (superposition).\\
+Unlike the Laplace equatin the solution to the heat equation satisfies a mean value property on a space time region (not a ball) called heat balls $E(x,t,r)$, which are defined through $\Phi$.\\
 The maximums princpiles are defined on $\Omega_T$, where the parabolic boundary is $\partial \Omega_T = (\partial \Omega \times (0,T]) \cup (\Omega \times \{0\})$. If $u\in C^2$ is a solution of the heat equation on $\Omega_T$, which is path connected, and extends continuously to $\overline{\Omega_T}$ and takes its maximum in $\Omega_T$, then it is constant on $\Omega_T$. \\
-If $\Omega$ is open and boundad and $u \in C^2$ is the solution to the heat equation extending constinuousky to $\bar{\Omega_T}$, it follows that the maximum is on $\partial \Omega_T$. Using these we can show the existence and uniqueness of the Cauchy problem on an open and bounded domain.\\
+If $\Omega$ is open and boundad and $u \in C^2$ is the solution to the heat equation extending constinuously to $\bar{\Omega_T}$, it follows that the maximum is on $\partial \Omega_T$. Using these we can show the existence and uniqueness of the Cauchy problem on an open and bounded domain.\\
 On $\mathbb{R}^n$ the uniqueness is more constrained. A counterexample shows this. To show the uniqueness here, we first define the maximums principle for the Cauchy problem on $\mathbb{R}^n$ for bounded solutions 
 \[
 u(x,t) \leq A e^{a|x|^2}.
@@ -3803,9 +3813,9 @@ is an ODE, whose solution is given by
 \[
 U(t) - U(0) = \int_0^t a(x+t-2s) ds.
 \]
-Thus, we have for $b(x+t) := u(x+t,0)$ that 
+Thus, we have for $b(x+t) := u(\underbrace{x+t}_{=X(0)},0)$ that 
 \[
-u(x,t) = \int_0^t a(x+t-2s) ds + b (x+t) \stackrel{y= x+t-2s, \quad dy=(-2) ds}{=} \int_{x+t-2\cdot 0}^{x+t-2t} (- \frac{1}{2}) a(y) dy + b(x+t) =  \frac{1}{2} \int_{x-t}^{x+t} a(y) dy + b(x+t).
+u(X(t),t) = \int_0^t a(x+t-2s) ds + b (x+t) \stackrel{y= x+t-2s, \quad dy=(-2) ds}{=} \int_{x+t-2\cdot 0}^{x+t-2t} (- \frac{1}{2}) a(y) dy + b(x+t) =  \frac{1}{2} \int_{x-t}^{x+t} a(y) dy + b(x+t).
 \]
 Inserting the initial values, i.e. 
 \[
@@ -3813,7 +3823,7 @@ u(x,0) = b(x) = g(x) , \quad a(x) =v(x,0) = \left( \frac{\partial}{\partial t} -
 \]
 we get 
 \begin{align*}
-    u(x,t) &= \frac{1}{2} \int_{x-t}^{x+t} g(y) - g^\prime (y) dy + g(x+t)\\
+    u(x,t) &= \frac{1}{2} \int_{x-t}^{x+t} h(y) - g^\prime (y) dy + g(x+t)\\
     &= - \frac{1}{2} (g(x+t) - g(x-t))  + g(x+t) + \frac{1}{2} \int_{x-t}^{x+t} h(y) dy \\
     &= \frac{1}{2} (g(x+t) + g(x-t)) + \frac{1}{2} \int_{x-t}^{x+t} h(y) dy.
 \end{align*}
@@ -3835,7 +3845,7 @@ u(x,t) = \frac{1}{2} (g(x+t) + g(x-t)) + \frac{1}{2} (H(x+t) -H(x-t)) = \underbr
 \]
 It follows 
 \[
- \left( \frac{\partial}{\partial t} - \frac{\partial}{\partial x} \right) F(x+t) = = F^\prime (x+t) \cdot 1 - F^\prime (x+t) \cdot 1 =0,
+ \left( \frac{\partial}{\partial t} - \frac{\partial}{\partial x} \right) F(x+t) = F^\prime (x+t) \cdot 1 - F^\prime (x+t) \cdot 1 =0,
 \]
 and 
 \[
@@ -3851,7 +3861,7 @@ We interpret the fact, that the value of the solution at $(x,t)$ depends only on
 
 Further, in the heat equation we had the property that the solution increases in regularity over time. Here, the regularity stays the same, i.e. if $H$ and $G$ are k-times differentiable, then $u$ is also k-times differentiable.\\
 
-Later in this chapter the following will be of importance. Consider the initial value problem 
+In order to define the wave equation on $[0,\infty)$ the following approach will be of importance. Consider the initial value problem 
 \begin{align*}
    & \frac{\partial^2}{\partial t^2} u(x,t) - \frac{\partial^2}{\partial x^2} u(x,t) =0, \quad (x,t) \in \mathbb{R}^+ \times \mathbb{R}^+ \\
     & u(x,0) = g(x), \quad \frac{\partial}{\partial t} u(x,0) = h(x), \quad x \in \mathbb{R}^+ , \quad u(0,t)=0, t \in \mathbb{R}_0^+. 
@@ -3981,9 +3991,9 @@ By substiuting $ \tilde{U} (x,r,t) := r U(x,r,t)$ we get
     &= \frac{1}{r} \left( \frac{\partial^2}{\partial t^2} \tilde{U} - \frac{\partial^2}{\partial r^2} \tilde{U} \right) =0\\
     &\iff  \frac{\partial^2}{\partial t^2} \tilde{U} - \frac{\partial^2}{\partial r^2} \tilde{U}  =0
 \end{align*}
-Due to $\lim_{t \to 0} U(x,r,t) =u(x,t)$ it follows 
+Due to $\lim_{r \to 0} U(x,r,t) =u(x,t)$ it follows 
 \[
-\tilde{U} (x,0,t) = \lim_{t \to 0} r U(x,r,t,) =0 \cdot u(x,t)=0.
+\tilde{U} (x,0,t) = \lim_{r \to 0} r U(x,r,t,) =0 \cdot u(x,t)=0.
 \]
 We now get an additional condition for the transformed initial value problem:
 \begin{align*}
@@ -4000,7 +4010,8 @@ u(x,t) = \lim_{r \searrow 0} U(x,r,t) = \lim_{t \searrow 0} \frac{\tilde{U}(x,r,
 \]
 which implies for all $x \in \mathbb{R}^3, t >0$:
 \begin{align*}
-    u(x,t) &= \lim_{r \searrow 0} \frac{1}{2} \left( \frac{\tilde{G}(x,t+r)- \tilde{G}(x,t-r)}{r} \right) + \lim_{r \searrow 0} \frac{1}{2r} \int_{t-r}^{t+r} \tilde{H} (x,s) ds\\
+    u(x,t) &= \lim_{r \searrow 0} \frac{1}{2} \left( \frac{\tilde{G}(x,t+r)+ \tilde{G}(x,t-r) + \tilde{G}(x,t) - \tilde{G}(x,t)}{r} \right) + \lim_{r \searrow 0} \frac{1}{2r} \int_{t-r}^{t+r} \tilde{H} (x,s) ds\\
+    &= \lim_{r \searrow 0} \frac{1}{2} \left( \frac{\tilde{G}(x,t+r) - \tilde{G}(x,t)}{r} -\frac{\tilde{G}(x,t-r)- \tilde{G}(x,t)}{r} \right) + \lim_{r \searrow 0} \frac{1}{2r} \int_{t-r}^{t+r} \tilde{H} (x,s) ds\\
     &= \frac{\partial}{\partial t} \tilde{G}(x,t) + \tilde{H}(x,t) \\
     &= \frac{\partial}{\partial t} (t G(x,t)) + t H(x,t) \\
     &= G(x,t) + t \frac{\partial}{\partial t} G(x,t) + t H(x,t) \\
@@ -4274,6 +4285,16 @@ For $\bar{f}: \mathbb{R}^{n+1} \to \mathbb{R}$ and $f:= \bar{f} \circ \phi_\pm: 
 }
 
 
-
+\section{Summary}
+We begin with the one dimensional case, wehre the differential operator factorizes itno the two transport operators $(\frac{\partial}{\partial t} - \frac{\partial}{\partial x}) (\frac{\partial}{\partial t} + \frac{\partial}{\partial x})$. This implies that the solution is the sum of a wave moving to the right and one to the left, $F(x+t)+G(x-t)$. Adding n initial position and velocity to the problem yields the D'Alembert's formula. It shows the domain of dependence is $[x-t,x+t]$ confirming finite speed of propagation. We also extend this method to the half-line problem $\mathbb{R}^+$ using the method of reflection and extending $u,g,h$ to odd functions.\\
+Defining the wave eqaution in terms of spherical means establishes the Euler-Poisson-Darboux equation 
+\[
+\frac{\partial^2}{\partial t^2} U - \frac{\partial^2}{\partial r^2} U - \frac{n-1}{r} \frac{\partial}{\partial r} U =0,
+\]
+whcih transforms the PDE into a one dimensional one. In $n=3$ substuting $\tilde{U} := r U$ transforms the Euler-Poisson-Darboux equation the one dimensional wave equation $\frac{\partial^2}{\partial t^2} \tilde{U} - \frac{\partial^2}{\partial r^2} \tilde{U} =0$. Solving this using D'Alembert's formula and taking the limit $r \to 0$ yields Kirchhoffs formula. In this case $(n=3)$ the solution only depends on the sphere $\partial B_t (x)$, which means that in $3D$ propagation is on sharp wavefronts without a "wake". \\
+For $n=2$ we use the method of descent, meaning we formulate the $2D$ problem as a special case of the $3D$ problem, by setting the initial data nad solution such that is is independend from the third coordinate $x_3$. Using Kirchhoffs formula in $3D$ and transforming the integrals to $2D$ yields a formolation for the solution. However, it depends on the entire ball $B_t (x)$, i.e. propagation occurs including wakes.\\
+Generalizing for odd dimensions, multipliying the spherical means by $\left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{n-1} r^{2k-1}$ a specific form is derived for the solution.\\
+Generalizing fir even dimensions, we do the same appraoch by setting initial data nad solution such taht it is independend from the $n+1^{th}$ coordinate, giving a formula for the solution. \\
+???.
 
 \end{document}
