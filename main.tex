@@ -1501,14 +1501,14 @@ Note that in the case $n=2$ we have $\omega_n = \pi$. Both terms are finite! And
 \textbf{Step 2 $J_\epsilon$:}\\
 First notice that for $z:= x-y$ it holds that $\sum_j \partial f(z) \frac{\partial}{\partial x_i} z = \partial_i f (x-z) =- \sum_j \partial f(z) \frac{\partial}{\partial y_i} z$ and thus $|\Delta_x f(x-y) | = |\Delta_y f(x-y)|$. It follows
 \begin{align*}
-    |J_\epsilon | &\leq  \int_{\mathbb{R}^n \setminus B_\epsilon (0)} |\Phi (y)| | \Delta_y f(x-z) | d^n y \\
-    &\stackrel{\phi \Delta f = (\phi \nabla f)^\prime - \nabla \phi \nabla f}{=}  \int_{\mathbb{R}^n \setminus B_\epsilon (0)} | \nabla_y \Phi (y)| | \nabla f(x-z) | d^n y - \int_{\mathbb{R}^n \setminus B_\epsilon (0)} (|  \Phi (y)| | \nabla f(x-z) | )^\prime  d^n y \\
-    &= \int_{\mathbb{R}^n \setminus B_\epsilon (0)} | \nabla_y \Phi (y)| | \nabla f(x-z) | d^n y - \int_{\partial B_\epsilon (0)} |  \Phi (y)| | \nabla f(x-z) | N d \sigma (y) \\
+    |J_\epsilon | &\leq  \int_{\mathbb{R}^n \setminus B_\epsilon (0)} |\Phi (y)| | \Delta_y f(x-y) | d^n y \\
+    &\stackrel{\phi \Delta f = (\phi \nabla f)^\prime - \nabla \phi \nabla f}{=}  \int_{\mathbb{R}^n \setminus B_\epsilon (0)} | \nabla_y \Phi (y)| | \nabla f(x-y) | d^n y - \int_{\mathbb{R}^n \setminus B_\epsilon (0)} (|  \Phi (y)| | \nabla f(x-y) | )^\prime  d^n y \\
+    &= \int_{\mathbb{R}^n \setminus B_\epsilon (0)} | \nabla_y \Phi (y)| | \nabla f(x-y) | d^n y - \int_{\partial B_\epsilon (0)} |  \Phi (y)| | \nabla f(x-y) | N d \sigma (y) \\
     &=: K_\epsilon - L_\epsilon.
 \end{align*}
 First with the same arguments as above it follows
 \[
-|L_\epsilon| \leq \| f \|_{L^\infty (\mathbb{R}^d)} \int_{\partial B_\epsilon (0)} |\Phi (y)| d \sigma (y) \leq \begin{cases}
+|L_\epsilon| \leq \| \nabla f \|_{L^\infty (\mathbb{R}^d)} \int_{\partial B_\epsilon (0)} |\Phi (y)| d \sigma (y) \leq \begin{cases}
     C \epsilon |\log (\epsilon)| &, n=2\\
     C \epsilon &, n \geq 3
 \end{cases}
@@ -1516,7 +1516,7 @@ First with the same arguments as above it follows
 This clearly converges to zero as $\epsilon \to 0$. For $K_\epsilon$ we have that
 \begin{align*}
     K_\epsilon &= \int_{\mathbb{R}^n \setminus B_\epsilon (0)} \nabla_y \Phi (y) \nabla_y f(x-y) d^n y \\
-    &= \underbrace{ \int_{\mathbb{R}^n} \setminus B_\epsilon (0) \Delta_y \Phi (y) f(x-y) d^n y }_{=0} - \int_{\mathbb{R}^n \setminus B_\epsilon (0)} (\nabla_y \Phi(y) f(x-y))^\prime d^n y \\
+    &= \underbrace{ \int_{\mathbb{R}^n \setminus B_\epsilon (0)} \Delta_y \Phi (y) f(x-y) d^n y }_{=0} - \int_{\mathbb{R}^n \setminus B_\epsilon (0)} (\nabla_y \Phi(y) f(x-y))^\prime d^n y \\
     &= - \int_{\partial B_\epsilon (0)} \nabla_y \Phi(y) f(x-y) N d \sigma( y).
 \end{align*}
 Note that $\nabla \Phi (y) = - \frac{y}{n \omega_n |y|^n }$ and $N= - \frac{y}{|y|}$. Further, due to the fact that
@@ -1732,7 +1732,7 @@ If we choose a smart assumption to get the right hand side to become zero, this 
 \pf{
     Due to the fact that $U$ is harmonic it holds that 
     \[
-    0= (\Delta U)_g = U_{\Delta g} = U_f,
+    0= (\Delta U) (g)  = U (\Delta g) = U (f) ,
     \]
     if we show that $\exists g \in C_0^\infty (\Omega)$ with $\Delta g =f$. \\
     Because by assumption $\psi$ is integrable ($\int_\Omega \psi d \mu = \int_0^r \psi d \mu =0$) there exists a $\Psi \in C_0^\infty ((0,r))$ such that $\Psi^\prime = \psi$. Now define 
@@ -1793,7 +1793,10 @@ due to the fact that $g_0(\cdot)$ is symmetric, i.e. $g_0 = P g_0$. Thus because
 g * F: \mathbb{R}^n \to \mathbb{R}^n, \quad x \mapsto F(T_x P g)
 \]
 that is in $C^\infty$ it follows that $u$ is smooth.\\
-Next, we show that the distribution $\tilde{U}=F_u$ satisfies the weak Mean value property. With the above $\tilde{U} =F_u = g_0 * U$???\\
+Next, we show that the distribution $\tilde{U}=F_u$ satisfies the weak Mean value property. With the above it holds 
+\[
+F_u (f) = \int_{\mathbb{R}^n} u(x) f(x) d^n x = \int_{\mathbb{R}^n} (g_0 * U) (x) f(x) d^n x= (g_0 * U)(f).
+\]
 
 Note that the function that we characterized in the mean value property theorem satisfies the following three properties
 \begin{itemize}
@@ -1806,12 +1809,12 @@ Note that the function that we characterized in the mean value property theorem 
  (f * g) (a+b+x) = (f*g) (a+b+Ox),
  \]
  i.e. rotationally symmetric wrt. $a+b$. Thus, if we take $g_0 * f$ it is rotationally symmetric around the same center as $f$, because $g_0$ is rotaionally symmetric around $0$.\\
- Since $\phi \in C_0^\infty ((0,r))$ the function
+ Since $\psi \in C_0^\infty ((0,r))$ the function
  \[
- f(y) = \frac{\phi (|y-x|)}{n |y-x|^{n-1} \omega_n}
+ f(y) = \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n}
  \]
  vanishes on for all $y \in B_\epsilon^n (\epsilon)$, if we choose $\epsilon>0$ small enough. \\
- Note that we used different test functions for $f$ and $g_0$. For the first we have $\psi \in C_0^\infty ((0,r))$ with $\int \psi d\mu=0$ and for the second we have $\phi \in C_0^\infty ((0,r))$ with $\int \phi d \mu =1$. If $g_0$ has its support on $B_\xi (0)$ with $\xi < \epsilon$ then $supp \; B_\xi (x)$. This and the fact that $\int_\Omega \phi (x) \psi (y-x) d\mu =0$ gives us all the conditions we need to to use the weak mean value property in order for the following calculation
+ Note that we used different test functions for $f$ and $g_0$. For the first we have $\psi \in C_0^\infty ((0,r))$ with $\int \psi d\mu=0$ and for the second we have $\phi \in C_0^\infty ((0,r))$ with $\int \phi d \mu =1$. If $g_0$ has its support on $B_\xi (0)$ with $\xi < \epsilon$ then $supp  \;g_0*f\subset B_\xi (x)$. This and the fact that $\int_\Omega \phi (x) \psi (y-x) d\mu =0$ gives us all the conditions we need to to use the weak mean value property in order for the following calculation
  \[
  \tilde{U} (f) = (g_0 * U) (f) = U (f*Pg_0) = U(f* g_0) =0.
  \]
