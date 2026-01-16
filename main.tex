@@ -1913,7 +1913,7 @@ Although we used that for a mollifier $(\lambda_\epsilon)_{\epsilon \geq 0}$ it 
     \]
     Let $B_k := B_{r/2} (x_k)$, then $\forall z_k \in B_{k+1} \cap B_k$ holds
     \[
-    \| x_k - z_k \| + \| z_k - x_{k+1} \| < \frac{r}{2} + \frac{r}{2} =r,
+   \| x_k -x_{k+1} \| \leq \| x_k - z_k \| + \| z_k - x_{k+1} \| < \frac{r}{2} + \frac{r}{2} =r,
     \] 
     which implies that $B_{r} (x_{k+1} ) \subset B_{2r} (x_k)$. Thus, for all $k=1,...,N-1$:
     \[
@@ -1960,7 +1960,7 @@ Although we used that for a mollifier $(\lambda_\epsilon)_{\epsilon \geq 0}$ it 
     \[
     \exists \Omega^{\prime \prime}: \Omega^\prime \subset \Omega^{\prime \prime} \subset \Omega, \text{ with } x \in \Omega^{\prime \prime}.
     \]
-    Define $v_{n,m} (x) := u_n (x) - u_m (x)$, which is harmonic and non negative, because $(u_n)_{n \in \mathbb{N}}$ is non-negative. Thus Harnacks inequality implies that 
+    Define $v_{n,m} (x) := u_n (x) - u_m (x)$, which is harmonic and non negative, because $(u_n)_{n \in \mathbb{N}}$ is monotone. Thus Harnacks inequality implies that 
     \[
     \sup_{y \in \Omega^{\prime \prime}} v_{n,m} (y) \leq C \inf_{y \in \Omega^{\prime \prime}} v_{n,m} (y).
     \]
@@ -2502,7 +2502,7 @@ We now focus on $\frac{\partial}{\partial t} u - \Delta u=0$ the heat eqaution a
 \section{Fundamental Solution of the Heat Equation}
 Since in the heat equation there are only first order derivatives in time and second order in space it holds that 
 \[
-u(x,t) \text{ is solution } \Rightarrow \forall \lambda\in \mathbb{R}: \quad u(\lambda, x , \lambda^2 t) \text{ is solution.}
+u(x,t) \text{ is solution } \Rightarrow \forall \lambda\in \mathbb{R}: \quad u(\lambda x , \lambda^2 t) \text{ is solution.}
 \]
 This is because 
 \[
@@ -2543,7 +2543,7 @@ This with $\alpha = \frac{n}{2}$ it follows
 \begin{align*}
     &0= r^{n-1} \left( \frac{n}{2} w(r)+ \frac{1}{2} r w^\prime (r) + w^{\prime \prime} (r) + \frac{n-1}{r} w^\prime (r) \right)\\
     \iff 0&=   r^{n-1} \frac{n}{2} w(r)+  r^{n-1}\frac{1}{2} r w^\prime (r) +  r^{n-1} w^{\prime \prime} (r) +  r^{n-1}\frac{n-1}{r} w^\prime (r) \\
-    \iff 0&= \frac{1}{2} \left( r^n w (r) \right)^\prime + (r^{n-1} w^\prime (r))^\prime \\
+    \iff 0&= \frac{1}{2} \left( r^n w (r) \right)^\prime + (r^{n-1} w^\prime (r))^\prime \quad \text{ the second summand is the same for the Laplace eq.} \\
     \iff 0&= \frac{d}{dr} \left( \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r) \right) \\
     \iff \int_{\mathbb{R}} 0 dr&= \int_\mathbb{R} \frac{d}{dr} \left( \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r) \right) dr = \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r)\\
     &\iff a = \frac{1}{2} r^n w (r)  + r^{n-1} w^\prime (r),
