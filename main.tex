@@ -2111,6 +2111,7 @@ Due to construction it follows $\Phi (x-y) \in \mathcal{O}(|x-y|^{2-n}), y \to x
 \[
 \lim_{\epsilon \to 0} \int_{\partial B_\epsilon (x)} \Phi (x-y) \underbrace{\nabla (y) N}_{\leq const.} d \sigma (y) \leq \lim_{\epsilon \to 0} \epsilon^{2-n} const. \int_{\partial B_\epsilon (x)} d \sigma (y) = \lim_{\epsilon \to 0} \epsilon =0.
 \]
+So the Sphere area $\partial B_\epsilon (x)$ decays faster than the Fundamental solution explodes.\\
 Using this and the fact that $\nabla \Phi (y) = - \frac{1}{n \omega_n} \frac{y}{|y|^n}$ and $N= - \frac{x-y}{|x-y|}$ we get that 
 \begin{align*}
     \lim_{\epsilon \to 0} K_\epsilon &= \lim_{\epsilon \to 0} \int_{\partial B_\epsilon (x)} u(y) \nabla_y \Phi (x-y) N d \sigma (y) \\
@@ -2151,8 +2152,25 @@ Thus the solution of the Dirichlet problem satisfies for $f: \bar{\Omega} \to \m
 u(x) = \int_{\Omega} G_\Omega (x,y) f (y) d^n y - \int_{\partial \Omega} g (z) \nabla_z G_\Omega (x,z)  \cdot N d \sigma (z).
 \]
 \rmkb{
-    The homogeneous Dirichlet problem uniquely solves the inhomogenous Dirichelt problem up to translation: Let $u_1$ be the solution of the homogenuous Dirchletproblem and $u$ of the???\\
-    The Dirichlet Problem reduces to the search of the Greens function.???
+    Because $u(x)$ only depends on $f,g,G_\Omega$ and $f,g$ are known, the Dirichlet problem reduces to a search for the Greens function, that satisfies this integral eqaution.\\
+    We can split up the Dirichlet probelm 
+    \begin{align*}
+        - \Delta u = f , \quad \text{ on } \Omega\\
+        u=g, \quad \text{ on } \partial \Omega,
+    \end{align*}
+    into two subporblems. We can do this by homogenizing the boundary and homogenizing the equation:
+    \[
+    \begin{cases}
+        - \Delta u =f & \text{ on } \Omega \\
+        u=0 & \text{ on } \partial \Omega
+    \end{cases}
+    \quad \text{ and } \quad \begin{cases}
+        - \Delta v =0 & \text{ on } \Omega \\
+        v=g & \text{ on } \partial \Omega
+    \end{cases}.
+    \]
+    Then $u+v$ solves the original Dirichlet problem.
+    
 }
 For $x \in \Omega$ the function $y \mapsto G_\Omega (x,y) - \Phi (x-y)$ is harmonic on $\Omega$ and on $\partial \Omega$ is equal to $- \Phi (x-y)$. This function is the solution of the Dirichlet Problem $f=0$ on $\Omega$ and $g(x) =- \Phi (x-y)$ on $\partial \Omega$. 
 \thm{Symmetry}{
@@ -2452,7 +2470,7 @@ has a harmonic extension to $\Omega$.
         \int_{\Omega } \nabla u \nabla u - f u d^n x &= \int_\Omega \nabla u \nabla w - fw d^n x \\
         &= \int_\Omega \nabla u \nabla w d^n x - \int_\Omega fw d^n x \\
         & \stackrel{CS}{\leq } \int_\Omega \nabla u \nabla w + \frac{1}{2} (\nabla u - \nabla w) (\nabla u - \nabla w) d^n x - \int_\Omega fw d^n x \\
-        &= \int_\Omega \nabla \frac{1}{2} \nabla u \nabla u + \frac{1}{2} \nabla w \nabla w  - fw d^n x = \int_\Omega \frac{1}{2} \nabla u \nabla u d^n x + I(w), 
+        &= \int_\Omega  \frac{1}{2} \nabla u \nabla u + \frac{1}{2} \nabla w \nabla w  - fw d^n x = \int_\Omega \frac{1}{2} \nabla u \nabla u d^n x + I(w), 
     \end{align*}
     which is equivalent to 
     \[
@@ -3271,13 +3289,13 @@ Further, because $(\phi_i)_{i \in \mathbb{N}}$ is a orthonormal basis of $L^2 (\
 \[
 h(x) = \sum_{i=1}^\infty \langle h,\phi_i\rangle \phi_i (x)
 \]
-Under the assumption that we can write the solution $u(x,t) = \sum_{i=1}^\infty \varphi_i (t) \phi_i (x)$, where $\varphi_i (0)=\langle h,\phi_i\rangle$ we get that the heat equation is given by 
+If we assume we can write the solution as $u(x,t) = \sum_{i=1}^\infty \varphi_i (t) \phi_i (x)$, where $\varphi_i (0)=\langle h,\phi_i\rangle$ we get that the heat equation is given by 
 \begin{align*}
 &\frac{\partial}{\partial t}  u(x,t)  - \Delta u(x,t) =0 \iff   \sum_{i=1}^\infty \dot{\varphi}_i(t) \phi_i (x) -  \sum_{i=1}^\infty \varphi_i (t) \Delta \phi_i (x) =0 \\
 &\iff \forall i \in \mathbb{N}: \dot{\varphi}_i(t)  \phi_i (x) +\varphi_i (t) \lambda_i  \phi_i (x)  =0 \\
 &\iff \forall i \in \mathbb{N}: \dot{\varphi}_i(t) = -\varphi_i (t) \lambda_i 
 \end{align*}
-The solution of these ODEs is given by $\varphi_i (t) = e^{- \lambda_i (t -t_0)}$ for every $i \in \mathbb{N}$. With an initial value $\varphi_i(0)=\langle h,\phi_i\rangle$ we obtain the unique solution to the initial value problem of the heat equation as $u(x,t) = \sum_{i=1}^\infty e^{-\lambda_i t} \langle h,\phi_i\rangle \phi_i (x)$. This series exist, due to the fact that $\lambda_i \to \infty$ and $e^{- \lambda_i t} \to 0$ exponentially fast. However, this approach makes a strong assumption on the structure of the solution! We will now generalize via Fourie Transforms. Further, if $\Omega = \mathbb{R}^n$ then the eigenfunctions of the inverse Laplace operator do not exist, i.e. they are not in $L^2(\mathbb{R}^n)$. The Fourie transform gives us a way to integrate these Eigenfunctions.
+The solution of these ODEs is given by $\varphi_i (t) = \varphi_i (0) e^{- \lambda_i (t -t_0)}$ for every $i \in \mathbb{N}$. With an initial value $\varphi_i(0)=\langle h,\phi_i\rangle$ we obtain the unique solution to the initial value problem of the heat equation as $u(x,t) = \sum_{i=1}^\infty e^{-\lambda_i t} \langle h,\phi_i\rangle \phi_i (x)$. This series exist, due to the fact that $\lambda_i \to \infty$ and $e^{- \lambda_i t} \to 0$ exponentially fast. However, this approach makes a strong assumption on the structure of the solution! We will now generalize via Fourie Transforms. Further, if $\Omega = \mathbb{R}^n$ then the eigenfunctions of the inverse Laplace operator do not exist, i.e. they are not in $L^2(\mathbb{R}^n)$. The Fourie transform gives us a way to integrate these Eigenfunctions.
 \vspace{1cm}
 
 We want to show that we can can translate $\int_{\mathbb{R}^n} e^{-(x-c)^2} d^n x$ by any constant $c \in \mathbb{C}$. It holds for any $x \in i \mathbb{R}^n$
@@ -3299,7 +3317,7 @@ We now need to show that the last integral is an analytical function, because on
 Using this we get
 \begin{align*}
     \Phi (x-y,t) &= \frac{1}{(4 \pi t)^{n/2}} e^{- \frac{-(x-y)^2}{4t}}= e^{- \frac{(x-y)^2}{4t}} \frac{\pi^{n/2}}{(4 \pi^2 t)^{n/2}} = e^{ - \frac{|x-y|^2}{4t}} \frac{1}{(2 \pi \sqrt{t} )^n } \pi^{n/2} \\
-    &=e^{ - \frac{|x-y|^2}{4t}} \frac{1}{(2 \pi \sqrt{t} )^n } \int_{\mathbb{R}^n} e^{-(x-c)^2} d^n x, \quad x:= 2 \pi \sqrt{t} k \\
+    &=e^{ - \frac{|x-y|^2}{4t}} \frac{1}{(2 \pi \sqrt{t} )^n } \int_{\mathbb{R}^n} e^{-(z-c)^2} d^n z, \quad z:= 2 \pi \sqrt{t} k \\
     &= e^{ - \frac{|x-y|^2}{4t}}  \frac{(2 \pi \sqrt{t} )^n}{(2 \pi \sqrt{t} )^n }  \int_{\mathbb{R}^n} e^{ - (2 \sqrt{t} \pi k -c)^2} d^n k, \quad c:= i \frac{x-y}{2 \sqrt{t}}\\
     &= e^{ - \frac{|x-y|^2}{4t}} \int_{\mathbb{R}^n} e^{ - (2 \sqrt{t} \pi k -i \frac{x-y}{2 \sqrt{t}})^2} d^n k\\
     &= e^{ - \frac{|x-y|^2}{4t}} \int_{\mathbb{R}^n} e^{ - \left( 4 \pi^2 k^2 t - 4 \pi k \sqrt{t} i \frac{x-y}{2 \sqrt{t}} + i^2 \frac{(x-y)^2}{4t} \right)} d^n k\\
