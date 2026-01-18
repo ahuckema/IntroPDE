@@ -2609,11 +2609,21 @@ For $t=0$ the Fundamental solution is not defined. It is defined as the limit fr
 }
 \pf{
     i)\\
-    Since $\Phi (\cdot, \cdot)$ is smooth on $\mathbb{R}^n \times \mathbb{R}^+$ and $h$ is bounded it follows $u(x,t)$ is well defined, bounded and continuous on $\mathbb{R}^n \times \mathbb{R}^+$. Note that the function 
+
+
+    Since $\Phi (\cdot, \cdot)$ is smooth on $\mathbb{R}^n \times \mathbb{R}^+$ and $h$ is bounded it follows $u(x,t)$ is well defined, bounded and continuous on $\mathbb{R}^n \times \mathbb{R}^+$. Define 
     \[
-    \mathbb{R}^n \times \mathbb{R}^+ \to L^(\mathbb{R}^n) , (x,t) \mapsto D^{|\alpha|}_y \Phi (x-y,t)
+    F: \mathbb{R}^n \times \mathbb{R}^+ \to L^1(\mathbb{R}^n), (x,t) \mapsto F(x,t):= \big( y \mapsto \Phi (x-y,t) h(y) \big)
     \]
-    and the integral is a linear continuous operator from $L^1 (\mathbb{R}^n)$ to $\mathbb{R}$. Thus $u \in C^\infty (\mathbb{R}^n \times \mathbb{R}^+)$ and we can interchange differentiation and integration. \\
+    is infinitely integrable and all derivatives stay in $L^1(\mathbb{R}^n)$. Further, define 
+    \[
+    I: L^1(\mathbb{R}^n) \to \mathbb{R}, \quad f \mapsto I(f):= \int_{\mathbb{R}^n} f(y) dy ,
+    \]
+    is linear and continuous. Then 
+    \[
+    u(x,t) := I(F(x,t))
+    \]
+    is smooth, because as $I$ is constinuous and linear and $F$ is smooth.    \\
     ii)\\
     Because $\Phi$ solves the heat equation it follows 
     \[
@@ -2624,9 +2634,9 @@ For $t=0$ the Fundamental solution is not defined. It is defined as the limit fr
     \[
     \forall \epsilon \forall x \in K \subset \mathbb{R}^n \text{ compact } \exists \delta >0 \forall y \in B_\delta (x): \quad |h(y)-h(x)| < \epsilon.
     \]
-    Furthermore, by construction $\exists T>0$ such that forall $t < T$ it holds 
+    Furthermore, by construction $\forall \delta>0$ $\exists T>0$ such that forall $t < T$ it holds 
     \[
-    \int_{\mathbb{R}^n \setminus B_\delta (0)} \Phi (y,t) d^n y=\int_{\mathbb{R}^n \setminus B_\delta (0)} \frac{1}{t^{n/2}} \Phi (\frac{y}{\sqrt{t}},t) d^n y = \frac{t^{n/2}}{t^{n/2}} \int_{\mathbb{R}^n \setminus B_{\delta /t } (0) } \Phi (z,1) d^n z < \epsilon ,
+    \int_{\mathbb{R}^n \setminus B_\delta (0)} \Phi (y,t) d^n y=\int_{\mathbb{R}^n \setminus B_\delta (0)} \frac{1}{t^{n/2}} \Phi (\frac{y}{\sqrt{t}},1) d^n y = \frac{t^{n/2}}{t^{n/2}} \int_{\mathbb{R}^n \setminus B_{\delta /t } (0) } \Phi (z,1) d^n z < \epsilon ,
     \]
     where we used that 
     \[
@@ -2647,7 +2657,7 @@ The homogenuous heat equation can be written as $\dot{u} = \Delta u$. Because th
 \rmkb{
     First read the section to the Fourier Transform. Here the connection of the heat equation to an ODE and the fundamental solution is discussed to motivate Duramels principle. The inhomogeneous heat equation $\dot{u}= \Delta u +f$ can be viewed as an ODE on an infinite functional space on which $u$ is defined, i.e. we have the operator $H:= \Delta$. Then the solution to this linear ODE is given by 
     \[
-    \forall x \in \mathbb{R}^n: \quad u(x,t) = \int_0^t e^{(t-s)H} f(s) ds.
+    \forall x \in \mathbb{R}^n: \quad u(x,t) = \int_0^t e^{(t-s)H} f(x,s) ds.
     \]
     However, it is not quite clear what $e^{t \Delta}$ would mean. Remember that 
     \[
@@ -3204,6 +3214,7 @@ Thus, it holds
         &=0
     \end{align*}
 }
+Because the solution only depends on the heat kernel, which in turn depends on the chosen $\Omega$, the regularity of the solution only depends on the heat kernel and $\Omega$, as the integral is linear.
 
 
 \thm{}{
@@ -3238,7 +3249,7 @@ we can plug in for the the three solutions in the above
 \end{align*}
 Thus, $u= u_f+u_h+u_g$ yields the form of the theorem.
 }
-The appropiate regularity condition depend on the heat kernel and thus also on the domain???
+
 \lem{}{
     For all $\Omega \subset \mathbb{R}^n$ bounded connected open domain the corresponding heat kernel $H_\Omega$ is positive on the corresponding parabolic cyclinder, if it exists.
 }
@@ -3381,6 +3392,10 @@ This then yields
         &\stackrel{(*)}{=} \int_{\mathbb{R}^n} \Delta e^{- 2 \pi iky} h(y) d^n y = \int_{\mathbb{R}^n } 4 \pi^2 k^2 e^{- 2 \pi iky} h(y) d^n y \\
         &= 4 \pi^2 k^2 \hat{h}(k).
     \end{align*}
+    In $(*)$ we used that Schwartz functions decay faster than any inverse power, the boundary terms dissapear. Further, we used 
+    \[
+    \int_{\partial \mathbb{R}^n} (\cdots)d \sigma := \lim_{r \to \infty} \int_{\partial B_r (0)} (\cdots) d \sigma.
+    \]
     With the arguemnts above and the fact that the Laplacian is again in $C_0^\infty (\mathbb{R}^n , \mathbb{C})$ it follows 
     \[
     |\hat{\Delta h} (k)|  \leq \| \Delta h \|_{L^1 (\mathbb{R}^n)} =: C < \infty.
@@ -4304,6 +4319,40 @@ For $\bar{f}: \mathbb{R}^{n+1} \to \mathbb{R}$ and $f:= \bar{f} \circ \phi_\pm: 
 \pf{
     Unclear ???
 }
+
+
+
+\section{Energy Methods}
+Hyperbolic PDEs do not satisfy maximum principle???\\
+The theorem for the maximum principle for elliptic second order PDEs applies to degenerate elliptic PDEs???
+\thm{}{
+    Let $\Omega \subset \mathbb{R}^n$ be a bounded domain, then the initial value problem 
+    \begin{align*}
+        & \frac{\partial^2}{\partial t^2} u - \Delta u =f, \quad \text{ on } \Omega \times (0,T) \\
+        &u(x,t) = g(x,t), \quad \text{ on $\Omega \times \{0\}$ and $\partial \Omega \times (0,T)$ }\\
+        & \frac{\partial}{\partial t} u(x,t) = h(x), \quad \text{ on } \Omega \times \{ 0 \},
+    \end{align*}
+    has a unique solution in $C^2(\Omega \times (0,T))$ and 
+    \[
+    \forall |\alpha | \leq 2: \quad \partial^\alpha u \text{ extends continuously to } \bar{\Omega} \times [0,T].
+    \]
+}
+\pf{
+    Let $u$ be the solution of the initial value problem with $f=g=h=0$ and define 
+    \[
+    e(t) := \frac{1}{2} \int_\Omega \left( \frac{\partial}{\partial t} u(x,t) \right)^2 + \left( \nabla u(x,t) \right)^2 d^n x.
+    \]
+    Then it follows 
+    \begin{align*}
+        \frac{d}{dt} e(t) &= \int_\Omega \frac{\partial^2}{\partial t^2} u(x,t) \frac{\partial}{\partial t} u(x,t) + \underbrace{\frac{\partial}{\partial t} \nabla u(x,t) \nabla u(x,t)}_{= \nabla \partial_t u \nabla u = (\partial_t u \nabla u )^\prime - \partial_t u \Delta u} d^n x \\
+        &= \int_\Omega \frac{\partial^2}{\partial t^2} u(x,t) \frac{\partial}{\partial t} u(x,t) + \frac{\partial}{\partial t} u (x,t) \Delta u(x,t) d^n x \\
+        &= \int_\Omega \frac{\partial}{\partial t} u(x,t) \left(  \frac{\partial^2}{\partial t^2} u(x,t)  + \Delta u(x,t) \right) d^n x=0.
+    \end{align*}
+    Because we set $e(0)=0$ and there is no change, it stays zero for all $t >0 $.
+}
+
+
+
 
 
 \section{Summary}
