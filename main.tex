@@ -295,15 +295,7 @@ For $u,f : \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$, $b \in \mathbb{R}^n$ 
 \[
 \dot{u} + b \cdot \nabla u =f ,
 \]
-linear inhomogeneous transport equation.
-\defn{Initial Value Problem (Cauchy Problem)}{
-For $f: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$, $b \in \mathbb{R}^n$ we seek to find a solution $u: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$ of the linear homogenuous transport equation 
-$$
-\dot{u}+b \cdot \nabla u=0, \quad u(x,0)=g(x)
-$$
-where $g: \mathbb{R}^n \to \mathbb{R}$ is some function.
-}
-In a similar way as before, we define 
+linear inhomogeneous transport equation. In a similar way as before, we define 
 \[
 \forall (x_0,\underbrace{t_0}_{=0}) \in \mathbb{R}^n \times \mathbb{R}: \quad z(s):= u(x_0 +sb,s),
 \]
@@ -323,16 +315,16 @@ We now consider a one dimensional non-linear transport equation called scalar co
 \]
 for a smooth function $f: \mathbb{R} \to \mathbb{R}$. For any compact intervall $[a,b] \subset \mathbb{R}$ we have 
 \[
-\frac{d}{dt} \int_a^b u(x,t) = \int_a^b \dot{u} (x,t) = - \int_a^b \frac{\partial}{\partial x} g(u(x,t)) dx = f(u(a,t)) - f(u(b,t)).
+\frac{d}{dt} \int_a^b u(x,t) = \int_a^b \dot{u} (x,t) = - \int_a^b \frac{\partial}{\partial x} f(u(x,t)) dx = f(u(a,t)) - f(u(b,t)).
 \]
 This means that the change of "mass" on the intervall $[a,b]$ over time is soley dependend on the boundary $\partial [a,b] = \{a,b\}$. \\
 We now want to apply the method of characteristics here. However, now we cannot presume that the characteristic curves $(x(s),s)$ are parallel strate lines. Define $z(s) := u(x(s),t(s))$, then 
 \[
-z^\prime (s) = \frac{\partial}{\partial x} u(x(s) , t(s) ) x^\prime (s) + \frac{\partial}{\partial t} u(x(s),t(s)).
+z^\prime (s) = \frac{\partial}{\partial x} u(x(s) , t(s) ) x^\prime (s) + \frac{\partial}{\partial t} u(x(s),t(s)) t^\prime (s).
 \] 
 Choose $x^\prime (s) := f^\prime (u(x(s),t(s)))$ and $t^\prime (s)=1$, then we have 
 \[
-z^\prime (s) = \frac{\partial}{\partial x} u(x(s) , s ) f^\prime (s) (u(x(s),s) ) + \dot{u}(x(s),s) =0 ,
+z^\prime (s) = \frac{\partial}{\partial x} u(x(s) , s ) f^\prime (u(x(s),s) ) + \dot{u}(x(s),s) =0 ,
 \]
 Thus, along these curves the solution is constant. We now need to answer the following questions 
 \begin{itemize}
@@ -389,7 +381,7 @@ If additionally this mapping is injective, then there is exactly one initial val
         \forall x \in \mathbb{R} \exists ! x_0 \in \mathbb{R}: \quad x(t) = x_0 + t f^\prime (g(x_0)).
         \]
         So finally, $u(x(t),t) = u ( x_0 + t f^\prime (g(x_0)), t) = u(x_0,0) = g(x_0)$ solves the equation for all $t \in [0,\infty)$.
-        \item Let $t \geq $ such that $1-t \alpha \leq 0$:\\
+        \item Let $t \geq 0 $ such that $1-t \alpha \leq 0$:\\
         All arguments are the same, except for the positivity of the derivative of the characteristic: 
         \[
         \frac{\partial}{\partial x_0} x(t) \stackrel{like \; above}{\geq} 1 - t \alpha >0 \quad \iff \quad t \leq \frac{1}{\alpha} \quad \iff \quad 1-t\alpha \leq 0.
@@ -417,11 +409,11 @@ If additionally this mapping is injective, then there is exactly one initial val
 \section{Weak Solutions}
 In the above we required the solution to be differentiable. Further, we had cases where there were no or non-unique solutions. In this section we take scalar conservation laws and discuss a more general approach for solutions. We focus on the intervall $\Omega = [a,b]$, $a < b \in \mathbb{R}$. The scalar conservation law $\frac{\partial}{\partial t} u + \frac{\partial}{\partial x} f(u) =0$ integrated on $[a,b]$ is 
 \[
- \int_a^b  \frac{\partial}{t} u(x,t) dx = - \int_a^b \frac{\partial}{\partial x} f(u(x,t)) dx = f(u(a,t)) - f(u(b,t)).
+ \int_a^b  \frac{\partial}{\partial t} u(x,t) dx = - \int_a^b \frac{\partial}{\partial x} f(u(x,t)) dx = f(u(a,t)) - f(u(b,t)).
 \]
 Thus, if we assume that $u$ is not differentiable we can formulate this initial value problem as 
 \[
- \frac{\partial}{t} \int_a^b   u(x,t) dx = f(u(a,t)) - f(u(b,t)).
+ \frac{\partial}{\partial t} \int_a^b   u(x,t) dx = f(u(a,t)) - f(u(b,t)).
 \]
 In the last theorem the classical solution was formulated in such a way that it existed either up to time $\alpha^{-1}$ or $\infty$ depending on $\alpha\geq 0$. After time $\alpha^{-1}$ this solution does not exist in classical sense. Here we want to formulate a weak solution, that exists for all $t>0$. As the characteristic curves intersect beyond this time discontinuities will appear. Let $\{ (x,t) \mid x= y(t) \}$ be such a discontinuity, that moves along this graph, where we assume that $y$ is a $C^1$ function. We solve for the solution by splitting the intervall $[a,b] = [a,y(t)] \cup [y(t),b]$, i.e. 
 \begin{align*}
@@ -460,8 +452,8 @@ This is called the Rankine-Hugonoit condition, where $y^\prime(t)$ is the speed 
     We see that at time $t=1$ the characteristics intersect. Its inverse is given by 
     \[
     x_0 \mapsto \begin{cases}
-         x-t &, x_0 \leq 0 \iff x-t\leq \\
-        \frac{x-t}{1-t}) &, 0 < x_0 < 1 \iff  t < x <1\\
+         x-t &, x_0 \leq 0 \iff x-t\leq 0 \\
+        \frac{x-t}{1-t} &, 0 < x_0 < 1 \iff  t < x <1\\
         x &, 1 \leq x_0 \iff 1 \leq x
     \end{cases}
     \]
@@ -527,7 +519,7 @@ Since the goal is to maximize regularity, we only accept a discontinuous weak so
 }
 So we choose a weak solution with discontinuities to be the "physically correct" one, if it satisfies additionally to the Rankine Hugonoit condition the Lax Entropy condition. In the following we show the uniqueness and existence of the admissible solution.
 \thm{Uniqueness}{
-    Let $f \in C^1 (\mathbb{R},\mathbb{R})$ be conves and $u$ and $v$ two admissible solution of 
+    Let $f \in C^1 (\mathbb{R},\mathbb{R})$ be convex and $u$ and $v$ two admissible solution of 
     \[
     \dot{u} (x,t) + f^\prime (u(x,t)) \frac{\partial}{\partial x} u(x,t) =0, \quad u \in L^1 (\mathbb{R}),
      \]
@@ -715,7 +707,7 @@ We now explore the connection between the ad hoc versions of the method of chara
     \item Inhomogeneous linear transport equation: \\
     We define $(p_1,...,p_{n+1}) := (\frac{\partial}{\partial x_1} u(x(s)),..., \frac{\partial}{\partial x_n} u(x(s)), \frac{\partial}{\partial s} u(x(s)) )$, then the PDE is 
     \[
-    0= F(p,z,(x,t)) = \frac{\partial}{\partial t} u(x,t) + b \cdot \nabla u(x,t) = b_1 p_1 +...+ b_n p_n + p_{n+1} - f(x,t).
+    0= F(p,z,(x,t)) = \frac{\partial}{\partial t} u(x,t) + b \cdot \nabla u(x,t) -f(x,t)= b_1 p_1 +...+ b_n p_n + p_{n+1} - f(x,t).
     \]
     Plugging into two of the three ODEs yields 
     \begin{align*}
@@ -1760,7 +1752,7 @@ If we choose a smart assumption to get the right hand side to become zero, this 
     \[
     u(x) := U (g_x), \quad g_x (y) := \frac{\phi (|x-y|)}{n |y-x|^{n-1} \omega_n}, \quad \phi \in C_0^\infty ((0,r)), \quad \int_0^r \phi (s) ds=1
     \]
-    and show that $F_u=:\tilde{U}$ satisfies the weak mean value property, $u$ is harmonic and $U=\tilde{U}$. This only works if $u$ is constructed independently from $\phi$ and $r$.
+    and show that $F_u=:\tilde{U}$ satisfies the weak mean value property, $u$ is harmonic, smooth and $U=\tilde{U}$. This only works if $u$ is constructed independently from $\phi$ and $r$.
 \end{itemize}
 
 
@@ -1801,7 +1793,7 @@ F_u (f) = \int_{\mathbb{R}^n} u(x) f(x) d^n x = \int_{\mathbb{R}^n} (g_0 * U) (x
 Note that the function that we characterized in the mean value property theorem satisfies the following three properties
 \begin{itemize}
     \item [1.] It only depends on the distance $|y-x|$ to the center $x \in \Omega$
-    \item  [2.] $supp \; f \subset B_x (r)$
+    \item  [2.] $supp \; f \subset B_r (x)$
     \item [3.] $U(f)=0$
  \end{itemize}
  Clearly the first property is equivalent to $f$ is invariant under all rotains around the center. Remember that we have shown that for two functions $f$ and $g$ that are rotationally symmetric around $a$ and $b$ repsectively (i.e. for any orthonagonal transformation $O \in O(n,\mathbb{R})$ it holds $f(a+b)=f(a+Ox)$) follows 
@@ -1809,11 +1801,11 @@ Note that the function that we characterized in the mean value property theorem 
  (f * g) (a+b+x) = (f*g) (a+b+Ox),
  \]
  i.e. rotationally symmetric wrt. $a+b$. Thus, if we take $g_0 * f$ it is rotationally symmetric around the same center as $f$, because $g_0$ is rotaionally symmetric around $0$.\\
- Since $\psi \in C_0^\infty ((0,r))$ the function
+ Define as in the weak mean value thoerem $\psi \in C_0^\infty ((0,r))$ the function
  \[
- f(y) = \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n}
+ f(y) := \frac{\psi (|y-x|)}{n |y-x|^{n-1} \omega_n}
  \]
- vanishes on for all $y \in B_\epsilon^n (\epsilon)$, if we choose $\epsilon>0$ small enough. \\
+ vanishes on for all $y \in B_\epsilon^n (x)$, if we choose $\epsilon>0$ small enough. \\
  Note that we used different test functions for $f$ and $g_0$. For the first we have $\psi \in C_0^\infty ((0,r))$ with $\int \psi d\mu=0$ and for the second we have $\phi \in C_0^\infty ((0,r))$ with $\int \phi d \mu =1$. If $g_0$ has its support on $B_\xi (0)$ with $\xi < \epsilon$ then $supp  \;g_0*f\subset B_\xi (x)$. This and the fact that $\int_\Omega \phi (x) \psi (y-x) d\mu =0$ gives us all the conditions we need to to use the weak mean value property in order for the following calculation
  \[
  \tilde{U} (f) = (g_0 * U) (f) = U (f*Pg_0) = U(f* g_0) =0.

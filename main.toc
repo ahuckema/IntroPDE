@@ -4,7 +4,7 @@
 \contentsline {chapter}{\numberline {1}First order PDEs}{7}{chapter.1}%
 \contentsline {section}{\numberline {1}Homogeneous Transport}{7}{section.1.1}%
 \contentsline {section}{\numberline {2}Inhomogenous linear transport Equation}{8}{section.1.2}%
-\contentsline {section}{\numberline {3}Scalar Conservation Law}{9}{section.1.3}%
+\contentsline {section}{\numberline {3}Scalar Conservation Law}{8}{section.1.3}%
 \contentsline {section}{\numberline {4}Weak Solutions}{11}{section.1.4}%
 \contentsline {section}{\numberline {5}Non-characteristic Hypersurfaces}{14}{section.1.5}%
 \contentsline {section}{\numberline {6}Method of Characteristics}{17}{section.1.6}%
