@@ -1813,7 +1813,7 @@ Note that the function that we characterized in the mean value property theorem 
  Thus, $\tilde{U}$ satisfies the weak mean value property.\\
  The next step is to show that $u$ is harmonic.\\
  Let $\phi_\epsilon \in C_0^\infty (\mathbb{R})$ be a mollifier. Because $B_r (x)$ has compact closure in $\Omega$ $\exists R>r$ such that $B_R (x) \subset \Omega$. Further, for any $0<r_1<r_2 < R$ and $\epsilon>0$ small enough the function
- \[
+ \[ 
  \varphi (t) := \phi_\epsilon (t-r_1) - \phi_\epsilon (t-r_2),
  \]
  has compact support in $(0,R)$ and a vanishing integral
@@ -3833,7 +3833,7 @@ In the homogenuous case we know that if $u$ solves the homogeneous wave equation
 Thus, we have
 \[\left( \frac{\partial}{\partial t} - \frac{\partial }{\partial x} \right) u(x,t) = a(x-t).
 \]
-This is an inhomogeneous transport equation with constant coefficients. Let $X(s) := x+t-s$ and $U(s) := u(X(s),s)$, then
+This is an inhomogeneous transport equation with constant coefficients. Because $f^\prime (u(x,s))= -u(x,s)$ and choosing $x_0 =x + t$ the characteristic $X(s) := x+t-s$ and the solution $U(s) := u(X(s),s)$ along it then yield
 \[
 \frac{d}{ds} U(X(s),s) = \frac{\partial}{\partial t} u (X(s),s) +  \frac{\partial}{\partial x} u (X(s),s) \underbrace{\frac{dX}{ds}}_{=-1} = \frac{\partial}{\partial t} u (X(s),s) - \frac{\partial}{\partial x} u (X(s),s) = a(X(s)-s) = a(x+t-2s)
 \]
@@ -3966,7 +3966,7 @@ G(x,r) := \fint_{\partial B_r (x)} g(y) d\sigma (y), \quad H(x,r) := \fint_{\par
     where we see that the integral becomes independent of $t$ are $r$. It follows 
     \begin{align*}
         \frac{\partial }{\partial r} U(x,r,t) &= \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \frac{\partial}{\partial r} u(x+ry,t) d \sigma (y) = \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \nabla_x u(x+ry,t) \cdot y d \sigma (y),\\
-        &= \frac{1}{n \omega_n} \frac{r^n}{r^n} \int_{ B_1 (0)}  \nabla \cdot \nabla u (x+ry,t) d^n y = \frac{1}{n } \fint_{ B_1 (0)}  \nabla \cdot \nabla u (x+ry,t) d^n y \\
+        &= \frac{1}{n \omega_n} \frac{r^n}{r^n} \int_{ B_1 (0)}  \nabla \cdot \nabla u (x+ry,t) d^n y = \frac{r^n}{n } \fint_{ B_1 (0)}  \nabla \cdot \nabla u (x+ry,t) d^n y \\
         &= \frac{r}{n } \fint_{ B_r (x)}  \Delta u (y,t) d^n y.
     \end{align*}
     The summand in the equation exists, due to 
@@ -4030,15 +4030,15 @@ We now get an additional condition for the transformed initial value problem:
 \end{align*}
 This is the initial value problem of the last section whoose solution is given by 
 \[
-\tilde{U} (x,r,t) = \frac{1}{2} ( \tilde{G} (x,r+t) + \tilde{G} (x,t-r)) + \frac{1}{2} \int_{t-r}^{r+t} \tilde{H} (x,s) ds, \quad 0 \leq r \leq t.
+\tilde{U} (x,r,t) = \frac{1}{2} ( \tilde{G} (x,r+t) - \tilde{G} (x,t-r)) + \frac{1}{2} \int_{t-r}^{r+t} \tilde{H} (x,s) ds, \quad 0 \leq r \leq t.
 \]
-Using the continuity of $r \mapsto \tilde{U} (x,r,t)$ we get
+Note that we only consider the case $0\leq r \leq t$, because we are interested in $r \searrow 0$, due to the following: Using the continuity of $r \mapsto \tilde{U} (x,r,t)$ we get
 \[
-u(x,t) = \lim_{r \searrow 0} U(x,r,t) = \lim_{t \searrow 0} \frac{\tilde{U}(x,r,t)}{r},
+u(x,t) = \lim_{r \searrow 0} U(x,r,t) = \lim_{r \searrow 0} \frac{\tilde{U}(x,r,t)}{r}.
 \]
-which implies for all $x \in \mathbb{R}^3, t >0$:
+Thus we can recover the solution for the 3D problem as the limit $r \searrow 0$: For all $x \in \mathbb{R}^3, t >0$:
 \begin{align*}
-    u(x,t) &= \lim_{r \searrow 0} \frac{1}{2} \left( \frac{\tilde{G}(x,t+r)+ \tilde{G}(x,t-r) + \tilde{G}(x,t) - \tilde{G}(x,t)}{r} \right) + \lim_{r \searrow 0} \frac{1}{2r} \int_{t-r}^{t+r} \tilde{H} (x,s) ds\\
+    u(x,t) &= \lim_{r \searrow 0} \frac{1}{2} \left( \frac{\tilde{G}(x,t+r)- \tilde{G}(x,t-r) + \tilde{G}(x,t) - \tilde{G}(x,t)}{r} \right) + \lim_{r \searrow 0} \frac{1}{2r} \int_{t-r}^{t+r} \tilde{H} (x,s) ds\\
     &= \lim_{r \searrow 0} \frac{1}{2} \left( \frac{\tilde{G}(x,t+r) - \tilde{G}(x,t)}{r} -\frac{\tilde{G}(x,t-r)- \tilde{G}(x,t)}{r} \right) + \lim_{r \searrow 0} \frac{1}{2r} \int_{t-r}^{t+r} \tilde{H} (x,s) ds\\
     &= \frac{\partial}{\partial t} \tilde{G}(x,t) + \tilde{H}(x,t) \\
     &= \frac{\partial}{\partial t} (t G(x,t)) + t H(x,t) \\
@@ -4312,7 +4312,36 @@ For $\bar{f}: \mathbb{R}^{n+1} \to \mathbb{R}$ and $f:= \bar{f} \circ \phi_\pm: 
     Unclear ???
 }
 
-
+\section{Inhomogeneous Wave Equation}
+We interpret in the inhomogeneous wave equation $f$ as an external force:
+\begin{align*}
+   &\frac{\partial^2}{\partial t^2} u - \Delta u =f, \quad \text{ on } \mathbb{R}^n \times \mathbb{R}^+\\
+   &u(x,0)=0, \quad \frac{\partial}{\partial t} u(x,0) =0, \quad x \in \mathbb{R}^n.
+\end{align*}
+We can interpret the solution to the inhomogeneous wave eqation as the integral of the solution to the homogeneous wave eqaution with the external force reflected in the initial condition: 
+\begin{align*}
+    & \frac{\partial^2}{\partial t^2} v_s- \Delta v_s =0, \quad \text{ on } \mathbb{R}^n \times [s, \infty)\\
+    &v_s(x,s)=0, \quad \frac{\partial}{\partial t} v_s(x,s) =f(x,s), \quad x \in \mathbb{R}^n
+\end{align*}
+and $u(x,t) = \int_0^t v_s (x,t) ds$. This true because with the Leipniz rule:
+\begin{align*}
+    &\frac{\partial^2}{\partial t^2} u(x,t) = \frac{\partial}{\partial t} \left( \underbrace{v_t(x,t)}_{=0} + \int_0^t \frac{\partial}{\partial t} v_s (x,t) ds \right) = \frac{\partial}{\partial t} v_t(x,t) + \int_0^t \frac{\partial^2}{\partial t^2} v_s (x,t) ds \\
+    &= f(x,t) + \int_0^t \Delta v_s (x,t) = f(x,t) + \Delta u(x,t).
+\end{align*}
+The sum of the solutions to the homoegenous and inhmomogenous wave equation solve by linearity of the differential operator the following initial value problem 
+\begin{align*}
+      &\frac{\partial^2}{\partial t^2} u - \Delta u =f, \quad \text{ on } \mathbb{R}^n \times \mathbb{R}^+\\
+   &u(x,0)=g(x), \quad \frac{\partial}{\partial t} u(x,0) =h(x), \quad x \in \mathbb{R}^n.
+\end{align*}
+When determining the past from the present, define $v(x,\tau) := u(x,-t)$, where $\tau = - t$. Then 
+\[
+\frac{\partial}{\partial \tau} v(x,\tau) = - \frac{\partial}{\partial t} v(x,\tau), \quad \frac{\partial^2}{\partial \tau^2} v(x,\tau) =  \frac{\partial^2}{\partial t^2} v(x,\tau).
+\]
+This means that the PDE does not change, but the initial velocity does: 
+\begin{align*}
+    &\frac{\partial^2}{\partial \tau^2} v - \Delta v= f(x,-\tau) \quad \text{ on } \mathbb{R}^n \times \mathbb{R}^+\\
+    & v(x,0) = g(x), \quad \frac{\partial}{\partial \tau} v(x,0) = -h(x).
+\end{align*}
 
 \section{Energy Methods}
 Hyperbolic PDEs do not satisfy maximum principle???\\

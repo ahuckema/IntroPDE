@@ -36,6 +36,7 @@
 \contentsline {section}{\numberline {4}Solution in 2 Dimensions}{113}{section.5.4}%
 \contentsline {section}{\numberline {5}Solution in odd Dimensions}{115}{section.5.5}%
 \contentsline {section}{\numberline {6}Solution in even Dimension}{120}{section.5.6}%
-\contentsline {section}{\numberline {7}Energy Methods}{122}{section.5.7}%
-\contentsline {section}{\numberline {8}Summary}{122}{section.5.8}%
+\contentsline {section}{\numberline {7}Inhomogeneous Wave Equation}{122}{section.5.7}%
+\contentsline {section}{\numberline {8}Energy Methods}{123}{section.5.8}%
+\contentsline {section}{\numberline {9}Summary}{123}{section.5.9}%
 \contentsfinish 
