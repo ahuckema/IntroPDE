@@ -1778,7 +1778,7 @@ g_x (y) = g_0 (y-x) = (T_x g_0 ) (y)
 \]
 which leads to 
 \[
-u(x) = U(g_x) = U(T_x g_0 ) = U (T_x P g_0) = (g_0 * U )(x)
+u(x) = U(g_x) = U(T_x g_0 ) = U (T_x P g_0) = (g_0 * U )(\cdot)
 \]
 due to the fact that $g_0(\cdot)$ is symmetric, i.e. $g_0 = P g_0$. Thus because we can write any distribution as a function
 \[
@@ -2792,7 +2792,7 @@ It then holds that
 \pf{
     Due to translation invariance (???) $(x,t) =(0,0)$, define 
     \begin{align*}
-        S_{0,0}(r) &:= \frac{1}{r^n} \int_{E(0,0,r)} u(z,q) \frac{|z|^2}{q^2} d^n z dq =\frac{1}{r^n} \int_{E(0,0,1)} u(ry,r^2 s) \frac{|ry|^2}{(r^2 s)^2} d^n (ry) d (r^2 s) \\
+        S_{0,0}(r) &:= \frac{1}{r^n} \int_{E(0,0,r)} u(z,q) \frac{|z|^2}{q^2} d^n z dq =\frac{1}{r^n} \int_{E(0,0,r)} u(ry,r^2 s) \frac{|ry|^2}{(r^2 s)^2} d^n (ry) d (r^2 s) \\
         &=\frac{1}{r^n} \int_{E(0,0,1)} u (ry,r^2 s) \frac{r^2}{r^4} \frac{|y|^2}{s^2} r^n r^2 d^n y ds = \int_{E(0,0,1)} u (ry,r^2 s) \frac{|y|^2}{s^2}  d^n y ds.
     \end{align*}
     The map $T: E(x,t,r) \to E(rx,r^2 t,r), \quad (y,s) \mapsto (ry,r^2 s)$ is bijective, because it is first a isomorphism, due to its linearity and 
@@ -2809,7 +2809,7 @@ It then holds that
     \]
     Further, because 
     \[
-    \Phi (r (x-z), r^2 t) = \frac{1}{(r^2)^{n/2} } \frac{1}{(4 \pi (x-z))^{n/2}} e^{- \frac{|r (x-z)|^2}{4 r^2 t} } = \frac{1}{r^n} \Phi (x-z,t)
+    \Phi (r (x-z), r^2 t) = \frac{1}{(r^2)^{n/2} } \frac{1}{(4 \pi t)^{n/2}} e^{- \frac{|r (x-z)|^2}{4 r^2 t} } = \frac{1}{r^n} \Phi (x-z,t)
     \]
     it follows that 
     \begin{itemize}
