@@ -2646,37 +2646,7 @@ For $t=0$ the Fundamental solution is not defined. It is defined as the limit fr
 
 \section{Inhomogeneous Initial value problem}
 The homogenuous heat equation can be written as $\dot{u} = \Delta u$. Because the Laplace operator is a linear mapping from $C^2( \mathbb{R}^n) \to C^0 (\mathbb{R}^n)$ the heat equation becomes an ODE on an infinite dimensional Banach space. 
-\rmkb{
-    First read the section to the Fourier Transform. Here the connection of the heat equation to an ODE and the fundamental solution is discussed to motivate Duramels principle. The inhomogeneous heat equation $\dot{u}= \Delta u +f$ can be viewed as an ODE on an infinite functional space on which $u$ is defined, i.e. we have the operator $H:= \Delta$. Then the solution to this linear ODE is given by 
-    \[
-    \forall x \in \mathbb{R}^n: \quad u(x,t) = \int_0^t e^{(t-s)H} f(x,s) ds.
-    \]
-    However, it is not quite clear what $e^{t \Delta}$ would mean. Remember that 
-    \[
-    \mathcal{F}(\Delta u)(k) = - 4 \pi^2 |k|^2 \hat{u}(k)
-    \]
-    Using this we get 
-    \begin{align*}
-    \mathcal{F}(e^{t \Delta} f) (k) &= \mathcal{F}\left( \sum_{n \in \mathbb{N}} \frac{t^n}{n!} \Delta^n f \right)(k) = \sum_{n \in \mathbb{N}} \frac{t^n}{n!}\mathcal{F}\left(  \Delta^n f \right)(k) \\
-    &= \sum_{n \in \mathbb{N}} \frac{t^n}{n!} (-4 \pi^2 |k|^2)^n \hat{f}(k) = e^{-4 \pi^2 |k|^2 t} \hat{f}(k)
-    \end{align*}
-    which is equivalent to 
-    \[
-    (e^{t \Delta} f )(x) = \mathcal{F}^{-1} \left( e^{- 4 \pi^2 |k|^2 t } \hat{f}(k)\right)= \mathcal{F}^{-1} \left( e^{- 4 \pi^2 |k|^2 t } \right) * f(x)
-    \]
-    and using 
-    \[
-    \mathcal{F}^{-1} \left( e^{-4 \pi^2 |k|^2 t} \right) (x) = \int_{\mathbb{R}^n} e^{2 \pi i k x} e^{-4 \pi^2 |k|^2 t} d^n k \stackrel{???}{=} \frac{1}{(4 \pi t)^{n/2} } e^{- \frac{-|x|^2}{4t}} = \Phi (x,t)
-    \]
-    implying
-    \[
-    (e^{t\Delta} f)(x) = (\Phi (\cdot,t) * h)(x),
-    \]
-    which implies that 
-    \[
-    u(x,t) = \int_0^t e^{(t-s)H} f(s) ds= \int_0^t (\Phi(\cdot,t-s) * f)(x) ds= \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y) d^n y ds.
-    \]
-}
+
 
 
 
@@ -3027,7 +2997,19 @@ follows that $u$ is bounded by
     is again a solution??? THis implIES the existence up to time $T_0$.
 }
 
-
+The following example shows the heat equation on $\mathbb{R}^n$ is not well posed, unless you impose a constraint on how fast the solution is allowed to grow. Specifically, it is shown that the heat equation 
+\[
+\partial_t u - \Delta u=0, \quad u(x,0)=0
+\]
+has two solutions. The first is $u\equiv 0$ and the second will be constructed as $u(x,t) := \sum_{l \in \mathbb{N}} g_l (t) x^l$ a power series. It will be shown that 
+\[
+ (\partial_t- \partial_{xx})\sum_{l \in \mathbb{N}} g_l (t) x^l=0 \quad \iff \quad g_{2l} (t) = \frac{g_0^{(l)} (t)}{(2l)!},
+\]
+i.e. the solution only depends on only $g_0 \in C^\infty$. If we choose $g_0$ the power series exists. The bound 
+\[
+|u(x,t)| \leq e^{\frac{7|x|^2}{2t} - \frac{1}{2t^2}}
+\]
+will be derived, which shows that at the smalles $t>0$ and $x \to \pm \infty$ we have infinite temperature, which will propagate into the center with infinite speed.
 \exm{}{
     We want to show here that if we have no bound for the initial value problem for the heat equation, then the solution is not unique. For $n=1$ define 
     \[
@@ -3302,20 +3284,20 @@ The solution of these ODEs is given by $\varphi_i (t) = \varphi_i (0) e^{- \lamb
 \vspace{1cm}
 
 We want to show that we can can translate $\int_{\mathbb{R}^n} e^{-(x-c)^2} d^n x$ by any constant $c \in \mathbb{C}$. It holds for any $x \in i \mathbb{R}^n$
-\begin{align*}
-    \pi^{n/2} e^{x^2}&= \pi^{n/2} \sum_{l=0}^\infty \frac{|x|^{2l}}{l!} = \int_{\mathbb{R}^n} e^{-(k-x)^2} d^n k \sum_{l=0}^\infty \frac{|x|^{2l}}{l!} \\
-    &= \int_{\mathbb{R}^n} e^{-(k-x)^2+x^2} d^n k = \int_{\mathbb{R}^n} e^{-k^2 + 2kx} d^n k = \int_{\mathbb{R}^n} e^{-k^2 + 2kx} d^n k,
-\end{align*}
-\lem{}{
-    If two analytical function agree on the real axis, then they agree on the entire complex plane. 
-}
 \thm{}{
     Let $A(x) := \sum_{n \in \mathbb{N}} a_n x^n$ and $B(x) := \sum_{n \in \mathbb{N}} b_n x^n$, be two power series functions, whose convergence radii $\frac{1}{\overline{lim} \sqrt[n]{|a_n|} }$ are larger than $r>0$. If for $Q:= \{x \in \mathbb{K} \mid |x|\leq r \}$, with $|Q|=\infty$ it holds that $\forall x \in Q: \quad P(x) =Q(x)$ then it follows that $\forall n \in \mathbb{N}: a_n =b_n$ i.e. $A=B$.
 }
-???THis is insted used???\\
-We now need to show that the last integral is an analytical function, because only then we have can imply that this translation is possible on the entire complex plane. Note that the first term is analytical, but that does necessarly imply that the last term is also analtical. It holds 
+\begin{align*}
+    \pi^{n/2} e^{x^2}&=  \sum_{l=0}^\infty \underbrace{\frac{\pi^{n/2}}{l!}}_{=:a_l} |x|^{2l}= \int_{\mathbb{R}^n} e^{-(k-x)^2} d^n k \sum_{l=0}^\infty \frac{|x|^{2l}}{l!} \\
+    &= \int_{\mathbb{R}^n} e^{-(k-x)^2+x^2} d^n k = \int_{\mathbb{R}^n} e^{-k^2 + 2kx} d^n k = \sum_{l=0}^\infty \int_{\mathbb{R}^n} e^{-k^2} \frac{(2kx)^l}{l!} d^n k =  \sum_{l=0}^\infty \underbrace{\int_{\mathbb{R}^n} e^{-k^2} \frac{(2k)^{2l}}{(2l)!} d^n k}_{=:b_l} x^{2l} .
+\end{align*}
+Thus with the theorem above it follows forall 
 \[
-\int_{\mathbb{R}^n} e^{-k^2 + 2kx} d^n k= \sum_{l=0}^\infty \int_{\mathbb{R}^n} e^{-k^2} \frac{(2kx)^l}{l!} d^n k =  \sum_{l=0}^\infty \int_{\mathbb{R}^n} e^{-k^2} \frac{(2kx)^{2l}}{(2l)!} d^n k .
+\frac{\pi^{n/2}}{l!}= \int_{\mathbb{R}^n} e^{-k^2} \frac{(2k)^{2l}}{(2l)!} d^n k.
+\]
+Unclear??? it follows 
+\[
+\forall c \in \mathbb{C}: \quad \pi^{n/2} = \int_{\mathbb{R}^n } e^{-(z-c)^2} d^n z.
 \]
 Using this we get
 \begin{align*}
@@ -3328,11 +3310,12 @@ Using this we get
 \end{align*}
 This then yields 
 \begin{align*}
-    h(x)&=\lim_{t \searrow 0} u(x,t) = \lim_{t \searrow 0} \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y\\
+    \lim_{t \searrow 0} u(x,t) = \lim_{t \searrow 0} \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y\\
     &= \lim_{t \searrow 0} \int_{\mathbb{R}^n}  \int_{\mathbb{R}^n} e^{ - 4 \pi^2 k^2 t } e^{2 \pi k  i x}  e^{-2 \pi k  iy } h(y)  d^n k d^n y\\
     &\stackrel{Fubini}{=} \lim_{t \searrow 0} \int_{\mathbb{R}^n}  e^{ - 4 \pi^2 k^2 t } e^{2 \pi k  i x}  \underbrace{ \int_{\mathbb{R}^n} e^{-2 \pi k  iy } h(y)d^n y } _{=: \hat{h} (k)}  d^n k \\
-    &=  \lim_{t \searrow 0}   \int_{\mathbb{R}^n} e^{ - 4 \pi^2 k^2 t } e^{2 \pi k  i x} \hat{h} (k)  d^n k 
+    &=  \lim_{t \searrow 0}   \int_{\mathbb{R}^n} e^{ - 4 \pi^2 k^2 t } e^{2 \pi k  i x} \hat{h} (k)  d^n k =  \int_{\mathbb{R}^n}  e^{2 \pi k  i x} \hat{h} (k)  d^n k \stackrel{(*)}{=} h(x),
 \end{align*}
+although we will now show in the following that this equality actually holds. 
 
 \defn{}{
     The Schwartz space $\mathcal{S}$ contains all smooth complex calued functions where all its partial derivatives are bounded, i.e.
@@ -3436,6 +3419,13 @@ Putting it all together yields
 \]
     }
 
+
+    \rmkb{So we have now shown that 
+    \[
+    \lim_{t \searrow 0} u(x,t) = \lim_{t \searrow 0} \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y =  \int_{\mathbb{R}^n}  e^{2 \pi k  i x} \hat{h} (k)  d^n k =h(x).
+    \]
+    }
+Up to now the Fourier tranform was only defined on the Schwartz space $\mathfrak{S}$. We will now show that on the Schwartz space, it does not destroy the geometry and that we can extend it to $L^2(\mathbb{R}^n)$.
 \defn{}{
     The complex conjugate for a complex number $z := x+iy \in \mathbb{C}$ is defined as $\bar{z}:= z-iy$.
 }
@@ -3462,6 +3452,14 @@ Note that for a hermitean scalar product it holds that
 \overline{(f,f)} =(f,f).
 \]
 
+\textbf{We now transition from an analysis of the heat eqaution using the Fourier transform on $\mathbb{R}^n$ to bounded open domains $\Omega$.}
+
+We will now view the heat equation as a linear ODE 
+\[
+\partial_t = \Delta u + f,
+\]
+on some functional space. This functional space on which we define the Laplace operator will now be defined:
+
 \defn{}{
     For any connected domain $\Omega \subset \mathbb{R}^n$ let $W_0^{2,2} ( \Omega)$ be the closure of the Hilbert space
     \[
@@ -3473,7 +3471,8 @@ Note that for a hermitean scalar product it holds that
     \] 
     also called Sobolev Space.
 }
-Because $W_0^{2,2}(\Omega)$ is defined to be complete, these limits exist.\\
+Note that by letting the elements in $W_{0}^{2,2} (\Omega)$ vanish we encode the Dirichlet boundary into the space. Further, because $W_0^{2,2}(\Omega)$ is defined to be complete, these limits exist.\\
+We now want to show that $-\Delta: W_0^{2,2}(\Omega) \to W_0^{2,2}(\Omega)$ is a linear, postive, closed, self-adjoint linear operator, for a spectral decomposition to exist.\\
 Let $h \in C_0^\infty (\Omega)$ be arbitary, then 
 \[
 \langle \Delta h ,\Delta h \rangle_{L^2 (\Omega)} = \int_\Omega (\Delta h) \overline{\Delta h} d^n x \leq \int_\Omega \Delta h \overline{\Delta h} d^n x + \int_\Omega h \overline{h} d^n x = \langle h,h \rangle_{W_0^{2,2}(\Omega)}.
@@ -3496,23 +3495,72 @@ By definition any $h \in W_0^{2,2}(\Omega)$ the function $\Delta h \in L^2 (\Ome
     \forall (x_n)_{n \in \mathbb{N}} \subset W \text{ with } x_n \to x \in \mathcal{H} \text{ and } Tx_n \to y \in \mathcal{H} \Rightarrow x \in W \text{ and } Tx=y.
     \]
 }
-The Laplace operator $- \Delta : W_0^{2,2} (\Omega) \to ???$ is closed due to the construction of $W_0^{2,2} (\Omega) := \overline{ C_0^\infty(\Omega)}^{\| \cdot \|_{W_0^{2,2} }}$. This is because by construction $h_n \to h$, $\Delta h \to v$ and $\Delta h =v$. The Laplacian is further self-adjoint, because it is symmetric due to Greens second identiy:
+We need to show that $x_n \to x$ and $-\Delta x_n \to y$ implies $-\Delta x= y$ and $x \in W_0^{2,2}(\Omega)$. This immediatly follows from the construction  of $W_0^{2,2} (\Omega) := \overline{ C_0^\infty(\Omega)}^{\| \cdot \|_{W_0^{2,2} }}$ as the closure.\\
+The Laplacian is further self-adjoint, because it is symmetric due to Greens second identiy:
 \[
 \langle - \Delta u,v \rangle_{L^2} = \int_\Omega \nabla u \overline{\nabla u} d^n x = \langle u, - \Delta v \rangle_{L^2} \text{ and } \langle -\Delta u,u \rangle_{L^2 } = \| \nabla u \|^2 \geq 0.
 \]
-Thus, (???) it follows that $-\Delta$ has a spectral decomposition. Then, (???) it follows that 
+This also shows positivity. Thus, it follows that $-\Delta$ has a spectral decomposition, i.e. $\exists (\phi_n,\lambda_n)_{n \in \mathbb{N}}$ such that 
 \[
-u(x,t) = \left( e^{-tH} h \right)(x) \text{ and } \| e^{-tH} h \|_{L^2(\Omega)} \leq const. \| h \|_{L^2(\Omega)} < \infty
+- \Delta \phi_n = \lambda_n \phi_n, \quad \forall n \in \mathbb{N}.
 \]
-and solves 
+We define for all $h \in L^2(\Omega)$
 \[
-\dot{u} (x,t) = - \left( H e^{-tH} \right)(x) \stackrel{Def.}{=} \Delta u(x,t)
+e^{t \Delta} h := \sum_{n \in \mathbb{N}} e^{t \lambda_n} \langle h,\phi_n \rangle \phi_n,
 \]
-and also satisfies the Dirichlet boundary conditions 
+which solves the heat equation: 
 \[
-u(x,0)= \left( e^0 h \right)(x)=h(x) \text{ and } \forall x \in \partial \Omega u(x,t) =0.
+\frac{d}{dt} \left( e^{t \Delta} h \right) = \frac{d}{dt} \left( \sum_{n \in \mathbb{N}} e^{-t \lambda_n} \langle h,\phi_n \rangle \phi_n \right)=\sum_{n \in \mathbb{N}}\lambda_n e^{-t \lambda_n} \langle h,\phi_n \rangle \phi_n  = \Delta \left(e^{t \Delta} h\right),
 \]
-The last equality holds because $h \in C_0^\infty (\Omega)$.
+with the boundary conditions: 
+\[
+u(x,0)=h(x), \quad u(x,t)=0, \quad x \in \partial \Omega.
+\]
+Remember, the second conditions comes from the construction of the Sobolev space. Finally, because $(\phi_n)_{n \in \mathbb{N}}$ builds an othonormal basis of $L^2(\Omega)$ Parsevals identity applies:
+\[
+\| x \| = \sum_{n \in \mathbb{N}} |\langle e_n, x \rangle |^2.
+\]
+Using this yields  
+\begin{align*}
+    \| e^{t \Delta} h \|_{L^2(\Omega)} &\stackrel{Parseval}{=} \sum_{n \in \mathbb{N}} | \langle e^{-t \lambda_n}  h,\phi \rangle_{L^2(\Omega)} |^2 \\
+    &\leq \sum_{n \in \mathbb{N}} \underbrace{|e^{-t \lambda_n}|^2}_{\leq 1, \lambda_n \geq 0} | \langle h,\phi \rangle_{L^2(\Omega)} |^2 \\
+    & \stackrel{Parseval}{\leq} \| h \|_{L^2(\Omega)}.
+\end{align*} 
+This means that the solution of the form $u(x ,t) = e^{t \Delta} h(x)$ does not increase in in total energy over time.\\
+The following remark connects this section to the sections beforehand.
+
+\rmkb{
+    The inhomogeneous heat equation $\dot{u}= \Delta u +f$ can be viewed as an ODE on an infinite functional space on which $u$ is defined, i.e. we have the operator $H:= \Delta$. Then the solution to this linear ODE is given by 
+    \[
+    \forall x \in \mathbb{R}^n: \quad u(x,t) = \int_0^t e^{(t-s)H} f(x,s) ds.
+    \]
+    However, it is not quite clear what $e^{t \Delta}$ would mean. Remember that 
+    \[
+    \mathcal{F}(\Delta u)(k) = - 4 \pi^2 |k|^2 \hat{u}(k)
+    \]
+    Using this we get 
+    \begin{align*}
+    \mathcal{F}(e^{t \Delta} f) (k) &= \mathcal{F}\left( \sum_{n \in \mathbb{N}} \frac{t^n}{n!} \Delta^n f \right)(k) = \sum_{n \in \mathbb{N}} \frac{t^n}{n!}\mathcal{F}\left(  \Delta^n f \right)(k) \\
+    &= \sum_{n \in \mathbb{N}} \frac{t^n}{n!} (-4 \pi^2 |k|^2)^n \hat{f}(k) = e^{-4 \pi^2 |k|^2 t} \hat{f}(k)
+    \end{align*}
+    which is equivalent to 
+    \[
+    (e^{t \Delta} f )(x) = \mathcal{F}^{-1} \left( e^{- 4 \pi^2 |k|^2 t } \hat{f}(k)\right)= \mathcal{F}^{-1} \left( e^{- 4 \pi^2 |k|^2 t } \right) * f(x)
+    \]
+    and using 
+    \[
+    \mathcal{F}^{-1} \left( e^{-4 \pi^2 |k|^2 t} \right) (x) = \int_{\mathbb{R}^n} e^{2 \pi i k x} e^{-4 \pi^2 |k|^2 t} d^n k \stackrel{???}{=} \frac{1}{(4 \pi t)^{n/2} } e^{- \frac{-|x|^2}{4t}} = \Phi (x,t)
+    \]
+    implying
+    \[
+    (e^{t\Delta} f)(x) = (\Phi (\cdot,t) * h)(x),
+    \]
+    which implies that 
+    \[
+    u(x,t) = \int_0^t e^{(t-s)H} f(s) ds= \int_0^t (\Phi(\cdot,t-s) * f)(x) ds= \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y) d^n y ds.
+    \]
+}
+
 
 
 
@@ -3529,11 +3577,11 @@ i.e. as polynomials. Its linear span
 \[
 \{ \sum_{k=-N}^N c_k \left( e^{2 \pi i x} \right)^k \mid c_{-N},...,c_N \in \mathbb{C} \}
 \] 
-forms an algebra on $\mathbb{C}$ (for $k>0$ we have real values and for $k<0$ complex ones) that seperates points and contains constants. Stone Weierstraß implies that this linear span is dense in $C(\mathbb{R} / \mathbb{Z})$. And with the above and transitivity it is also dense in $L^2 (\mathbb{R}/ \mathbb{Z})$. Finally, using that $e^{2 \pi i k x} $ are eigenfunctions of $-\frac{d^2}{dx^2}$, due to 
+forms an algebra on $\mathbb{C}$ (for $k>0$ we have real values and for $k<0$ complex ones) that seperates points and contains constants. Stone Weierstraß implies that this linear span is dense in $C(\mathbb{R} / \mathbb{Z})$. And with the above and transitivity it is also dense in $L^2 (\mathbb{R}/ \mathbb{Z})$. We have shown that this linear span lies dense in $L^2( \mathbb{R}/\mathbb{Z})$. The next step is to show it builds an orthogonal basis. Using that $e^{2 \pi i k x} $ are eigenfunctions of $-\frac{d^2}{dx^2}$, due to 
 \[
 -\frac{d^2}{dx^2} e^{2 \pi i k x} = 4 \pi^2 k^2 e^{2 \pi i k x},
 \]
-with Eigenvalues $4 \pi^2 k^2 $, it follows with the theorem from Stone Weierstraß and the fact that $\cos ( 2 \pi x) + i \sin (2 \pi x) = e^{2 \pi i x}$ that $(\left( e^{2 \pi i x} \right)^k)_{k \in \mathbb{Z}}$ is a orthogonal system of $L^2(\mathbb{R}/ \mathbb{Z})$.
+with Eigenvalues $4 \pi^2 k^2 $, this immediatly follows. 
 \begin{align*}
     &\int_{\mathbb{R} / \mathbb{Z}} H_{\mathbb{R} / \mathbb{Z}} (x,y,t) h(y) d y \\
     &=u(x,t) = \left( e^{-tH} h \right) (x) = \sum_{k \in \mathbb{Z}} c_k \left( e^{-tH} e^{2 \pi ik \cdot} \right)(x) = \sum_{k \in \mathbb{Z}} c_k e^{2 \pi i k x - t 4 \pi^2 k^2 } \\
@@ -3548,7 +3596,8 @@ We call $\Theta (x, \tau) := \sum_{k \in \mathbb{Z}} e^{2 \pi i k x + \pi i k^2 
 \[
 (x,\tau) \in \mathbb{C} \times  \{ \tau \in \mathbb{C} \mid \mathfrak{J} (\tau ) >0 \}, \quad \text{where } \mathfrak{J}(4 \pi it) := 4 \pi \mathcal{R}e(it).
 \]
-The limit of the sum is a complex differntiable function (holomorphic).
+The limit of the sum is a complex differntiable function (holomorphic).\\
+The fact that $\cos ( 2 \pi x) + i \sin (2 \pi x) = e^{2 \pi i x}$ will now be relevant.
 \rmkb{
     Jacobi's Theta function $\Theta$ satisfies the following properties
     \begin{itemize}
@@ -3588,7 +3637,7 @@ The limit of the sum is a complex differntiable function (holomorphic).
 }
 
 \section{Heat Kernel of $(0, 1)$}
-The Eigenfunction of $- \frac{d^2}{dx^2}$ on $(0,1)$ that satisfies the Dirichlet fboundary conditions, i.e. having their roots at $\partial (0,1) = \{0,1\}$, are given by $\sqrt{2} \sin (k \pi x), k \in \mathbb{N}$: 
+Here we want to construct a basis for $L^2((0,1))$, i.e. we need some eigenfunctions of the Laplace operator, that vanish on $0$ and $1$, i.e. the boundary, so that the boundary conditions are satisfied. The Eigenfunction of $- \frac{d^2}{dx^2}$ on $(0,1)$ that satisfies the Dirichlet fboundary conditions, i.e. having their roots at $\partial (0,1) = \{0,1\}$, are given by $\sqrt{2} \sin (k \pi x), k \in \mathbb{N}$: 
 \[
 - \frac{d^2}{dx^2} \sqrt{2} \sin (k \pi x)= - \sqrt{2} \frac{d}{dx} \cos (k \pi x) k \pi = \sqrt{2} k^2 \pi^2 \sin (k \pi x), \text{ i.e. $k^2 \pi^2$ are Eigenvalues.}
 \]
