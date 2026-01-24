@@ -257,7 +257,7 @@ We also often write $b \nabla u:= \langle b,\nabla u \rangle$.
 \section{Homogeneous Transport}
 For $u: \mathbb{R}^n \times \mathbb{R} \to \mathbb{R}$, $b \in \mathbb{R}^n$ one of the simplest partial differential equations is the homogeneuos transport equation 
 \[
-\dot{u} + n \cdot \nabla u=0,
+\dot{u} + b \cdot \nabla u=0,
 \]
 where $\cdot$ denotes in the entire script the dot product and $\nabla$ the sum of all partial derivatives wrt. $x$ only. We begin by assuming that $u$ is differentiable, then define
 \[
@@ -848,7 +848,7 @@ Many submanifolds cannot be covered by a single parametrisation.
 }
 The problem with choosing multiple parametrisations to cover a submanifold is that the open sets can overlap. We do not want to integrate over an area twice. The solution is the following
 \defn{}{
-    Let $\Omega \subset \mathbb{R}^n$ be covered by a sountable familiy $(U_i)_{i\in \mathbb{N}}$ of open subsets of $\mathbb{R}^n$, i.e. $\bigcup_{i \in \mathbb{N}} U_i=\Omega$. We call a smooth partition of unity a countable family $(h_i)_{i \in \mathbb{N}}$ of smooth functions $h_i: \Omega \to [0,1]$ that satisfy 
+    Let $\Omega \subset \mathbb{R}^n$ be covered by a countable familiy $(U_i)_{i\in \mathbb{N}}$ of open subsets of $\mathbb{R}^n$, i.e. $\bigcup_{i \in \mathbb{N}} U_i=\Omega$. We call a smooth partition of unity a countable family $(h_i)_{i \in \mathbb{N}}$ of smooth functions $h_i: \Omega \to [0,1]$ that satisfy 
     \begin{itemize}
         \item $\forall x \in \Omega$ $\exists O_x \subset \Omega$ neigborhood of $x$ on which all but finitely many $h_i$ vanish 
         \item $\forall x \in \Omega: \quad \sum_{i=1}^\infty h_i (x)=1$
@@ -870,7 +870,11 @@ The idea here is that each $h_i f$ is zero outside of $A_i$, which yields a inte
     The integral $\int_A f d\sigma$ neither depends on the choice of the partition of unity nor the parametrisation.
 }
 \pf{
-
+ Let $(A_i)_{i \in \mathbb{N}}$ and $(B_i)_{i \in \mathbb{N}}$ with $A = \bigcup_{i \in \mathbb{N}} = A_i = \bigcup_{i \in \mathbb{N}} B_i$ and two partitions of unities $(h_i)_{i \in \mathbb{N}}$ and $(g_i)_{i \in \mathbb{N}}$. The product $(g_i h_i)_{i \in \mathbb{N}}$ is a again a partition of unity on $(C_{ij} := A_i \cap B_i)_{i \in \mathbb{N}}$. Note that we can parametrize $C_{ij}$ by restricting $\Phi^{-1} \big|_{A_i \cap B_j}$. Then 
+ \begin{align*}
+    \sum_{i \in \mathbb{N}} \int_{A_i} h_i f d \sigma &= \sum_{i \in \mathbb{N}} \int_{A_i} \sum_{j \in \mathbb{N}} g_i h_i f d \sigma =\sum_{i,j \in \mathbb{N}} \int_{A_i}  g_i h_i f d \sigma  = \sum_{i,j \in \mathbb{N}} \int_{A_i\cap B_j}  g_i h_i f d \sigma \\
+    &= ... =  \sum_{i \in \mathbb{N}} \int_{A_i} g_i f d \sigma 
+ \end{align*}
 }
 These "manifold" integrals have similar propertiess as usual ones, however changes of variables is a little different.
 \lem{}{
@@ -881,12 +885,15 @@ These "manifold" integrals have similar propertiess as usual ones, however chang
         \item $\big| \int_A f d \sigma \big|\leq \int_A |f| d \sigma$
         \item If $P: \mathbb{R}^n \to \mathbb{R}^n$ is euclidean motion (translation, reflection, rotation) and $s \in \mathbb{R}^+$ the scaling factor it holds 
         \[
-        \int_A f d \sigma = s^k \int_{(sP)^{-1} (A)} f \circ (sP) d \sigma. ???
+        \int_A f d \sigma = s^k \int_{(sP)^{-1} (A)} f \circ (sP) d \sigma. 
         \]
     \end{itemize}
 }
+\rmkb{
+    This last condition in the above means that we only need to correct for scaling when tranforming the submanifold integral. 
+}
 
-We will now work with bounded and open sets $\Omega \subset \mathbb{R}$. THeir boundaries can be very complicated, even fractal. We will require $\partial \Omega$ to be $(n-1)$ dimensional submanifolds. Compactness of $\partial \Omega$ yields boundedness of $\Omega$. This is why we will require $\Omega$ to be bounded. \\
+We will now work with bounded and open sets $\Omega \subset \mathbb{R}$. Their boundaries can be very complicated, even fractal. We will require $\partial \Omega$ to be $(n-1)$ dimensional submanifolds. Compactness of $\partial \Omega$ yields boundedness of $\Omega$. This is why we will require $\Omega$ to be bounded. \\
 Vectors that lie perpendicular to the boundary can be found, as the boundary is a graph locally, which means we can find tangential vectos to the submanifold. The tangential vectors wrt. to the $i^{th}$ component is
 are 
 \[
@@ -972,7 +979,7 @@ is a domain to which the divergence theorem applies, then
         \nabla \cdot ((T-l)F) &= \nabla (T-l)\cdot F + (T-l) \nabla \cdot F\\
         &= - \nabla l \cdot F + (T-l) \nabla \cdot F\\
         &= - \nabla l \cdot fN + (T-l) \nabla \cdot F \\
-        &= - l \frac{\nabla l \cdot \nabla l}{|\nabla l|} + (T-l) \nabla \cdot F = - f |\nabla l | +(T-l) \nabla \cdot F .
+        &= - l \frac{\nabla l \cdot \nabla l}{|\nabla l|}f+ (T-l) \nabla \cdot F = - f |\nabla l | +(T-l) \nabla \cdot F .
     \end{align*}
     Using this it follows using the divergence theorem twice it follows 
     \begin{align*}
@@ -1159,7 +1166,11 @@ Distributions that can be written $\forall f \in L_{loc}^1 (\Omega)$ as
 \[
 F_f : C_0^\infty (\Omega) \to \mathbb{R}, \quad \phi \mapsto \int_\Omega f \phi d \mu 
 \]
-are called regular, i.e. they can be written in the integral form. The Dirac distribution cannot be written in this way, as no function in $L_{loc}^1(\Omega)$ exists that vanishes on $\mathbb{R}^n \setminus \{0\}$ and one/infinte ??? on $\{0\}$ does not exist (later proven where???). \\
+are called regular, i.e. they can be written in the integral form. The Dirac distribution cannot be written in this way, as no function in $L_{loc}^1(\Omega)$ exists that vanishes on $\mathbb{R}^n \setminus \{0\}$ and its total integral is one, i.e. 
+\[
+\int_{\mathbb{R}^n} f d \mu =1, \quad \forall x \in \mathbb{R}^n \setminus \{0 \}: \quad f(x)=0.
+\]
+
 One can also show that the Dirac distribution is the limit of mollifiers.
 
 \lem{}{
