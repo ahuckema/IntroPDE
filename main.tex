@@ -393,7 +393,7 @@ If additionally this mapping is injective, then there is exactly one initial val
 \rmkb{
     For $f(u) := \frac{1}{2} u^2$ the Burgers equation is 
     \[
-    \dot{u}(x,t) + \frac{\partial}{\partial x} f(u(x,t)) = \dot{u} (x,t) + u(x,t) \frac{\partial}{\partial x} u(x,t) =0,
+    \dot{u}(x,t) + \frac{\partial}{\partial x} f(u(x,t)) = \dot{u} (x,t) + \underbrace{f^\prime (u(x,t))}_{=u(x,t)} \frac{\partial}{\partial x} u(x,t) =0,
     \]
     is called Burgers erquation. Because $f^\prime (u)) = u$ it follows $x(t) = x_0 + g(x_0) t$. Thus, if the initial value $g$ is continuously differentiable and monotonically increasing if follows 
     \[
@@ -640,6 +640,7 @@ although the equivalence will be shown in the next section. This property is req
 \pf{
 Define $l: (x,q_n) \mapsto F(q_1 (x),...,q_{n-1} (x),q_n,g(x),x)$. By construction at $(x_0,p_{0,n})$ it takes $0$ as a value. To apply the implicit function theorem, we need that $l^\prime$ is continuous in $(x_0,q_{0,n})$ and $\frac{\partial}{\partial q} l(x_0,q_{0,n})$ invertible. This follows from the definition of $g$ and the non characteristic assumption of the Hyperplane/ $\frac{\partial}{\partial p_n} F(p_0,z_0,x_0)\neq 0$. Thus, the preimage of the differential equation wrt. $q_n$ can be represented as a graph of a continuous function. This implies uniqueness of the the solution.
 }
+This Lemma shows that the gradient $q(x) = \nabla u(x)$ uniquely exists on $\Omega_{x_0} \cap H$ and on this set solves the PDE. However, we need to show that on $\Omega_{x_0}$ this gradient exists and solves the PDE. For that we use the method of characteristics.
 
 \section{Method of Characteristics}
 
@@ -1992,6 +1993,7 @@ Although we used that for a mollifier $(\lambda_\epsilon)_{\epsilon \geq 0}$ it 
 
 
 \section{Maximum Principle}
+The following theorem is a consequence of the mean value property. 
 \thm{Strong Maximum Principle}{
     Let $u$ be harmonic on a path-connected open domain $\Omega \subset \mathbb{R}^n$ and taking its maximum. Then $u$ is constant.
 }
@@ -2209,8 +2211,9 @@ For $x \in \Omega$ the function $y \mapsto G_\Omega (x,y) - \Phi (x-y)$ is harmo
 
 We will now calculate Greens functions for $B_\epsilon (x) = \Omega \subset \mathbb{R}^n$. For now only consider the unit ball. Define the inversion in the unit spehre as 
 \[
-\tilde{x} : B_1 (0) \to \partial B_1 (0), x \mapsto \tilde{x}(x) := \frac{x}{|x|^2}.
+\tilde{x} : B_1 (0) \to \mathbb{R}^n \setminus  \overline{B_1 (0)}, x \mapsto \tilde{x}(x) := \frac{x}{|x|^2}.
 \]
+Points close to the origin are mapped to close to infinity and points near the boundary are mapped to points near the boundary on the outside.\\
 Later it will help us to solve the Dirichlet problem for $f=0$ and $g(x) = \Phi (x-y)$ ???.
 \lem{Greens function on the unit Ball}{
     The Greens function on the unit Ball is given by 
@@ -2855,7 +2858,7 @@ It then holds that
 
 
 \section{Maximumsprinciple}
-
+The following theorem shows that diffusion is a consequence of curvature in space and time. If there is is no curvature, i.e. no change in space or time, the solution is constant.\\
 For any open domain $\Omega \subset \mathbb{R}^n$ we define the parabolic cyclinder $\Omega_T := \Omega \times (0,T]$ and $\partial \Omega_T (\partial \Omega \times (0,T]) \cup (\bar{\Omega} \times \{0\})$.
 \thm{}{
     Let $\Omega$ be a path connected and $u$ twice continuous differentiable solution of the heat equation on $\Omega_T$ with continuous extension to $\bar{\Omega}_T$. If $u$ takes the maximum in $\Omega_T$ then $u$ is constant $\Omega_T$.
@@ -2912,18 +2915,27 @@ follows that $u$ is bounded by
 \]
 }
 \pf{
+    The weak maximum principle cannot be applied here directly because thge domain is bounded. However, we can do it locally and then take the limit.\\
     Case $4aT < 1$:\\
     There exists $\epsilon >0$ such that $4a (T+ \epsilon) <1$. For all $y \in \mathbb{R}^n$ and $\mu >0$
     \[
     v(x,t) := u(x,t) - \mu \cdot (T+\epsilon -t)^{-\frac{n}{2}} e^{\frac{|x-y|^2}{4(T+\epsilon -t) } }
     \]
-    is a sultion to the heat equation. This can be seen when plugging this into the differential operator $(\partial_t - \Delta_x)(\cdot)$. Because the second summand is of the form of the fundamental solution, this works. Consider the parabolic boundary $\partial_P \Omega_T := B_r (y) \times \{0\} \cup \partial B_r (y) \times (0,T]$. Then due to $\frac{1}{4(t+\epsilon)} > a$
+    is a sultion to the heat equation. This can be seen when plugging this into the differential operator $(\partial_t - \Delta_x)(\cdot)$. Because the second summand is of the form of the fundamental solution, this works. If we look at the problem only on $B_r(y)$, then the weak maximum principle applies. Thus, consider the parabolic boundary $\partial_P \Omega_T := B_r (y) \times \{0\} \cup \partial B_r (y) \times (0,T]$, where to solution takes its maximum. Then due to $\frac{1}{4(t+\epsilon)} > a$
     \begin{itemize}
         \item For $x \in B_r (y)$ it holds 
         \[
-             A e^{a |x|^2} \geq v(x,0) \geq u(x,0) - \underbrace{ \mu (T+\epsilon)^{- n/2} e^{\frac{|x-y|^2}{4 (T +\epsilon)}}}_{\geq 0}
+             v(x,0) = u(x,0) - \underbrace{ \mu (T+\epsilon)^{- n/2} e^{\frac{|x-y|^2}{4 (T +\epsilon)}}}_{\geq 0} \leq u(x,0) = h(x) \leq \sup_{x \in \mathbb{R}^n} h(x).
         \]
-        and thus $v(x,0) < u(x,0) = h(x) \leq \sup_{x \in \mathbb{R}^n} h(x).$
+        Now we need to consider the limit $r \to \infty$. Because $u$ is bounded by $A e^{a |x|^2}$ it follows that
+        \[
+        v(x,0) \leq A e^{a |x|^2} - \mu (T+\epsilon)^{- n/2} e^{\frac{|x-y|^2}{4 (T +\epsilon)}}.
+        \]
+        Through the assumption $4 a (T+\epsilon) <1$ it follows that the second summand grows faster than the first one. Thus, in the limit $r \to \infty$ the second summand dominates and we get
+        \[
+        v(x,0) \to - \infty < \sup_{x \in \mathbb{R}^n} h(x).
+        \]
+        This means $\exists R>0 \forall r>R: \quad v(x,0) \leq \sup_{x \in \mathbb{R}^n} h(x)$. If we finally let $\mu \searrow 0$ we get the desired bound for $u$ at $t=0$.
         \item For $(x,t) \in  \partial B_r (y) \times (0,T]$ we want to find an upper bound that eventually drops beneath $\sup_{x \in \mathbb{R}^n} h(x)$. First, notice that 
         \[
         |x| = |x+y-y| \leq |x-y| + |y| = r + |y|.
@@ -4106,8 +4118,8 @@ Thus we can recover the solution for the 3D problem as the limit $r \searrow 0$:
     &= \fint_{\partial B_t (x)} g(y) d \sigma (y) + t \frac{\partial}{\partial t} \fint_{\partial B_t (x)} g(y) d \sigma (y) + t \fint_{\partial B_t (x)} h(y) d \sigma (y)\\
     &=  t \frac{\partial}{\partial t} \fint_{\partial B_1 (0)} g(x+tz) d \sigma (z) +  \fint_{\partial B_t (x)}(t h(y) + g(y)) d \sigma (y)\\
     &=  t  \fint_{\partial B_1 (0)} \nabla_x g(x+tz) \cdot z d \sigma (z) +  \fint_{\partial B_t (x)}(t h(y) + g(y)) d \sigma (y)\\
-    &=  t  \fint_{\partial B_t (x)} \nabla_x g(z) \cdot \frac{z-x}{t} d \sigma (z) +  \fint_{\partial B_t (x)}(t h(y) + g(y)) d \sigma (y) \\
-    &= \fint_{\partial B_t (x)} th(y) + g(y) + \nabla_x g(y) \cdot (y-x) d \sigma (y).
+    &=  t  \fint_{\partial B_t (x)} \nabla_z g(z) \cdot \frac{z-x}{t} d \sigma (z) +  \fint_{\partial B_t (x)}(t h(y) + g(y)) d \sigma (y) \\
+    &= \fint_{\partial B_t (x)} th(y) + g(y) + \nabla_y g(y) \cdot (y-x) d \sigma (y).
 \end{align*}
 Also called Kirchhoffs formula. Note that the solution at $(x,t)$ depends only on the values of $g$ and $h$ on the sphere $\partial B_t (x)$, i.e. information propagates with speed $1$ in all directions.
 
