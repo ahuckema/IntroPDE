@@ -3314,6 +3314,10 @@ We want to show that we can can translate $\int_{\mathbb{R}^n} e^{-(x-c)^2} d^n 
     \pi^{n/2} e^{x^2}&=  \sum_{l=0}^\infty \underbrace{\frac{\pi^{n/2}}{l!}}_{=:a_l} |x|^{2l}= \int_{\mathbb{R}^n} e^{-(k-x)^2} d^n k \sum_{l=0}^\infty \frac{|x|^{2l}}{l!} \\
     &= \int_{\mathbb{R}^n} e^{-(k-x)^2+x^2} d^n k = \int_{\mathbb{R}^n} e^{-k^2 + 2kx} d^n k = \sum_{l=0}^\infty \int_{\mathbb{R}^n} e^{-k^2} \frac{(2kx)^l}{l!} d^n k =  \sum_{l=0}^\infty \underbrace{\int_{\mathbb{R}^n} e^{-k^2} \frac{(2k)^{2l}}{(2l)!} d^n k}_{=:b_l} x^{2l} .
 \end{align*}
+The above is for $x \in \mathbb{C}$ equivlanet to 
+\[
+ \pi^{n/2} e^{x^2} = \int_{\mathbb{R}^n} e^{-(k-x)^2+x^2} d^n k  \quad \iff \quad \pi^{n/2}  = \int_{\mathbb{R}^n} e^{-(k-x)^2} d^n k
+\]
 Thus with the theorem above it follows forall 
 \[
 \frac{\pi^{n/2}}{l!}= \int_{\mathbb{R}^n} e^{-k^2} \frac{(2k)^{2l}}{(2l)!} d^n k.
@@ -3668,7 +3672,7 @@ Due to $k, k^\prime \in \mathbb{N}$:
 \[
 \int_0^1 \sqrt{2} \sin (k \pi x) \sqrt{2} \sin (k^\prime \pi x) dx \stackrel{???}{=} \int_0^1 \cos( (k-k^\prime) \pi x ) - \cos ((k+k^\prime ) \pi x) dx \stackrel{???}{=} \delta_{k,k^\prime}
 \]
-$(\sqrt{2} \sin (k \pi x))_{k \in \mathbb{N}}$ builds an orthonormal system of $C(0,1)$. Note that $(0,1) \cong \mathbb{R} / 2\mathbb{Z}$. Let $f$ be continuous on $[0,1]$ with roots at $\partial (0,1)$. Define the the odd reflection 
+$(\sqrt{2} \sin (k \pi x))_{k \in \mathbb{N}}$ builds an orthonormal system of $C(0,1)$. Note that there exists a bijection between $(0,1)$ and $\mathbb{R} / 2\mathbb{Z}$. Let $f$ be continuous on $[0,1]$ with roots at $\partial (0,1)$. Define the the odd reflection 
 \[
 \hat{f} (x) := \begin{cases}
     f(x) &, x \in (0,1) \\
@@ -3682,7 +3686,7 @@ then $\hat{f}$ is continous on $(-1,1)$ and $\hat{f}(-1) = \hat{f}(0)=\hat{f}(1)
     -f(2n-x)&, x \in [2n-1,2n], n \in \mathbb{Z}
 \end{cases}
 \]
-is continuous on $\mathbb{R}$ and has roots on $\mathbb{Z}$ and period $2$.
+is continuous on $\mathbb{R}$ and has roots on $\mathbb{Z}$ and period $2$. Because $(e^{i \pi k x})_{k \in \mathbb{Z}}$ builds an ONB of $L^2(\mathbb{R}/ 2 \mathbb{Z})$, we can write
 \begin{align*}
     \sum_{k \in \mathbb{Z}} c_k e^{i \pi k x} &= \tilde{f}(x) \\
     &= - \tilde{f}(-x) = - \sum_{k \in \mathbb{Z}} c_k e^{i \pi k (-x)} =- \sum_{k \in \mathbb{Z}} c_{-k} e^{i \pi k x}  

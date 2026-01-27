@@ -26,8 +26,8 @@
 \contentsline {section}{\numberline {4}Maximumsprinciple}{81}{section.4.4}%
 \contentsline {section}{\numberline {5}Heat Kernel}{89}{section.4.5}%
 \contentsline {section}{\numberline {6}Spectral Theory and the Heat Equation}{92}{section.4.6}%
-\contentsline {section}{\numberline {7}Heat Kernel of $S^1$}{100}{section.4.7}%
-\contentsline {section}{\numberline {8}Heat Kernel of $(0, 1)$}{102}{section.4.8}%
+\contentsline {section}{\numberline {7}Heat Kernel of $S^1$}{101}{section.4.7}%
+\contentsline {section}{\numberline {8}Heat Kernel of $(0, 1)$}{103}{section.4.8}%
 \contentsline {section}{\numberline {9}Summary}{108}{section.4.9}%
 \contentsline {chapter}{\numberline {5}Wave Equation}{109}{chapter.5}%
 \contentsline {section}{\numberline {1}D'Alemberts Formula $n=1$}{109}{section.5.1}%
