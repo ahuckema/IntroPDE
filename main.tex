@@ -1349,7 +1349,7 @@ We begin by solving the Laplace equation that is given by
 \[
 \Delta u = \frac{\partial^2}{\partial x_1^2 } u + ...+   \frac{\partial^2}{\partial x_n^2 } u   = 0
 \]
-If the right hand side $f\neq 0$ we call this equation Possion eqution, i.e. $\Delta u =f$. This is a linear PDE with the solution $u: \mathbb{R}^n \to \mathbb{R}$.
+If the right hand side $f\neq 0$ we call this equation Possion eqution, i.e. $-\Delta u =f$. This is a linear PDE with the solution $u: \mathbb{R}^n \to \mathbb{R}$.
 \section{Fundamendal Solution}
 This equation is invaraint wrt. all rotations and translations. This leads to the notion that our solution should also have these conditions. We defeine $r:= |x| := \sqrt{x^T x}$ which defines the length of the position vector, i.e. the solution should only depend on this $r$. Further, define $u(x) := v(r) $. Then for $w(r) := v^\prime (r)$
 \[
@@ -2752,6 +2752,11 @@ In the following Corallary we call this initial value problem also Cauchy proble
 The first sum is the solution of the homogeneous initial value problem and the second is the solution to the inhomogeneous initial value problem.
 
 \section{Mean Value Property}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/OmegaT.png}
+    \caption{From \cite{evans2010partial} }
+\end{figure}
 We want to use the fundamental solution $\Phi$ to describe the solution $u(x,t)$ as some mean on a smart chosen ball.
 \defn{}{
     For every $(x,t) \in \mathbb{R}^n \times \mathbb{R}$ and $r>0$ define 
@@ -2766,6 +2771,15 @@ It then holds that
     & \iff - \frac{n}{2} \log(\pi) + \frac{n}{2} \left( 2 \log (r) - \log(4(t-s)) \right) \iff  \geq  \frac{|x-y|^2}{4 (t-s) }\\
     &\iff 2 (t-s) n \big( 2 \log (r) - \log (t-s) - \log (4 \pi) \big) \geq |x-y|^2
 \end{align*}
+
+We see that if $s \to t$ then the right hand side goes to $0$. The heat ball has to be at that time a singular point. Further, if we let $s \to t- \frac{r}{4\pi}$ then the terms inside the logarithm go to $1$ and thus the left hand side goes to $0$. Thus the heat ball is some kind of paraboloid in space-time.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Heat Ball.png}
+    \caption{From \cite{evans2010partial} }
+\end{figure}
+
 
 \thm{Mean Value Property for the Heat Equation}{
     Let $u$ be the solution of the heat equation on an open domain $\Omega \subset \mathbb{R}^n \times \mathbb{R}$. Then $\forall (x,t) \in \Omega $ and $r>0$ with $E(x,t,r) \subset \Omega$: 
@@ -3588,7 +3602,10 @@ The following remark connects this section to the sections beforehand.
     \]
 }
 
-
+Note that in analogy to $A=UDU^{-1}$ for a diagonalizable matrix $A$, we have here
+\[
+\mathcal{F}(\Delta h) = 4 \pi^2 k^2 \hat{h}(k) \quad \iff \quad \Delta h = \mathcal{F}^{-1} (4 \pi^2 k^2 \mathcal{F}(h)).
+\]
 
 
 \section{Heat Kernel of $S^1$}
@@ -3662,6 +3679,7 @@ The fact that $\cos ( 2 \pi x) + i \sin (2 \pi x) = e^{2 \pi i x}$ will now be r
     &= e^{-\frac{\pi i  \tau}{4}}\sum_{k \in \mathbb{N}_0} (1-1)^k e^{ \pi i  \tau (-(k+1)+ \frac{1}{2})^2  } =0.
     \end{align*}
 }
+
 
 \section{Heat Kernel of $(0, 1)$}
 Here we want to construct a basis for $L^2((0,1))$, i.e. we need some eigenfunctions of the Laplace operator, that vanish on $0$ and $1$, i.e. the boundary, so that the boundary conditions are satisfied. The Eigenfunction of $- \frac{d^2}{dx^2}$ on $(0,1)$ that satisfies the Dirichlet fboundary conditions, i.e. having their roots at $\partial (0,1) = \{0,1\}$, are given by $\sqrt{2} \sin (k \pi x), k \in \mathbb{N}$: 

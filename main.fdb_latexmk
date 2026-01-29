@@ -1,13 +1,13 @@
 # Fdb version 4
-["biber main"] 0 "main.bcf" "main.bbl" "main" 1769524022.45486 0
-  "References.bib" 0 -1 0 ""
-  "main.bcf" 0 -1 0 "pdflatex"
+["biber main"] 1769677806.83722 "main.bcf" "main.bbl" "main" 1769677813.12848 0
+  "References.bib" 1769677596.27639 297 aab8c7d904ae9934e03bea2f0ed173ec ""
+  "main.bcf" 1769677812.85925 109201 631dfb83b8e08059313651c25db4f95a "pdflatex"
   (generated)
   "main.bbl"
   "main.blg"
   (rewritten before read)
-["pdflatex"] 1769524017.39978 "/Users/arne/Desktop/Uni Mannheim/Master/IntroPDE/MySkript/main.tex" "main.pdf" "main" 1769524022.45524 0
-  "/Users/arne/Desktop/Uni Mannheim/Master/IntroPDE/MySkript/main.tex" 1769524016.78779 307679 d176b417f9b8a7170638a4e96ccbb906 ""
+["pdflatex"] 1769677808.40807 "/Users/arne/Desktop/Uni Mannheim/Master/IntroPDE/MySkript/main.tex" "main.pdf" "main" 1769677813.1288 0
+  "/Users/arne/Desktop/Uni Mannheim/Master/IntroPDE/MySkript/main.tex" 1769677802.28177 308510 75ba1c21f12f7fe01183147fe7c2cc6c ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc" 1136849721 2900 1537cc8184ad1792082cd229ecc269f4 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -70,6 +70,7 @@
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb" 1215737283 164227 3df942b4ff2124425d8fb1b6d3e01c7a ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb" 1215737283 136101 f533469f523533d38317ab5729d00c8a ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb" 1215737283 131381 2285dee019b5f465b19f189dee464723 ""
+  "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb" 1215737283 198221 ca5aa71411090ef358a6cc78b7458365 ""
   "/usr/local/texlive/2025/texmf-dist/fonts/type1/public/esint-type1/esint10.pfb" 1136849748 34421 79309417cbb00a4641f92d2efa583bbd ""
   "/usr/local/texlive/2025/texmf-dist/tex/context/base/mkii/supp-pdf.mkii" 1461363279 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "/usr/local/texlive/2025/texmf-dist/tex/generic/atbegshi/atbegshi.sty" 1575674566 24708 5584a51a7101caf7e6bbf1fc27d8f7b1 ""
@@ -307,13 +308,15 @@
   "/usr/local/texlive/2025/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1757064974 5467155 19efa205003f9ecad95fbbaa6ff24da1 ""
   "/usr/local/texlive/2025/texmf-var/web2c/pdftex/pdflatex.fmt" 1741450574 3345740 46b66fdb0378f7bf5921b5eabf1762b8 ""
   "/usr/local/texlive/2025/texmf.cnf" 1741450484 577 418a7058ec8e006d8704f60ecd22c938 ""
+  "Images/Heat Ball.png" 1769677152.43919 180437 da0698856671a3cf742ea720334b16c0 ""
+  "Images/OmegaT.png" 1769677164.0155 152964 f01fa7929b5390aedb5d23ff4692af97 ""
   "amd.sty" 1762792810.86169 7646 92bdc5dbfa337ea0a32c9ee79e92e868 ""
-  "main.aux" 1769524022.11943 6014 70abcfb29762f07cfcbacc4eaabb05c8 "pdflatex"
-  "main.bbl" 0 -1 0 "biber main"
-  "main.out" 1769524022.1212 6389 e2953b8eed9f647ebe2542f073fb53a1 "pdflatex"
-  "main.run.xml" 1769524022.12473 2309 3604383b78a08d3178db01a2344046a7 "pdflatex"
-  "main.tex" 1769524016.78779 307679 d176b417f9b8a7170638a4e96ccbb906 ""
-  "main.toc" 1769524022.12497 3281 8c92b27fb4ebe2ab8c771ade6cbe5138 "pdflatex"
+  "main.aux" 1769677812.85416 6679 fae6af90b7a16778611dd76412823b80 "pdflatex"
+  "main.bbl" 1769677808.38997 1948 66bd098db6eb469ee90b1593c0f706cb "biber main"
+  "main.out" 1769677812.85647 6389 e2953b8eed9f647ebe2542f073fb53a1 "pdflatex"
+  "main.run.xml" 1769677812.85994 2309 3604383b78a08d3178db01a2344046a7 "pdflatex"
+  "main.tex" 1769677802.28177 308510 75ba1c21f12f7fe01183147fe7c2cc6c ""
+  "main.toc" 1769677812.86001 3281 3ee1371d7525efa389870deddacd3d75 "pdflatex"
   "theorems.tex" 1769078232.25966 5835 448eb5c86f6022e20846ddf19c144a4f ""
   (generated)
   "main.aux"

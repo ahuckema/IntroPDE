@@ -22,21 +22,21 @@
 \contentsline {chapter}{\numberline {4}Heat Equation}{73}{chapter.4}%
 \contentsline {section}{\numberline {1}Fundamental Solution of the Heat Equation}{73}{section.4.1}%
 \contentsline {section}{\numberline {2}Inhomogeneous Initial value problem}{76}{section.4.2}%
-\contentsline {section}{\numberline {3}Mean Value Property}{78}{section.4.3}%
-\contentsline {section}{\numberline {4}Maximumsprinciple}{81}{section.4.4}%
-\contentsline {section}{\numberline {5}Heat Kernel}{89}{section.4.5}%
-\contentsline {section}{\numberline {6}Spectral Theory and the Heat Equation}{92}{section.4.6}%
-\contentsline {section}{\numberline {7}Heat Kernel of $S^1$}{101}{section.4.7}%
-\contentsline {section}{\numberline {8}Heat Kernel of $(0, 1)$}{103}{section.4.8}%
-\contentsline {section}{\numberline {9}Summary}{108}{section.4.9}%
-\contentsline {chapter}{\numberline {5}Wave Equation}{109}{chapter.5}%
-\contentsline {section}{\numberline {1}D'Alemberts Formula $n=1$}{109}{section.5.1}%
-\contentsline {section}{\numberline {2}Spherical Means of the Wave equation}{112}{section.5.2}%
-\contentsline {section}{\numberline {3}Solution in 3 Dimensions}{114}{section.5.3}%
-\contentsline {section}{\numberline {4}Solution in 2 Dimensions}{115}{section.5.4}%
-\contentsline {section}{\numberline {5}Solution in odd Dimensions}{117}{section.5.5}%
-\contentsline {section}{\numberline {6}Solution in even Dimension}{122}{section.5.6}%
-\contentsline {section}{\numberline {7}Inhomogeneous Wave Equation}{124}{section.5.7}%
-\contentsline {section}{\numberline {8}Energy Methods}{125}{section.5.8}%
-\contentsline {section}{\numberline {9}Summary}{125}{section.5.9}%
+\contentsline {section}{\numberline {3}Mean Value Property}{79}{section.4.3}%
+\contentsline {section}{\numberline {4}Maximumsprinciple}{82}{section.4.4}%
+\contentsline {section}{\numberline {5}Heat Kernel}{90}{section.4.5}%
+\contentsline {section}{\numberline {6}Spectral Theory and the Heat Equation}{93}{section.4.6}%
+\contentsline {section}{\numberline {7}Heat Kernel of $S^1$}{102}{section.4.7}%
+\contentsline {section}{\numberline {8}Heat Kernel of $(0, 1)$}{104}{section.4.8}%
+\contentsline {section}{\numberline {9}Summary}{109}{section.4.9}%
+\contentsline {chapter}{\numberline {5}Wave Equation}{111}{chapter.5}%
+\contentsline {section}{\numberline {1}D'Alemberts Formula $n=1$}{111}{section.5.1}%
+\contentsline {section}{\numberline {2}Spherical Means of the Wave equation}{114}{section.5.2}%
+\contentsline {section}{\numberline {3}Solution in 3 Dimensions}{116}{section.5.3}%
+\contentsline {section}{\numberline {4}Solution in 2 Dimensions}{117}{section.5.4}%
+\contentsline {section}{\numberline {5}Solution in odd Dimensions}{119}{section.5.5}%
+\contentsline {section}{\numberline {6}Solution in even Dimension}{124}{section.5.6}%
+\contentsline {section}{\numberline {7}Inhomogeneous Wave Equation}{126}{section.5.7}%
+\contentsline {section}{\numberline {8}Energy Methods}{127}{section.5.8}%
+\contentsline {section}{\numberline {9}Summary}{127}{section.5.9}%
 \contentsfinish 
