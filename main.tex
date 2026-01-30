@@ -37,6 +37,11 @@
     
 \begin{document}
 
+\begin{center}
+    \huge{Arne Huckemann}\\
+    \large{Intro to PDEs - Lecture Notes}\\
+    \small{Prof. Martin Schmidt}
+\end{center}
 
 
 \tableofcontents
@@ -58,32 +63,6 @@ f^\prime (x_0) : \mathbb{R}^m \to \mathbb{R}^n, x \mapsto \frac{\partial }{\part
 $$
 
 
-\defn{}{
-    We call the mapping \[
-    \phi: (0,\infty) \times \mathbb{R}/(2\pi \mathbb{R}) \to \mathbb{R}^2 , \quad (r,\theta) \mapsto \phi (r,\theta) := (r \cos (\theta), t \sin (\theta))
-    \]
-    polar coordinates.
-}
-It holds at point $(r_0,\theta_0)$ that
-\[
-| det ( \frac{\partial }{\partial x} \phi (r_0,\theta_0) ) | =r_0.???
-\]
-\defn{}{
-    For a set $M$ and an equivalenz relation $\sim$ we call
-    \[
-    [m] := \{n \in M \mid n \sim m \} \subset M
-    \]
-    an equivalenz class. We call $M/\sim$ the set of equivalenz classes from $M$ wrt. $\sim$. It is also called quotient set.
-}
-Note that 
-\[
-M = \bigcup_{ [a] \in M/\sim} [a]
-\]
-and that the mapping
-\[ 
-M \to M/\sim, \quad m \mapsto [m]
-\]
-is canonical, meaning that every element in $M$ is mapped to a unique equivalenz class.
 \rmkb{
     One can show that the mapping\[
     \mathbb{R} \to \mathbb{R} / (2 \pi \mathbb{Z})
@@ -113,74 +92,6 @@ is canonical, meaning that every element in $M$ is mapped to a unique equivalenz
 
 
 \defn{}{
-A set $X$ and a system of sets $\mathcal{O} \subseteq \mathcal{P}(X) = \{ A \mid A \subseteq X \}$ with
-\begin{itemize}
-    \item $\emptyset, X \in \mathcal{O}$
-    \item $\mathcal{O}^\prime \subset \mathcal{O}$ $\Rightarrow$ $\bigcup_{U \in \mathcal{O}^\prime} U \in \mathcal{O}$
-    \item $U,V \in \mathcal{O}$ $\Rightarrow$ $U \cap V \in \mathcal{O}$
-\end{itemize}
-is called topology on $X$ and $(X, \mathcal{O})$ is called topological space.
-}
-
-\defn{}{
-We call a topological space $(X, \mathcal{O})$ second countable if there exists a family $\mathcal{B} \subset \mathcal{O}$, that is a basis of $\mathcal{O}$, i.e.
-$$
-\forall U \in \mathcal{O} \forall x \in U \exists B \in \mathcal{B}: \quad x \in B \subset U.
-$$
-}
-A topological space $(X,\mathcal{O})$ is called Hausdroff, if
-$$
-\forall x,y \in X \text{ with } x \neq y \exists U_x,U_y \text{ open areas around $x$ and $y$ repectively:} \quad U_x \cap U_y = \emptyset.
-$$
-
-\defn{}{
-A $C^r-$Atlas of dimension $m$ on a Set $X$ is a family of Maps $(U_i, \varphi_i)_{i \in \mathbb{N}}$ with $U_i \subset X$ and $\bigcup_{i \in \mathbb{N}} U_i =X$ and homöormorphismen $\varphi:i : U_i \to \Omega \subset \mathbb{R}^n$ open such that for all $i,j \in \mathbb{N}$ with $U_i \cap U_j \neq \emptyset$ we have that
-$$
-\varphi_i \circ \varphi_j^{-1}: \varphi_i (U_i \cap U_j) \to \varphi_j(U_i \cap U_j) 
-$$
-is in $C^{1,r} := \{ u \in C^r \mid D^\alpha u \in C^r , |\alpha| \leq r \}$.
-}
-
-\defn{}{
-A $C^{r,1}$ Manifold $X$ of dimension $m$ is a Hausdorff, second countable topological space with a at most $C^{1,r}$-Atlas $\{(U_i, \varphi_i)_{i \in \mathbb{N}} \}$ where $\varphi_i: U \to \Omega \subset \mathbb{R}^m$ are Homöomorphism are and 
-}
-
-\defn{}{
-A topological space $(X, \mathcal{O})$ is called connected if the only subsets of $X$, that are open and closed are $\emptyset$ and $X$ itself. Local Connected means that for every $x \in X$ every ball around $x$ contains a connected area of $X$.
-}
-
-\thm{}{
-1. Non empty subsets $X$ of $\mathbb{R}$ are connected $\iff$ $X$ is a bounded or unbounded intervall.\\
-2. $\mathbb{R}$ is connected and also locally connected.
-}
-\pf{
-1. Let $X \subset \mathbb{R}$ be connected and not empty. Assume that there exists an intervall in $X$, where there is an element, that is not in $X$, i.e.
-$$
-\exists a,b \in X \text{ with } a<b: \quad x\in (a,b) \text{ with } x \notin X.
-$$
-Then we have that
-$$
-U:= (-\infty,x) \cap X= (-\infty,x] \cap X, \quad \text{ and }\quad V:= (x, \infty) \cap X = [x, \infty) \cap X.
-$$
-Both equalities above hold, because we assumed that $x \notin X$. Because $U$ and $V$ are open and closed at the same time we get that we can make a disjoint decomposition of open sets: $X = U \cup V$, which leads to a contradiction, because $X$ is no longer connected! \\
-This yields that the above constructed $x \notin X$ cannot exist. Thus, all elements in $(a,b) \subset X$ have to be in $X$.\\
-2. Global:\\
-Choose $\inf A=- \infty$ and $\sup A = \infty$. Then 
-$$
- \forall x \in (\inf X,\sup X) \exists a,b \in X:\quad x \in (a,b)
-$$
-i.e. its always contained in an interval. This yields
-$$
-(\inf X, \sup X) \subset X \subset [\inf X,\sup X]
-$$
-which leads to the conclusion that $X$ has to be either
-$(\inf X, \sup X) ,[\inf X, \sup X),(\inf X, \sup X]$ or $[\inf X,\sup X]$.\\
-2. Local:\\
-We can use that a interval $I$ is connected $\iff$ $I = A \cup B$ of non empty subsets where at least one is not open. \\
-Let $a \in A , b \in B$ with $a<b$ and define $c := \inf B \cap [a,b]$. If $A$ is open then $c \in B$ and thus $[a,c) \subset A$. Because $c \notin A$ we get that $B$ is not open and thus $I$ is connected.
-}
-
-\defn{}{
 A mapping $f: V \to U$ between two open vector spaces is called Diffemorphism if
 \begin{itemize}
     \item Bijective
@@ -192,46 +103,6 @@ A mapping $f: V \to U$ between two open vector spaces is called Diffemorphism if
 \defn{}{
 A Homöorphism is a bijective mapping $\varphi$ that is continuous and its inverse $\varphi^{-1}$ is continuous.
 }
-
-\defn{}{
-Let $X$ be a topological space, then we call a Homöormorphism $\phi: U \to V$, where $U \subset X$ open and $V \subset \mathbb{R}^n$ open, a Map. We call $U$ definition space and $n$ the dimension of the Map.
-}
-Intuition: A Map assigns to every point $x \in U$ a unique coordinate $\phi(x) := (x_1,...,x_n) \in V \subset \mathbb{R}^n$ and for every coordinate we can reconstruct a unique point.
-\defn{}{
-On a topological space $(X, \mathcal{O})$ we call two maps $\phi_1 : U_1 \to V$ and $\phi_2: U_2 \to V$, with $U_1,U_2 \subset X$ open and $V \subset \mathbb{R}^n$ open compatible, if 
-$$
-(\phi_1 \circ \phi_2^{-1} )\big|_{U_1 \cap U_2} \text{ is a diffeomorphism, i.e. bijective, continuous and its inverse is continuous.}
-$$
-}
-The reasoning behind the diffeomorphism (???) is that we dont want information to be lost.
-\rmkb{
-Note that $(\phi_1 \circ \phi_2^{-1})^{-1} = \phi_2 \circ \phi_1^{-1}$, i.e. no matter the order $\phi_1 \circ \phi_2^{-1}$ and $\phi_2 \circ \phi_1^{-1}$ we get a continuous bijective mapping from on of the definition spaces $U_1$ to the other $U_2$, because
-$$
-\phi_1 \circ \phi_2^{-1}: U_1 \to U_2 \text{ and } \phi_2 \circ \phi_1^{-1}: U_2 \to U_1.
-$$
-}
-\defn{}{
-For a topological space $(X, \mathcal{O})$ we call a family of maps $\phi_i : U_i \to \mathbb{R}^n$ such that $X \subset \bigcup_{i=1}^n U_i$ is a cover of $X$ an Atlas, if the maps are pairwise compatible.
-}
-
-\rmkb{
-We only want to consider Hausdorff spaces, because ???.\\
-The topological space 
-$$
-X := \bigcup_{i \in \mathbb{N}} O_i \cup (\{0^*\} \cup 0) \cup (\{0^*\} \cup ( O \setminus \{0\}))
-$$
-where $\bigcup_{i \in \mathbb{N}} O_i $ is an open cover of $\mathbb{R}$ and $0^*$ is some element, that is not in $\mathbb{R}$, and $O \subset \mathbb{R}$ is an open area around $0$. The two maps
-$$
-\phi_1: \mathbb{R}\setminus \{0^*\} \to \mathbb{R}, x \mapsto 1 \text{ and } \phi_2: ( \mathbb{R} \setminus \{0^*\} ) \cup \{0^*\} \to \mathbb{R}, x \mapsto \textbf{1}_{\mathbb{R} \setminus \{0\}} + 0 \textbf{1}_{\{0^*\}}
-$$
-are an Atlas of $X$, as their definition space is a cover of $X$. \\
-This is space, that we do not want to consider, because its not a Hausdorff space, because for arbitrary $V \subset \mathbb{R}$ open area of $0$ and $W \subset X$ open area of $0^*$ there exists $O \subset \mathbb{R}$ open area of $0$ with $0^* \in O$.
-}
-\defn{Manifold}{
-We call a topological Hausdorff space with an Atlas differentiable Manifold. 
-}
-The Idea here is that using an open cover of the topological space $X$, for each open set, we map using a map to an open subset of euklidean space, i.e. this what we call locally euklidean. 
-
 
 
 \chapter{First order PDEs}
@@ -349,7 +220,7 @@ Is $u$ uniquely determined by the characteristic lines? This is a difficult ques
 \[
  g(x_1) \stackrel{constant}{=} u(x_1 + s f^\prime (g(x_1)) , t ) = u (x_2 + s f^\prime (g(x_2)) , t)  \stackrel{constant}{=}g(x_2). 
 \]
-If additionally this mapping is injective, then there is exactly one initial value dtermining the solution at $u(x(t),t)$. However, bijectivity alone does not suffice. ??? We need further that this map and its inverse is continuously differentiable.???
+If additionally this mapping is injective, then there is exactly one initial value dtermining the solution at $u(x(t),t)$. However, bijectivity alone does not suffice. We need further that this map and its inverse is continuously differentiable. However, the following condition in the theorem actually also suffices to show existence and uniqueness of the solution.
 
 \thm{}{
     Let $f \in C^2 (\mathbb{R},\mathbb{R})$, $g \in C^1 (\mathbb{R},\mathbb{R})$ and $f^{\prime \prime} (g(x)) g^\prime (x) > - \alpha$ for all $x \in \mathbb{R}$ and for some $\alpha \geq 0$ then it follows that there exists a unique $u \in C^1 (\mathbb{R},\mathbb{R})$ called $C^1$ solution of the initial value problem 
@@ -431,6 +302,12 @@ The above is equivalent to
 y^\prime (t) = \frac{  f(u_l(y(t),t)) -f(u_r (y(t),t)) }{u_l (y(t),t) - u_r (y(t),t)}.
 \]
 This is called the Rankine-Hugonoit condition, where $y^\prime(t)$ is the speed of the discontinuity, also called shock speed.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/14.png}
+    \caption{From NumPDE }
+\end{figure}
 \exm{}{
     Consider the Burgers equation 
     \begin{align*}
@@ -472,7 +349,14 @@ This is called the Rankine-Hugonoit condition, where $y^\prime(t)$ is the speed 
         0 &,x>y (t)
     \end{cases}
     \]
-    where $y(t)$ is the discontinuity that arises after $t=1$. Note that this solution exists if and only if the Rankine-Hugonoit condition is satisfied. The speed of the shock is the Rankine-Hugonoit condition 
+    where $y(t)$ is the discontinuity that arises after $t=1$.
+    \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/13.png}
+    \caption{From NumPDE }
+\end{figure}
+    
+    Note that this solution exists if and only if the Rankine-Hugonoit condition is satisfied. The speed of the shock is the Rankine-Hugonoit condition 
     \[
     y^\prime (t) =\frac{  f(u_l(y(t),t)) -f(u_r (y(t),t)) }{u_l (y(t),t) - u_r (y(t),t)} = \frac{\frac{1}{2}\cdot 1^2-0}{1-0}=\frac{1}{2}.
     \]
@@ -509,6 +393,11 @@ This is called the Rankine-Hugonoit condition, where $y^\prime(t)$ is the speed 
     \]
     Which solution is now the correct one?
 }
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/15.png}
+    \caption{From NumPDE }
+\end{figure}
 Since the goal is to maximize regularity, we only accept a discontinuous weak solution if there are not continuous solutions. Thus in the above case, we would choose the continuous solution. Can we specify this?:
 \defn{Lax Entropy Condition}{
     A discontinuity of a weak solution along a $C^1$ path $t \mapsto y(t)$ satisfies the Lax Entropy condition if 
@@ -517,6 +406,9 @@ Since the goal is to maximize regularity, we only accept a discontinuous weak so
     \]
     A weak solution with discontinuities along $C^1$ paths is called an admissible solution, if it satisfies both the Rankine Hugonoit condition and the Lax Entropy condition.
 }
+
+
+
 So we choose a weak solution with discontinuities to be the "physically correct" one, if it satisfies additionally to the Rankine Hugonoit condition the Lax Entropy condition. In the following we show the uniqueness and existence of the admissible solution.
 \thm{Uniqueness}{
     Let $f \in C^1 (\mathbb{R},\mathbb{R})$ be convex and $u$ and $v$ two admissible solution of 
@@ -526,9 +418,9 @@ So we choose a weak solution with discontinuities to be the "physically correct"
      then $t \mapsto \| u(\cdot,t) - v(\cdot,t) \|_{L^1(\mathbb{R})}$ is monotonically decreasing.
 }
 \pf{
-    ???Skipped
+    Skipped
 }
-As the norm is non negative it follows that it reaches zero eventually??? This implies uniqueness, if of the admissible solution if it exists.
+Because the two solutions are equal at time $t=0$ due to the initial value, the monotonicity decreasing norm implies it is zero for all times. This implies uniqueness, if of the admissible solution if it exists.
 \thm{Existence}{
     For $f \in C^2 (\mathbb{R},\mathbb{R})$ is strictly convex and $g \in L^1 (\mathbb{R}) \cap L^\infty(\mathbb{R})$, then 
     \[
@@ -675,7 +567,7 @@ In total we have derived the ODEs
     & \frac{d}{ds} p_i (s) = \sum_{j=1}^n \frac{\partial}{\partial x_j} \frac{\partial}{\partial x_i} u(x(s)) \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)), \quad i=1,...,n \\
     & \frac{d}{ds} z(s) = \sum_{j=1}^n p_j (s) \frac{\partial}{\partial p_j} F(p(s),z(s),x(s)).
 \end{align*}
-which is a $2n+1$ dimensional system and closed (as it only depends on $u$). Something is now surpirsing??? \\
+which is a $2n+1$ dimensional system and closed (as it only depends on $u$).\\
 In the following theorem it will be shown that under the condition that the characteristic curves $x(s)$ exist as the solution of the $n$ dimensional ODE, then we can solve the other two ODEs systems.
 \thm{}{
     Let $F$ be a real differentiable function on an open subset $W \subset \mathbb{R}^n \times \mathbb{R} \times \mathbb{R}^n$ and $\Omega \subset \mathbb{R}^n$ open and $u:\Omega \to \mathbb{R}$ a twice differentiable solution of $F(\nabla u(x),u(x),x)=0$. THen if a solution $s \mapsto x(s)$ of the ODE 
@@ -701,7 +593,7 @@ This Theorem reduces the problem of finding a unique solution ot the PDE as a qu
     \]
 }
 \pf{
-    ???
+    Skipped
 }
 We now explore the connection between the ad hoc versions of the method of characteristics from the previous sections to the one introduced here. THe point is that they are the same mehtod, but only simplified special cases, where they do not depend on $p= \nabla u$.
 \begin{itemize}
@@ -744,7 +636,7 @@ We now explore the connection between the ad hoc versions of the method of chara
 
 
 \section{Divergence Theorem}
-We will do here a generalization of the fundamental theorem of calculus to a higher dimension. First, we generalize partial integration. Second in what sense higher dimensional scalar convervation laws describe conserved quantity???
+We will do here a generalization of the fundamental theorem of calculus to a higher dimension. First, we generalize partial integration. Second in what sense higher dimensional scalar convervation laws describe conserved quantity. This is will be just a implication of the divergence theorem.\\
 \defn{}{
     The graph of a function $\lambda: U \subset \mathbb{R}^k \to \mathbb{R}^{n-k}$ is the $k$-dimensional subset 
     \[
@@ -997,7 +889,6 @@ is a domain to which the divergence theorem applies, then
 
 \section{Distributions}
 We now introduce a generalization of the partial derivative and to the solution to a partial differential equation. A more general approach to a functions then satsfy these generalized partial derivatives and if they are differentiable the partial derivative as well. These functions are infinitely differentiable wrt. to this weak derivative, however they cannot be multiplied by each other. \\
-In what way do non-linear PDEs result in a non linear equation on distribution???\\
 We begin by defining a class of functions that are well behaved. For that define 
 \[
 supp \; f := \{ x \mid f(x)\neq 0\}
@@ -1099,7 +990,7 @@ For every $f \in L_{loc}^1(\Omega)$ we define
 $$
 F_f : C_0^\infty (\Omega) \to \mathbb{R}, \phi \mapsto \int_\Omega f \phi d \mu
 $$
-and will see that information wrt. derivatives is retained in this linear form. The idea of distributions is to consider not just functions integrated against test functions, but all linear forms $F$ defined on $C_0^\infty (\Omega)$???
+and will see that information wrt. derivatives is retained in this linear form. The idea of distributions is to consider not just functions integrated against test functions, but all linear functionals defined on $C_0^\infty (\Omega)$. Meaning we generalize $F_f$ to arbitrary linear functionals, they do not have to be of the form of an integral against a function $f$. \\
 To evade the difficulty of defining the topology on $C^\infty (\Omega)$, we use an equivalent criterion. $\mathcal{D}(\Omega)$ is the set of functions $f \in C_0^\infty (\Omega)$ that satisfy $f_n \to f \in C_0^\infty (\Omega)$ $: \iff$
 \begin{itemize}
     \item $\exists K \subset \Omega$ compact $\forall n \in \mathbb{N}$: $supp f_n \subset K$
@@ -1244,9 +1135,7 @@ gF: \mathcal{D}(\Omega) \to \mathbb{R}, \quad \phi \mapsto F(g \phi).
 $$
 }
 Note that the product of a distribution with a non-smooth function is not defined, because then $g \phi$ is not a test function. This is why we require $g$ to be in $C^\infty(\Omega)$.
-\rmkb{
-Remember that for two topoligical spaces $X$ and $Y$ the mapping $f: X \to Y$ is called an embedding of two topological spaces, if it is bijective, continuous and its inverse is continuous. ...???
-}
+
 
 The most important operation for distributions is its derivative. Integrating by parts yields
 $$
@@ -1350,6 +1239,13 @@ We begin by solving the Laplace equation that is given by
 \Delta u = \frac{\partial^2}{\partial x_1^2 } u + ...+   \frac{\partial^2}{\partial x_n^2 } u   = 0
 \]
 If the right hand side $f\neq 0$ we call this equation Possion eqution, i.e. $-\Delta u =f$. This is a linear PDE with the solution $u: \mathbb{R}^n \to \mathbb{R}$.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/Deflection.png}
+    \caption{From NumPDE }
+\end{figure}
+
 \section{Fundamendal Solution}
 This equation is invaraint wrt. all rotations and translations. This leads to the notion that our solution should also have these conditions. We defeine $r:= |x| := \sqrt{x^T x}$ which defines the length of the position vector, i.e. the solution should only depend on this $r$. Further, define $u(x) := v(r) $. Then for $w(r) := v^\prime (r)$
 \[
@@ -1576,7 +1472,7 @@ The value of $u$ at the center of any $B_r (0)$ with compact closure $(\bar{A}:=
         \frac{d}{dr} S_x (r) &= \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \nabla u (x+ry) y d \sigma (y) = \frac{1}{n \omega_n} \int_{\partial B_1 (0)} \nabla u (x+ry) y d \sigma (y) \\
         &= \frac{1}{r^{n-1} n \omega_n} \int_{\partial B_r (x)} \nabla u (y) \underbrace{\frac{y-x}{|y-x|}}_{=N} d \sigma (y) = \frac{1}{r^{n-1} n \omega_n} \int_{B_r (x)} \underbrace{ \nabla \cdot \nabla u (y)}_{= \Delta u(y)} d^n y.
         \end{align*}
-        The above only holds for $\overline{B_r (x)}$ compact in $\Omega$, because ???. If $u$ is harmonic, i.e. by definition $\Delta u \equiv 0$, then it follows that $\frac{d}{dr} S_x (r) =0$ for all such $r$, i.e. $S_x (r)$ is constant in $r$. This just means that the average on $\partial B_r (x)$ does not depend on $r$. Further, because $u$ is continuous it follows that $S_x (r) \to u(x) , r \to 0$. THus means that the mean is the center value, because $S_x (0) = u(x)$ and $S_x (\cdot ) $ is constant.\\
+        The above only holds for $\overline{B_r (x)}$ compact in $\Omega$, because $f$ has compact support in $\mathbb{R}^n$. If $u$ is harmonic, i.e. by definition $\Delta u \equiv 0$, then it follows that $\frac{d}{dr} S_x (r) =0$ for all such $r$, i.e. $S_x (r)$ is constant in $r$. This just means that the average on $\partial B_r (x)$ does not depend on $r$. Further, because $u$ is continuous it follows that $S_x (r) \to u(x) , r \to 0$. THus means that the mean is the center value, because $S_x (0) = u(x)$ and $S_x (\cdot ) $ is constant.\\
         Now it holds that 
         \[
         \int_{B_r (x) } u(y) d^n y = \int_{B_r (0)} u(x+y) d^n y = \int_{B_r (0) \cap \{ y_n >0 \}} u(x+y) d^n y + \int_{B_r (0) \cap \{ y_n <0 \}} u(x+y) d^n y + \underbrace{ \int_{B_r (0) \cap \{ y_n =0 \}} u(x+y) d^n y}_{=0}.
@@ -1707,11 +1603,12 @@ The next result shows that smooth harmonic functions do not blow up in the inter
         \end{align*}
         This shows the assertion for $|\alpha|=1$, i.e. the induction start is $C(n,1)=2n$.
     }
+    For the following theorem we need that $u$ is also smooth. However, soon we will show in Weyl's Lemma that harmonic distributions are smooth functions and thus we can assume smoothness without loss of generality.
     \thm{Liouvilles}{
         On $\mathbb{R}^n$ a bounded harmonic function is constant.
     }
     \pf{
-        The previous corolarry has shown that a smooth (???) harmonic function is bounded in the following way
+        The previous corolarry has shown that a smooth harmonic function is bounded in the following way
         \[
         |\partial^\alpha u (x) | \leq C(n,|\alpha|) r^{-|\alpha|} \| u \|_{L^\infty (\overline{B_r (x)})} .
         \]
@@ -1754,7 +1651,7 @@ If we choose a smart assumption to get the right hand side to become zero, this 
     \end{align*}
 }
 
-\lem{}{
+\lem{Weyl's Lemma}{
     On an open domain $\Omega \subset \mathbb{R}^n$ for each harmonic distribution $U \in \mathcal{D}^\prime (\Omega)$ there exists $u\in C^\infty (\Omega)$ harmonic such that $U=F_u$.
 }
 \pf{
@@ -2213,8 +2110,7 @@ We will now calculate Greens functions for $B_\epsilon (x) = \Omega \subset \mat
 \[
 \tilde{x} : B_1 (0) \to \mathbb{R}^n \setminus  \overline{B_1 (0)}, x \mapsto \tilde{x}(x) := \frac{x}{|x|^2}.
 \]
-Points close to the origin are mapped to close to infinity and points near the boundary are mapped to points near the boundary on the outside.\\
-Later it will help us to solve the Dirichlet problem for $f=0$ and $g(x) = \Phi (x-y)$ ???.
+Points close to the origin are mapped to close to infinity and points near the boundary are mapped to points near the boundary on the outside.
 \lem{Greens function on the unit Ball}{
     The Greens function on the unit Ball is given by 
     \[
@@ -2301,7 +2197,7 @@ Later it will help us to solve the Dirichlet problem for $f=0$ and $g(x) = \Phi 
     \[
     u(x) = \int_{B_r (z)} G_{B_r (z)} (x,y) f(y) d^n y -\underbrace{ \int_{\partial B_r (z)}  g(z) \nabla_z G_{B_r (z)} (x,z) N d \sigma (z)}_{=0},
     \]
-    i.e. the solution of the homognenous possion equation differs by a constant term from the solution of the solution of the inhmomogenous Poission equation (???). By definition of the Greens function the limit to the boundary of the second term vanishes. By symmetry we can thus show that for all $x_0 \in \partial B_r (z)$:
+    i.e. the solution of the homognenous possion equation differs by a constant term from the solution of the solution of the inhmomogenous Poission equation. By definition of the Greens function the limit to the boundary of the second term vanishes. By symmetry we can thus show that for all $x_0 \in \partial B_r (z)$:
     \[
         \lim_{x \to x_0} u(x)=  \lim_{x \to x_0}\int_{B_r (z)} G_{B_r (z)} (x,y) f(y) d^n y = \int_{B_r (z)} \lim_{x \to x_0} G_{B_r (z)} (y,x) f(y) d^n y =0.
     \]
@@ -2501,11 +2397,22 @@ Let $u,v$ be two solutions of the Dirchlet problem, then
 \[
 \Delta (u-v) = \text{on } \Omega \text{ and } u-v=g-g=0 \text{ on } \partial \Omega.
 \]
-This implies $I(u-v)=0$??? and larger set of functions???
+This implies $I(u-v)=0$
 }
 
 \section{A PDE with no solutions}
-Skipped for now ???
+\lem{}{
+    Let $\Omega = \mathbb{R}^2 \setminus \{0\}$. The only twice differentiable function $u: \Omega \to \mathbb{R}$ that satisfies 
+    \[
+    - |x|^2 \Delta u \geq u^2,
+    \]
+    is the trivial solution $u \equiv 0$.
+}
+We can now construct a PDE with no solution. Consider the PDE $-|x|^2 \Delta u =u^2 +1$ with any boundary conditions. Then due to 
+\[
+-|x|^2 \Delta u =u^2 +1 \geq u^2,
+\]
+it follows with the lemma above that the only possible solution is $u \equiv 0$. But this is not a solution of the PDE, since $- |x|^2 \Delta 0 =0 \neq 1 =0^2 +1$. Thus this PDE has no solution.
 
 
 \section{Summary}
@@ -2522,7 +2429,14 @@ We began by exploiting the rotational and translational invariance of the Laplac
 
 
 \chapter{Heat Equation}
-We now focus on $\frac{\partial}{\partial t} u - \Delta u=0$ the heat eqaution and is inhomogenous form $\dot{u} - \Delta u=f$, where $u$ is defined on the open domain $\Omega \subset \mathbb{R}^n \times \mathbb{R}$ and $f$ on $\Omega$. We will extend statements about harmonic function to solution of the heat equation. This equation models the diffusion of some quantity. (The heat equation follows from the scalar conservation law???)\\
+We now focus on $\frac{\partial}{\partial t} u - \Delta u=0$ the heat eqaution and is inhomogenous form $\dot{u} - \Delta u=f$, where $u$ is defined on the open domain $\Omega \subset \mathbb{R}^n \times \mathbb{R}$ and $f$ on $\Omega$. We will extend statements about harmonic function to solution of the heat equation. This equation models the diffusion of some quantity. The heat equation follows from the scalar conservation law: Consider 
+\[
+\frac{\partial}{\partial t} u(x,t) + \nabla \cdot F(u(x,t)) = 0, \quad (x,t) \in \Omega, \quad F := -\nabla.
+\]
+Then the heat equation follows:
+\[
+\frac{\partial}{\partial t} u(x,t) + \nabla \cdot (- \nabla u(x,t)) = \frac{\partial}{\partial t} u(x,t) - \Delta u(x,t) = 0.
+\]
 \section{Fundamental Solution of the Heat Equation}
 Since in the heat equation there are only first order derivatives in time and second order in space it holds that 
 \[
@@ -2788,7 +2702,7 @@ We see that if $s \to t$ then the right hand side goes to $0$. The heat ball has
     \]
 }
 \pf{
-    Due to translation invariance (???) $(x,t) =(0,0)$, define 
+    Due to translation invariance $(x,t) =(0,0)$, define 
     \begin{align*}
         S_{0,0}(r) &:= \frac{1}{r^n} \int_{E(0,0,r)} u(z,q) \frac{|z|^2}{q^2} d^n z dq =\frac{1}{r^n} \int_{E(0,0,r)} u(ry,r^2 s) \frac{|ry|^2}{(r^2 s)^2} d^n (ry) d (r^2 s) \\
         &=\frac{1}{r^n} \int_{E(0,0,1)} u (ry,r^2 s) \frac{r^2}{r^4} \frac{|y|^2}{s^2} r^n r^2 d^n y ds = \int_{E(0,0,1)} u (ry,r^2 s) \frac{|y|^2}{s^2}  d^n y ds.
@@ -2830,7 +2744,7 @@ We see that if $s \to t$ then the right hand side goes to $0$. The heat ball has
     \end{align*}
     Define $\psi (y,s) := - \frac{n}{2} \log (- \pi s) + \frac{|y|^2}{4s} + n \log (r)$, then 
     \[
-    E(0,0,r) = \{ (y,s) \in \mathbb{R}^{n+1} \mid \psi (y,s) \geq 0, \underbrace{s \leq t}_{???} \}
+    E(0,0,r) = \{ (y,s) \in \mathbb{R}^{n+1} \mid \psi (y,s) \geq 0, s \leq t \}
     \]
     can be written which yields that by definition $\psi$ vanishes on $\partial E(0,0,r)$. Using that 
     \[
@@ -2890,8 +2804,7 @@ For any open domain $\Omega \subset \mathbb{R}^n$ we define the parabolic cyclin
      \[
     \forall (x,t) \in \Omega \times (0,t_0) \exists n \in \mathbb{N} \text{ finite and } E(x_1,t_1,r_1),...,E(x_n,t_n,r_n) \subset \Omega \times (0,t_0)
     \]
-    where $t_0 >...>t_n$, $(x_{i},t_i) \in E(x_{i-1},t_{i-1},r_{i-1})$ and $(x,t) \in E(x_n,t_n,r_n)$. This implies $u(x,t)$ is also the maximum. Thus $A= \mathring{ \Omega}_{t_0}$. Because $u$ is continuous in the interior and extends contiusly to the closure, it follows that $u$ is also equal to the maximum on $\overline{\Omega_{t_0}}$.\\
-    In order to show that the solution is constant on $\Omega_T$ we need analiticity.??? Not done here.
+    where $t_0 >...>t_n$, $(x_{i},t_i) \in E(x_{i-1},t_{i-1},r_{i-1})$ and $(x,t) \in E(x_n,t_n,r_n)$. This implies $u(x,t)$ is also the maximum. Thus $A= \mathring{ \Omega}_{t_0}$. Because $u$ is continuous in the interior and extends contiusly to the closure, it follows that $u$ is also equal to the maximum on $\overline{\Omega_{t_0}}$.
 }
 
 
@@ -2982,7 +2895,7 @@ follows that $u$ is bounded by
     \[
     u(x,t) = \int_{\mathbb{R}^n} \Phi (x-y,t) h(y) d^n y + \int_0^t \int_{\mathbb{R}^n} \Phi (x-y,t-s) f(y,s) d^n y ds.
     \]
-    This solution (might???) explode at some finite time $t \nearrow T_0 \geq \frac{1}{16 a}$.
+    This solution (might) explode at some finite time $t \nearrow T_0 \geq \frac{1}{16 a}$.
 }
 \pf{
     Using the maximum principle for the Cauchy problem we can again show that the vanishing of the difference of two solutions imply uniqueness.\\
@@ -3332,14 +3245,6 @@ The above is for $x \in \mathbb{C}$ equivlanet to
 \[
  \pi^{n/2} e^{x^2} = \int_{\mathbb{R}^n} e^{-(k-x)^2+x^2} d^n k  \quad \iff \quad \pi^{n/2}  = \int_{\mathbb{R}^n} e^{-(k-x)^2} d^n k
 \]
-Thus with the theorem above it follows forall 
-\[
-\frac{\pi^{n/2}}{l!}= \int_{\mathbb{R}^n} e^{-k^2} \frac{(2k)^{2l}}{(2l)!} d^n k.
-\]
-Unclear??? it follows 
-\[
-\forall c \in \mathbb{C}: \quad \pi^{n/2} = \int_{\mathbb{R}^n } e^{-(z-c)^2} d^n z.
-\]
 Using this we get
 \begin{align*}
     \Phi (x-y,t) &= \frac{1}{(4 \pi t)^{n/2}} e^{- \frac{-(x-y)^2}{4t}}= e^{- \frac{(x-y)^2}{4t}} \frac{\pi^{n/2}}{(4 \pi^2 t)^{n/2}} = e^{ - \frac{|x-y|^2}{4t}} \frac{1}{(2 \pi \sqrt{t} )^n } \pi^{n/2} \\
@@ -3688,7 +3593,7 @@ Here we want to construct a basis for $L^2((0,1))$, i.e. we need some eigenfunct
 \]
 Due to $k, k^\prime \in \mathbb{N}$:
 \[
-\int_0^1 \sqrt{2} \sin (k \pi x) \sqrt{2} \sin (k^\prime \pi x) dx \stackrel{???}{=} \int_0^1 \cos( (k-k^\prime) \pi x ) - \cos ((k+k^\prime ) \pi x) dx \stackrel{???}{=} \delta_{k,k^\prime}
+\int_0^1 \sqrt{2} \sin (k \pi x) \sqrt{2} \sin (k^\prime \pi x) dx = \int_0^1 \cos( (k-k^\prime) \pi x ) - \cos ((k+k^\prime ) \pi x) dx = \delta_{k,k^\prime}
 \]
 $(\sqrt{2} \sin (k \pi x))_{k \in \mathbb{N}}$ builds an orthonormal system of $C(0,1)$. Note that there exists a bijection between $(0,1)$ and $\mathbb{R} / 2\mathbb{Z}$. Let $f$ be continuous on $[0,1]$ with roots at $\partial (0,1)$. Define the the odd reflection 
 \[
@@ -3765,10 +3670,7 @@ leads to
     H_{(0,1)} (x,y,t) &= \sum_{k \in \mathbb{N}} e^{- \pi^2 k^2 t} \cos (k \pi (x-y)) - \sum_{k \in \mathbb{N}} e^{- \pi^2 k^2 t} \cos (k \pi (x+y)) \\
     &= \frac{1}{2} \Theta (\frac{x-y}{2}, i t \pi) - \frac{1}{2} \Theta (\frac{x+y}{2}, i t \pi ).
 \end{align*}
-Interpretation: ???\\
-\rmkb{
-    Exercises:...
-}
+Interpretation: Theta functions are a tool from function theory. We only reference their connection to this field of mathematics without going into detail.\\
 The heat kernel on the cartesian product of two domains can be easily be calculated as the heat kernels of both domains:
 \lem{}{
     If $\Omega \subset \mathbb{R}^m$ and $\Omega^\prime \subset \mathbb{R}^n$ are two open, bounded and connected domains with heat kernels $H_\Omega$ and $H_{\Omega^\prime}$ respectively, the heat kernel of $\Omega \times \Omega^\prime$ is given  
@@ -3881,7 +3783,7 @@ This leads to
         \]
         Thus, for fixed $t$ the Taylor series of $H_\Omega$ around $x$ converges $\forall y \in \Omega$. Because the integration and differentiation can be interchanged (due to smoothness of $H_\Omega$ wrt. $x$ and $y$) it follows that the Taylor series of $u(\cdot , t)$ around $x$ converges $\forall x \in \Omega$. Thus, $u(\cdot , t)$ is analyitic.
     \end{itemize}
-    ???
+
 }
 
 
@@ -4028,6 +3930,11 @@ u(x,t) = \begin{cases}
 \end{cases}.
 \]
 This describes waves moving on $[0,\infty)$ where waves moving towards $x=0$ get reflected. This is prescribed using point reflection, i.e. the waves moves through $x=0$ and gets inverted.
+
+\rmkb{
+    In general there are two approaches in solving the wave equation. The method of spherical means defines a PDE on the averages of the solution, which transforms the problem into a one dimensional problem and then lets the radius go to zero. Then using Kirchhoffs formula, which will be introduced, we get a formulation for the solution. This is applicable in odd dimensions.\\
+    The method of descent defines the $n$ dimensional problem onto $n+1$ dimensions, where howevery, the initial data does only depend on $n$ dimensions. By transforming the solution in $n+1$ onto $n$ dimensions, the solution can be recovered. In even dimensions, this is the only approach possible. Though, in odd dimensions this can also be done.
+}
 
 \section{Spherical Means of the Wave equation}
 The methods of spherical means is a technique that transforms the initial value problem of the wave equation on $\mathbb{R}^n$ into a lower dimensional problem by using the translation invariance and local rotaional averaging. Define $x \in \mathbb{R}^n, t \geq 0, r>0$: 
@@ -4403,8 +4310,11 @@ For $\bar{f}: \mathbb{R}^{n+1} \to \mathbb{R}$ and $f:= \bar{f} \circ \phi_\pm: 
     \]
 }
 \pf{
-    Unclear ???
+    Only constant needs to be calculated.
 }
+
+
+Note that the method of descent also works for odd dimensions. We can define the problem in $n+1$ dimensions, i.e. for $n$ odd, by letting the initial values only depend on $n$ variables. Then we can indeed recover the solution on $\bar{x} \in \mathbb{R}^n$ by evaluating the solution in $x \in \mathbb{R}^{n+1}$ at $x_{n+1}=0$, similiar to before.
 
 \section{Inhomogeneous Wave Equation}
 We interpret in the inhomogeneous wave equation $f$ as an external force:
@@ -4438,8 +4348,7 @@ This means that the PDE does not change, but the initial velocity does:
 \end{align*}
 
 \section{Energy Methods}
-Hyperbolic PDEs do not satisfy maximum principle???\\
-The theorem for the maximum principle for elliptic second order PDEs applies to degenerate elliptic PDEs???
+Hyperbolic PDEs do not satisfy maximum principle.
 \thm{}{
     Let $\Omega \subset \mathbb{R}^n$ be a bounded domain, then the initial value problem 
     \begin{align*}
@@ -4479,7 +4388,6 @@ Defining the wave eqaution in terms of spherical means establishes the Euler-Poi
 whcih transforms the PDE into a one dimensional one. In $n=3$ substuting $\tilde{U} := r U$ transforms the Euler-Poisson-Darboux equation the one dimensional wave equation $\frac{\partial^2}{\partial t^2} \tilde{U} - \frac{\partial^2}{\partial r^2} \tilde{U} =0$. Solving this using D'Alembert's formula and taking the limit $r \to 0$ yields Kirchhoffs formula. In this case $(n=3)$ the solution only depends on the sphere $\partial B_t (x)$, which means that in $3D$ propagation is on sharp wavefronts without a "wake". \\
 For $n=2$ we use the method of descent, meaning we formulate the $2D$ problem as a special case of the $3D$ problem, by setting the initial data nad solution such that is is independend from the third coordinate $x_3$. Using Kirchhoffs formula in $3D$ and transforming the integrals to $2D$ yields a formolation for the solution. However, it depends on the entire ball $B_t (x)$, i.e. propagation occurs including wakes.\\
 Generalizing for odd dimensions, multipliying the spherical means by $\left( \frac{1}{r} \frac{\partial}{\partial r} \right)^{n-1} r^{2k-1}$ a specific form is derived for the solution.\\
-Generalizing fir even dimensions, we do the same appraoch by setting initial data nad solution such taht it is independend from the $n+1^{th}$ coordinate, giving a formula for the solution. \\
-???.
+Generalizing fir even dimensions, we do the same appraoch by setting initial data nad solution such taht it is independend from the $n+1^{th}$ coordinate, giving a formula for the solution.
 
 \end{document}
